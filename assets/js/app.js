@@ -17,69 +17,12 @@
   /* ------------------------------------------------------------------
      Contenu des neuf jours
 
-     Chaque jour publié suit cette forme :
+     Le texte vit dans assets/js/contenu.js, chargé juste avant ce fichier.
+     On peut le corriger sans jamais ouvrir celui-ci.
 
-       {
-         title:      "Titre du jour",
-         verse:      "« Citation de l'Évangile »",
-         ref:        "Luc 6, 6-11",
-         meditation: ["premier paragraphe", "deuxième paragraphe"],
-         intention:  "Intention du jour.",
-         prayer:     ["premier paragraphe", "deuxième paragraphe"],
-         audio:      "assets/audio/jour-1.mp3"   // facultatif
-       }
-
-     Un jour laissé à null affiche « Ce jour sera disponible le … ».
-     Il suffit de remplacer le null par un objet le matin même.
+     Un jour absent de ce fichier affiche « Ce jour sera disponible le … ».
      ------------------------------------------------------------------ */
-  var CONTENT = {
-    1: {
-      title: 'Lève-toi, tiens-toi là, au milieu',
-      verse: '« Jésus dit à l’homme qui avait la main desséchée : Lève-toi, et ' +
-             'tiens-toi debout, là, au milieu. L’homme se dressa et se tint debout. »',
-      ref: 'Luc 6, 6-11',
-      meditation: [
-        'Un geste de rien. Jésus demande au paralysé de se lever et de se placer au ' +
-        'milieu. Et celui-ci n’ose même pas : Luc note qu’il se leva et se tint ' +
-        'debout, sans dire qu’il alla au milieu. Pourtant, dans ce geste presque ' +
-        'anodin, une question nous est posée : que plaçons-nous au centre de notre vie ?',
-
-        'Notre vie ressemble à une danse. Un pas en avant, deux pas en arrière, mais ' +
-        'nous tournons presque toujours autour d’un point fixe qui oriente tout le ' +
-        'reste. Et le plus souvent, au centre, nous mettons la force : celui qui ' +
-        'réussit, celui qui s’impose, celui qui gagne.',
-
-        'La logique du Cœur de Jésus ne prolonge pas notre pente naturelle, elle la ' +
-        'renverse. Là où nous plaçons la force, il place la faiblesse. Le centre ' +
-        'n’est pas réservé au fort ou au capable ; il est donné à celui qui ne peut ' +
-        'rien revendiquer. Ce Cœur ouvert « pour que le monde ait la vie » nous ' +
-        'déplace, et c’est peut-être là notre prière de ce jour : rester devant ce ' +
-        'déplacement et le laisser avoir raison de nous.'
-      ],
-      intention: 'Pour ceux que tout le monde regarde de côté, et pour que nos ' +
-                 'communautés apprennent à les placer au milieu.',
-      prayer: [
-        'Seigneur, voici nos centres de gravité : nos réussites, nos peurs, nos héros, ' +
-        'notre importance, tout ce autour de quoi nous tournons sans même nous en ' +
-        'apercevoir.',
-
-        'Et voici ton Évangile, avec cet homme que tout le monde regardait de côté et ' +
-        'que tu mets au milieu. Nous voilà embêtés, comme les pharisiens. Nous ne ' +
-        'savons pas très bien quoi en faire.',
-
-        'Ouvre nos cœurs à ton Cœur, pour que le monde ait la vie. Amen.'
-      ],
-      audio: 'assets/audio/jour-1.mp3'
-    },
-    2: null,
-    3: null,
-    4: null,
-    5: null,
-    6: null,
-    7: null,
-    8: null,
-    9: null
-  };
+  var CONTENT = window.NEUVAINE_CONTENU || {};
 
   /* ------------------------------------------------------------------
      Outils
@@ -374,7 +317,7 @@
     $('#day-date').textContent = fmtLong(d);
     $('#day-countdown').textContent = countdownLabel(n);
     $('#day-count').textContent = countdownSpoken(n);
-    $('#day-title').textContent = c ? c.title : 'Jour en attente';
+    $('#day-title').textContent = c ? c.titre : 'Jour en attente';
 
     $('#day-pending').hidden = !!c;
     $('#day-content').hidden = !c;
@@ -383,21 +326,58 @@
       $('#day-pending-date').textContent = fmtLong(d);
       setupAudio(null);
     } else {
-      $('#day-verse').textContent = c.verse;
-      $('#day-ref').textContent = c.ref;
+      fillVerse($('#day-verse'), c.verset);
+      $('#day-ref').textContent = c.source || '';
       fillParagraphs($('#day-meditation'), c.meditation);
-      $('#day-intention').textContent = c.intention;
-      fillParagraphs($('#day-prayer'), c.prayer);
+      fillMusic(c.musique);
+      fillIntention(c.intention);
+      fillParagraphs($('#day-prayer'), c.priere);
       setupAudio(c.audio, n);
     }
 
     renderDayNav(n);
   }
 
+  /** Le verset est soit une phrase, soit un poème donné ligne par ligne.
+   *  Dans le second cas chaque vers garde sa ligne propre. */
+  function fillVerse(host, verset) {
+    host.textContent = '';
+    if (Array.isArray(verset)) {
+      host.classList.add('is-poem');
+      verset.forEach(function (ligne, i) {
+        if (i) { host.appendChild(document.createElement('br')); }
+        host.appendChild(document.createTextNode(ligne));
+      });
+    } else {
+      host.classList.remove('is-poem');
+      host.textContent = verset || '';
+    }
+  }
+
+  /** Tous les jours n'ont pas d'intention distincte de la prière.
+   *  Quand elle manque, la section entière disparaît plutôt que d'afficher
+   *  un encadré vide. */
+  function fillIntention(texte) {
+    var section = $('#day-intention-section');
+    var vide = !texte;
+    section.hidden = vide;
+    $('#day-intention').textContent = vide ? '' : texte;
+  }
+
+  /** Le chant proposé pour accompagner la méditation, quand il y en a un. */
+  function fillMusic(titre) {
+    var p = $('#day-music');
+    p.hidden = !titre;
+    $('#day-music-title').textContent = titre || '';
+  }
+
+  /** Une entrée commençant par un tiret cadratin est le répons d'une litanie :
+   *  elle se distingue du texte que dit le lecteur. */
   function fillParagraphs(host, list) {
     host.textContent = '';
     (list || []).forEach(function (text) {
       var p = document.createElement('p');
+      if (text.charAt(0) === '—') { p.className = 'response'; }
       p.textContent = text;
       host.appendChild(p);
     });

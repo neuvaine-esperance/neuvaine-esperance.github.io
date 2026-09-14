@@ -163,6 +163,8 @@
     <!-- Jour publié -->
     <div id="day-content" hidden>
 
+      <p class="signe anim">Au nom du Père, et du Fils, et du Saint-Esprit.</p>
+
       <section class="scripture anim" aria-labelledby="t-parole">
         <h2 class="eyebrow eyebrow--gold" id="t-parole">Parole de Dieu</h2>
         <blockquote class="scripture__quote" cite="https://www.aelf.org/bible">
@@ -218,9 +220,16 @@
       <section class="meditation anim" aria-labelledby="t-meditation">
         <h2 class="eyebrow eyebrow--crimson" id="t-meditation">Méditation</h2>
         <div class="meditation__body" id="day-meditation"></div>
+
+        <!-- Chant proposé pour accompagner ce jour, quand il y en a un. -->
+        <p class="day-music" id="day-music" hidden>
+          <span class="day-music__label">Musique proposée</span>
+          <span id="day-music-title"></span>
+        </p>
       </section>
 
-      <section class="intention anim" aria-labelledby="t-intention">
+      <section class="intention anim" id="day-intention-section"
+               aria-labelledby="t-intention">
         <h2 class="eyebrow eyebrow--gold" id="t-intention">Intention du jour</h2>
         <p class="intention__text" id="day-intention"></p>
       </section>
@@ -270,7 +279,7 @@
         </div>
 
         <div class="anchors__acclaim">
-          <p>Sacré-Cœur de Jésus, j'ai confiance en toi.</p>
+          <p>Sacré-Cœur de Jésus,<br>nous avons confiance en toi.</p>
         </div>
       </div>
 
@@ -364,6 +373,8 @@
 
 </div>
 
-<script src="assets/js/app.js?v=3" defer></script>
+<!-- Le texte des neuf jours d'abord, la logique ensuite. -->
+<script src="assets/js/contenu.js?v=4" defer></script>
+<script src="assets/js/app.js?v=4" defer></script>
 </body>
 </html>

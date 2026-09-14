@@ -624,6 +624,16 @@ main { display: contents; }
   color: var(--ink-soft);
 }
 
+/* Signe de croix, en ouverture de chaque jour ------------------------------- */
+.signe {
+  margin: 0 var(--pad) 18px;
+  text-align: center;
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--green);
+}
+
 /* Parole de Dieu ----------------------------------------------------------- */
 .scripture {
   margin: 0 var(--pad);
@@ -640,14 +650,24 @@ main { display: contents; }
   line-height: 1.45;
   text-wrap: pretty;
 }
+/* Certains jours citent un poème plutôt qu'une phrase : chaque vers garde
+   sa ligne, et le bloc est légèrement resserré. */
+.scripture__text.is-poem {
+  font-size: 1.15rem;
+  line-height: 1.6;
+}
+
+/* La référence n'est plus mise en capitales : elle va de « Jean 15, 12 » au
+   titre complet d'une encyclique, et une longue phrase tout en capitales se
+   lit mal, en particulier pour les personnes dyslexiques. */
 .scripture__ref {
   display: block;
   margin-top: 12px;
   font-size: .875rem;
   font-style: normal;
   font-weight: 700;
-  letter-spacing: .08em;
-  text-transform: uppercase;
+  letter-spacing: .02em;
+  line-height: 1.5;
   color: var(--sand);
 }
 
@@ -805,6 +825,27 @@ main { display: contents; }
   text-wrap: pretty;
 }
 
+/* Chant proposé, sous la méditation ----------------------------------------- */
+.day-music {
+  margin-top: 18px;
+  padding: 12px 16px;
+  border-radius: var(--r-sm);
+  background: var(--cream-85);
+  border: 1px solid var(--sand);
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+}
+.day-music__label {
+  display: block;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--crimson);
+  margin-bottom: 2px;
+}
+
 .prayer { padding: 26px var(--pad) 0; }
 .prayer__body {
   margin-top: 12px;
@@ -816,6 +857,17 @@ main { display: contents; }
   line-height: 1.65;
   color: var(--green);
   text-wrap: pretty;
+}
+
+/* Répons d'une litanie : ce que l'assemblée répond, distinct de ce que dit
+   le lecteur. La distinction passe par la couleur, la graisse et le retrait,
+   jamais par la seule couleur. */
+.prayer__body .response {
+  margin-top: -4px;
+  padding-left: 16px;
+  border-left: 3px solid var(--crimson);
+  font-weight: 700;
+  color: var(--crimson);
 }
 
 /* Prières d'ancrage -------------------------------------------------------- */
