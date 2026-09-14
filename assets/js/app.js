@@ -209,6 +209,11 @@
     if (window.location.hash !== hash) {
       history.pushState({ view: view, day: state.day }, '', hash);
     }
+
+    // Ce retour en haut est le nôtre : sans cette marque, le suivi du texte
+    // le prendrait pour un geste du visiteur et se tairait cinq secondes à
+    // chaque ouverture d'un jour.
+    notreDefilement = Date.now();
     window.scrollTo(0, 0);
     playReveal(VIEWS[view], view);
     focusTitle(view);
@@ -354,6 +359,8 @@
       fillParagraphs($('#day-prayer'), c.priere);
       setupAudio(c.audio, n);
     }
+
+    chargerSuivi(c);
 
     renderDayNav(n);
   }
@@ -536,6 +543,8 @@
       audio = null;
     }
     wanted = null;
+    nettoyerSurlignage();
+    if (el('revenir')) { el('revenir').hidden = true; }
     if (el('audio-icon')) { setBtnState(false); }
     if (el('audio-seek')) { el('audio-seek').value = 0; }
     if (el('audio-elapsed')) { el('audio-elapsed').textContent = '0:00'; }
@@ -569,7 +578,10 @@
       syncSeek();
     });
 
-    audio.addEventListener('seeked', syncSeek);
+    audio.addEventListener('seeked', function () {
+      syncSeek();
+      majSurlignage();
+    });
     audio.addEventListener('timeupdate', syncSeek);
 
     audio.addEventListener('ended', function () {
@@ -590,6 +602,7 @@
     if (audio.paused) {
       audio.play();
       setBtnState(true);
+      lancerBoucle();
       el('audio-status').textContent = 'Lecture en cours';
     } else {
       audio.pause();
@@ -628,6 +641,439 @@
   }
 
   /* ------------------------------------------------------------------
+     Suivi mot à mot
+
+     Quand un jour dispose d'un fichier de synchronisation, chaque mot
+     affiché est enveloppé dans un span numéroté et reçoit sa plage horaire.
+     Pendant la lecture, le mot prononcé est surligné et la page se déplace
+     doucement pour le garder sous les yeux.
+
+     Tout ici est facultatif. Sans fichier de synchronisation, ou si son
+     chargement échoue, la page se comporte exactement comme avant : le
+     texte reste lisible, le lecteur fonctionne, rien ne manque.
+     ------------------------------------------------------------------ */
+  var SUIVI_CLE = 'neuvaine.suivre';
+
+  // Au-delà de ce silence, plus aucun mot n'est allumé. Sans cette borne, le
+  // dernier mot de la méditation resterait surligné pendant les deux minutes
+  // de chant, comme si la lecture était bloquée.
+  var SILENCE_MAX = 1.5;
+
+  // Le suivi automatique se tait un instant dès que le visiteur fait défiler
+  // la page lui-même : reprendre la main sous son doigt serait pénible.
+  var PAUSE_SUIVI = 5000;
+
+  var sync = null;          // contenu du fichier .sync.json du jour affiché
+  var motsDom = [];         // un span par mot affiché, dans l'ordre
+  var reperes = [];         // toutes les plages, triées, pour la dichotomie
+  var motActif = -1;
+  var motMax = -1;          // le plus loin où la lecture soit allée
+  var suivre = true;
+  var repriseAuto = 0;      // instant à partir duquel on suit de nouveau
+  var suspendu = false;     // le visiteur a repris la main sur le défilement
+  var dernierCadrage = 0;   // dernier contrôle de la position du mot lu
+
+  // Les touches qui font défiler la page, et qui valent donc reprise en main.
+  var TOUCHES_DEFILEMENT = [' ', 'Spacebar', 'PageDown', 'PageUp', 'Home',
+                            'End', 'ArrowDown', 'ArrowUp'];
+  var notreDefilement = 0;  // instant du dernier défilement que nous avons lancé
+  var rafActif = false;
+  var fixesOrigine = [];    // les textes communs, tels qu'ils sont dans la page
+  var debugSuivi = false;
+
+  /** Les zones surlignables, dans l'ordre exact où l'aligneur les a comptées.
+   *  Toute divergence d'ordre décalerait tous les mots. */
+  function zonesSuivi() {
+    var liste = [$('#day-content .signe'), $('#day-verse'), $('#day-ref'),
+                 $('#day-meditation'), $('#day-intention'), $('#day-prayer')];
+    // Ce sélecteur ramène les quatre prières dans l'ordre de la page :
+    // Notre Père, Je vous salue Marie, Gloire au Père, puis l'acclamation,
+    // dont le bloc est lui aussi un div de cette liste.
+    Array.prototype.push.apply(liste,
+      document.querySelectorAll('.anchors__list > div > p'));
+    return liste;
+  }
+
+  /** Le signe de croix et les prières d'ancrage ne changent jamais : on en
+   *  garde une copie intacte, pour pouvoir les réenvelopper à chaque jour
+   *  sans accumuler les spans les uns dans les autres. */
+  function fixes() {
+    var liste = [$('#day-content .signe')];
+    Array.prototype.push.apply(liste,
+      document.querySelectorAll('.anchors__list > div > p'));
+    return liste;
+  }
+
+  function restaurerFixes() {
+    fixes().forEach(function (node, i) {
+      if (!node || !node.parentNode) { return; }
+      if (!fixesOrigine[i]) {
+        fixesOrigine[i] = node.cloneNode(true);
+      } else {
+        node.parentNode.replaceChild(fixesOrigine[i].cloneNode(true), node);
+      }
+    });
+  }
+
+  /** Enveloppe chaque mot d'un élément dans un span numéroté, en ne touchant
+   *  qu'aux nœuds de texte : les paragraphes et les retours à la ligne des
+   *  poèmes restent en place, et le rendu ne bouge pas d'un pixel. */
+  function enrober(host, depart) {
+    var n = depart;
+    if (!host || !host.textContent.trim()) { return n; }
+
+    var noeuds = [];
+    var marcheur = document.createTreeWalker(host, NodeFilter.SHOW_TEXT, null, false);
+    while (marcheur.nextNode()) { noeuds.push(marcheur.currentNode); }
+
+    noeuds.forEach(function (noeud) {
+      if (!noeud.nodeValue.trim()) { return; }
+      var frag = document.createDocumentFragment();
+      noeud.nodeValue.split(/(\s+)/).forEach(function (morceau) {
+        if (!morceau) { return; }
+        if (!morceau.trim()) {
+          frag.appendChild(document.createTextNode(morceau));
+          return;
+        }
+        var span = document.createElement('span');
+        span.className = 'mot';
+        span.setAttribute('data-i', n);
+        span.textContent = morceau;
+        frag.appendChild(span);
+        n += 1;
+      });
+      noeud.parentNode.replaceChild(frag, noeud);
+    });
+    return n;
+  }
+
+  function enroberTout() {
+    restaurerFixes();
+    var n = 0;
+    zonesSuivi().forEach(function (zone) { n = enrober(zone, n); });
+
+    motsDom = [];
+    Array.prototype.forEach.call(
+      document.querySelectorAll('#view-jour .mot'),
+      function (span) { motsDom[Number(span.getAttribute('data-i'))] = span; }
+    );
+    return n;
+  }
+
+  /** Aplatit les plages en une liste triée. Un mot prononcé plusieurs fois —
+   *  le Je vous salue Marie est dit trois fois pour un seul affichage — pose
+   *  autant de repères qu'il a été dit de fois. Un mot de durée nulle est une
+   *  zone annoncée mais pas lue : il n'entre pas dans la liste, et ne sera
+   *  donc jamais surligné. */
+  function poserSync(data) {
+    sync = data;
+    reperes = [];
+    (data.mots || []).forEach(function (plage, i) {
+      if (!plage || !plage.length) { return; }
+      var liste = Array.isArray(plage[0]) ? plage : [plage];
+      liste.forEach(function (p) {
+        if (!p || p[1] <= p[0]) { return; }
+        reperes.push({ d: p[0], f: p[1], i: i });
+      });
+    });
+    reperes.sort(function (a, b) { return a.d - b.d; });
+  }
+
+  /** Le mot prononcé à cet instant, par recherche dichotomique.
+   *  Renvoie -1 pendant les silences et les passages non affichés. */
+  function motA(t) {
+    var bas = 0, haut = reperes.length - 1, trouve = -1;
+    while (bas <= haut) {
+      var milieu = (bas + haut) >> 1;
+      if (reperes[milieu].d <= t) { trouve = milieu; bas = milieu + 1; }
+      else { haut = milieu - 1; }
+    }
+    if (trouve < 0) { return -1; }
+
+    var r = reperes[trouve];
+    var borne = r.f + SILENCE_MAX;
+    if (trouve + 1 < reperes.length) {
+      borne = Math.min(reperes[trouve + 1].d, borne);
+    }
+    return t < borne ? r.i : -1;
+  }
+
+  function nettoyerSurlignage() {
+    motsDom.forEach(function (span) {
+      if (span) { span.classList.remove('mot-actif', 'mot-lu'); }
+    });
+    motActif = -1;
+    motMax = -1;
+  }
+
+  function majSurlignage() {
+    if (!sync || !suivre || !audio) { return; }
+
+    var t = audio.currentTime + (sync.decalage || 0);
+    var i = motA(t);
+    if (debugSuivi) { majDebug(t, i); }
+    if (i === motActif) { return; }
+
+    if (motActif >= 0 && motsDom[motActif]) {
+      motsDom[motActif].classList.remove('mot-actif');
+      motsDom[motActif].classList.add('mot-lu');
+    }
+
+    // Un retour en arrière efface les marques laissées plus loin : sinon la
+    // page garderait l'air d'avoir déjà tout lu.
+    if (i >= 0 && i < motMax) {
+      for (var k = i; k <= motMax; k++) {
+        if (motsDom[k]) { motsDom[k].classList.remove('mot-lu'); }
+      }
+    }
+
+    motActif = i;
+    if (i >= 0) {
+      motMax = Math.max(motMax, i);
+      if (motsDom[i]) {
+        motsDom[i].classList.add('mot-actif');
+        suivreDuRegard(motsDom[i]);
+      }
+    }
+  }
+
+  /** Garde le mot lu entre 35 % et 60 % de la hauteur visible.
+   *
+   *  Un défilement doux met quelques centaines de millisecondes à aboutir,
+   *  et le texte peut bouger entre-temps — les apparitions au défilement se
+   *  déclenchent au passage. On laisse donc chaque glissement finir avant
+   *  d'en demander un autre, et c'est le contrôle périodique de la boucle
+   *  qui rattrape l'écart restant. */
+  function suivreDuRegard(span) {
+    var maintenant = Date.now();
+    if (maintenant < repriseAuto) { return; }
+    if (maintenant - notreDefilement < (reduced.matches ? 80 : 600)) { return; }
+    if (!el('revenir').hidden) { el('revenir').hidden = true; }
+
+    var r = span.getBoundingClientRect();
+    var h = window.innerHeight || document.documentElement.clientHeight;
+    if (r.top >= h * 0.35 && r.bottom <= h * 0.60) { return; }
+
+    notreDefilement = maintenant;
+    window.scrollTo({
+      top: Math.max(0, window.pageYOffset + r.top - h * 0.45),
+      behavior: reduced.matches ? 'auto' : 'smooth'
+    });
+  }
+
+  function mainMise() {
+    repriseAuto = Date.now() + PAUSE_SUIVI;
+    suspendu = true;
+    if (sync && audio && !audio.paused) { el('revenir').hidden = false; }
+  }
+
+  function boucleSuivi() {
+    if (!audio || audio.paused) { rafActif = false; return; }
+    majSurlignage();
+
+    // Le mot lu peut sortir du cadre sans que le mot change : le texte se
+    // décale quand une apparition se déclenche, et un silence peut durer.
+    // On revérifie quatre fois par seconde, plutôt qu'à chaque image, ce qui
+    // rattrape aussi le texte à la fin d'une reprise en main du visiteur.
+    var maintenant = Date.now();
+    if (maintenant - dernierCadrage > 250) {
+      dernierCadrage = maintenant;
+      if (suspendu && maintenant >= repriseAuto) { suspendu = false; }
+      if (motActif >= 0 && motsDom[motActif]) { suivreDuRegard(motsDom[motActif]); }
+    }
+    window.requestAnimationFrame(boucleSuivi);
+  }
+
+  function lancerBoucle() {
+    if (rafActif || !sync) { return; }
+    rafActif = true;
+    window.requestAnimationFrame(boucleSuivi);
+  }
+
+  /* ---- Chapitres ---- */
+  var NOMS_CHAPITRES = {
+    'signe-de-croix': 'Signe de croix', meditation: 'Méditation',
+    chant: 'Chant', prions: 'Prions', prieres: 'Prières', envoi: 'Envoi'
+  };
+
+  function remplirChapitres(chapitres) {
+    var hote = el('chapitres');
+    hote.textContent = '';
+
+    var cles = chapitres ? Object.keys(chapitres) : [];
+    if (!cles.length) { hote.hidden = true; return; }
+
+    cles.sort(function (a, b) { return chapitres[a] - chapitres[b]; });
+    cles.forEach(function (cle) {
+      var nom = NOMS_CHAPITRES[cle] || cle;
+      var b = document.createElement('button');
+      b.type = 'button';
+      b.className = 'chapitre';
+      b.textContent = nom;
+      b.setAttribute('aria-label',
+        nom + ', écouter à partir de ' + fmtSpoken(chapitres[cle]));
+      b.addEventListener('click', function () { allerA(chapitres[cle]); });
+      hote.appendChild(b);
+    });
+    hote.hidden = false;
+  }
+
+  /** Va à un instant et démarre la lecture si elle était à l'arrêt. */
+  function allerA(t) {
+    if (!audioSrc) { return; }
+    if (!audio) { makeAudio(); }
+    applySeek(t);
+    repriseAuto = 0;
+    el('revenir').hidden = true;
+    if (audio.paused) { toggleAudio(); }
+  }
+
+  /* ---- Interrupteur ---- */
+  function appliquerSuivi(actif) {
+    suivre = actif;
+    document.body.classList.toggle('sans-suivi', !actif);
+    if (!actif) {
+      nettoyerSurlignage();
+      el('revenir').hidden = true;
+    }
+    try { window.localStorage.setItem(SUIVI_CLE, actif ? '1' : '0'); }
+    catch (e) { /* navigation privée : on garde le réglage pour la session */ }
+  }
+
+  function suiviMemorise() {
+    try {
+      var v = window.localStorage.getItem(SUIVI_CLE);
+      return v === null ? true : v === '1';
+    } catch (e) { return true; }
+  }
+
+  /* ---- Chargement pour un jour ---- */
+  function chargerSuivi(contenu) {
+    sync = null;
+    reperes = [];
+    motsDom = [];
+    motActif = motMax = -1;
+    repriseAuto = 0;
+    el('revenir').hidden = true;
+    remplirChapitres(contenu && contenu.chapitres);
+    restaurerFixes();
+
+    if (!contenu || !contenu.sync || !window.fetch) { return; }
+
+    var attendu = enroberTout();
+    var demande = contenu.sync;
+
+    window.fetch(demande, { cache: 'force-cache' })
+      .then(function (r) { return r.ok ? r.json() : null; })
+      .then(function (data) {
+        // Le visiteur a pu changer de jour pendant le chargement.
+        if (!data || !CONTENT[state.day] || CONTENT[state.day].sync !== demande) {
+          return;
+        }
+        if (!data.mots || data.mots.length !== attendu) {
+          // Un décalage d'un seul mot fausserait tout le reste : mieux vaut
+          // ne rien surligner que surligner de travers.
+          if (window.console) {
+            window.console.warn('Suivi ignoré : ' + (data.mots || []).length +
+              ' plages pour ' + attendu + ' mots affichés.');
+          }
+          return;
+        }
+        poserSync(data);
+        if (audio && !audio.paused) { lancerBoucle(); }
+      })
+      .catch(function () { /* la page reste parfaitement utilisable */ });
+  }
+
+  /* ---- Mise en évidence du lecteur au défilement ---- */
+  function majCompact() {
+    var bloc = $('#view-jour .audio');
+    if (bloc) { bloc.classList.toggle('compact', window.pageYOffset > 200); }
+  }
+
+  /* ---- Affichage de contrôle : ?sync=debug ---- */
+  function majDebug(t, i) {
+    var boite = el('sync-debug');
+    if (!boite) { return; }
+    var r = i >= 0 && sync.mots[i] ? JSON.stringify(sync.mots[i]) : '—';
+    boite.textContent = t.toFixed(2) + ' s · mot ' + i + ' · ' + r;
+  }
+
+  function initDebug() {
+    if (new URLSearchParams(window.location.search).get('sync') !== 'debug') {
+      return;
+    }
+    debugSuivi = true;
+    var boite = document.createElement('p');
+    boite.id = 'sync-debug';
+    boite.className = 'sync-debug';
+    boite.setAttribute('aria-hidden', 'true');
+    document.body.appendChild(boite);
+  }
+
+  function bindSuivi() {
+    var interrupteur = el('suivre');
+    interrupteur.checked = suiviMemorise();
+    appliquerSuivi(interrupteur.checked);
+    interrupteur.addEventListener('change', function () {
+      appliquerSuivi(this.checked);
+      if (this.checked && audio && !audio.paused) { lancerBoucle(); }
+    });
+
+    el('revenir').addEventListener('click', function () {
+      repriseAuto = 0;
+      this.hidden = true;
+      if (motActif >= 0 && motsDom[motActif]) { suivreDuRegard(motsDom[motActif]); }
+    });
+
+    // Un seul écouteur pour les cinq cents mots.
+    $('#view-jour').addEventListener('click', function (ev) {
+      if (!sync || !ev.target.closest) { return; }
+      var span = ev.target.closest('.mot');
+      if (!span) { return; }
+      var plage = sync.mots[Number(span.getAttribute('data-i'))];
+      if (!plage || !plage.length) { return; }
+
+      // Un mot dit plusieurs fois mène au passage suivant, pas au premier.
+      var liste = Array.isArray(plage[0]) ? plage : [plage];
+      var t = audio ? audio.currentTime : 0;
+      var choisi = liste[0];
+      for (var k = 0; k < liste.length; k++) {
+        if (liste[k][0] > t) { choisi = liste[k]; break; }
+      }
+      allerA(choisi[0]);
+    });
+
+    // Un défilement à la molette ou au doigt est toujours celui du visiteur.
+    window.addEventListener('wheel', mainMise, { passive: true });
+    window.addEventListener('touchmove', mainMise, { passive: true });
+
+    // Au clavier non plus il n'y a ni molette ni doigt : sans cela, une
+    // barre d'espace passerait pour un défilement de notre fait. Les touches
+    // reçues par une commande — le curseur de position, la vitesse — ne
+    // regardent pas la page et ne comptent pas.
+    window.addEventListener('keydown', function (ev) {
+      if (TOUCHES_DEFILEMENT.indexOf(ev.key) === -1) { return; }
+      if (/^(INPUT|SELECT|TEXTAREA|BUTTON)$/.test(ev.target.tagName)) { return; }
+      mainMise();
+    });
+
+    // Un défilement tout court ne vient du visiteur que s'il ne vient pas de
+    // nous. Un glissement doux sur une longue distance dure plus d'une
+    // seconde : tant qu'il se poursuit, chaque secousse repousse l'échéance,
+    // et il reste reconnu comme le nôtre jusqu'à ce qu'il s'arrête.
+    window.addEventListener('scroll', function () {
+      majCompact();
+      var maintenant = Date.now();
+      if (maintenant - notreDefilement <= 1200) {
+        notreDefilement = maintenant;
+        return;
+      }
+      mainMise();
+    }, { passive: true });
+  }
+
+  /* ------------------------------------------------------------------
      Branchements
      ------------------------------------------------------------------ */
   function start() {
@@ -657,6 +1103,9 @@
     });
 
     bindAudio();
+    initDebug();
+    bindSuivi();
+    majCompact();
 
     window.addEventListener('popstate', function () { applyHash(true); });
 

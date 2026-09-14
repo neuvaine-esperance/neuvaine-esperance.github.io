@@ -61,6 +61,12 @@
    -------------------------------------------------------------------------- */
 *, *::before, *::after { box-sizing: border-box; }
 
+/* L'attribut hidden doit toujours l'emporter. Le navigateur ne lui donne
+   qu'un « display: none » de feuille par défaut, que la moindre règle
+   d'affichage écrase — un bloc déclaré « display: flex » resterait visible
+   alors que le script le croit caché. */
+[hidden] { display: none !important; }
+
 /* 106,25 % de 16 px = 17 px. Exprimer la base en pourcentage plutôt qu'en
    pixels conserve le réglage de taille choisi par le visiteur. */
 html {
@@ -151,7 +157,12 @@ button {
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 60px rgba(0, 0, 0, .15);
+  /* « hidden » ouvrirait un conteneur de défilement et neutraliserait le
+     lecteur collant. « clip » coupe pareil sans ouvrir de conteneur ; les
+     navigateurs qui l'ignorent gardent « hidden » et perdent seulement
+     le maintien du lecteur en haut de l'écran. */
   overflow: hidden;
+  overflow: clip;
 }
 
 main { display: contents; }
@@ -1126,6 +1137,143 @@ main { display: contents; }
 .cta:active { transform: translateY(1px); }
 
 /* --------------------------------------------------------------------------
+   8 bis. Suivi mot à mot
+
+   Le mot prononcé est surligné pendant la lecture. Rien d'autre ne change :
+   ni la graisse, ni le corps, ni la position. Un surlignage qui grossirait
+   le mot ferait sauter toute la ligne à chaque syllabe.
+
+   Les teintes viennent de la palette du site — or pour le texte courant,
+   vert pour la Parole de Dieu et l'intention.
+   -------------------------------------------------------------------------- */
+.mot {
+  border-radius: 3px;
+  transition: background-color .12s;
+}
+.mot-actif {
+  background: rgba(232, 184, 75, .34);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .34);
+}
+.mot-lu { opacity: .85; }
+
+.scripture__text .mot-actif,
+.intention__text .mot-actif {
+  background: rgba(39, 78, 23, .17);
+  box-shadow: 0 0 0 2px rgba(39, 78, 23, .17);
+}
+
+/* Interrupteur coupé : plus aucune trace de lecture. */
+.sans-suivi .mot-actif,
+.sans-suivi .mot-lu {
+  background: none;
+  box-shadow: none;
+  opacity: 1;
+}
+
+/* Un mot se touche pour y sauter : le curseur l'annonce. */
+.mot { cursor: pointer; }
+.day-pending .mot, .sans-suivi .mot { cursor: auto; }
+
+/* --------------------------------------------------------------------------
+   8 ter. Lecteur retenu en haut de l'écran
+
+   Le lecteur suit le texte pendant toute la lecture, pour qu'une pause
+   reste à portée de pouce. Au-delà de deux cents pixels de défilement il se
+   resserre, afin de ne pas manger la page.
+   -------------------------------------------------------------------------- */
+.audio {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  /* Opaque : le texte défile dessous. */
+  background: var(--cream);
+  transition: padding .18s ease, box-shadow .18s ease;
+}
+.audio.compact {
+  padding-top: 10px;
+  padding-bottom: 10px;
+  box-shadow: 0 6px 18px rgba(26, 26, 26, .10);
+}
+.audio.compact .audio__btn { width: var(--tap); height: var(--tap); }
+.audio.compact .chapitres,
+.audio.compact .audio__transcript,
+.audio.compact .suivi,
+.audio.compact .audio__label { display: none; }
+
+.chapitres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+  margin-top: 10px;
+}
+.chapitre {
+  min-height: var(--tap);
+  padding: 6px 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--green-2);
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+}
+.chapitre:hover { background: var(--sand); }
+
+.suivi {
+  display: flex;
+  align-items: center;
+  gap: 8px;
+  margin-top: 10px;
+  font-size: .82rem;
+  color: var(--ink-soft);
+}
+.suivi input {
+  width: 20px;
+  height: 20px;
+  /* La case est petite : c'est le libellé, à côté, qui offre la cible. */
+  accent-color: var(--crimson);
+  flex: none;
+}
+.suivi label {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  cursor: pointer;
+}
+
+.revenir {
+  display: block;
+  margin-top: 10px;
+  min-height: var(--tap);
+  padding: 8px 16px;
+  border: 1px solid var(--crimson);
+  border-radius: 999px;
+  background: var(--cream);
+  color: var(--crimson);
+  font: inherit;
+  font-size: .82rem;
+  cursor: pointer;
+}
+.revenir:hover { background: var(--crimson); color: var(--cream); }
+
+/* Affichage de contrôle, ouvert par ?sync=debug seulement. */
+.sync-debug {
+  position: fixed;
+  right: 8px;
+  bottom: 8px;
+  z-index: 99;
+  margin: 0;
+  padding: 6px 10px;
+  border-radius: var(--r-sm);
+  background: rgba(26, 26, 26, .86);
+  color: #fff;
+  font-size: .72rem;
+  font-variant-numeric: tabular-nums;
+  pointer-events: none;
+}
+
+/* --------------------------------------------------------------------------
    9. Préférences d'affichage du visiteur
    -------------------------------------------------------------------------- */
 
@@ -1145,6 +1293,8 @@ main { display: contents; }
   }
   .hero__figure img { animation: none !important; }
   .day-card:hover { transform: none; }
+  .mot { transition: none !important; }
+  .audio { transition: none !important; }
 }
 
 /* Contraste élevé de Windows. Le système impose ses propres couleurs :
@@ -1167,6 +1317,18 @@ main { display: contents; }
   :focus-visible { outline: 3px solid Highlight; }
   .audio__seek::-webkit-slider-runnable-track { background: ButtonBorder; }
   .audio__seek::-moz-range-track { background: ButtonBorder; }
+
+  .chapitre, .revenir { border: 2px solid ButtonBorder; }
+  .audio { background: Canvas; }
+  /* Le surlignage passe par les couleurs de sélection du système : une
+     teinte translucide disparaîtrait complètement en contraste élevé. */
+  .mot-actif, .scripture__text .mot-actif, .intention__text .mot-actif {
+    background: Highlight;
+    color: HighlightText;
+    box-shadow: none;
+    forced-color-adjust: none;
+  }
+  .mot-lu { opacity: 1; }
 }
 
 /* --------------------------------------------------------------------------
@@ -1216,6 +1378,14 @@ main { display: contents; }
    on retire les commandes et on repasse en noir sur blanc.
    -------------------------------------------------------------------------- */
 @media print {
+  .audio { position: static; box-shadow: none; }
+  .chapitres, .suivi, .revenir, .sync-debug { display: none !important; }
+  .mot-actif, .mot-lu {
+    background: none !important;
+    box-shadow: none !important;
+    opacity: 1 !important;
+  }
+
   @page { margin: 16mm; }
 
   html { font-size: 100%; }

@@ -6,6 +6,8 @@
 skills-lock.json
 .claude/skills/
 node_modules/
+__pycache__/
+*.pyc
 
 # Matériel de référence, à garder sur la machine
 # Le dossier sources/ contient des transcriptions d'homélies qui ne nous

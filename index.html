@@ -21,7 +21,7 @@
   font-src 'self';
   img-src 'self' data:;
   media-src 'self';
-  connect-src 'none';
+  connect-src 'self';
   base-uri 'none';
   form-action 'none';
   object-src 'none';
@@ -53,8 +53,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=6">
-<link rel="stylesheet" href="assets/css/styles.css?v=6">
+<link rel="stylesheet" href="assets/css/fonts.css?v=7">
+<link rel="stylesheet" href="assets/css/styles.css?v=7">
 </head>
 <body>
 
@@ -220,9 +220,26 @@
             </span>
           </p>
 
+          <!-- Les parties de l'enregistrement, remplies quand le jour en a. -->
+          <div class="chapitres" id="chapitres" role="group"
+               aria-label="Parties de l'enregistrement" hidden></div>
+
           <p class="audio__status" id="audio-status" role="status">
             Enregistrement audio à venir
           </p>
+
+          <!-- Le surlignage du mot lu se coupe ici. Le réglage est retenu
+               d'une visite à l'autre. -->
+          <p class="suivi">
+            <input type="checkbox" id="suivre" checked>
+            <label for="suivre">Suivre le texte pendant la lecture</label>
+          </p>
+
+          <!-- Apparaît seulement quand le visiteur a fait défiler lui-même. -->
+          <button class="revenir" type="button" id="revenir" hidden>
+            Revenir au texte lu
+          </button>
+
           <p class="audio__transcript" id="audio-transcript">
             Le texte de la méditation, ci-dessous, en est la transcription complète.
           </p>
@@ -386,7 +403,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=6" defer></script>
-<script src="assets/js/app.js?v=6" defer></script>
+<script src="assets/js/contenu.js?v=7" defer></script>
+<script src="assets/js/app.js?v=7" defer></script>
 </body>
 </html>
