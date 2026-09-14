@@ -11,7 +11,9 @@
      Tout est interdit par défaut, puis on ouvre le strict nécessaire, et
      uniquement vers ce site. Aucune origine tierce n'est autorisée.
      frame-ancestors ne fonctionne pas dans une balise meta : il est posé
-     par les en-têtes du serveur, voir _headers et .htaccess. -->
+     par les en-têtes du serveur, voir _headers et .htaccess.
+     Sur GitHub Pages ces deux fichiers ne sont pas lus : seule cette balise
+     s'applique. -->
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'none';
   script-src 'self';
@@ -39,19 +41,21 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=2">
-<link rel="stylesheet" href="assets/css/styles.css?v=2">
+<link rel="stylesheet" href="assets/css/fonts.css?v=3">
+<link rel="stylesheet" href="assets/css/styles.css?v=3">
 </head>
 <body>
 
 <a class="skip-link" href="#contenu">Aller au contenu</a>
 
-<div class="app" id="contenu">
+<div class="app">
+
+  <main id="contenu">
 
   <!-- ====================================================================
        Écran 1 — Accueil
        ==================================================================== -->
-  <section class="view" id="view-accueil" aria-label="Accueil">
+  <section class="view" id="view-accueil" aria-labelledby="accueil-titre">
 
     <div class="head-band rays">
 
@@ -64,7 +68,7 @@
       </header>
 
       <div class="hero">
-        <h1 class="anim">Neuvaine au<br>Sacré-Cœur de Jésus</h1>
+        <h1 id="accueil-titre" class="anim">Neuvaine au<br>Sacré-Cœur de Jésus</h1>
 
         <p class="hero__lead anim">
           Pour préparer la venue du Pape Léon&nbsp;XIV à Paris et Saint-Denis
@@ -78,32 +82,34 @@
 
         <p class="hero__dates anim">du 16 au 24 septembre 2026</p>
 
-        <p class="hero__quote anim">
-          « Pour que le monde ait la vie »
-          <span class="hero__quote-ref">Jean 6,51</span>
-        </p>
+        <blockquote class="hero__quote anim" cite="https://www.aelf.org/bible/Jn/6">
+          <p>« Pour que le monde ait la vie »</p>
+          <cite class="hero__quote-ref">Jean 6,51</cite>
+        </blockquote>
 
         <button class="cta anim" type="button" id="cta-today">
           <span>Prier aujourd'hui</span>
-          <span class="cta__badge" id="cta-badge">J-9</span>
+          <!-- Le badge répète un compte à rebours déjà annoncé en toutes
+               lettres par le libellé du bouton : il reste décoratif. -->
+          <span class="cta__badge" id="cta-badge" aria-hidden="true">J-9</span>
         </button>
       </div>
 
     </div>
 
     <div class="section-head anim">
-      <h2>Les 9 jours</h2>
+      <h2 id="les-9-jours">Les 9 jours</h2>
       <span>Compte à rebours</span>
     </div>
 
-    <div class="day-grid" id="day-grid"></div>
+    <ul class="day-grid" id="day-grid" aria-labelledby="les-9-jours"></ul>
 
-    <div class="home-foot">
+    <footer class="home-foot">
       <button class="consec-link anim" type="button" data-goto="consecration">
         <span class="consec-link__badge" aria-hidden="true">25</span>
         <span class="consec-link__body">
           <span class="consec-link__title">Consécration au Sacré-Cœur</span>
-          <span class="consec-link__sub">Prière permanente &amp; infos du 25 septembre</span>
+          <span class="consec-link__sub">Prière permanente et informations du 25 septembre</span>
         </span>
         <span class="consec-link__chevron" aria-hidden="true">&rsaquo;</span>
       </button>
@@ -118,25 +124,29 @@
       </p>
 
       <p class="home-foot__verse anim">« L'espérance ne déçoit pas » — Rm 5,5</p>
-    </div>
+    </footer>
 
   </section>
 
   <!-- ====================================================================
        Écran 2 — Un jour de la neuvaine
        ==================================================================== -->
-  <section class="view" id="view-jour" aria-label="Jour de la neuvaine" hidden>
+  <section class="view" id="view-jour" aria-labelledby="day-title" hidden>
 
-    <div class="day-top">
-      <button class="back-link" type="button" data-goto="accueil">&lsaquo; Les 9 jours</button>
+    <nav class="day-top" aria-label="Fil d'Ariane">
+      <button class="back-link" type="button" data-goto="accueil">
+        <span aria-hidden="true">&lsaquo;</span> Revenir aux 9 jours
+      </button>
       <span class="day-top__date" id="day-date"></span>
-    </div>
+    </nav>
 
     <div class="day-head rays">
-      <div class="day-head__row anim">
-        <span class="day-head__n" id="day-countdown"></span>
+      <p class="day-head__row anim">
+        <!-- « J-9 » est une abréviation graphique. Le lecteur d'écran reçoit
+             la version en toutes lettres, placée juste après. -->
+        <span class="day-head__n" id="day-countdown" aria-hidden="true"></span>
         <span class="day-head__count" id="day-count"></span>
-      </div>
+      </p>
       <h1 id="day-title" class="anim"></h1>
     </div>
 
@@ -153,52 +163,85 @@
     <!-- Jour publié -->
     <div id="day-content" hidden>
 
-      <div class="scripture anim">
-        <p class="eyebrow eyebrow--gold">Parole de Dieu</p>
-        <p class="scripture__text" id="day-verse"></p>
-        <p class="scripture__ref" id="day-ref"></p>
-      </div>
+      <section class="scripture anim" aria-labelledby="t-parole">
+        <h2 class="eyebrow eyebrow--gold" id="t-parole">Parole de Dieu</h2>
+        <blockquote class="scripture__quote" cite="https://www.aelf.org/bible">
+          <p class="scripture__text" id="day-verse"></p>
+          <cite class="scripture__ref" id="day-ref"></cite>
+        </blockquote>
+      </section>
 
-      <div class="audio anim">
-        <button class="audio__btn" type="button" id="audio-btn" aria-label="Écouter la méditation">&#9654;</button>
+      <section class="audio anim" aria-labelledby="t-ecoute">
+        <h2 class="visually-hidden" id="t-ecoute">Écoute de la méditation</h2>
+
+        <button class="audio__btn" type="button" id="audio-btn"
+                aria-describedby="audio-transcript">
+          <span class="audio__icon" id="audio-icon" aria-hidden="true">&#9654;</span>
+          <span class="visually-hidden" id="audio-btn-text">Écouter la méditation</span>
+        </button>
+
         <div class="audio__body">
           <p class="audio__label">Écouter la méditation</p>
-          <div class="audio__track">
-            <div class="audio__bar" id="audio-bar" role="progressbar"
-                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
-                 aria-label="Progression de l'écoute"></div>
-          </div>
-          <p class="audio__status" id="audio-status">Enregistrement audio à venir</p>
+
+          <label class="visually-hidden" for="audio-seek">
+            Position dans l'enregistrement
+          </label>
+          <input class="audio__seek" type="range" id="audio-seek"
+                 min="0" max="100" step="1" value="0"
+                 aria-valuetext="0 seconde sur 0 seconde" disabled>
+
+          <p class="audio__meta">
+            <span class="audio__time"><span id="audio-elapsed">0:00</span>
+              <span aria-hidden="true">/</span>
+              <span class="visually-hidden">sur</span>
+              <span id="audio-total">0:00</span></span>
+            <span class="audio__speed">
+              <label for="audio-rate">Vitesse</label>
+              <select id="audio-rate" disabled>
+                <option value="0.75">0,75×</option>
+                <option value="1" selected>1×</option>
+                <option value="1.25">1,25×</option>
+                <option value="1.5">1,5×</option>
+              </select>
+            </span>
+          </p>
+
+          <p class="audio__status" id="audio-status" role="status">
+            Enregistrement audio à venir
+          </p>
+          <p class="audio__transcript" id="audio-transcript">
+            Le texte de la méditation, ci-dessous, en est la transcription complète.
+          </p>
         </div>
-      </div>
+      </section>
 
-      <div class="meditation anim">
-        <p class="eyebrow eyebrow--crimson">Méditation</p>
+      <section class="meditation anim" aria-labelledby="t-meditation">
+        <h2 class="eyebrow eyebrow--crimson" id="t-meditation">Méditation</h2>
         <div class="meditation__body" id="day-meditation"></div>
-      </div>
+      </section>
 
-      <div class="intention anim">
-        <p class="eyebrow eyebrow--gold">Intention du jour</p>
+      <section class="intention anim" aria-labelledby="t-intention">
+        <h2 class="eyebrow eyebrow--gold" id="t-intention">Intention du jour</h2>
         <p class="intention__text" id="day-intention"></p>
-      </div>
+      </section>
 
-      <div class="prayer anim">
-        <p class="eyebrow eyebrow--crimson">Prière du jour</p>
+      <section class="prayer anim" aria-labelledby="t-priere">
+        <h2 class="eyebrow eyebrow--crimson" id="t-priere">Prière du jour</h2>
         <div class="prayer__body" id="day-prayer"></div>
-      </div>
+      </section>
 
     </div>
 
     <!-- Prières récitées chaque jour -->
-    <div class="anchors">
+    <section class="anchors" aria-labelledby="t-ancrage">
       <div class="anchors__head anim">
-        <h2>Prières d'ancrage</h2>
+        <h2 id="t-ancrage">Prières d'ancrage</h2>
         <span>Chaque jour</span>
       </div>
 
       <div class="anchors__list anim">
         <div>
-          <p class="anchors__label">Notre Père</p>
+          <h3 class="anchors__label">Notre Père</h3>
           <p>
             Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne
             vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous
@@ -209,7 +252,7 @@
         </div>
 
         <div>
-          <p class="anchors__label">Je vous salue Marie <span class="x3">&times; 3</span></p>
+          <h3 class="anchors__label">Je vous salue Marie <span class="x3">— trois fois</span></h3>
           <p>
             Je vous salue, Marie, pleine de grâce ; le Seigneur est avec vous. Vous êtes
             bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni.
@@ -219,7 +262,7 @@
         </div>
 
         <div>
-          <p class="anchors__label">Gloire au Père</p>
+          <h3 class="anchors__label">Gloire au Père</h3>
           <p>
             Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au
             commencement, maintenant et toujours, et dans les siècles des siècles. Amen.
@@ -231,26 +274,28 @@
         </div>
       </div>
 
-      <div class="day-nav anim">
+      <nav class="day-nav anim" aria-label="Navigation entre les jours">
         <button type="button" id="day-prev"></button>
         <button type="button" id="day-next"></button>
-      </div>
-    </div>
+      </nav>
+    </section>
 
   </section>
 
   <!-- ====================================================================
        Écran 3 — Consécration
        ==================================================================== -->
-  <section class="view" id="view-consecration" aria-label="Consécration au Sacré-Cœur" hidden>
+  <section class="view" id="view-consecration" aria-labelledby="consec-titre" hidden>
 
-    <div class="consec-top">
-      <button class="back-link" type="button" data-goto="accueil">&lsaquo; Accueil</button>
-    </div>
+    <nav class="consec-top" aria-label="Fil d'Ariane">
+      <button class="back-link" type="button" data-goto="accueil">
+        <span aria-hidden="true">&lsaquo;</span> Revenir à l'accueil
+      </button>
+    </nav>
 
     <div class="consec-hero rays">
       <p class="consec-hero__kicker anim">Prière permanente</p>
-      <h1 class="anim">Consécration<br>au Sacré-Cœur</h1>
+      <h1 id="consec-titre" class="anim">Consécration<br>au Sacré-Cœur</h1>
       <p class="consec-hero__lead anim">
         À prier seul, en famille ou en communauté, chaque jour de la neuvaine et le
         25 septembre.
@@ -286,10 +331,10 @@
       <p class="amen">Sacré-Cœur de Jésus, que ton Règne vienne. Amen.</p>
     </div>
 
-    <div class="veillee">
+    <section class="veillee" aria-labelledby="t-veillee">
       <div class="veillee__head anim">
         <span class="veillee__badge" aria-hidden="true">25</span>
-        <h2>Veillée avec<br>le pape Léon XIV</h2>
+        <h2 id="t-veillee">Veillée avec<br>le pape Léon XIV</h2>
       </div>
 
       <dl class="veillee__facts anim">
@@ -311,12 +356,14 @@
       </dl>
 
       <button class="btn-outline anim" type="button" data-goto="accueil">Retour aux 9 jours</button>
-    </div>
+    </section>
 
   </section>
 
+  </main>
+
 </div>
 
-<script src="assets/js/app.js" defer></script>
+<script src="assets/js/app.js?v=3" defer></script>
 </body>
 </html>

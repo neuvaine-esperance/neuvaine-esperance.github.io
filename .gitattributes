@@ -1,0 +1,13 @@
+# Normalise les fins de ligne dans le dépôt.
+# Le site a d'abord été déposé depuis l'interface web de GitHub, qui a écrit
+# des fins de ligne Windows. Sans cette règle, chaque commit ferait apparaître
+# un millier de lignes modifiées pour rien.
+* text=auto eol=lf
+
+# Fichiers binaires, à ne jamais convertir.
+*.woff2 binary
+*.webp  binary
+*.png   binary
+*.jpg   binary
+*.mp3   binary
+*.zip   binary

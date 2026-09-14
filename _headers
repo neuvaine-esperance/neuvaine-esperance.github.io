@@ -1,0 +1,41 @@
+# En-têtes de sécurité — Netlify, Cloudflare Pages
+#
+# Ce fichier n'est lu que par ces hébergeurs. Pour un hébergement Apache
+# classique, de type OVH, c'est le fichier .htaccess qui s'applique.
+#
+# La balise meta dans index.html porte déjà la politique de sécurité du
+# contenu, mais une balise ne peut pas poser frame-ancestors ni les autres
+# en-têtes ci-dessous. D'où ce doublon volontaire.
+
+/*
+  Content-Security-Policy: default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests
+  Strict-Transport-Security: max-age=31536000; includeSubDomains
+  X-Content-Type-Options: nosniff
+  X-Frame-Options: DENY
+  Referrer-Policy: no-referrer
+  Permissions-Policy: accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), xr-spatial-tracking=()
+  Cross-Origin-Opener-Policy: same-origin
+  Cross-Origin-Resource-Policy: same-origin
+
+# Les polices ne changeront plus : cache long.
+/assets/fonts/*
+  Cache-Control: public, max-age=31536000, immutable
+
+# Les enregistrements peuvent être remplacés : cache d'un mois.
+/assets/audio/*
+  Cache-Control: public, max-age=2592000
+
+# Le contenu des jours change chaque matin : pas de cache figé.
+/assets/js/*
+  Cache-Control: public, max-age=3600, must-revalidate
+
+/index.html
+  Cache-Control: public, max-age=0, must-revalidate
+
+# Certains hébergeurs servent le WebP avec un type générique. Avec nosniff,
+# le navigateur refuse alors de l'afficher. On force le type ici.
+/assets/img/*.webp
+  Content-Type: image/webp
+
+/assets/img/*
+  Cache-Control: public, max-age=2592000

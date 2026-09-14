@@ -1,0 +1,27 @@
+# Outillage local, à ne pas publier
+# Sur Netlify ou Cloudflare Pages, tout ce qui est versionné est mis en ligne :
+# ce fichier sert donc aussi de barrière de publication.
+
+.agents/
+skills-lock.json
+.claude/skills/
+node_modules/
+
+# Matériel de référence, à garder sur la machine
+# Le dossier sources/ contient des transcriptions d'homélies qui ne nous
+# appartiennent pas. Elles servent à préparer les méditations, pas à être
+# mises en ligne.
+sources/
+
+# Archive de mise en ligne, reconstruite à la demande
+site-hostinger.zip
+
+# Fichiers système
+Thumbs.db
+.DS_Store
+desktop.ini
+
+# Sources audio brutes, trop lourdes
+# Seuls les MP3 encodés dans assets/audio/ sont publiés.
+*.wav
+*.aiff

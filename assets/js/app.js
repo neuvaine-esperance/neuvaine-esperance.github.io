@@ -119,8 +119,17 @@
     return WEEKDAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
   }
 
-  /** Étiquette du compte à rebours : J-9 pour le premier jour, J-1 pour le neuvième. */
+  /** « J-9 » pour le premier jour, « J-1 » pour le neuvième.
+   *  C'est une abréviation graphique : elle est masquée aux lecteurs d'écran,
+   *  qui reçoivent la version en toutes lettres produite ci-dessous. */
   function countdownLabel(n) { return 'J-' + (TOTAL_DAYS + 1 - n); }
+
+  /** « Jour 1 sur 9, dans 9 jours » : la même information, énoncée. */
+  function countdownSpoken(n) {
+    var reste = TOTAL_DAYS + 1 - n;
+    var suite = reste > 1 ? 'dans ' + reste + ' jours' : 'demain';
+    return 'Jour ' + n + ' sur ' + TOTAL_DAYS + ', ' + suite;
+  }
 
   /** Numéro du jour en cours, borné entre 1 et 9. */
   function currentDay() {
@@ -166,14 +175,6 @@
     window.setTimeout(function () { revealNow(); }, 4000);
   }
 
-  /** Lance les apparitions d'un écran qui vient de s'afficher.
-   *
-   *  Un élément masqué n'est jamais vu par l'observateur, il faut donc
-   *  relancer au moment où l'écran devient visible.
-   *
-   *  Seul l'écran d'un jour se rejoue à chaque ouverture, parce que son
-   *  contenu change. Rejouer l'accueil à chaque retour serait lassant :
-   *  on s'y contente de tout montrer. */
   function playReveal(root, key) {
     if (!root) { return; }
     if (!revealObserver) { revealNow(root); return; }
@@ -191,8 +192,6 @@
       el.classList.remove('is-in');
     });
 
-    // Force la prise en compte du retrait avant de réobserver, sinon le
-    // navigateur regroupe les deux changements et aucune transition ne joue.
     void root.offsetWidth;
 
     Array.prototype.forEach.call(items, function (el) {
@@ -209,16 +208,37 @@
     consecration: $('#view-consecration')
   };
 
+  // Titre de chaque écran, sur lequel le focus est posé après un changement.
+  var TITLES = {
+    accueil: '#accueil-titre',
+    jour: '#day-title',
+    consecration: '#consec-titre'
+  };
+
   var state = { view: 'accueil', day: 1 };
+
+  /** Le contenu change sans que la page soit rechargée. Poser le focus sur le
+   *  titre du nouvel écran fait annoncer ce titre par le lecteur d'écran et
+   *  ramène le clavier en haut du contenu, au lieu de le laisser sur un bouton
+   *  qui vient de disparaître. */
+  function focusTitle(view) {
+    var h = $(TITLES[view]);
+    if (!h) { return; }
+    h.setAttribute('tabindex', '-1');
+    h.focus({ preventScroll: true });
+  }
+
+  function swapView(view) {
+    Object.keys(VIEWS).forEach(function (key) {
+      VIEWS[key].hidden = (key !== view);
+    });
+  }
 
   function show(view, day) {
     state.view = view;
     if (day) { state.day = Math.min(TOTAL_DAYS, Math.max(1, day)); }
 
-    Object.keys(VIEWS).forEach(function (key) {
-      VIEWS[key].hidden = (key !== view);
-    });
-
+    swapView(view);
     stopAudio();
     if (view === 'jour') { renderDay(state.day); }
 
@@ -228,6 +248,7 @@
     }
     window.scrollTo(0, 0);
     playReveal(VIEWS[view], view);
+    focusTitle(view);
   }
 
   function readHash() {
@@ -238,18 +259,19 @@
     return { view: 'accueil', day: state.day };
   }
 
-  function applyHash() {
+  /** Appliquée au chargement et au retour arrière du navigateur.
+   *  Au tout premier affichage le focus n'est pas déplacé : il doit rester
+   *  en haut du document, sur le lien d'évitement. */
+  function applyHash(moveFocus) {
     var target = readHash();
     state.day = Math.min(TOTAL_DAYS, Math.max(1, target.day));
     state.view = target.view;
 
-    Object.keys(VIEWS).forEach(function (key) {
-      VIEWS[key].hidden = (key !== state.view);
-    });
-
+    swapView(state.view);
     stopAudio();
     if (state.view === 'jour') { renderDay(state.day); }
     playReveal(VIEWS[state.view], state.view);
+    if (moveFocus) { focusTitle(state.view); }
   }
 
   /* ------------------------------------------------------------------
@@ -258,13 +280,19 @@
   function renderHome() {
     var t = today();
     var badge = $('#cta-badge');
+    var cta = $('#cta-today');
 
+    var label;
     if (isBeforeStart()) {
       // Avant le 16 septembre : on compte les jours qui restent jusqu'au 25.
-      badge.textContent = 'J-' + (Math.round((START - t) / DAY_MS) + TOTAL_DAYS);
+      label = 'J-' + (Math.round((START - t) / DAY_MS) + TOTAL_DAYS);
+      cta.setAttribute('aria-label', 'Prier aujourd’hui, ouvrir le premier jour');
     } else {
-      badge.textContent = countdownLabel(currentDay());
+      label = countdownLabel(currentDay());
+      cta.setAttribute('aria-label',
+        'Prier aujourd’hui, ouvrir le ' + countdownSpoken(currentDay()).toLowerCase());
     }
+    badge.textContent = label;
 
     var grid = $('#day-grid');
     grid.textContent = '';
@@ -286,6 +314,8 @@
     else if (isPast) { status = 'Prié'; }
     else { status = 'Disponible'; }
 
+    var li = document.createElement('li');
+
     var btn = document.createElement('button');
     btn.type = 'button';
     btn.className = 'day-card anim anim--scale' +
@@ -295,15 +325,20 @@
     // Passer par une propriété personnalisée évite d'écrire un style en
     // ligne dans le document, ce que la politique de sécurité interdit.
     btn.style.setProperty('--d', (n * 45) + 'ms');
+
+    // Le libellé énoncé reprend tout ce que la carte montre, y compris
+    // l'état, qui n'est donc jamais porté par la seule couleur.
     btn.setAttribute('aria-label',
-      'Jour ' + n + ', ' + countdownLabel(n) + ', ' + fmtLong(d) + ' — ' + status);
+      countdownSpoken(n) + ', ' + fmtLong(d) + '. ' + status + '.');
 
     var num = document.createElement('span');
     num.className = 'day-card__n';
+    num.setAttribute('aria-hidden', 'true');
     num.textContent = countdownLabel(n);
     btn.appendChild(num);
 
     var foot = document.createElement('span');
+    foot.setAttribute('aria-hidden', 'true');
 
     var date = document.createElement('span');
     date.className = 'day-card__date';
@@ -320,11 +355,13 @@
     if (isToday) {
       var dot = document.createElement('span');
       dot.className = 'day-card__dot';
+      dot.setAttribute('aria-hidden', 'true');
       btn.appendChild(dot);
     }
 
     btn.addEventListener('click', function () { show('jour', n); });
-    return btn;
+    li.appendChild(btn);
+    return li;
   }
 
   /* ------------------------------------------------------------------
@@ -336,21 +373,22 @@
 
     $('#day-date').textContent = fmtLong(d);
     $('#day-countdown').textContent = countdownLabel(n);
-    $('#day-count').textContent = 'Jour ' + n + ' / ' + TOTAL_DAYS;
-    $('#day-title').textContent = c ? c.title : 'En attente';
+    $('#day-count').textContent = countdownSpoken(n);
+    $('#day-title').textContent = c ? c.title : 'Jour en attente';
 
     $('#day-pending').hidden = !!c;
     $('#day-content').hidden = !c;
 
     if (!c) {
       $('#day-pending-date').textContent = fmtLong(d);
+      setupAudio(null);
     } else {
       $('#day-verse').textContent = c.verse;
       $('#day-ref').textContent = c.ref;
       fillParagraphs($('#day-meditation'), c.meditation);
       $('#day-intention').textContent = c.intention;
       fillParagraphs($('#day-prayer'), c.prayer);
-      setupAudio(c.audio);
+      setupAudio(c.audio, n);
     }
 
     renderDayNav(n);
@@ -365,51 +403,130 @@
     });
   }
 
+  /** Les deux boutons portent un chevron décoratif et un libellé explicite
+   *  hors contexte : « Jour précédent, jour 1 ». */
   function renderDayNav(n) {
-    var prev = $('#day-prev');
-    var next = $('#day-next');
+    setNavButton($('#day-prev'), '‹', 'Jour ' + Math.max(1, n - 1),
+                 'Jour précédent, jour ' + Math.max(1, n - 1), n <= 1);
+    setNavButton($('#day-next'), null, 'Jour ' + Math.min(TOTAL_DAYS, n + 1),
+                 'Jour suivant, jour ' + Math.min(TOTAL_DAYS, n + 1), n >= TOTAL_DAYS,
+                 '›');
+  }
 
-    prev.textContent = '‹ Jour ' + Math.max(1, n - 1);
-    next.textContent = 'Jour ' + Math.min(TOTAL_DAYS, n + 1) + ' ›';
+  function setNavButton(btn, before, text, label, disabled, after) {
+    btn.textContent = '';
+    if (before) { btn.appendChild(decor(before)); }
+    btn.appendChild(document.createTextNode(' ' + text + ' '));
+    if (after) { btn.appendChild(decor(after)); }
+    btn.setAttribute('aria-label', label);
+    btn.disabled = disabled;
+  }
 
-    prev.disabled = (n <= 1);
-    next.disabled = (n >= TOTAL_DAYS);
+  function decor(ch) {
+    var s = document.createElement('span');
+    s.setAttribute('aria-hidden', 'true');
+    s.textContent = ch;
+    return s;
   }
 
   /* ------------------------------------------------------------------
      Lecteur audio de la méditation
+
+     Le bouton est un bouton natif, le curseur de position un champ de type
+     range : le clavier, les flèches, Origine et Fin fonctionnent sans une
+     ligne de code, et les lecteurs d'écran annoncent la position.
+     Aucune lecture ne démarre toute seule.
      ------------------------------------------------------------------ */
   var audio = null;
   var audioSrc = null;
+  var audioDay = 1;
+
+  /* Position demandée par le visiteur, tant que le lecteur ne l'a pas
+     atteinte. Un déplacement dans un fichier audio n'est pas instantané :
+     relire la position juste après l'avoir écrite renvoie l'ancienne valeur
+     et ramène le curseur en arrière. Tant que « wanted » vaut quelque chose,
+     c'est lui qui est affiché, pas le lecteur. */
+  var wanted = null;
 
   // Caractères posés en texte, jamais en HTML : le script n'écrit aucun balisage.
-  var ICON_PLAY = '▶';        // ▶
-  var ICON_PAUSE = '❚❚'; // ❚❚
+  var ICON_PLAY = '▶';
+  var ICON_PAUSE = '❚❚';
 
-  function setupAudio(src) {
-    stopAudio();
-    audioSrc = src || null;
+  function el(id) { return document.getElementById(id); }
 
-    var btn = $('#audio-btn');
-    var status = $('#audio-status');
-
-    resetAudioBar();
-    btn.textContent = ICON_PLAY;
-
-    if (!audioSrc) {
-      btn.disabled = true;
-      status.textContent = 'Enregistrement audio à venir';
-      return;
-    }
-
-    btn.disabled = false;
-    status.textContent = 'Appuyer pour écouter';
+  /** « 1:05 » pour l'affichage. */
+  function fmtClock(s) {
+    s = Math.max(0, Math.round(s || 0));
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    return m + ':' + (r < 10 ? '0' : '') + r;
   }
 
-  function resetAudioBar() {
-    var bar = $('#audio-bar');
-    bar.style.width = '0%';
-    bar.setAttribute('aria-valuenow', '0');
+  /** « 1 minute 5 secondes » pour la voix de synthèse. */
+  function fmtSpoken(s) {
+    s = Math.max(0, Math.round(s || 0));
+    var m = Math.floor(s / 60);
+    var r = s % 60;
+    var out = [];
+    if (m > 0) { out.push(m + (m > 1 ? ' minutes' : ' minute')); }
+    if (r > 0 || m === 0) { out.push(r + (r > 1 ? ' secondes' : ' seconde')); }
+    return out.join(' ');
+  }
+
+  function setBtnState(playing) {
+    el('audio-icon').textContent = playing ? ICON_PAUSE : ICON_PLAY;
+    el('audio-btn-text').textContent = playing
+      ? 'Mettre la méditation en pause'
+      : 'Écouter la méditation du jour ' + audioDay;
+  }
+
+  function setupAudio(src, day) {
+    stopAudio();
+    audioSrc = src || null;
+    audioDay = day || 1;
+
+    var btn = el('audio-btn');
+    var seek = el('audio-seek');
+    var rate = el('audio-rate');
+
+    setBtnState(false);
+    seek.value = 0;
+    seek.max = 100;
+    el('audio-elapsed').textContent = '0:00';
+    el('audio-total').textContent = '0:00';
+    seek.setAttribute('aria-valuetext', 'position 0 seconde sur 0 seconde');
+
+    var absent = !audioSrc;
+    btn.disabled = absent;
+    seek.disabled = absent;
+    rate.disabled = absent;
+    el('audio-status').textContent = absent
+      ? 'Enregistrement audio à venir'
+      : 'Appuyer sur le bouton pour écouter';
+  }
+
+  /** Met le curseur, les deux durées et le texte annoncé en accord avec le
+   *  lecteur. Si une position a été demandée et n'est pas encore atteinte,
+   *  c'est elle qui s'affiche : le lecteur mettra quelques dizaines de
+   *  millisecondes à la rejoindre, et afficher sa position d'avant ferait
+   *  revenir le curseur en arrière sous le doigt du visiteur. */
+  function syncSeek() {
+    if (!audio) { return; }
+    var seek = el('audio-seek');
+    var dur = isFinite(audio.duration) ? audio.duration : 0;
+    var cur = audio.currentTime;
+
+    if (wanted !== null) {
+      if (Math.abs(cur - wanted) < 0.6) { wanted = null; }
+      else { cur = wanted; }
+    }
+
+    seek.max = Math.max(1, Math.round(dur));
+    seek.value = Math.round(cur);
+    el('audio-elapsed').textContent = fmtClock(cur);
+    el('audio-total').textContent = fmtClock(dur);
+    seek.setAttribute('aria-valuetext',
+      'position ' + fmtSpoken(cur) + ' sur ' + fmtSpoken(dur));
   }
 
   function stopAudio() {
@@ -418,48 +535,96 @@
       audio.currentTime = 0;
       audio = null;
     }
-    var btn = $('#audio-btn');
-    if (btn) { btn.textContent = ICON_PLAY; }
-    resetAudioBar();
+    wanted = null;
+    if (el('audio-icon')) { setBtnState(false); }
+    if (el('audio-seek')) { el('audio-seek').value = 0; }
+    if (el('audio-elapsed')) { el('audio-elapsed').textContent = '0:00'; }
+  }
+
+  /** Demande une nouvelle position.
+   *
+   *  La demande est mémorisée dans tous les cas. Si la durée n'est pas encore
+   *  connue, l'écriture attend l'arrivée des métadonnées.
+   *
+   *  On s'arrête un quart de seconde avant la fin : viser la durée exacte
+   *  déclencherait la fin de lecture, et la touche Fin remettrait le curseur
+   *  à zéro au lieu de l'amener au bout. */
+  function applySeek(t) {
+    wanted = Math.max(0, t);
+    if (!audio) { return; }
+    if (isFinite(audio.duration) && audio.duration > 0) {
+      audio.currentTime = Math.min(wanted, Math.max(0, audio.duration - 0.25));
+    }
+  }
+
+  function makeAudio() {
+    audio = new Audio(audioSrc);
+    audio.preload = 'metadata';
+    audio.playbackRate = parseFloat(el('audio-rate').value) || 1;
+
+    // La durée arrive après coup. Si une position avait été demandée avant
+    // qu'elle soit connue, c'est le moment de l'écrire.
+    audio.addEventListener('loadedmetadata', function () {
+      if (wanted !== null) { applySeek(wanted); }
+      syncSeek();
+    });
+
+    audio.addEventListener('seeked', syncSeek);
+    audio.addEventListener('timeupdate', syncSeek);
+
+    audio.addEventListener('ended', function () {
+      stopAudio();
+      el('audio-status').textContent = 'Lecture terminée';
+    });
+
+    audio.addEventListener('error', function () {
+      stopAudio();
+      el('audio-status').textContent = 'Lecture impossible pour le moment';
+    });
   }
 
   function toggleAudio() {
     if (!audioSrc) { return; }
-
-    var btn = $('#audio-btn');
-    var status = $('#audio-status');
-    var bar = $('#audio-bar');
-
-    if (!audio) {
-      audio = new Audio(audioSrc);
-
-      audio.addEventListener('timeupdate', function () {
-        if (!audio.duration) { return; }
-        var pct = Math.round((audio.currentTime / audio.duration) * 100);
-        bar.style.width = pct + '%';
-        bar.setAttribute('aria-valuenow', String(pct));
-      });
-
-      audio.addEventListener('ended', function () {
-        stopAudio();
-        status.textContent = 'Appuyer pour écouter';
-      });
-
-      audio.addEventListener('error', function () {
-        stopAudio();
-        status.textContent = 'Lecture impossible pour le moment';
-      });
-    }
+    if (!audio) { makeAudio(); }
 
     if (audio.paused) {
       audio.play();
-      btn.textContent = ICON_PAUSE;
-      status.textContent = 'Lecture en cours';
+      setBtnState(true);
+      el('audio-status').textContent = 'Lecture en cours';
     } else {
       audio.pause();
-      btn.textContent = ICON_PLAY;
-      status.textContent = 'Lecture en pause';
+      setBtnState(false);
+      el('audio-status').textContent = 'Lecture en pause';
     }
+  }
+
+  function bindAudio() {
+    el('audio-btn').addEventListener('click', toggleAudio);
+
+    var seek = el('audio-seek');
+
+    // Pendant que le visiteur déplace le curseur, à la souris comme aux
+    // flèches, l'affichage suit sa main et non la lecture.
+    seek.addEventListener('input', function () {
+      wanted = Number(seek.value);
+      var dur = audio && isFinite(audio.duration) ? audio.duration : Number(seek.max);
+      el('audio-elapsed').textContent = fmtClock(wanted);
+      seek.setAttribute('aria-valuetext',
+        'position ' + fmtSpoken(wanted) + ' sur ' + fmtSpoken(dur));
+    });
+
+    seek.addEventListener('change', function () {
+      if (!audioSrc) { return; }
+      if (!audio) { makeAudio(); }
+      applySeek(Number(seek.value));
+    });
+
+    el('audio-rate').addEventListener('change', function () {
+      var r = parseFloat(this.value) || 1;
+      if (audio) { audio.playbackRate = r; }
+      el('audio-status').textContent = 'Vitesse réglée sur ' +
+        String(r).replace('.', ',') + ' fois';
+    });
   }
 
   /* ------------------------------------------------------------------
@@ -472,9 +637,9 @@
     // Boutons de navigation déclarés dans le balisage
     Array.prototype.forEach.call(
       document.querySelectorAll('[data-goto]'),
-      function (el) {
-        el.addEventListener('click', function () {
-          show(el.getAttribute('data-goto'));
+      function (node) {
+        node.addEventListener('click', function () {
+          show(node.getAttribute('data-goto'));
         });
       }
     );
@@ -491,11 +656,11 @@
       if (state.day < TOTAL_DAYS) { show('jour', state.day + 1); }
     });
 
-    $('#audio-btn').addEventListener('click', toggleAudio);
+    bindAudio();
 
-    window.addEventListener('popstate', applyHash);
+    window.addEventListener('popstate', function () { applyHash(true); });
 
-    applyHash();
+    applyHash(false);
   }
 
   if (document.readyState === 'loading') {
