@@ -1,0 +1,123 @@
+# ============================================================================
+# Neuvaine au Sacré-Cœur — configuration Apache
+#
+# Pour un hébergement mutualisé classique, de type OVH, Ionos ou Infomaniak.
+# Déposer ce fichier à la racine du site, à côté d'index.html.
+# Sur Netlify ou Cloudflare Pages, c'est le fichier _headers qui s'applique.
+# ============================================================================
+
+
+# ----------------------------------------------------------------------------
+# 1. Forcer HTTPS
+# ----------------------------------------------------------------------------
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteCond %{HTTPS} !=on
+  RewriteCond %{HTTP:X-Forwarded-Proto} !https
+  RewriteRule ^ https://%{HTTP_HOST}%{REQUEST_URI} [R=301,L]
+</IfModule>
+
+
+# ----------------------------------------------------------------------------
+# 2. En-têtes de sécurité
+# ----------------------------------------------------------------------------
+<IfModule mod_headers.c>
+
+  # Tout est interdit par défaut, puis on ouvre le strict nécessaire,
+  # et uniquement vers ce site. Aucune origine tierce n'est autorisée.
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+
+  # Interdit le chargement du site dans un cadre, donc le détournement de clic.
+  Header always set X-Frame-Options "DENY"
+
+  # Interdit au navigateur de deviner un type de fichier autre que celui annoncé.
+  Header always set X-Content-Type-Options "nosniff"
+
+  # Aucune adresse de page n'est transmise en sortie.
+  Header always set Referrer-Policy "no-referrer"
+
+  # Coupe les interfaces dont le site n'a aucun besoin.
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), xr-spatial-tracking=()"
+
+  # Isole la page des autres onglets et empêche l'inclusion depuis un autre site.
+  Header always set Cross-Origin-Opener-Policy "same-origin"
+  Header always set Cross-Origin-Resource-Policy "same-origin"
+
+  # Impose HTTPS pour les visites suivantes.
+  #
+  # La valeur est volontairement courte pour la première mise en ligne :
+  # 300 secondes, soit cinq minutes. Si le certificat n'était pas encore prêt,
+  # l'erreur se corrige d'elle-même en quelques minutes.
+  #
+  # Une fois le site vérifié en HTTPS pendant un jour ou deux, remplacez cette
+  # ligne par la version longue ci-dessous et redéposez le fichier :
+  #
+  #   Header always set Strict-Transport-Security "max-age=31536000; includeSubDomains"
+  #
+  # Attention : avec un an, un navigateur ayant vu l'en-tête refusera le site
+  # en HTTP pendant un an, même si le certificat tombe. À ne poser qu'une fois
+  # certain que tout fonctionne.
+  Header always set Strict-Transport-Security "max-age=300"
+
+  # Supprime la signature du serveur quand l'hébergeur l'autorise.
+  Header always unset X-Powered-By
+  Header always unset Server
+
+</IfModule>
+
+
+# ----------------------------------------------------------------------------
+# 3. Ne rien exposer d'autre que le site
+# ----------------------------------------------------------------------------
+
+# Pas de listage de répertoire : sans cette ligne, /assets/audio/ serait
+# consultable comme un dossier ouvert.
+Options -Indexes
+
+# Dossiers et fichiers de travail, à ne jamais servir.
+# Ils ne devraient de toute façon pas être envoyés sur le serveur,
+# mais cette règle protège en cas d'envoi complet par FTP.
+<IfModule mod_rewrite.c>
+  RewriteEngine On
+  RewriteRule ^(sources|\.agents|\.claude|\.git)/ - [F,L]
+</IfModule>
+
+<FilesMatch "^(skills-lock\.json|README\.md|\.htaccess|\.gitignore)$">
+  Require all denied
+</FilesMatch>
+
+
+# ----------------------------------------------------------------------------
+# 4. Types de fichiers
+# ----------------------------------------------------------------------------
+# Sans ces déclarations, un hébergeur qui sert un fichier avec le mauvais type
+# le verrait rejeté par le navigateur, puisque l'en-tête nosniff lui interdit
+# de deviner. Le symptôme est une police ou une image qui ne s'affiche pas,
+# sans message d'erreur visible.
+<IfModule mod_mime.c>
+  AddType font/woff2 .woff2
+  AddType audio/mpeg .mp3
+  AddType image/webp .webp
+  AddType image/png  .png
+  AddType text/css .css
+  AddType text/javascript .js
+  AddDefaultCharset UTF-8
+</IfModule>
+
+
+# ----------------------------------------------------------------------------
+# 5. Compression et cache
+# ----------------------------------------------------------------------------
+<IfModule mod_deflate.c>
+  AddOutputFilterByType DEFLATE text/html text/css text/javascript application/javascript text/plain
+  # Le woff2 et le mp3 sont déjà compressés : ne pas y toucher.
+</IfModule>
+
+<IfModule mod_expires.c>
+  ExpiresActive On
+  ExpiresByType font/woff2   "access plus 1 year"
+  ExpiresByType audio/mpeg   "access plus 1 month"
+  ExpiresByType text/css     "access plus 1 week"
+  ExpiresByType text/javascript "access plus 1 hour"
+  ExpiresByType text/html    "access plus 0 seconds"
+</IfModule>

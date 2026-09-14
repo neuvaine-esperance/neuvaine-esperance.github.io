@@ -1,0 +1,322 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Neuvaine au Sacré-Cœur — Pour que le monde ait la vie</title>
+<meta name="description" content="Neuf jours de prière, du 16 au 24 septembre 2026, pour préparer la veillée avec le pape Léon XIV au Stade de France.">
+<meta name="theme-color" content="#DBD0B4">
+
+<!-- Politique de sécurité du contenu.
+     Tout est interdit par défaut, puis on ouvre le strict nécessaire, et
+     uniquement vers ce site. Aucune origine tierce n'est autorisée.
+     frame-ancestors ne fonctionne pas dans une balise meta : il est posé
+     par les en-têtes du serveur, voir _headers et .htaccess. -->
+<meta http-equiv="Content-Security-Policy" content="
+  default-src 'none';
+  script-src 'self';
+  style-src 'self';
+  font-src 'self';
+  img-src 'self' data:;
+  media-src 'self';
+  connect-src 'none';
+  base-uri 'none';
+  form-action 'none';
+  object-src 'none';
+  upgrade-insecure-requests">
+
+<!-- Aucune adresse de page n'est transmise en sortie. -->
+<meta name="referrer" content="no-referrer">
+
+<meta property="og:type" content="website">
+<meta property="og:locale" content="fr_FR">
+<meta property="og:title" content="Neuvaine au Sacré-Cœur">
+<meta property="og:description" content="« Pour que le monde ait la vie » — neuf jours de prière du 16 au 24 septembre 2026.">
+
+<!-- Polices servies depuis ce site, jamais depuis Google. -->
+<link rel="preload" href="assets/fonts/league-spartan-latin.woff2" as="font" type="font/woff2" crossorigin>
+<link rel="preload" href="assets/fonts/archivo-black-latin.woff2" as="font" type="font/woff2" crossorigin>
+<!-- Le numéro de version force la reprise des feuilles après une mise à
+     jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
+     À incrémenter à chaque changement de style. -->
+<link rel="stylesheet" href="assets/css/fonts.css?v=2">
+<link rel="stylesheet" href="assets/css/styles.css?v=2">
+</head>
+<body>
+
+<a class="skip-link" href="#contenu">Aller au contenu</a>
+
+<div class="app" id="contenu">
+
+  <!-- ====================================================================
+       Écran 1 — Accueil
+       ==================================================================== -->
+  <section class="view" id="view-accueil" aria-label="Accueil">
+
+    <div class="head-band rays">
+
+      <header class="topbar anim">
+        <span class="topbar__logo">
+          <img src="assets/img/esperance.png" width="600" height="166"
+               alt="Espérance" decoding="async">
+        </span>
+        <span class="topbar__ref">Rm 5,5</span>
+      </header>
+
+      <div class="hero">
+        <h1 class="anim">Neuvaine au<br>Sacré-Cœur de Jésus</h1>
+
+        <p class="hero__lead anim">
+          Pour préparer la venue du Pape Léon&nbsp;XIV à Paris et Saint-Denis
+        </p>
+
+        <span class="hero__figure anim">
+          <img src="assets/img/coeur.png" width="480" height="508"
+               alt="Le Cœur sacré de Jésus, ceint d'une couronne d'épines, entouré de flammes et surmonté d'une croix"
+               decoding="async">
+        </span>
+
+        <p class="hero__dates anim">du 16 au 24 septembre 2026</p>
+
+        <p class="hero__quote anim">
+          « Pour que le monde ait la vie »
+          <span class="hero__quote-ref">Jean 6,51</span>
+        </p>
+
+        <button class="cta anim" type="button" id="cta-today">
+          <span>Prier aujourd'hui</span>
+          <span class="cta__badge" id="cta-badge">J-9</span>
+        </button>
+      </div>
+
+    </div>
+
+    <div class="section-head anim">
+      <h2>Les 9 jours</h2>
+      <span>Compte à rebours</span>
+    </div>
+
+    <div class="day-grid" id="day-grid"></div>
+
+    <div class="home-foot">
+      <button class="consec-link anim" type="button" data-goto="consecration">
+        <span class="consec-link__badge" aria-hidden="true">25</span>
+        <span class="consec-link__body">
+          <span class="consec-link__title">Consécration au Sacré-Cœur</span>
+          <span class="consec-link__sub">Prière permanente &amp; infos du 25 septembre</span>
+        </span>
+        <span class="consec-link__chevron" aria-hidden="true">&rsaquo;</span>
+      </button>
+
+      <p class="partners anim">
+        <picture>
+          <source srcset="assets/img/partenaires.webp" type="image/webp">
+          <img src="assets/img/partenaires.png" width="1160" height="180"
+               alt="Espérance · Léon XIV France 2026, 25-28 septembre · Diocèse de Saint-Denis en France · Pôle Jeunes 93"
+               decoding="async" loading="lazy">
+        </picture>
+      </p>
+
+      <p class="home-foot__verse anim">« L'espérance ne déçoit pas » — Rm 5,5</p>
+    </div>
+
+  </section>
+
+  <!-- ====================================================================
+       Écran 2 — Un jour de la neuvaine
+       ==================================================================== -->
+  <section class="view" id="view-jour" aria-label="Jour de la neuvaine" hidden>
+
+    <div class="day-top">
+      <button class="back-link" type="button" data-goto="accueil">&lsaquo; Les 9 jours</button>
+      <span class="day-top__date" id="day-date"></span>
+    </div>
+
+    <div class="day-head rays">
+      <div class="day-head__row anim">
+        <span class="day-head__n" id="day-countdown"></span>
+        <span class="day-head__count" id="day-count"></span>
+      </div>
+      <h1 id="day-title" class="anim"></h1>
+    </div>
+
+    <!-- Jour pas encore publié -->
+    <div class="day-pending anim" id="day-pending" hidden>
+      <p class="day-pending__title">
+        Ce jour sera disponible<br>le <span id="day-pending-date"></span>.
+      </p>
+      <p class="day-pending__note">
+        Verset, méditation, intention et prière seront publiés le matin même.
+      </p>
+    </div>
+
+    <!-- Jour publié -->
+    <div id="day-content" hidden>
+
+      <div class="scripture anim">
+        <p class="eyebrow eyebrow--gold">Parole de Dieu</p>
+        <p class="scripture__text" id="day-verse"></p>
+        <p class="scripture__ref" id="day-ref"></p>
+      </div>
+
+      <div class="audio anim">
+        <button class="audio__btn" type="button" id="audio-btn" aria-label="Écouter la méditation">&#9654;</button>
+        <div class="audio__body">
+          <p class="audio__label">Écouter la méditation</p>
+          <div class="audio__track">
+            <div class="audio__bar" id="audio-bar" role="progressbar"
+                 aria-valuemin="0" aria-valuemax="100" aria-valuenow="0"
+                 aria-label="Progression de l'écoute"></div>
+          </div>
+          <p class="audio__status" id="audio-status">Enregistrement audio à venir</p>
+        </div>
+      </div>
+
+      <div class="meditation anim">
+        <p class="eyebrow eyebrow--crimson">Méditation</p>
+        <div class="meditation__body" id="day-meditation"></div>
+      </div>
+
+      <div class="intention anim">
+        <p class="eyebrow eyebrow--gold">Intention du jour</p>
+        <p class="intention__text" id="day-intention"></p>
+      </div>
+
+      <div class="prayer anim">
+        <p class="eyebrow eyebrow--crimson">Prière du jour</p>
+        <div class="prayer__body" id="day-prayer"></div>
+      </div>
+
+    </div>
+
+    <!-- Prières récitées chaque jour -->
+    <div class="anchors">
+      <div class="anchors__head anim">
+        <h2>Prières d'ancrage</h2>
+        <span>Chaque jour</span>
+      </div>
+
+      <div class="anchors__list anim">
+        <div>
+          <p class="anchors__label">Notre Père</p>
+          <p>
+            Notre Père, qui es aux cieux, que ton nom soit sanctifié, que ton règne
+            vienne, que ta volonté soit faite sur la terre comme au ciel. Donne-nous
+            aujourd'hui notre pain de ce jour. Pardonne-nous nos offenses, comme nous
+            pardonnons aussi à ceux qui nous ont offensés. Et ne nous laisse pas entrer
+            en tentation, mais délivre-nous du Mal. Amen.
+          </p>
+        </div>
+
+        <div>
+          <p class="anchors__label">Je vous salue Marie <span class="x3">&times; 3</span></p>
+          <p>
+            Je vous salue, Marie, pleine de grâce ; le Seigneur est avec vous. Vous êtes
+            bénie entre toutes les femmes, et Jésus, le fruit de vos entrailles, est béni.
+            Sainte Marie, Mère de Dieu, priez pour nous, pauvres pécheurs, maintenant et
+            à l'heure de notre mort. Amen.
+          </p>
+        </div>
+
+        <div>
+          <p class="anchors__label">Gloire au Père</p>
+          <p>
+            Gloire au Père, et au Fils, et au Saint-Esprit, comme il était au
+            commencement, maintenant et toujours, et dans les siècles des siècles. Amen.
+          </p>
+        </div>
+
+        <div class="anchors__acclaim">
+          <p>Sacré-Cœur de Jésus, j'ai confiance en toi.</p>
+        </div>
+      </div>
+
+      <div class="day-nav anim">
+        <button type="button" id="day-prev"></button>
+        <button type="button" id="day-next"></button>
+      </div>
+    </div>
+
+  </section>
+
+  <!-- ====================================================================
+       Écran 3 — Consécration
+       ==================================================================== -->
+  <section class="view" id="view-consecration" aria-label="Consécration au Sacré-Cœur" hidden>
+
+    <div class="consec-top">
+      <button class="back-link" type="button" data-goto="accueil">&lsaquo; Accueil</button>
+    </div>
+
+    <div class="consec-hero rays">
+      <p class="consec-hero__kicker anim">Prière permanente</p>
+      <h1 class="anim">Consécration<br>au Sacré-Cœur</h1>
+      <p class="consec-hero__lead anim">
+        À prier seul, en famille ou en communauté, chaque jour de la neuvaine et le
+        25 septembre.
+      </p>
+    </div>
+
+    <div class="consec-prayer anim">
+      <p>
+        Cœur Sacré de Jésus, source de toute vie, tu t'es livré pour que le monde ait
+        la vie. Nous venons à toi, pauvres et confiants, pour te consacrer tout ce que
+        nous sommes.
+      </p>
+      <p>
+        Nous te consacrons nos cœurs, avec leurs blessures et leurs désirs ; nos
+        familles, nos amitiés, nos communautés ; notre travail, nos projets, nos échecs
+        et nos joies.
+      </p>
+      <p>
+        Cœur doux et humble, apprends-nous à placer au milieu de nos vies ce que tu y
+        places toi-même : les petits, les faibles, ceux que personne ne regarde. Renverse
+        en nous la pente de la force et fais de nous des serviteurs.
+      </p>
+      <p>
+        Cœur transpercé, que ton Sang et ton Eau lavent notre Église, notre pays et notre
+        monde. Donne la paix à ceux qui souffrent, le courage à ceux qui doutent,
+        l'espérance à ceux qui n'attendent plus rien.
+      </p>
+      <p>
+        Nous te consacrons cette veillée du 25 septembre et tous ceux qui s'y
+        rassembleront autour du Saint-Père. Que ton Cœur soit notre centre de gravité,
+        aujourd'hui et pour toujours.
+      </p>
+      <p class="amen">Sacré-Cœur de Jésus, que ton Règne vienne. Amen.</p>
+    </div>
+
+    <div class="veillee">
+      <div class="veillee__head anim">
+        <span class="veillee__badge" aria-hidden="true">25</span>
+        <h2>Veillée avec<br>le pape Léon XIV</h2>
+      </div>
+
+      <dl class="veillee__facts anim">
+        <dt>Date</dt>
+        <dd>Vendredi 25 septembre 2026</dd>
+
+        <dt>Lieu</dt>
+        <dd>Stade de France<br><span class="muted">Saint-Denis (93)</span></dd>
+
+        <dt>Horaires</dt>
+        <dd>Ouverture des portes, début de la veillée et accès : à confirmer par le diocèse.</dd>
+
+        <dt>Venir</dt>
+        <dd>RER B / RER D La Plaine – Stade de France, Métro 13 Saint-Denis – Porte de Paris.
+            Privilégier les transports en commun.</dd>
+
+        <dt>Apporter</dt>
+        <dd>Un vêtement chaud, de l'eau, et cette prière de consécration.</dd>
+      </dl>
+
+      <button class="btn-outline anim" type="button" data-goto="accueil">Retour aux 9 jours</button>
+    </div>
+
+  </section>
+
+</div>
+
+<script src="assets/js/app.js" defer></script>
+</body>
+</html>
