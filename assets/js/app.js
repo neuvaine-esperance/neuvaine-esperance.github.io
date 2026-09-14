@@ -18,6 +18,11 @@
      Mettre true ici ouvre les neuf jours d'un seul coup. */
   var OUVRIR_TOUT = false;
 
+  /* Jours ouverts avant leur date, par exception. Le 16 septembre est
+     accessible dès la mise en ligne, pour que la neuvaine se lise le soir
+     où on la partage. Ajouter un numéro ici ouvre le jour correspondant. */
+  var OUVERTS_DAVANCE = [1];
+
   /* ------------------------------------------------------------------
      Contenu des neuf jours
 
@@ -93,6 +98,7 @@
   function isPublished(n) {
     if (!CONTENT[n]) { return false; }
     if (OUVRIR_TOUT) { return true; }
+    if (OUVERTS_DAVANCE.indexOf(n) !== -1) { return true; }
     return dayDate(n) <= today();
   }
 
