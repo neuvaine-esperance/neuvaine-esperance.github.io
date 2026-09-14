@@ -74,7 +74,7 @@ window.NEUVAINE_CONTENU = {
       'Pour ceux qui cherchent à aimer.',
       '— Cœur de Jésus, ouvre-leur un avenir.'
     ],
-    audio: 'assets/audio/jour-1.mp3'
+    audio: 'assets/audio/jour-1.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 2 --- */

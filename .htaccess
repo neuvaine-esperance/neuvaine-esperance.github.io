@@ -99,6 +99,7 @@ Options -Indexes
   AddType audio/mpeg .mp3
   AddType image/webp .webp
   AddType image/png  .png
+  AddType image/x-icon .ico
   AddType text/css .css
   AddType text/javascript .js
   AddDefaultCharset UTF-8

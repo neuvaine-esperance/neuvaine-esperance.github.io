@@ -14,6 +14,10 @@
   var TOTAL_DAYS = 9;
   var DAY_MS = 86400000;
 
+  /* Chaque jour paraît le matin même : la veille, il reste en attente.
+     Mettre true ici ouvre les neuf jours d'un seul coup. */
+  var OUVRIR_TOUT = false;
+
   /* ------------------------------------------------------------------
      Contenu des neuf jours
 
@@ -81,6 +85,16 @@
   }
 
   function isBeforeStart() { return today() < START; }
+
+  /** Un jour s'ouvre le matin même, comme la page d'attente l'annonce.
+   *  Il lui faut donc deux choses : son texte, et sa date arrivée.
+   *
+   *  Pour ouvrir les neuf jours d'un coup, passer OUVRIR_TOUT à true. */
+  function isPublished(n) {
+    if (!CONTENT[n]) { return false; }
+    if (OUVRIR_TOUT) { return true; }
+    return dayDate(n) <= today();
+  }
 
   /* ------------------------------------------------------------------
      Apparitions au défilement
@@ -247,7 +261,7 @@
 
   function buildDayCard(n, t) {
     var d = dayDate(n);
-    var published = !!CONTENT[n];
+    var published = isPublished(n);
     var isToday = d.getTime() === t.getTime();
     var isPast = d < t;
 
@@ -312,7 +326,7 @@
      ------------------------------------------------------------------ */
   function renderDay(n) {
     var d = dayDate(n);
-    var c = CONTENT[n];
+    var c = isPublished(n) ? CONTENT[n] : null;
 
     $('#day-date').textContent = fmtLong(d);
     $('#day-countdown').textContent = countdownLabel(n);
