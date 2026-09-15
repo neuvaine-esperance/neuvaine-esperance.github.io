@@ -322,7 +322,9 @@
      La maquette ne garde qu'une ligne pour dire où en est la neuvaine :
      « Aujourd’hui : jour 3 / 9 — La fidélité, lu par Romain ». C'est
      aussi, depuis que la grille des neuf jours a quitté l'accueil, la
-     seule porte vers un jour : la ligne est donc un bouton.
+     seule porte vers un jour depuis l'accueil : la ligne est donc un
+     bouton, et elle ne mène qu'au jour du jour — les huit autres restent
+     derrière leur lien.
 
      Le libellé énoncé dit où elle mène, ce que « jour 3 / 9 » ne dirait
      pas à voix haute.
@@ -1411,6 +1413,12 @@
         });
       }
     );
+
+    // Qui tombe sur l'accueil entre dans le jour du jour par cette ligne.
+    // Elle ne mène qu'à celui-là : les huit autres gardent leur lien.
+    $('#hero-today').addEventListener('click', function () {
+      show('jour', isBeforeStart() ? 1 : currentDay());
+    });
 
     bindAudio();
     bindEnvoyer();

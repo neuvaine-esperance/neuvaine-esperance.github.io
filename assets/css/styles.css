@@ -361,25 +361,38 @@ main { display: contents; }
   white-space: nowrap;
 }
 
-/* Où en est la neuvaine.
+/* Où en est la neuvaine, et l'entrée dans le jour du jour.
 
-   La maquette en fait une simple ligne de texte, et c'est bien ce qu'elle
-   est : on n'entre pas dans un jour depuis l'accueil, on y arrive par le
-   lien envoyé le matin sur WhatsApp. Ni chevron, ni survol, ni relief —
-   rien qui donne envie d'appuyer. Elle garde en revanche la taille du texte
-   courant plutôt que les petites capitales espacées de la maquette : elle
-   se lit, elle ne décore pas. */
+   La maquette en fait une simple étiquette en petites capitales espacées.
+   C'est ici une commande, et la seule qui mène à un jour depuis l'accueil :
+   elle est donc écrite comme une phrase, à la taille du texte courant, et
+   le chevron dit qu'elle mène quelque part. Élue plutôt que décorative :
+   quelqu'un qui n'a pas l'habitude doit la lire et la reconnaître. */
 .hero__today {
-  display: inline-block;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
   margin: 16px 0 0;
-  padding: 10px 14px;
-  border-radius: var(--r-sm);
-  background: var(--cream-80);
-  color: var(--crimson);
+  padding: 12px 16px;
+  min-height: var(--tap);
+  border: 0;
+  border-radius: var(--r-md);
+  background: var(--cream-90);
+  color: var(--green);
+  text-align: left;
   font-size: 1rem;
   font-weight: 700;
   line-height: 1.35;
 }
+.hero__today::after {
+  content: "›";
+  flex: none;
+  color: var(--crimson);
+  font-size: 1.3rem;
+  line-height: 1;
+}
+.hero__today:hover { background: var(--cream); color: var(--crimson); }
+.hero__today:active { transform: translateY(1px); }
 .hero__today:empty { display: none; }
 
 /* --------------------------------------------------------------------------
@@ -1351,7 +1364,7 @@ main { display: contents; }
 .consec-hero__lead   { --d: 220ms; }
 .consec-prayer       { --d: 300ms; }
 
-.consec-link {
+.consec-link, .hero__today {
   transition-property: background, border-color, color, opacity, transform, box-shadow;
 }
 
@@ -1495,11 +1508,12 @@ main { display: contents; }
     border: 2px solid ButtonBorder;
   }
 
-  .hero h1, .hero__lead, .hero__quote, .hero__today,
+  .hero h1, .hero__lead, .hero__quote,
   .day-head h1, .consec-hero h1 {
     background: Canvas;
     border: 1px solid CanvasText;
   }
+  .hero__today { border: 2px solid ButtonBorder; }
   :focus-visible { outline: 3px solid Highlight; }
   .audio__seek::-webkit-slider-runnable-track { background: ButtonBorder; }
   .audio__seek::-moz-range-track { background: ButtonBorder; }
@@ -1590,7 +1604,7 @@ main { display: contents; }
   .app::before, .rays::before { display: none; }
   .view[hidden] { display: block !important; }
 
-  .audio, .back-link, .day-top,
+  .hero__today, .audio, .back-link, .day-top,
   .btn-outline, .consec-link, .skip-link, .hero__figure { display: none !important; }
 
   /* Chaque écran commence sur une page neuve, et aucun bloc de prière
@@ -1601,7 +1615,7 @@ main { display: contents; }
 
   .hero h1, .day-head h1, .consec-hero h1,
   .anchors__head h2, .veillee__head h2 { color: #000; background: none; }
-  .hero__lead, .hero__quote, .hero__today { background: none; }
+  .hero__lead, .hero__quote { background: none; }
   .hero__dates, .intention, .scripture, .anchors, .consec-prayer {
     background: #fff;
     color: #000;

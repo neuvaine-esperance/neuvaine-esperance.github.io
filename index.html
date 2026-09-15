@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=45">
-<link rel="stylesheet" href="assets/css/styles.css?v=45">
+<link rel="stylesheet" href="assets/css/fonts.css?v=46">
+<link rel="stylesheet" href="assets/css/styles.css?v=46">
 </head>
 <body>
 
@@ -100,11 +100,12 @@
             <cite class="hero__quote-ref">Jean 6,51</cite></p>
         </blockquote>
 
-        <!-- Où en est la neuvaine. Une simple ligne de texte, comme dans la
-             maquette : on n'entre pas dans un jour depuis l'accueil, on y
-             arrive par le lien envoyé le matin sur WhatsApp. Le script y
-             pose « Aujourd'hui : jour 3 / 9 — La fidélité ». -->
-        <p class="hero__today anim" id="hero-today"></p>
+        <!-- Où en est la neuvaine, et l'entrée dans le jour du jour. On
+             arrive normalement par le lien envoyé le matin sur WhatsApp,
+             mais qui tombe sur l'accueil doit pouvoir entrer : c'est cette
+             ligne qui l'y mène, et elle ne mène qu'au jour du jour. Le
+             script y pose « Aujourd'hui : jour 3 / 9 — La fidélité ». -->
+        <button class="hero__today anim" type="button" id="hero-today"></button>
       </div>
 
     </div>
@@ -498,7 +499,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=45" defer></script>
-<script src="assets/js/app.js?v=45" defer></script>
+<script src="assets/js/contenu.js?v=46" defer></script>
+<script src="assets/js/app.js?v=46" defer></script>
 </body>
 </html>
