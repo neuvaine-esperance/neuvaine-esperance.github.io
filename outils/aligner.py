@@ -42,9 +42,11 @@ SEUIL = 0.85
 # Le chant et l'envoi ne sont pas affichés : ils ne servent que de chapitres.
 CORRESPONDANCE = [
     ('signe-de-croix', ['signe']),
-    ('meditation',     ['verset', 'source', 'meditation']),
+    # L'intention est lue à la fin de la méditation, avant le temps de
+    # musique — vérifié sur les jours 3 et 8, où elle s'y retrouve à 100 %.
+    ('meditation',     ['verset', 'source', 'meditation', 'intention']),
     ('chant',          ['paroles']),
-    ('prions',         ['intention', 'priere']),
+    ('prions',         ['priere']),
     ('prieres',        ['notre-pere', 'ave', 'gloire', 'acclamation']),
     ('envoi',          ['envoi']),
 ]
@@ -332,7 +334,34 @@ def jetons(mot):
 # ==========================================================================
 # 4. La suite exacte des mots affichés, dans l'ordre du DOM
 # ==========================================================================
-def sequence_affichee(jour, prieres):
+def intention_avant_meditation(jour, section):
+    """L'intention est-elle lue avant la méditation, ce jour-là ?
+
+    Elle change de place d'un jour à l'autre : le 3 elle suit la méditation,
+    le 8 elle la précède. On regarde à quel moment chacune s'appuie sur
+    l'enregistrement, et l'on classe."""
+    inten = jour.get('intention')
+    if not inten or not section:
+        return False
+
+    lus, horaires = [], []
+    for m in section['mots']:
+        for j in jetons(m['mot']):
+            lus.append(j)
+            horaires.append(m['debut'])
+
+    def debut(texte):
+        jt = [j for mot in texte.split() for j in jetons(mot)]
+        sm = difflib.SequenceMatcher(None, jt, lus, autojunk=False)
+        blocs = [b for b in sm.get_matching_blocks() if b.size > 1]
+        return horaires[blocs[0].b] if blocs else None
+
+    a = debut(inten)
+    b = debut(_plat(jour.get('meditation')))
+    return a is not None and b is not None and a < b
+
+
+def sequence_affichee(jour, prieres, intention_avant=False):
     """Liste d'entrées {mot, zone, indice, passage}, dans l'ordre de la page.
 
     « indice » est le rang du mot à l'écran. Le Je vous salue Marie est affiché
@@ -342,9 +371,18 @@ def sequence_affichee(jour, prieres):
         ('signe', prieres['signe'], 1),
         ('verset', _plat(jour.get('verset')), 1),
         ('source', jour.get('source', ''), 1),
-        ('meditation', _plat(jour.get('meditation')), 1),
+    ]
+
+    # L'intention se lit tantôt avant la méditation, tantôt après.
+    if intention_avant:
+        zones.append(('intention', jour.get('intention', ''), 1))
+        zones.append(('meditation', _plat(jour.get('meditation')), 1))
+    else:
+        zones.append(('meditation', _plat(jour.get('meditation')), 1))
+        zones.append(('intention', jour.get('intention', ''), 1))
+
+    zones += [
         ('paroles', _plat(jour.get('paroles')), 1),
-        ('intention', jour.get('intention', ''), 1),
         ('priere', _plat(jour.get('priere')), 1),
         ('notre-pere', prieres['notre-pere'], 1),
         ('ave', prieres['ave'], 3),
@@ -466,7 +504,8 @@ def traiter(n, contenu, prieres, bavard=True):
 
     transcription = json.load(io.open(source, encoding='utf-8'))
     sections = dict((s['id'], s) for s in transcription['sections'])
-    suite, nb_affiches = sequence_affichee(contenu[n], prieres)
+    avant = intention_avant_meditation(contenu[n], sections.get('meditation'))
+    suite, nb_affiches = sequence_affichee(contenu[n], prieres, avant)
 
     plages = [None] * len(suite)
     detail = []
@@ -546,6 +585,7 @@ def traiter(n, contenu, prieres, bavard=True):
     if bavard:
         print(rapport)
     return {'jour': n, 'mots': nb_affiches, 'detail': detail,
+            'intention_avant': avant,
             'interpoles': len(interpoles), 'chapitres': chapitres,
             'taux': 1.0 - len(interpoles) / float(max(1, len(suite)))}
 
@@ -638,8 +678,16 @@ def majuscule_contenu(resultats):
         # de côté pour la remettre telle quelle à la fin.
         fermeture = lignes.pop() if not lignes[-1].strip() else ''
 
+        # Le marqueur de version de l'audio ne regarde pas cet outil : il dit
+        # aux navigateurs qu'un fichier a changé, et c'est la personne qui
+        # remplace le fichier qui le sait. On garde donc la ligne existante.
+        ancienne_audio = None
+        for l in lignes:
+            if re.match(r"\s*audio\s*:", l):
+                ancienne_audio = l.rstrip().rstrip(',')
+
         lignes = [l for l in lignes
-                  if not re.match(r"\s*(audio|sync|chapitres)\s*:", l)]
+                  if not re.match(r"\s*(audio|sync|chapitres|intentionAvant)\s*:", l)]
 
         # La dernière ligne utile ne doit plus porter de virgule finale :
         # on la remet nous-mêmes avant d'ajouter nos champs.
@@ -653,9 +701,13 @@ def majuscule_contenu(resultats):
         chapitres = ', '.join("%s: %s" % (_cle_js(k), v)
                               for k, v in sorted(r['chapitres'].items(),
                                                  key=lambda kv: kv[1]))
-        lignes.append("    audio: 'assets/audio/jour-%d.mp3?v=2'," % n)
+        lignes.append((ancienne_audio or
+                       "    audio: 'assets/audio/jour-%d.mp3?v=1'" % n) + ',')
         lignes.append("    sync: 'assets/audio/jour-%d.sync.js'," % n)
         lignes.append("    chapitres: { %s }" % chapitres)
+        if r.get('intention_avant'):
+            lignes[-1] += ','
+            lignes.append("    intentionAvant: true")
         lignes.append(fermeture)
 
         src = src[:debut] + '\n'.join(lignes) + src[fin:]

@@ -1,0 +1,39 @@
+Jour 3 — alignement de la transcription sur le texte affiché
+==========================================================================
+
+  mots affichés      : 535 (629 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 601
+  interpolés         : 28
+  taux d'appariement : 95.5 %
+
+  Section          appariés / affichés        début
+    signe-de-croix   10 /   11    90.9 %          0.80 s
+    meditation      225 /  239    94.1 %         10.50 s
+    prions          127 /  133    95.5 %        249.78 s
+    prieres         225 /  232    97.0 %        320.68 s
+    envoi            14 /   14   100.0 %        447.43 s
+
+  Les 20 plus longues suites de mots interpolés
+      2 mot(s)  [signe        10.04 s]  Amen. «
+      2 mot(s)  [meditation   46.91 s]  aux sarments.
+      2 mot(s)  [meditation   90.63 s]  aimés. »
+      2 mot(s)  [priere      301.99 s]  en se
+      2 mot(s)  [priere      306.07 s]  en s’oubliant
+      1 mot(s)  [verset       17.06 s]  fruit
+      1 mot(s)  [verset       34.76 s]  fruit,
+      1 mot(s)  [verset       39.87 s]  »
+      1 mot(s)  [meditation   51.89 s]  fruit.
+      1 mot(s)  [meditation   55.45 s]  recevons
+      1 mot(s)  [meditation   67.75 s]  ?
+      1 mot(s)  [meditation   71.90 s]  :
+      1 mot(s)  [meditation   84.86 s]  «
+      1 mot(s)  [meditation   87.40 s]  :
+      1 mot(s)  [priere      307.95 s]  en
+      1 mot(s)  [priere      311.42 s]  en
+      1 mot(s)  [ave         356.36 s]  ;
+      1 mot(s)  [ave         371.42 s]  nous,
+      1 mot(s)  [ave         380.34 s]  ;
+      1 mot(s)  [ave         395.15 s]  nous,
+
+  Sauts de plus de 8 s entre deux mots affichés consécutifs
+    137.78 s  après « besoin. » (intention) → « Seigneur, » (priere)

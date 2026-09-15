@@ -1,0 +1,35 @@
+Jour 7 — alignement de la transcription sur le texte affiché
+==========================================================================
+
+  mots affichés      : 641 (735 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 716
+  interpolés         : 19
+  taux d'appariement : 97.4 %
+
+  Section          appariés / affichés        début
+    signe-de-croix   10 /   11    90.9 %          0.80 s
+    meditation      372 /  380    97.9 %          7.77 s
+    prions           95 /   98    96.9 %        216.32 s
+    prieres         225 /  232    97.0 %        269.94 s
+    envoi            14 /   14   100.0 %        396.69 s
+
+  Les 16 plus longues suites de mots interpolés
+      2 mot(s)  [meditation   95.46 s]  violence, inquiétude
+      2 mot(s)  [meditation  137.65 s]  grands moyens,
+      2 mot(s)  [priere      249.82 s]  pape Léon
+      1 mot(s)  [signe         1.82 s]  et
+      1 mot(s)  [verset        7.39 s]  «
+      1 mot(s)  [verset       19.78 s]  »
+      1 mot(s)  [meditation   89.63 s]  :
+      1 mot(s)  [meditation  212.93 s]  resurgir
+      1 mot(s)  [priere      244.49 s]  un
+      1 mot(s)  [ave         305.62 s]  ;
+      1 mot(s)  [ave         320.67 s]  nous,
+      1 mot(s)  [ave         329.60 s]  ;
+      1 mot(s)  [ave         344.41 s]  nous,
+      1 mot(s)  [ave         354.06 s]  ;
+      1 mot(s)  [ave         368.03 s]  nous,
+      1 mot(s)  [gloire      382.32 s]  au
+
+  Sauts de plus de 8 s entre deux mots affichés consécutifs
+      9.64 s  après « 51 » (source) → « Jésus » (meditation)

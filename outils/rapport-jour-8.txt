@@ -1,0 +1,33 @@
+Jour 8 — alignement de la transcription sur le texte affiché
+==========================================================================
+
+  mots affichés      : 537 (631 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 616
+  interpolés         : 15
+  taux d'appariement : 97.6 %
+
+  Section          appariés / affichés        début
+    signe-de-croix   11 /   11   100.0 %          0.80 s
+    meditation      201 /  207    97.1 %          8.11 s
+    prions          165 /  167    98.8 %        137.81 s
+    prieres         225 /  232    97.0 %        229.32 s
+    envoi            14 /   14   100.0 %        356.07 s
+
+  Les 14 plus longues suites de mots interpolés
+      2 mot(s)  [verset       12.20 s]  aimés. »
+      1 mot(s)  [verset        7.49 s]  «
+      1 mot(s)  [meditation   48.33 s]  cultures,
+      1 mot(s)  [meditation   80.95 s]  :
+      1 mot(s)  [meditation  108.22 s]  témoin
+      1 mot(s)  [priere      178.90 s]  bâtisseurs
+      1 mot(s)  [priere      217.23 s]  une
+      1 mot(s)  [ave         265.00 s]  ;
+      1 mot(s)  [ave         280.07 s]  nous,
+      1 mot(s)  [ave         288.99 s]  ;
+      1 mot(s)  [ave         303.79 s]  nous,
+      1 mot(s)  [ave         313.45 s]  ;
+      1 mot(s)  [ave         327.42 s]  nous,
+      1 mot(s)  [gloire      341.72 s]  au
+
+  Sauts de plus de 8 s entre deux mots affichés consécutifs
+    aucun.

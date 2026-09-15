@@ -1,0 +1,41 @@
+Jour 9 — alignement de la transcription sur le texte affiché
+==========================================================================
+
+  mots affichés      : 599 (693 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 627
+  interpolés         : 66
+  taux d'appariement : 90.5 %
+
+  Section          appariés / affichés        début
+    signe-de-croix   10 /   11    90.9 %          0.80 s
+    meditation      242 /  274    88.3 %         10.14 s
+    prions          146 /  162    90.1 %        263.46 s
+    prieres         225 /  232    97.0 %        351.22 s
+    envoi             4 /   14    28.6 %        477.97 s
+
+  Les 20 plus longues suites de mots interpolés
+     14 mot(s)  [meditation   35.90 s]  Jésus sait que Pierre l’aime, mais qu’il a besoin de l’entendre le lui dire.
+      6 mot(s)  [envoi       564.03 s]  nous donne sa paix. À demain.
+      3 mot(s)  [meditation   44.59 s]  « filia »
+      3 mot(s)  [meditation  255.66 s]  demeure la source
+      3 mot(s)  [priere      318.24 s]  ne peut manquer
+      3 mot(s)  [priere      324.33 s]  avons résolu de
+      3 mot(s)  [envoi       543.24 s]  prenne en grâce
+      2 mot(s)  [signe         9.50 s]  Amen. «
+      2 mot(s)  [verset       17.22 s]  : «
+      2 mot(s)  [priere      274.37 s]  pape Léon
+      2 mot(s)  [priere      316.58 s]  à qui
+      2 mot(s)  [priere      320.99 s]  toute chose.
+      1 mot(s)  [verset       13.63 s]  :
+      1 mot(s)  [verset       15.70 s]  »
+      1 mot(s)  [verset       19.67 s]  »
+      1 mot(s)  [meditation   57.85 s]  «
+      1 mot(s)  [meditation   59.56 s]  »
+      1 mot(s)  [meditation   64.23 s]  :
+      1 mot(s)  [meditation   82.37 s]  va
+      1 mot(s)  [meditation   92.30 s]  :
+
+  Sauts de plus de 8 s entre deux mots affichés consécutifs
+     19.17 s  après « besoin. » (meditation) → « Son » (meditation)
+    113.62 s  après « Son » (meditation) → « Sacré-Cœur » (meditation)
+     49.00 s  après « toi. » (acclamation) → « Que » (envoi)

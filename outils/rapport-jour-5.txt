@@ -1,0 +1,33 @@
+Jour 5 — alignement de la transcription sur le texte affiché
+==========================================================================
+
+  mots affichés      : 471 (565 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 550
+  interpolés         : 15
+  taux d'appariement : 97.3 %
+
+  Section          appariés / affichés        début
+    signe-de-croix   10 /   11    90.9 %          0.80 s
+    meditation      222 /  227    97.8 %          6.62 s
+    prions           79 /   81    97.5 %        122.53 s
+    prieres         225 /  232    97.0 %        169.85 s
+    envoi            14 /   14   100.0 %        296.61 s
+
+  Les 14 plus longues suites de mots interpolés
+      2 mot(s)  [signe         5.85 s]  Amen. «
+      1 mot(s)  [verset       13.54 s]  soient
+      1 mot(s)  [verset       18.48 s]  »
+      1 mot(s)  [meditation   44.20 s]  qui
+      1 mot(s)  [meditation   92.94 s]  porter
+      1 mot(s)  [priere      130.10 s]  en
+      1 mot(s)  [priere      161.71 s]  répandions
+      1 mot(s)  [ave         205.53 s]  ;
+      1 mot(s)  [ave         220.59 s]  nous,
+      1 mot(s)  [ave         229.51 s]  ;
+      1 mot(s)  [ave         244.33 s]  nous,
+      1 mot(s)  [ave         253.98 s]  ;
+      1 mot(s)  [ave         267.96 s]  nous,
+      1 mot(s)  [gloire      282.25 s]  au
+
+  Sauts de plus de 8 s entre deux mots affichés consécutifs
+    aucun.

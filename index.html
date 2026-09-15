@@ -53,8 +53,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=18">
-<link rel="stylesheet" href="assets/css/styles.css?v=18">
+<link rel="stylesheet" href="assets/css/fonts.css?v=19">
+<link rel="stylesheet" href="assets/css/styles.css?v=19">
 </head>
 <body>
 
@@ -291,6 +291,12 @@
         <div class="meditation__body" id="day-meditation"></div>
       </section>
 
+      <section class="intention anim" id="day-intention-section"
+               aria-labelledby="t-intention">
+        <h2 class="eyebrow eyebrow--gold" id="t-intention">Intention du jour</h2>
+        <p class="intention__text" id="day-intention"></p>
+      </section>
+
       <!-- Chant proposé pour accompagner ce jour, quand il y en a un. -->
       <div class="day-music anim" id="day-music" hidden>
         <p class="day-music__label">Chant</p>
@@ -300,12 +306,6 @@
         <!-- Les paroles, quand le jour en fournit. Surlignées comme le reste. -->
         <p class="day-music__paroles" id="day-music-paroles" hidden></p>
       </div>
-
-      <section class="intention anim" id="day-intention-section"
-               aria-labelledby="t-intention">
-        <h2 class="eyebrow eyebrow--gold" id="t-intention">Intention du jour</h2>
-        <p class="intention__text" id="day-intention"></p>
-      </section>
 
       <section class="prayer anim" aria-labelledby="t-priere">
         <h2 class="eyebrow eyebrow--crimson" id="t-priere">Prions</h2>
@@ -464,7 +464,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=18" defer></script>
-<script src="assets/js/app.js?v=18" defer></script>
+<script src="assets/js/contenu.js?v=19" defer></script>
+<script src="assets/js/app.js?v=19" defer></script>
 </body>
 </html>

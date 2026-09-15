@@ -372,6 +372,7 @@
     // mais il y est posé dès maintenant.
     $('#audio-compact-titre').textContent = c ? c.titre : '';
     fillReader(c && c.lecteur);
+    placerIntention(!!(c && c.intentionAvant));
 
     if (!c) {
       $('#day-pending-date').textContent = fmtLong(d);
@@ -748,15 +749,34 @@
    *  Toute divergence d'ordre décalerait tous les mots. */
   function zonesSuivi() {
     var liste = [$('#day-content .signe'), $('#day-verse'), $('#day-ref'),
-                 $('#day-meditation'), $('#day-music-paroles'),
-                 $('#day-intention'), $('#day-prayer')];
+                 $('#day-meditation'), $('#day-intention'),
+                 $('#day-music-paroles'), $('#day-prayer')];
     // Ce sélecteur ramène les quatre prières dans l'ordre de la page :
     // Notre Père, Je vous salue Marie, Gloire au Père, puis l'acclamation,
     // dont le bloc est lui aussi un div de cette liste.
     Array.prototype.push.apply(liste,
       document.querySelectorAll('.anchors__list > div > p'));
     liste.push($('#view-jour .envoi'));
-    return liste;
+
+    /* L'ordre est celui du document, et non celui de cette liste :
+       l'intention passe devant la méditation certains jours, et un écart
+       d'une seule zone décalerait tous les mots qui suivent. */
+    return liste.filter(Boolean).sort(function (a, b) {
+      var pos = a.compareDocumentPosition(b);
+      return (pos & Node.DOCUMENT_POSITION_FOLLOWING) ? -1 : 1;
+    });
+  }
+
+  /** Place la section Intention avant ou après la méditation, selon ce que
+   *  l'aligneur a constaté dans l'enregistrement de ce jour. */
+  function placerIntention(avant) {
+    var section = $('#day-intention-section');
+    var meditation = $('#view-jour .meditation');
+    if (!section || !meditation || !meditation.parentNode) { return; }
+
+    var voulu = avant ? meditation : meditation.nextSibling;
+    if (section.nextSibling === voulu || section === voulu) { return; }
+    meditation.parentNode.insertBefore(section, voulu);
   }
 
   /** Le signe de croix et les prières d'ancrage ne changent jamais : on en

@@ -153,8 +153,13 @@ La transcription attendue a cette forme — c'est celle que Remotion écrit déj
   ] }
 ```
 
-Les six sections attendues sont `signe-de-croix`, `meditation`, `chant`, `prions`,
-`prieres` et `envoi`. Les horaires sont en secondes.
+Les sections attendues sont `signe-de-croix`, `meditation`, `chant`, `prions`,
+`prieres` et `envoi`. Les horaires sont en secondes. Le `chant` est facultatif :
+quand la musique est comprise dans la méditation, l'outil s'en accommode.
+
+L'intention se lit tantôt avant la méditation, tantôt après — le jour 3 après, le
+jour 8 avant. L'outil le constate dans l'enregistrement et écrit `intentionAvant`
+dans `contenu.js` ; la page place alors la section au bon endroit.
 
 ### Lancer l'alignement
 
@@ -230,10 +235,8 @@ index.html?date=2026-09-20
 
 ## Ce qui reste à compléter
 
-- Les transcriptions des jours 2 à 9. Sans elles, ces jours ont le son et le texte,
-  mais pas le surlignage mot à mot.
-- Une transcription du nouveau rendu du jour 1, si l'on veut le publier à la place de
-  celui qui est en ligne.
+- Les paroles des chants, si l'on veut qu'elles s'affichent et se surlignent. Ne pas
+  les prendre dans la transcription, qui les entend mal.
 - L'adresse du canal WhatsApp et le compte Instagram : deux constantes vides en tête
   d'`app.js`. Tant qu'elles le sont, les invitations à rejoindre le canal n'apparaissent
   pas.

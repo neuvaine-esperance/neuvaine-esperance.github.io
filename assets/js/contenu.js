@@ -75,9 +75,9 @@ window.NEUVAINE_CONTENU = {
       '— Cœur de Jésus, ouvre-leur un avenir.'
     ],
     lecteur: 'Anna',
-    audio: 'assets/audio/jour-1.mp3?v=2',
+    audio: 'assets/audio/jour-1.mp3?v=3',
     sync: 'assets/audio/jour-1.sync.js',
-    chapitres: { meditation: 9.98, chant: 126.6, prions: 265.87, prieres: 341.57, envoi: 468.22 }
+    chapitres: { meditation: 10, chant: 126.56, prions: 265.83, prieres: 343.55, envoi: 470.3 }
   },
 
   /* ---------------------------------------------------------------- 2 --- */
@@ -117,7 +117,9 @@ window.NEUVAINE_CONTENU = {
       'que la misère humilie et que la précarité déshumanise.'
     ],
     lecteur: 'Ludivine',
-    audio: 'assets/audio/jour-2.mp3?v=2'
+    audio: 'assets/audio/jour-2.mp3?v=2',
+    sync: 'assets/audio/jour-2.sync.js',
+    chapitres: { meditation: 6.82, prions: 132.42, prieres: 166.65, envoi: 293.39 }
   },
 
   /* ---------------------------------------------------------------- 3 --- */
@@ -164,7 +166,9 @@ window.NEUVAINE_CONTENU = {
       'pardonné, c’est en mourant qu’on ressuscite à l’éternelle vie.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-3.mp3?v=2'
+    audio: 'assets/audio/jour-3.mp3?v=2',
+    sync: 'assets/audio/jour-3.sync.js',
+    chapitres: { meditation: 10.5, prions: 249.78, prieres: 320.68, envoi: 447.43 }
   },
 
   /* ---------------------------------------------------------------- 4 --- */
@@ -212,7 +216,9 @@ window.NEUVAINE_CONTENU = {
       'Car ton regard, Seigneur, nous suffit.'
     ],
     lecteur: 'Anna',
-    audio: 'assets/audio/jour-4.mp3?v=2'
+    audio: 'assets/audio/jour-4.mp3?v=2',
+    sync: 'assets/audio/jour-4.sync.js',
+    chapitres: { meditation: 7.93, prions: 93.73, prieres: 160.47, envoi: 287.21 }
   },
 
   /* ---------------------------------------------------------------- 5 --- */
@@ -252,7 +258,9 @@ window.NEUVAINE_CONTENU = {
       'pour que nous la répandions au monde entier. Amen.'
     ],
     lecteur: 'Ludivine',
-    audio: 'assets/audio/jour-5.mp3?v=2'
+    audio: 'assets/audio/jour-5.mp3?v=2',
+    sync: 'assets/audio/jour-5.sync.js',
+    chapitres: { meditation: 6.62, prions: 122.53, prieres: 169.85, envoi: 296.61 }
   },
 
   /* ---------------------------------------------------------------- 6 --- */
@@ -297,7 +305,9 @@ window.NEUVAINE_CONTENU = {
       'dans son identité propre qui ne se trouve qu’en Dieu. Amen.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-6.mp3?v=2'
+    audio: 'assets/audio/jour-6.mp3?v=2',
+    sync: 'assets/audio/jour-6.sync.js',
+    chapitres: { meditation: 10.74, prions: 262.23, prieres: 328.86, envoi: 455.61 }
   },
 
   /* ---------------------------------------------------------------- 7 --- */
@@ -360,7 +370,9 @@ window.NEUVAINE_CONTENU = {
       'Amen.'
     ],
     lecteur: 'Anna',
-    audio: 'assets/audio/jour-7.mp3?v=2'
+    audio: 'assets/audio/jour-7.mp3?v=2',
+    sync: 'assets/audio/jour-7.sync.js',
+    chapitres: { meditation: 7.77, prions: 216.32, prieres: 269.94, envoi: 396.69 }
   },
 
   /* ---------------------------------------------------------------- 8 --- */
@@ -414,7 +426,10 @@ window.NEUVAINE_CONTENU = {
       'renouveler notre foi, notre espérance et notre amour de l’Église. Amen.'
     ],
     lecteur: 'Ludivine',
-    audio: 'assets/audio/jour-8.mp3?v=2'
+    audio: 'assets/audio/jour-8.mp3?v=2',
+    sync: 'assets/audio/jour-8.sync.js',
+    chapitres: { meditation: 8.11, prions: 137.81, prieres: 229.32, envoi: 356.07 },
+    intentionAvant: true
   },
 
   /* ---------------------------------------------------------------- 9 --- */
@@ -466,6 +481,8 @@ window.NEUVAINE_CONTENU = {
       'fixé sur toi. Amen.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-9.mp3?v=2'
+    audio: 'assets/audio/jour-9.mp3?v=2',
+    sync: 'assets/audio/jour-9.sync.js',
+    chapitres: { meditation: 10.14, prions: 263.46, prieres: 351.22, envoi: 477.97 }
   }
 };
