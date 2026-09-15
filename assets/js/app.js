@@ -18,6 +18,12 @@
      Mettre true ici ouvre les neuf jours d'un seul coup. */
   var OUVRIR_TOUT = false;
 
+  /* Adresse du canal WhatsApp. Tant qu'elle est vide, les deux invitations
+     à rejoindre le canal restent absentes de la page : mieux vaut ne rien
+     proposer qu'un bouton qui ne mène nulle part. */
+  var LIEN_WHATSAPP = '';
+  var COMPTE_INSTAGRAM = '';
+
   /* Jours ouverts avant leur date, par exception. Le 16 septembre est
      accessible dès la mise en ligne, pour que la neuvaine se lise le soir
      où on la partage. Ajouter un numéro ici ouvre le jour correspondant. */
@@ -71,16 +77,15 @@
     return WEEKDAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
   }
 
-  /** « J-9 » pour le premier jour, « J-1 » pour le neuvième.
+  /** « J1 » pour le premier jour, « J9 » pour le neuvième.
    *  C'est une abréviation graphique : elle est masquée aux lecteurs d'écran,
    *  qui reçoivent la version en toutes lettres produite ci-dessous. */
-  function countdownLabel(n) { return 'J-' + (TOTAL_DAYS + 1 - n); }
+  function countdownLabel(n) { return 'J' + n; }
 
-  /** « Jour 1 sur 9, dans 9 jours » : la même information, énoncée. */
+  /** « Jour 1 sur 9 » : ce que « J1 » dit en toutes lettres.
+   *  La date, elle, est annoncée à côté par le fil d'Ariane et les cartes. */
   function countdownSpoken(n) {
-    var reste = TOTAL_DAYS + 1 - n;
-    var suite = reste > 1 ? 'dans ' + reste + ' jours' : 'demain';
-    return 'Jour ' + n + ' sur ' + TOTAL_DAYS + ', ' + suite;
+    return 'Jour ' + n + ' sur ' + TOTAL_DAYS;
   }
 
   /** Numéro du jour en cours, borné entre 1 et 9. */
@@ -238,6 +243,12 @@
     swapView(state.view);
     stopAudio();
     if (state.view === 'jour') { renderDay(state.day); }
+
+    // Ce retour en haut est le nôtre, comme dans show() : sans la marque, le
+    // suivi du texte le prendrait pour un geste du visiteur.
+    notreDefilement = Date.now();
+    window.scrollTo(0, 0);
+
     playReveal(VIEWS[state.view], state.view);
     if (moveFocus) { focusTitle(state.view); }
   }
@@ -247,20 +258,25 @@
      ------------------------------------------------------------------ */
   function renderHome() {
     var t = today();
-    var badge = $('#cta-badge');
     var cta = $('#cta-today');
+    var sous = $('#cta-sub');
 
-    var label;
+    // Le sous-titre dit en toutes lettres où mène le bouton : quel jour,
+    // et de quoi il parle.
     if (isBeforeStart()) {
-      // Avant le 16 septembre : on compte les jours qui restent jusqu'au 25.
-      label = 'J-' + (Math.round((START - t) / DAY_MS) + TOTAL_DAYS);
+      var c1 = isPublished(1) ? CONTENT[1] : null;
+      sous.textContent = c1
+        ? 'Jour 1 sur ' + TOTAL_DAYS + ' — ' + c1.titre
+        : 'La neuvaine s’ouvre le ' + fmtLong(START) + '.';
       cta.setAttribute('aria-label', 'Prier aujourd’hui, ouvrir le premier jour');
     } else {
-      label = countdownLabel(currentDay());
+      var n = currentDay();
+      var c = CONTENT[n];
+      sous.textContent = 'Jour ' + n + ' sur ' + TOTAL_DAYS +
+        (c ? ' — ' + c.titre : '');
       cta.setAttribute('aria-label',
-        'Prier aujourd’hui, ouvrir le ' + countdownSpoken(currentDay()).toLowerCase());
+        'Prier aujourd’hui, ouvrir le ' + countdownSpoken(n).toLowerCase());
     }
-    badge.textContent = label;
 
     var grid = $('#day-grid');
     grid.textContent = '';
@@ -347,6 +363,11 @@
     $('#day-pending').hidden = !!c;
     $('#day-content').hidden = !c;
 
+    // Le titre ne s'affiche dans la barre que lorsqu'elle est resserrée,
+    // mais il y est posé dès maintenant.
+    $('#audio-compact-titre').textContent = c ? c.titre : '';
+    fillReader(c && c.lecteur);
+
     if (!c) {
       $('#day-pending-date').textContent = fmtLong(d);
       setupAudio(null);
@@ -396,6 +417,15 @@
     var p = $('#day-music');
     p.hidden = !titre;
     $('#day-music-title').textContent = titre || '';
+  }
+
+  /** Le nom de la personne qui a enregistré ce jour, quand il est connu.
+   *  Il paraît à deux endroits : sous le titre, et dans la barre du lecteur. */
+  function fillReader(nom) {
+    var sous = $('#day-reader');
+    sous.hidden = !nom;
+    sous.textContent = nom ? 'Lu par ' + nom : '';
+    $('#audio-reader').textContent = nom || '';
   }
 
   /** Une entrée commençant par un tiret cadratin est le répons d'une litanie :
@@ -691,6 +721,7 @@
     // dont le bloc est lui aussi un div de cette liste.
     Array.prototype.push.apply(liste,
       document.querySelectorAll('.anchors__list > div > p'));
+    liste.push($('#view-jour .envoi'));
     return liste;
   }
 
@@ -701,6 +732,7 @@
     var liste = [$('#day-content .signe')];
     Array.prototype.push.apply(liste,
       document.querySelectorAll('.anchors__list > div > p'));
+    liste.push($('#view-jour .envoi'));
     return liste;
   }
 
@@ -827,6 +859,8 @@
       }
     }
 
+    majChapitre(t);
+
     motActif = i;
     if (i >= 0) {
       motMax = Math.max(motMax, i);
@@ -835,6 +869,23 @@
         suivreDuRegard(motsDom[i]);
       }
     }
+  }
+
+  /** Allume la pilule de la partie en cours d'écoute. */
+  var chapitreActif = -1;
+
+  function majChapitre(t) {
+    if (!sync || !sync.sections) { return; }
+    var boutons = el('chapitres').children;
+    var trouve = -1;
+    for (var k = 0; k < boutons.length; k++) {
+      if (Number(boutons[k].getAttribute('data-debut')) <= t) { trouve = k; }
+    }
+    if (trouve === chapitreActif) { return; }
+    for (var j = 0; j < boutons.length; j++) {
+      boutons[j].classList.toggle('is-actif', j === trouve);
+    }
+    chapitreActif = trouve;
   }
 
   /** Garde le mot lu entre 35 % et 60 % de la hauteur visible.
@@ -899,6 +950,7 @@
   function remplirChapitres(chapitres) {
     var hote = el('chapitres');
     hote.textContent = '';
+    chapitreActif = -1;
 
     var cles = chapitres ? Object.keys(chapitres) : [];
     if (!cles.length) { hote.hidden = true; return; }
@@ -909,6 +961,7 @@
       var b = document.createElement('button');
       b.type = 'button';
       b.className = 'chapitre';
+      b.setAttribute('data-debut', chapitres[cle]);
       b.textContent = nom;
       b.setAttribute('aria-label',
         nom + ', écouter à partir de ' + fmtSpoken(chapitres[cle]));
@@ -1074,6 +1127,61 @@
   }
 
   /* ------------------------------------------------------------------
+     Canal WhatsApp et partage
+     ------------------------------------------------------------------ */
+
+  /** Les deux invitations à rejoindre le canal n'apparaissent que si son
+   *  adresse est renseignée en tête de ce fichier. */
+  function initLiens() {
+    var liens = [$('#lien-whatsapp'), $('#lien-whatsapp-accueil')];
+    liens.forEach(function (a) {
+      if (!a) { return; }
+      a.href = LIEN_WHATSAPP || '#';
+      a.hidden = !LIEN_WHATSAPP;
+      if (LIEN_WHATSAPP) {
+        a.rel = 'noopener';
+        a.target = '_blank';
+      }
+    });
+    $('#participer').hidden = !LIEN_WHATSAPP;
+
+    var note = $('#participer-note');
+    note.textContent = COMPTE_INSTAGRAM
+      ? 'Vous n’êtes pas sur WhatsApp ? Suivez ' + COMPTE_INSTAGRAM + ' sur Instagram.'
+      : '';
+  }
+
+  /** Partager le jour affiché. Le partage natif du téléphone quand il
+   *  existe, sinon le presse-papiers, sinon on montre l'adresse. */
+  function initPartage() {
+    var bouton = $('#partager');
+    var etat = $('#partage-etat');
+
+    bouton.addEventListener('click', function () {
+      var c = CONTENT[state.day];
+      var adresse = window.location.href;
+      var texte = 'Neuvaine au Sacré-Cœur — jour ' + state.day + ' sur ' + TOTAL_DAYS +
+                  (c ? ' : ' + c.titre : '');
+
+      if (navigator.share) {
+        navigator.share({ title: 'Neuvaine au Sacré-Cœur',
+                          text: texte, url: adresse })
+          .catch(function () { /* partage refusé : rien à signaler */ });
+        return;
+      }
+
+      if (navigator.clipboard && navigator.clipboard.writeText) {
+        navigator.clipboard.writeText(texte + ' ' + adresse).then(function () {
+          etat.textContent = 'Lien copié.';
+          window.setTimeout(function () { etat.textContent = ''; }, 4000);
+        }, function () { etat.textContent = adresse; });
+        return;
+      }
+      etat.textContent = adresse;
+    });
+  }
+
+  /* ------------------------------------------------------------------
      Branchements
      ------------------------------------------------------------------ */
   function start() {
@@ -1105,6 +1213,8 @@
     bindAudio();
     initDebug();
     bindSuivi();
+    initLiens();
+    initPartage();
     majCompact();
 
     window.addEventListener('popstate', function () { applyHash(true); });

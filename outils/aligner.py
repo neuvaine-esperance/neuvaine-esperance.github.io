@@ -46,7 +46,7 @@ CORRESPONDANCE = [
     ('chant',          []),
     ('prions',         ['intention', 'priere']),
     ('prieres',        ['notre-pere', 'ave', 'gloire', 'acclamation']),
-    ('envoi',          []),
+    ('envoi',          ['envoi']),
 ]
 
 # Zones entendues mais que l'on ne surligne pas : la référence d'un texte est
@@ -180,6 +180,7 @@ class _Prieres(HTMLParser):
     def __init__(self):
         HTMLParser.__init__(self)
         self.signe = ''
+        self.envoi = ''
         self.ancrage = []
         self._dans_liste = 0
         self._dans_acclamation = 0
@@ -202,6 +203,8 @@ class _Prieres(HTMLParser):
             self._dans_liste, self._profondeur = 1, 1
         elif tag == 'div' and 'anchors__acclaim' in classes:
             self._dans_acclamation, self._profondeur = 1, 1
+        elif tag == 'p' and 'envoi' in classes:
+            self._capture = 'envoi'
         elif tag == 'p' and (self._dans_liste or self._dans_acclamation):
             self._capture = 'ancrage'
             self._morceaux = []
@@ -210,7 +213,7 @@ class _Prieres(HTMLParser):
         if self._capture == 'ancrage' and tag == 'p':
             self.ancrage.append(' '.join(' '.join(self._morceaux).split()))
             self._capture = None
-        elif self._capture == 'signe' and tag == 'p':
+        elif self._capture in ('signe', 'envoi') and tag == 'p':
             self._capture = None
         if self._dans_liste or self._dans_acclamation:
             self._profondeur -= 1
@@ -225,6 +228,8 @@ class _Prieres(HTMLParser):
     def handle_data(self, donnee):
         if self._capture == 'signe':
             self.signe += donnee
+        elif self._capture == 'envoi':
+            self.envoi += donnee
         elif self._capture == 'ancrage':
             self._morceaux.append(donnee)
 
@@ -242,6 +247,7 @@ def lire_prieres(chemin=INDEX):
         'ave': p.ancrage[1],
         'gloire': p.ancrage[2],
         'acclamation': p.ancrage[3],
+        'envoi': ' '.join(p.envoi.split()),
     }
 
 
@@ -343,6 +349,7 @@ def sequence_affichee(jour, prieres):
         ('ave', prieres['ave'], 3),
         ('gloire', prieres['gloire'], 1),
         ('acclamation', prieres['acclamation'], 1),
+        ('envoi', prieres['envoi'], 1),
     ]
 
     suite = []

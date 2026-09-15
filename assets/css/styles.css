@@ -231,6 +231,10 @@ main { display: contents; }
 
 /* --------------------------------------------------------------------------
    5. Accueil
+
+   La maquette pose les titres et les phrases sur de petits panneaux de crème
+   translucide : le fond texturé reste visible tout autour, et le texte garde
+   son contraste par-dessus. Les tailles, elles, restent celles du site.
    -------------------------------------------------------------------------- */
 .head-band { padding: 0 var(--pad) 30px; }
 
@@ -249,18 +253,12 @@ main { display: contents; }
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-  flex-wrap: wrap;
 }
-.topbar__logo {
-  display: block;
-  flex: none;
-  height: 44px;
-}
+.topbar__logo { display: block; line-height: 0; }
 .topbar__logo img {
-  display: block;
+  height: 44px;
   width: auto;
-  height: 100%;
-  max-width: 100%;
+  display: block;
 }
 .topbar__ref {
   font-size: .8125rem;
@@ -270,19 +268,23 @@ main { display: contents; }
   color: var(--crimson);
 }
 
-.hero {
-  position: relative;
-  padding: 26px 0 0;
+.hero { position: relative; padding-top: 26px; }
+
+/* Le panneau de crème sous les titres. Il est translucide : le vert et le
+   cramoisi posés dessus gardent un contraste supérieur à 7:1. */
+.hero h1,
+.hero__lead,
+.hero__quote {
+  display: inline-block;
+  background: var(--cream-80);
+  border-radius: var(--r-md);
 }
 
-/* Les titres et la citation reposent sur une pastille crème translucide :
-   c'est elle qui les détache des rayons dorés. */
 .hero h1 {
-  display: inline-block;
+  margin: 0;
   padding: 10px 14px;
-  border-radius: 12px;
-  background: var(--cream-80);
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 2rem;
   line-height: 1.05;
@@ -290,28 +292,26 @@ main { display: contents; }
 }
 
 .hero__lead {
-  display: inline-block;
-  margin-top: 12px;
+  margin: 12px 0 0;
   padding: 8px 14px;
-  border-radius: var(--r-sm);
-  background: var(--cream-80);
   font-size: 1rem;
   font-weight: 600;
   line-height: 1.35;
-  text-wrap: pretty;
+  border-radius: var(--r-sm);
 }
 
 .hero__figure {
   display: block;
-  width: 230px;
-  max-width: 60%;
-  margin: 22px auto 0;
+  margin: 20px auto 0;
+  width: 200px;
+  max-width: 62%;
 }
 .hero__figure img {
-  display: block;
   width: 100%;
   height: auto;
+  display: block;
   animation: heartbeat 1.6s var(--ease) infinite;
+  transform-origin: center;
 }
 
 /* Deux battements rapprochés puis une pause, comme un pouls. */
@@ -323,9 +323,10 @@ main { display: contents; }
   70%      { transform: scale(1); }
 }
 
+/* Les dates tiennent dans un bloc plein : c'est le repère que l'œil cherche. */
 .hero__dates {
   display: inline-block;
-  margin-top: 18px;
+  margin: 16px 0 0;
   padding: 12px 20px;
   border-radius: var(--r-md);
   background: var(--crimson);
@@ -336,67 +337,121 @@ main { display: contents; }
 }
 
 .hero__quote {
-  display: inline-block;
-  margin: 16px 0 0;
-  padding: 8px 12px;
+  margin: 14px 0 0;
+  padding: 6px 12px;
   border-radius: var(--r-sm);
-  background: var(--cream-80);
   font-size: 1.0625rem;
   font-weight: 600;
   line-height: 1.4;
   color: var(--green);
-  text-wrap: pretty;
-}
-.hero__quote-ref {
-  display: inline-block;
-  margin-top: 2px;
-  font-size: .8125rem;
   font-style: normal;
+}
+.hero__quote p { display: inline; margin: 0; }
+.hero__quote-ref {
+  font-size: .8125rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
   color: var(--crimson);
+  font-style: normal;
+  white-space: nowrap;
 }
 
+/* --------------------------------------------------------------------------
+   Boutons
+   -------------------------------------------------------------------------- */
+.btn-primary,
 .cta {
-  margin-top: 22px;
+  display: block;
   width: 100%;
   min-height: var(--tap);
+  padding: 18px 20px;
   border: 0;
-  background: var(--green);
+  border-radius: var(--r-md);
+  background: var(--crimson);
   color: var(--cream);
+  text-align: center;
+  text-decoration: none;
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   letter-spacing: .05em;
   font-size: 1.175rem;
-  padding: 18px 20px;
-  border-radius: var(--r-md);
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  gap: 12px;
-  text-align: left;
-  box-shadow: 0 10px 24px rgba(39, 78, 23, .25);
+  line-height: 1.15;
 }
-.cta:hover { background: var(--green-2); }
-.cta__badge {
+.btn-primary:hover,
+.cta:hover { background: var(--crimson-2); color: var(--cream); }
+
+.cta { margin-top: 20px; }
+.cta__main { display: block; }
+.cta__sub {
+  display: block;
+  margin-top: 6px;
   font-family: var(--sans);
   font-size: .85rem;
   font-weight: 700;
   letter-spacing: .06em;
-  color: var(--sand);
+  text-transform: none;
+  color: var(--gold);
 }
+.cta__sub:empty { display: none; }
 
+.btn-outline {
+  flex: 1;
+  min-height: var(--tap);
+  padding: 14px 12px;
+  border: 2px solid var(--green);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--green);
+  font-family: var(--sans);
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .08em;
+  text-transform: uppercase;
+}
+.btn-outline:hover { background: var(--green); color: var(--cream); }
+
+/* --------------------------------------------------------------------------
+   Comment participer
+   -------------------------------------------------------------------------- */
+.participer {
+  margin: 22px var(--pad) 0;
+  padding: 22px;
+  border-radius: var(--r-lg);
+  background: var(--green);
+  color: var(--cream);
+}
+.participer__texte {
+  margin: 12px 0 0;
+  font-size: .9375rem;
+  font-weight: 500;
+  line-height: 1.55;
+}
+.participer .btn-primary { margin-top: 18px; }
+.participer__note {
+  margin: 12px 0 0;
+  font-size: .8125rem;
+  font-weight: 500;
+  line-height: 1.5;
+  color: var(--sand);
+  text-align: center;
+}
+.participer__note:empty { display: none; }
+
+/* --------------------------------------------------------------------------
+   Les neuf jours
+   -------------------------------------------------------------------------- */
 .section-head {
-  padding: 4px var(--pad) 0;
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
+  padding: 30px var(--pad) 0;
 }
 .section-head h2 {
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 1.4rem;
   color: var(--green);
@@ -409,136 +464,129 @@ main { display: contents; }
   color: var(--crimson);
 }
 
-/* Grille des neuf jours ---------------------------------------------------- */
 .day-grid {
-  padding: 16px var(--pad) 8px;
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
+  grid-template-columns: repeat(3, 1fr);
   gap: 10px;
+  padding: 14px var(--pad) 0;
 }
 .day-grid > li { display: flex; }
 
 .day-card {
-  position: relative;
-  overflow: hidden;
-  width: 100%;
-  text-align: left;
-  padding: 14px 12px 12px;
+  flex: 1;
+  min-height: 92px;
+  padding: 12px 10px;
+  border: 1px solid var(--sand);
   border-radius: var(--r-md);
-  min-height: 118px;
+  background: var(--cream-90);
   display: flex;
   flex-direction: column;
   justify-content: space-between;
+  align-items: flex-start;
   gap: 8px;
-  background: var(--cream-85);
-  color: var(--green);
-  /* Le contour délimite une commande : il lui faut 3:1 sur la crème.
-     Le vert en tient 8,48 ; le sable d'origine n'en tenait que 1,35. */
-  border: 2px solid var(--green);
+  text-align: left;
+  position: relative;
 }
-.day-card:hover { transform: translateY(-2px); }
+.day-card:hover { border-color: var(--green); }
+.day-card.is-today {
+  background: var(--green);
+  border-color: var(--green);
+}
+.day-card.is-ready { border-color: var(--line); }
 
 .day-card__n {
   font-family: var(--display);
+  font-weight: 400;
   font-size: 1.9rem;
   line-height: 1.1;
+  color: var(--green);
 }
+.day-card.is-today .day-card__n { color: var(--gold); }
+
 .day-card__date {
   display: block;
   font-size: .875rem;
   font-weight: 700;
+  color: var(--ink);
 }
 .day-card__status {
   display: block;
-  margin-top: 2px;
   font-size: .8125rem;
   font-weight: 600;
   line-height: 1.35;
+  color: var(--ink-soft);
 }
-/* La pastille double l'information portée par le texte « Aujourd'hui ».
-   Aucun état ne repose sur la seule couleur. */
+.day-card.is-today .day-card__date,
+.day-card.is-today .day-card__status { color: var(--sand); }
+
 .day-card__dot {
   position: absolute;
   top: 10px;
   right: 10px;
-  width: 10px;
-  height: 10px;
+  width: 8px;
+  height: 8px;
   border-radius: 50%;
   background: var(--gold);
 }
 
-/* Jour publié : le vert. Jour en cours : le cramoisi. */
-.day-card.is-ready {
-  background: var(--green);
-  border-color: var(--green);
-  color: var(--cream);
-}
-.day-card.is-today {
-  background: var(--crimson);
-  border-color: var(--crimson);
-  color: var(--cream);
-}
-.day-card.is-ready:focus-visible,
-.day-card.is-today:focus-visible { outline-color: var(--gold); }
-
-/* Pied de l'accueil -------------------------------------------------------- */
-.home-foot { padding: 20px var(--pad) 40px; }
+/* --------------------------------------------------------------------------
+   Pied de l'accueil
+   -------------------------------------------------------------------------- */
+.home-foot { padding: 24px var(--pad) 40px; }
 
 .consec-link {
   width: 100%;
   min-height: var(--tap);
-  text-align: left;
-  background: var(--green);
-  color: var(--cream);
-  border: 0;
+  padding: 18px 20px;
+  border: 1px solid var(--sand);
   border-radius: var(--r-lg);
-  padding: 20px;
+  background: var(--cream-90);
   display: flex;
-  gap: 16px;
   align-items: center;
+  gap: 16px;
+  text-align: left;
 }
-.consec-link:hover { background: var(--green-2); }
-.consec-link:focus-visible { outline-color: var(--gold); }
+.consec-link:hover { border-color: var(--green); }
 .consec-link__badge {
-  min-width: 44px;
-  min-height: 44px;
-  padding: 0 6px;
+  width: 44px;
+  height: 44px;
+  flex: none;
   border-radius: 50%;
   background: var(--crimson);
   color: var(--cream);
   display: flex;
   align-items: center;
   justify-content: center;
-  flex-shrink: 0;
   font-family: var(--display);
+  font-weight: 400;
   font-size: 1.05rem;
 }
 .consec-link__body { flex: 1; min-width: 0; }
 .consec-link__title {
   display: block;
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 1rem;
   line-height: 1.25;
+  color: var(--green);
 }
 .consec-link__sub {
   display: block;
-  margin-top: 4px;
+  margin-top: 3px;
   font-size: .875rem;
   font-weight: 500;
   line-height: 1.4;
-  color: var(--sand);
+  color: var(--ink-soft);
 }
-.consec-link__chevron { color: var(--gold); font-size: 1.3rem; }
+.consec-link__chevron { color: var(--crimson); font-size: 1.3rem; }
 
 .partners {
-  display: flex;
-  justify-content: center;
-  margin-top: 28px;
-  padding: 16px 14px;
+  margin-top: 24px;
+  padding: 14px;
+  border: 1px solid var(--sand);
   border-radius: var(--r-md);
   background: var(--cream-85);
-  border: 1px solid var(--sand);
 }
 .partners img { display: block; width: 100%; height: auto; }
 
@@ -547,19 +595,21 @@ main { display: contents; }
   text-align: center;
   font-size: .875rem;
   font-weight: 600;
-  color: var(--ink-soft);
+  color: var(--green);
 }
 
 /* --------------------------------------------------------------------------
    6. Écran d'un jour
    -------------------------------------------------------------------------- */
 .day-top {
-  padding: 14px var(--pad) 0;
+  position: relative;
+  z-index: 25;
+  padding: 10px var(--pad);
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
+  background: var(--cream);
 }
 .day-top__date {
   font-size: .8125rem;
@@ -570,23 +620,290 @@ main { display: contents; }
   text-align: right;
 }
 
-.day-head { padding: 16px var(--pad) 24px; }
+/* --------------------------------------------------------------------------
+   Le lecteur, barre verte retenue en haut de l'écran
+   -------------------------------------------------------------------------- */
+.audio {
+  position: -webkit-sticky;
+  position: sticky;
+  top: 0;
+  z-index: 20;
+  margin: 0;
+  padding: 16px var(--pad) 14px;
+  border-radius: 0 0 var(--r-lg) var(--r-lg);
+  background: var(--green);
+  color: var(--cream);
+  box-shadow: 0 12px 24px rgba(39, 78, 23, .3);
+  transition: padding .18s ease;
+}
+
+.audio__row {
+  display: flex;
+  gap: 14px;
+  align-items: center;
+}
+
+.audio__btn {
+  width: 56px;
+  height: 56px;
+  min-width: var(--tap);
+  min-height: var(--tap);
+  flex: none;
+  border: 0;
+  border-radius: 50%;
+  background: var(--crimson);
+  color: var(--cream);
+  font-size: 1.1rem;
+  line-height: 1;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+.audio__btn:hover { background: var(--crimson-2); }
+.audio__btn[disabled] {
+  background: var(--green-2);
+  color: rgba(246, 240, 232, .55);
+  cursor: not-allowed;
+}
+
+.audio__body { flex: 1; min-width: 0; }
+
+.audio__label {
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--gold);
+}
+.audio__reader:empty { display: none; }
+.audio__reader::before { content: " · "; }
+
+/* Le curseur de position. La commande reste un vrai champ range — clavier,
+   flèches, Origine et Fin — mais son habillage devient le filet doré de la
+   maquette. La hauteur totale atteint la cible tactile, le filet n'en
+   occupant que le centre. */
+.audio__seek {
+  -webkit-appearance: none;
+  appearance: none;
+  display: block;
+  width: 100%;
+  height: var(--tap);
+  margin: 2px 0 0;
+  background: transparent;
+  cursor: pointer;
+}
+.audio__seek::-webkit-slider-runnable-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(246, 240, 232, .25);
+}
+.audio__seek::-moz-range-track {
+  height: 4px;
+  border-radius: 2px;
+  background: rgba(246, 240, 232, .25);
+}
+.audio__seek::-moz-range-progress {
+  height: 4px;
+  border-radius: 2px;
+  background: var(--gold);
+}
+.audio__seek::-webkit-slider-thumb {
+  -webkit-appearance: none;
+  appearance: none;
+  width: 14px;
+  height: 14px;
+  margin-top: -5px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.audio__seek::-moz-range-thumb {
+  width: 14px;
+  height: 14px;
+  border: 0;
+  border-radius: 50%;
+  background: var(--gold);
+}
+.audio__seek[disabled] { opacity: .5; cursor: not-allowed; }
+
+.audio__meta {
+  margin-top: 2px;
+  display: flex;
+  align-items: baseline;
+  justify-content: space-between;
+  gap: 12px;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--sand);
+}
+.audio__status { min-width: 0; }
+.audio__time { white-space: nowrap; font-variant-numeric: tabular-nums; }
+
+/* Titre du jour, montré à la place du reste quand la barre est resserrée. */
+.audio__compact-titre {
+  display: none;
+  flex: 1;
+  min-width: 0;
+  font-size: 1rem;
+  font-weight: 600;
+  white-space: nowrap;
+  overflow: hidden;
+  text-overflow: ellipsis;
+}
+
+.audio__tools {
+  margin-top: 12px;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+
+.chapitres {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+.chapitre {
+  min-height: var(--tap);
+  padding: 6px 10px;
+  border: 1px solid rgba(219, 208, 180, .5);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--sand);
+  font-family: var(--sans);
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.chapitre:hover { border-color: var(--gold); color: var(--gold); }
+.chapitre.is-actif {
+  background: var(--cream);
+  border-color: var(--cream);
+  color: var(--green);
+}
+
+.audio__reglages {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  flex-wrap: wrap;
+  gap: 12px;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--sand);
+}
+
+/* L'interrupteur reste une vraie case à cocher : elle est seulement
+   habillée en bascule. Le libellé, à côté, porte la cible tactile. */
+.suivi { display: flex; align-items: center; gap: 8px; }
+.suivi input {
+  -webkit-appearance: none;
+  appearance: none;
+  flex: none;
+  width: 30px;
+  height: 18px;
+  margin: 0;
+  border: 0;
+  border-radius: 9px;
+  background: rgba(219, 208, 180, .3);
+  position: relative;
+  cursor: pointer;
+  transition: background .18s var(--ease);
+}
+.suivi input::after {
+  content: "";
+  position: absolute;
+  top: 2px;
+  left: 2px;
+  width: 14px;
+  height: 14px;
+  border-radius: 50%;
+  background: var(--sand);
+  transition: transform .18s var(--ease), background .18s var(--ease);
+}
+.suivi input:checked { background: var(--gold); }
+.suivi input:checked::after {
+  transform: translateX(12px);
+  background: var(--green);
+}
+.suivi label {
+  display: flex;
+  align-items: center;
+  min-height: var(--tap);
+  cursor: pointer;
+}
+
+.audio__speed { display: flex; align-items: center; gap: 8px; }
+.audio__speed label { font-weight: 600; }
+.audio__speed select {
+  min-height: var(--tap);
+  min-width: var(--tap);
+  padding: 4px 8px;
+  border: 1px solid rgba(219, 208, 180, .5);
+  border-radius: var(--r-sm);
+  background: transparent;
+  color: var(--sand);
+  font-family: var(--sans);
+  font-size: .875rem;
+}
+.audio__speed select option { color: var(--ink); }
+.audio__speed select[disabled] { opacity: .5; cursor: not-allowed; }
+
+.audio__transcript {
+  margin-top: 10px;
+  font-size: .8125rem;
+  line-height: 1.5;
+  color: var(--sand);
+}
+
+/* Barre resserrée : une seule ligne, le titre remplace tout le reste. */
+.audio.compact { padding-top: 10px; padding-bottom: 10px; }
+.audio.compact .audio__btn { width: var(--tap); height: var(--tap); }
+.audio.compact .audio__body,
+.audio.compact .audio__tools,
+.audio.compact .audio__transcript { display: none; }
+.audio.compact .revenir { margin-top: 8px; }
+.audio.compact .audio__compact-titre { display: block; }
+
+/* Pastille de rappel. Elle vit dans la barre : celle-ci reste en haut de
+   l'écran, la pastille y reste donc visible sans se superposer à rien. */
+.revenir {
+  display: block;
+  margin: 10px auto 0;
+  min-height: var(--tap);
+  padding: 9px 16px;
+  border: 1px solid rgba(232, 184, 75, .6);
+  border-radius: 999px;
+  background: var(--green);
+  color: var(--gold);
+  font-family: var(--sans);
+  font-size: .8125rem;
+  font-weight: 700;
+  box-shadow: 0 6px 16px rgba(39, 78, 23, .3);
+}
+.revenir:hover { background: var(--green-2); }
+
+/* --------------------------------------------------------------------------
+   En-tête du jour
+   -------------------------------------------------------------------------- */
+.day-head { position: relative; padding: 24px var(--pad) 0; }
 .day-head::before {
-  right: -220px;
-  top: -160px;
-  width: 600px;
+  right: -180px;
+  top: -120px;
+  width: 560px;
   aspect-ratio: 1100 / 1556;
-  opacity: .7;
+  opacity: .6;
 }
 .day-head__row {
   position: relative;
   display: flex;
   align-items: flex-end;
-  gap: 14px;
-  flex-wrap: wrap;
+  gap: 12px;
 }
 .day-head__n {
   font-family: var(--display);
+  font-weight: 400;
   font-size: 4.25rem;
   line-height: 1;
   color: var(--crimson);
@@ -602,24 +919,31 @@ main { display: contents; }
 .day-head h1 {
   position: relative;
   display: inline-block;
-  margin-top: 14px;
+  margin: 14px 0 0;
   padding: 8px 12px;
-  border-radius: var(--r-sm);
-  background: var(--cream-80);
+  border-radius: var(--r-md);
+  background: var(--cream-85);
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 1.65rem;
   line-height: 1.15;
   color: var(--green);
-  text-wrap: pretty;
+}
+.day-head__reader {
+  position: relative;
+  margin-top: 8px;
+  font-size: .875rem;
+  font-weight: 700;
+  color: var(--crimson);
 }
 
 .day-pending {
-  margin: 0 var(--pad) 32px;
+  margin: 20px var(--pad) 32px;
   padding: 28px 22px;
+  border: 1px dashed var(--line);
   border-radius: var(--r-lg);
-  background: var(--cream-90);
-  border: 2px dashed var(--line);
+  background: var(--cream-85);
   text-align: center;
 }
 .day-pending__title {
@@ -629,200 +953,103 @@ main { display: contents; }
   color: var(--green);
 }
 .day-pending__note {
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: .9375rem;
   line-height: 1.6;
   color: var(--ink-soft);
 }
 
-/* Signe de croix, en ouverture de chaque jour ------------------------------- */
 .signe {
-  margin: 0 var(--pad) 18px;
-  text-align: center;
+  padding: 18px var(--pad) 0;
   font-size: .9375rem;
   font-weight: 600;
   line-height: 1.5;
   color: var(--green);
 }
 
-/* Parole de Dieu ----------------------------------------------------------- */
+/* --------------------------------------------------------------------------
+   Parole de Dieu — cartouche vert
+   -------------------------------------------------------------------------- */
 .scripture {
-  margin: 0 var(--pad);
-  padding: 26px 22px;
+  margin: 20px var(--pad) 0;
+  padding: 22px;
   border-radius: var(--r-lg);
   background: var(--green);
   color: var(--cream);
 }
 .scripture__quote { margin: 0; }
 .scripture__text {
-  margin-top: 12px;
+  margin-top: 10px;
   font-size: 1.235rem;
   font-weight: 600;
   line-height: 1.45;
-  text-wrap: pretty;
 }
-/* Certains jours citent un poème plutôt qu'une phrase : chaque vers garde
-   sa ligne, et le bloc est légèrement resserré. */
 .scripture__text.is-poem {
   font-size: 1.15rem;
   line-height: 1.6;
 }
-
-/* La référence n'est plus mise en capitales : elle va de « Jean 15, 12 » au
-   titre complet d'une encyclique, et une longue phrase tout en capitales se
-   lit mal, en particulier pour les personnes dyslexiques. */
 .scripture__ref {
   display: block;
-  margin-top: 12px;
-  font-size: .875rem;
-  font-style: normal;
+  margin-top: 10px;
+  font-size: .8125rem;
   font-weight: 700;
-  letter-spacing: .02em;
+  letter-spacing: .1em;
+  text-transform: uppercase;
   line-height: 1.5;
   color: var(--sand);
+  font-style: normal;
 }
 
-/* Lecteur audio ------------------------------------------------------------ */
-.audio {
+/* --------------------------------------------------------------------------
+   Méditation — filet doré
+   -------------------------------------------------------------------------- */
+.meditation { padding: 26px var(--pad) 0; }
+.meditation__body {
+  margin-top: 12px;
+  padding-left: 12px;
+  border-left: 4px solid var(--gold);
+  font-size: 1.0625rem;
+  line-height: 1.65;
+}
+.meditation__body p + p { margin-top: 14px; }
+
+/* --------------------------------------------------------------------------
+   Chant — encart en pointillés
+   -------------------------------------------------------------------------- */
+.day-music {
   margin: 22px var(--pad) 0;
   padding: 18px 20px;
+  border: 2px dashed var(--sand);
   border-radius: var(--r-lg);
-  background: var(--cream-90);
-  border: 1px solid var(--sand);
-  display: flex;
-  gap: 14px;
-  align-items: flex-start;
 }
-.audio__btn {
-  width: 56px;
-  height: 56px;
-  min-width: var(--tap);
-  min-height: var(--tap);
-  border-radius: 50%;
-  border: 0;
-  background: var(--crimson);
-  color: var(--cream);
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  flex-shrink: 0;
-  font-size: 1.1rem;
-  line-height: 1;
-  box-shadow: 0 8px 20px rgba(139, 26, 47, .3);
-}
-.audio__btn:hover { background: var(--crimson-2); }
-.audio__btn[disabled] { opacity: .5; cursor: not-allowed; box-shadow: none; }
-.audio__btn[disabled]:hover { background: var(--crimson); }
-.audio__body { flex: 1; min-width: 0; }
-.audio__label {
+.day-music__label {
+  display: block;
   font-size: .8125rem;
   font-weight: 700;
   letter-spacing: .14em;
   text-transform: uppercase;
   color: var(--green);
 }
-
-/* Curseur de position. Le champ natif apporte le clavier, les flèches et
-   l'annonce par le lecteur d'écran sans une ligne de script. */
-.audio__seek {
-  -webkit-appearance: none;
-  appearance: none;
+.day-music__title {
   display: block;
-  width: 100%;
-  margin: 12px 0 0;
-  height: var(--tap);
-  background: transparent;
-  cursor: pointer;
-}
-.audio__seek::-webkit-slider-runnable-track {
-  height: 6px;
-  border-radius: 3px;
-  /* Le sable ne tenait que 1,35:1 sur la crème : la piste était invisible.
-     Le bronze en tient 3,43. */
-  background: var(--line);
-}
-.audio__seek::-moz-range-track {
-  height: 6px;
-  border-radius: 3px;
-  background: var(--line);
-}
-.audio__seek::-webkit-slider-thumb {
-  -webkit-appearance: none;
-  appearance: none;
-  width: 22px;
-  height: 22px;
-  margin-top: -8px;
-  border-radius: 50%;
-  background: var(--crimson);
-  border: 2px solid var(--cream);
-}
-.audio__seek::-moz-range-thumb {
-  width: 22px;
-  height: 22px;
-  border: 2px solid var(--cream);
-  border-radius: 50%;
-  background: var(--crimson);
-}
-.audio__seek[disabled] { opacity: .5; cursor: not-allowed; }
-
-.audio__meta {
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 12px;
-  flex-wrap: wrap;
-  margin-top: 2px;
-  font-size: .8125rem;
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-.audio__speed {
-  display: inline-flex;
-  align-items: center;
-  gap: 6px;
-}
-.audio__speed label { font-weight: 600; }
-.audio__speed select {
-  font-family: inherit;
-  font-size: .875rem;
-  padding: 6px 8px;
-  /* Cible tactile pleine, WCAG 2.5.8 : une liste déroulante se vise au
-     doigt comme un bouton. */
-  min-height: var(--tap);
-  min-width: var(--tap);
-  border-radius: 8px;
-  border: 1px solid var(--line);
-  background: var(--cream);
-  color: var(--ink);
-}
-
-.audio__status {
   margin-top: 8px;
-  font-size: .875rem;
-  font-weight: 600;
-  color: var(--ink-soft);
-}
-.audio__transcript {
-  margin-top: 4px;
-  font-size: .8125rem;
-  line-height: 1.5;
-  color: var(--ink-soft);
-}
-
-/* Méditation, intention, prière -------------------------------------------- */
-.meditation { padding: 26px var(--pad) 0; }
-.meditation__body {
-  margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 16px;
   font-size: 1.0625rem;
-  line-height: 1.65;
-  text-wrap: pretty;
+  font-weight: 600;
+  line-height: 1.4;
+  color: var(--green);
+}
+.day-music__note {
+  display: block;
+  margin-top: 4px;
+  font-size: .875rem;
+  color: var(--ink-soft);
 }
 
+/* --------------------------------------------------------------------------
+   Intention — cartouche cramoisi
+   -------------------------------------------------------------------------- */
 .intention {
-  margin: 26px var(--pad) 0;
+  margin: 22px var(--pad) 0;
   padding: 20px 22px;
   border-radius: var(--r-lg);
   background: var(--crimson);
@@ -833,131 +1060,124 @@ main { display: contents; }
   font-size: 1.175rem;
   font-weight: 600;
   line-height: 1.45;
-  text-wrap: pretty;
 }
 
-/* Chant proposé, sous la méditation ----------------------------------------- */
-.day-music {
-  margin-top: 18px;
-  padding: 12px 16px;
-  border-radius: var(--r-sm);
-  background: var(--cream-85);
-  border: 1px solid var(--sand);
-  font-size: .9375rem;
-  font-weight: 600;
-  line-height: 1.5;
-}
-.day-music__label {
-  display: block;
-  font-size: .8125rem;
-  font-weight: 700;
-  letter-spacing: .14em;
-  text-transform: uppercase;
-  color: var(--crimson);
-  margin-bottom: 2px;
-}
-
+/* --------------------------------------------------------------------------
+   Prions
+   -------------------------------------------------------------------------- */
 .prayer { padding: 26px var(--pad) 0; }
 .prayer__body {
   margin-top: 12px;
-  display: flex;
-  flex-direction: column;
-  gap: 14px;
   font-size: 1.0625rem;
   font-weight: 500;
   line-height: 1.65;
   color: var(--green);
-  text-wrap: pretty;
 }
-
-/* Répons d'une litanie : ce que l'assemblée répond, distinct de ce que dit
-   le lecteur. La distinction passe par la couleur, la graisse et le retrait,
-   jamais par la seule couleur. */
+.prayer__body p + p { margin-top: 14px; }
 .prayer__body .response {
-  margin-top: -4px;
-  padding-left: 16px;
-  border-left: 3px solid var(--crimson);
+  margin-top: 4px;
   font-weight: 700;
   color: var(--crimson);
 }
 
-/* Prières d'ancrage -------------------------------------------------------- */
-.anchors {
-  margin: 32px var(--pad) 40px;
-  padding: 26px 22px 28px;
-  border-radius: var(--r-lg);
-  background: var(--green);
-  color: var(--cream);
-}
-.anchors :focus-visible { outline-color: var(--gold); }
+/* --------------------------------------------------------------------------
+   Prières d'ancrage
+   -------------------------------------------------------------------------- */
+.anchors { padding: 28px var(--pad) 0; }
 .anchors__head {
   display: flex;
   align-items: baseline;
   justify-content: space-between;
   gap: 12px;
-  flex-wrap: wrap;
 }
 .anchors__head h2 {
   font-family: var(--display);
+  font-weight: 400;
   text-transform: uppercase;
   font-size: 1.2rem;
+  color: var(--crimson);
 }
 .anchors__head span {
   font-size: .8125rem;
   font-weight: 700;
   letter-spacing: .1em;
   text-transform: uppercase;
-  color: var(--gold);
+  color: var(--green);
 }
 .anchors__list {
-  margin-top: 20px;
+  margin-top: 12px;
   display: flex;
   flex-direction: column;
-  gap: 22px;
+  gap: 14px;
   font-size: 1.0625rem;
   line-height: 1.65;
-  text-wrap: pretty;
+  color: var(--green);
 }
 .anchors__label {
-  margin-bottom: 8px;
   font-size: .8125rem;
   font-weight: 700;
   letter-spacing: .16em;
   text-transform: uppercase;
   line-height: 1.4;
-  color: var(--sand);
+  color: var(--crimson);
+  margin-bottom: 6px;
 }
-.anchors__label .x3 { color: var(--gold); letter-spacing: .06em; }
+.anchors__label .x3 { color: var(--green); letter-spacing: .06em; }
+
 .anchors__acclaim {
-  margin-top: 6px;
-  padding-top: 18px;
-  border-top: 1px solid var(--sand-35);
+  margin-top: 4px;
+  padding: 14px 18px;
+  border-radius: var(--r-lg);
+  background: var(--green);
   text-align: center;
 }
 .anchors__acclaim p { font-weight: 600; color: var(--gold); }
 
+.envoi {
+  padding: 26px var(--pad) 0;
+  text-align: center;
+  font-size: 1rem;
+  font-weight: 600;
+  color: var(--green);
+}
+
+/* --------------------------------------------------------------------------
+   Pied de l'écran d'un jour
+   -------------------------------------------------------------------------- */
+.day-foot {
+  padding: 24px var(--pad) 0;
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+}
+.day-foot__row { display: flex; gap: 10px; }
+.partage-etat {
+  margin: 0;
+  text-align: center;
+  font-size: .8125rem;
+  font-weight: 600;
+  color: var(--crimson);
+}
+.partage-etat:empty { display: none; }
+
 .day-nav {
-  margin-top: 24px;
+  padding: 22px var(--pad) 40px;
   display: flex;
   gap: 10px;
 }
 .day-nav button {
   flex: 1;
   min-height: var(--tap);
-  border: 2px solid var(--sand-50);
+  padding: 12px;
+  border: 1px solid var(--line);
+  border-radius: var(--r-sm);
   background: transparent;
-  color: var(--cream);
-  padding: 14px 10px;
-  border-radius: 12px;
+  color: var(--green);
   font-size: .875rem;
   font-weight: 700;
   letter-spacing: .06em;
-  text-transform: uppercase;
 }
-.day-nav button:hover:not([disabled]) {
-  border-color: var(--gold);
-  color: var(--gold);
-}
+.day-nav button:hover { border-color: var(--green); background: var(--sand-35); }
 .day-nav button[disabled] { opacity: .45; cursor: not-allowed; }
 
 /* --------------------------------------------------------------------------
@@ -1173,89 +1393,6 @@ main { display: contents; }
 /* Un mot se touche pour y sauter : le curseur l'annonce. */
 .mot { cursor: pointer; }
 .day-pending .mot, .sans-suivi .mot { cursor: auto; }
-
-/* --------------------------------------------------------------------------
-   8 ter. Lecteur retenu en haut de l'écran
-
-   Le lecteur suit le texte pendant toute la lecture, pour qu'une pause
-   reste à portée de pouce. Au-delà de deux cents pixels de défilement il se
-   resserre, afin de ne pas manger la page.
-   -------------------------------------------------------------------------- */
-.audio {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
-  z-index: 20;
-  /* Opaque : le texte défile dessous. */
-  background: var(--cream);
-  transition: padding .18s ease, box-shadow .18s ease;
-}
-.audio.compact {
-  padding-top: 10px;
-  padding-bottom: 10px;
-  box-shadow: 0 6px 18px rgba(26, 26, 26, .10);
-}
-.audio.compact .audio__btn { width: var(--tap); height: var(--tap); }
-.audio.compact .chapitres,
-.audio.compact .audio__transcript,
-.audio.compact .suivi,
-.audio.compact .audio__label { display: none; }
-
-.chapitres {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 6px;
-  margin-top: 10px;
-}
-.chapitre {
-  min-height: var(--tap);
-  padding: 6px 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  background: transparent;
-  color: var(--green-2);
-  font: inherit;
-  font-size: .82rem;
-  cursor: pointer;
-}
-.chapitre:hover { background: var(--sand); }
-
-.suivi {
-  display: flex;
-  align-items: center;
-  gap: 8px;
-  margin-top: 10px;
-  font-size: .82rem;
-  color: var(--ink-soft);
-}
-.suivi input {
-  width: 20px;
-  height: 20px;
-  /* La case est petite : c'est le libellé, à côté, qui offre la cible. */
-  accent-color: var(--crimson);
-  flex: none;
-}
-.suivi label {
-  display: flex;
-  align-items: center;
-  min-height: var(--tap);
-  cursor: pointer;
-}
-
-.revenir {
-  display: block;
-  margin-top: 10px;
-  min-height: var(--tap);
-  padding: 8px 16px;
-  border: 1px solid var(--crimson);
-  border-radius: 999px;
-  background: var(--cream);
-  color: var(--crimson);
-  font: inherit;
-  font-size: .82rem;
-  cursor: pointer;
-}
-.revenir:hover { background: var(--crimson); color: var(--cream); }
 
 /* Affichage de contrôle, ouvert par ?sync=debug seulement. */
 .sync-debug {

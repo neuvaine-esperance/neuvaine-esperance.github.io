@@ -53,8 +53,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=7">
-<link rel="stylesheet" href="assets/css/styles.css?v=7">
+<link rel="stylesheet" href="assets/css/fonts.css?v=9">
+<link rel="stylesheet" href="assets/css/styles.css?v=9">
 </head>
 <body>
 
@@ -95,23 +95,39 @@
         <p class="hero__dates anim">du 16 au 24 septembre 2026</p>
 
         <blockquote class="hero__quote anim" cite="https://www.aelf.org/bible/Jn/6">
-          <p>« Pour que le monde ait la vie »</p>
-          <cite class="hero__quote-ref">Jean 6,51</cite>
+          <p>« Pour que le monde ait la vie »
+            <cite class="hero__quote-ref">Jean 6,51</cite></p>
         </blockquote>
 
         <button class="cta anim" type="button" id="cta-today">
-          <span>Prier aujourd'hui</span>
-          <!-- Le badge répète un compte à rebours déjà annoncé en toutes
-               lettres par le libellé du bouton : il reste décoratif. -->
-          <span class="cta__badge" id="cta-badge" aria-hidden="true">J-9</span>
+          <span class="cta__main">Prier aujourd'hui</span>
+          <!-- Rempli par le script : « Jour 3 sur 9 — La fidélité ». -->
+          <span class="cta__sub" id="cta-sub"></span>
         </button>
       </div>
 
     </div>
 
+    <!-- ----------------------------------------------------------------
+         Comment participer. Le lien du canal est posé dans app.js ; tant
+         qu'il est vide, ce panneau reste absent plutôt que de promettre
+         un canal qui ne s'ouvre pas.
+         ---------------------------------------------------------------- -->
+    <section class="participer anim" id="participer" aria-labelledby="t-participer" hidden>
+      <h2 class="eyebrow eyebrow--gold" id="t-participer">Comment participer</h2>
+      <p class="participer__texte">
+        Chaque matin, le jour est envoyé sur le canal WhatsApp du Groupe Espérance.
+        Il suffit de rejoindre le canal.
+      </p>
+      <a class="btn-primary" id="lien-whatsapp-accueil" href="#">
+        Rejoindre le canal WhatsApp <span aria-hidden="true">&rsaquo;</span>
+      </a>
+      <p class="participer__note" id="participer-note"></p>
+    </section>
+
     <div class="section-head anim">
       <h2 id="les-9-jours">Les 9 jours</h2>
-      <span>Compte à rebours</span>
+      <span>Du 16 au 24 septembre</span>
     </div>
 
     <ul class="day-grid" id="day-grid" aria-labelledby="les-9-jours"></ul>
@@ -147,19 +163,104 @@
 
     <nav class="day-top" aria-label="Fil d'Ariane">
       <button class="back-link" type="button" data-goto="accueil">
-        <span aria-hidden="true">&lsaquo;</span> Revenir aux 9 jours
+        <span aria-hidden="true">&lsaquo;</span> Neuvaine au Sacré-Cœur
       </button>
       <span class="day-top__date" id="day-date"></span>
     </nav>
 
+    <!-- ----------------------------------------------------------------
+         Lecteur, retenu en haut de l'écran pendant toute la lecture.
+         Au-delà de deux cents pixels de défilement il se resserre sur une
+         seule ligne, pour ne pas manger la page.
+         ---------------------------------------------------------------- -->
+    <section class="audio" aria-labelledby="t-ecoute">
+      <h2 class="visually-hidden" id="t-ecoute">Écoute de la prière du jour</h2>
+
+      <div class="audio__row">
+        <button class="audio__btn" type="button" id="audio-btn"
+                aria-describedby="audio-transcript">
+          <span class="audio__icon" id="audio-icon" aria-hidden="true">&#9654;</span>
+          <span class="visually-hidden" id="audio-btn-text">Écouter la prière du jour</span>
+        </button>
+
+        <div class="audio__body">
+          <p class="audio__label">
+            <span class="audio__label-texte">Écouter la prière du jour</span>
+            <span class="audio__reader" id="audio-reader"></span>
+          </p>
+
+          <!-- Le curseur porte toute la commande de position : il se déplace
+               aux flèches, à Origine et à Fin, et son état est annoncé. Le
+               filet doré n'est que son habillage. -->
+          <label class="visually-hidden" for="audio-seek">
+            Position dans l'enregistrement
+          </label>
+          <input class="audio__seek" type="range" id="audio-seek"
+                 min="0" max="100" step="1" value="0"
+                 aria-valuetext="0 seconde sur 0 seconde" disabled>
+
+          <p class="audio__meta">
+            <span class="audio__status" id="audio-status" role="status">
+              Enregistrement audio à venir
+            </span>
+            <span class="audio__time"><span id="audio-elapsed">0:00</span>
+              <span aria-hidden="true">/</span>
+              <span class="visually-hidden">sur</span>
+              <span id="audio-total">0:00</span></span>
+          </p>
+        </div>
+
+        <!-- Titre du jour, visible seulement quand le lecteur est resserré. -->
+        <span class="audio__compact-titre" id="audio-compact-titre" aria-hidden="true"></span>
+      </div>
+
+      <div class="audio__tools">
+        <!-- Les parties de l'enregistrement, remplies quand le jour en a. -->
+        <div class="chapitres" id="chapitres" role="group"
+             aria-label="Parties de l'enregistrement" hidden></div>
+
+        <div class="audio__reglages">
+          <!-- Le surlignage du mot lu se coupe ici. Le réglage est retenu
+               d'une visite à l'autre. -->
+          <span class="suivi">
+            <input type="checkbox" id="suivre" checked>
+            <label for="suivre">Suivre le texte</label>
+          </span>
+
+          <span class="audio__speed">
+            <label for="audio-rate">Vitesse</label>
+            <select id="audio-rate" disabled>
+              <option value="0.75">0,75×</option>
+              <option value="1" selected>1×</option>
+              <option value="1.25">1,25×</option>
+              <option value="1.5">1,5×</option>
+            </select>
+          </span>
+        </div>
+      </div>
+
+      <p class="audio__transcript" id="audio-transcript">
+        Le texte lu, ci-dessous, en est la transcription complète.
+      </p>
+
+      <!-- Apparaît seulement quand le visiteur a fait défiler lui-même.
+           Elle vit dans la barre, qui reste en haut de l'écran : posée
+           en dessous, elle recouvrirait la barre dépliée. -->
+      <button class="revenir" type="button" id="revenir" hidden>
+        <span aria-hidden="true">&uarr;</span> Revenir au texte lu
+      </button>
+    </section>
+
+
     <div class="day-head rays">
       <p class="day-head__row anim">
-        <!-- « J-9 » est une abréviation graphique. Le lecteur d'écran reçoit
+        <!-- « J1 » est une abréviation graphique. Le lecteur d'écran reçoit
              la version en toutes lettres, placée juste après. -->
         <span class="day-head__n" id="day-countdown" aria-hidden="true"></span>
         <span class="day-head__count" id="day-count"></span>
       </p>
       <h1 id="day-title" class="anim"></h1>
+      <p class="day-head__reader anim" id="day-reader" hidden></p>
     </div>
 
     <!-- Jour pas encore publié -->
@@ -185,77 +286,17 @@
         </blockquote>
       </section>
 
-      <section class="audio anim" aria-labelledby="t-ecoute">
-        <h2 class="visually-hidden" id="t-ecoute">Écoute de la méditation</h2>
-
-        <button class="audio__btn" type="button" id="audio-btn"
-                aria-describedby="audio-transcript">
-          <span class="audio__icon" id="audio-icon" aria-hidden="true">&#9654;</span>
-          <span class="visually-hidden" id="audio-btn-text">Écouter la méditation</span>
-        </button>
-
-        <div class="audio__body">
-          <p class="audio__label">Écouter la méditation</p>
-
-          <label class="visually-hidden" for="audio-seek">
-            Position dans l'enregistrement
-          </label>
-          <input class="audio__seek" type="range" id="audio-seek"
-                 min="0" max="100" step="1" value="0"
-                 aria-valuetext="0 seconde sur 0 seconde" disabled>
-
-          <p class="audio__meta">
-            <span class="audio__time"><span id="audio-elapsed">0:00</span>
-              <span aria-hidden="true">/</span>
-              <span class="visually-hidden">sur</span>
-              <span id="audio-total">0:00</span></span>
-            <span class="audio__speed">
-              <label for="audio-rate">Vitesse</label>
-              <select id="audio-rate" disabled>
-                <option value="0.75">0,75×</option>
-                <option value="1" selected>1×</option>
-                <option value="1.25">1,25×</option>
-                <option value="1.5">1,5×</option>
-              </select>
-            </span>
-          </p>
-
-          <!-- Les parties de l'enregistrement, remplies quand le jour en a. -->
-          <div class="chapitres" id="chapitres" role="group"
-               aria-label="Parties de l'enregistrement" hidden></div>
-
-          <p class="audio__status" id="audio-status" role="status">
-            Enregistrement audio à venir
-          </p>
-
-          <!-- Le surlignage du mot lu se coupe ici. Le réglage est retenu
-               d'une visite à l'autre. -->
-          <p class="suivi">
-            <input type="checkbox" id="suivre" checked>
-            <label for="suivre">Suivre le texte pendant la lecture</label>
-          </p>
-
-          <!-- Apparaît seulement quand le visiteur a fait défiler lui-même. -->
-          <button class="revenir" type="button" id="revenir" hidden>
-            Revenir au texte lu
-          </button>
-
-          <p class="audio__transcript" id="audio-transcript">
-            Le texte de la méditation, ci-dessous, en est la transcription complète.
-          </p>
-        </div>
-      </section>
-
       <section class="meditation anim" aria-labelledby="t-meditation">
         <h2 class="eyebrow eyebrow--crimson" id="t-meditation">Méditation</h2>
         <div class="meditation__body" id="day-meditation"></div>
-
-        <!-- Chant proposé pour accompagner ce jour, quand il y en a un. -->
-        <p class="day-music" id="day-music" hidden>
-          <span class="day-music__label">Musique proposée</span>
-          <span id="day-music-title"></span>
-        </p>
       </section>
+
+      <!-- Chant proposé pour accompagner ce jour, quand il y en a un. -->
+      <p class="day-music anim" id="day-music" hidden>
+        <span class="day-music__label">Chant</span>
+        <span class="day-music__title" id="day-music-title"></span>
+        <span class="day-music__note">un temps de musique d'environ deux minutes</span>
+      </p>
 
       <section class="intention anim" id="day-intention-section"
                aria-labelledby="t-intention">
@@ -264,7 +305,7 @@
       </section>
 
       <section class="prayer anim" aria-labelledby="t-priere">
-        <h2 class="eyebrow eyebrow--crimson" id="t-priere">Prière du jour</h2>
+        <h2 class="eyebrow eyebrow--crimson" id="t-priere">Prions</h2>
         <div class="prayer__body" id="day-prayer"></div>
       </section>
 
@@ -311,12 +352,29 @@
           <p>Sacré-Cœur de Jésus,<br>nous avons confiance en toi.</p>
         </div>
       </div>
-
-      <nav class="day-nav anim" aria-label="Navigation entre les jours">
-        <button type="button" id="day-prev"></button>
-        <button type="button" id="day-next"></button>
-      </nav>
     </section>
+
+    <p class="envoi anim">Soyez dans la paix du Christ, et à demain.</p>
+
+    <div class="day-foot">
+      <!-- Le lien du canal est posé dans app.js. Tant qu'il est vide, ce
+           bouton reste absent plutôt que de mener nulle part. -->
+      <a class="btn-primary anim" id="lien-whatsapp" href="#" hidden>Le canal WhatsApp</a>
+
+      <div class="day-foot__row anim">
+        <button class="btn-outline" type="button" data-goto="consecration">
+          Consécration <span aria-hidden="true">&rsaquo;</span>
+        </button>
+        <button class="btn-outline" type="button" id="partager">Partager ce jour</button>
+      </div>
+
+      <p class="partage-etat" id="partage-etat" role="status"></p>
+    </div>
+
+    <nav class="day-nav anim" aria-label="Navigation entre les jours">
+      <button type="button" id="day-prev"></button>
+      <button type="button" id="day-next"></button>
+    </nav>
 
   </section>
 
@@ -403,7 +461,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=7" defer></script>
-<script src="assets/js/app.js?v=7" defer></script>
+<script src="assets/js/contenu.js?v=9" defer></script>
+<script src="assets/js/app.js?v=9" defer></script>
 </body>
 </html>
