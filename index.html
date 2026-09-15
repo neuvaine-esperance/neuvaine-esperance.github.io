@@ -53,8 +53,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=13">
-<link rel="stylesheet" href="assets/css/styles.css?v=13">
+<link rel="stylesheet" href="assets/css/fonts.css?v=18">
+<link rel="stylesheet" href="assets/css/styles.css?v=18">
 </head>
 <body>
 
@@ -292,11 +292,14 @@
       </section>
 
       <!-- Chant proposé pour accompagner ce jour, quand il y en a un. -->
-      <p class="day-music anim" id="day-music" hidden>
-        <span class="day-music__label">Chant</span>
-        <span class="day-music__title" id="day-music-title"></span>
-        <span class="day-music__note">un temps de musique d'environ deux minutes</span>
-      </p>
+      <div class="day-music anim" id="day-music" hidden>
+        <p class="day-music__label">Chant</p>
+        <p class="day-music__title" id="day-music-title"></p>
+        <p class="day-music__note" id="day-music-note">un temps de musique d'environ
+          deux minutes</p>
+        <!-- Les paroles, quand le jour en fournit. Surlignées comme le reste. -->
+        <p class="day-music__paroles" id="day-music-paroles" hidden></p>
+      </div>
 
       <section class="intention anim" id="day-intention-section"
                aria-labelledby="t-intention">
@@ -461,7 +464,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=13" defer></script>
-<script src="assets/js/app.js?v=13" defer></script>
+<script src="assets/js/contenu.js?v=18" defer></script>
+<script src="assets/js/app.js?v=18" defer></script>
 </body>
 </html>

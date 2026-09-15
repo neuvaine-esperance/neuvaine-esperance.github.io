@@ -380,7 +380,7 @@
       fillVerse($('#day-verse'), c.verset);
       $('#day-ref').textContent = c.source || '';
       fillParagraphs($('#day-meditation'), c.meditation);
-      fillMusic(c.musique);
+      fillMusic(c.musique, c.paroles);
       fillIntention(c.intention);
       fillParagraphs($('#day-prayer'), c.priere);
       setupAudio(c.audio, n);
@@ -417,11 +417,24 @@
     $('#day-intention').textContent = vide ? '' : texte;
   }
 
-  /** Le chant proposé pour accompagner la méditation, quand il y en a un. */
-  function fillMusic(titre) {
-    var p = $('#day-music');
-    p.hidden = !titre;
+  /** Le chant qui accompagne la méditation, et ses paroles quand le jour
+   *  en fournit. Elles sont surlignées comme le reste du texte. */
+  function fillMusic(titre, paroles) {
+    $('#day-music').hidden = !titre && !paroles;
     $('#day-music-title').textContent = titre || '';
+    $('#day-music-title').hidden = !titre;
+
+    var hote = $('#day-music-paroles');
+    hote.textContent = '';
+    hote.hidden = !paroles;
+    if (!paroles) { return; }
+
+    // Chaque vers garde sa ligne.
+    var lignes = Array.isArray(paroles) ? paroles : [paroles];
+    lignes.forEach(function (ligne, i) {
+      if (i) { hote.appendChild(document.createElement('br')); }
+      hote.appendChild(document.createTextNode(ligne));
+    });
   }
 
   /** Qui lit ce jour. Deux voix se relaient : celle du jour porte la
@@ -671,6 +684,9 @@
       el('audio-elapsed').textContent = fmtClock(wanted);
       seek.setAttribute('aria-valuetext',
         'position ' + fmtSpoken(wanted) + ' sur ' + fmtSpoken(dur));
+
+      // Le texte accompagne la main, sans attendre le relâchement.
+      majSurlignage();
     });
 
     seek.addEventListener('change', function () {
@@ -732,7 +748,8 @@
    *  Toute divergence d'ordre décalerait tous les mots. */
   function zonesSuivi() {
     var liste = [$('#day-content .signe'), $('#day-verse'), $('#day-ref'),
-                 $('#day-meditation'), $('#day-intention'), $('#day-prayer')];
+                 $('#day-meditation'), $('#day-music-paroles'),
+                 $('#day-intention'), $('#day-prayer')];
     // Ce sélecteur ramène les quatre prières dans l'ordre de la page :
     // Notre Père, Je vous salue Marie, Gloire au Père, puis l'acclamation,
     // dont le bloc est lui aussi un div de cette liste.
@@ -858,7 +875,7 @@
   function majSurlignage() {
     if (!sync || !suivre || !audio) { return; }
 
-    var t = audio.currentTime + (sync.decalage || 0);
+    var t = (wanted !== null ? wanted : audio.currentTime) + (sync.decalage || 0);
     var i = motA(t);
     if (debugSuivi) { majDebug(t, i); }
     if (i === motActif) { return; }
@@ -946,6 +963,9 @@
     var maintenant = Date.now();
     if (maintenant - dernierCadrage > 250) {
       dernierCadrage = maintenant;
+      // Le resserrement a pu être différé pendant un glissement : c'est ici
+      // qu'il est repris, une fois la page retombée.
+      majCompact();
       if (suspendu && maintenant >= repriseAuto) { suspendu = false; }
       if (motActif >= 0 && motsDom[motActif]) { suivreDuRegard(motsDom[motActif]); }
     }
@@ -994,7 +1014,9 @@
     if (!audio) { makeAudio(); }
     applySeek(t);
     repriseAuto = 0;
+    suspendu = false;
     el('revenir').hidden = true;
+    majSurlignage();
     if (audio.paused) { toggleAudio(); }
   }
 
@@ -1068,10 +1090,49 @@
     document.head.appendChild(script);
   }
 
-  /* ---- Mise en évidence du lecteur au défilement ---- */
+  /* ---- Le lecteur se resserre au défilement ----
+
+     Il est dans le flux : en rétrécissant, il raccourcit la page de près de
+     trois cents pixels d'un coup, et tout ce qui le suit remonte d'autant.
+     La page paraît alors sauter sous les yeux. On rattrape donc la
+     différence de hauteur par un déplacement égal et opposé.
+
+     Deux précautions en plus : un seuil de retour plus bas que le seuil
+     d'aller, pour qu'il ne clignote pas à la frontière ; et aucun
+     changement tant qu'un de nos glissements est en vol, sinon il viserait
+     une position que l'on est en train de déplacer. */
+  var hauteurDepliee = 0;
+
   function majCompact() {
     var bloc = $('#view-jour .audio');
-    if (bloc) { bloc.classList.toggle('compact', window.pageYOffset > 200); }
+    if (!bloc || VIEWS.jour.hidden) { return; }
+
+    var maintenant = Date.now();
+    if (maintenant - notreDefilement < 600) { return; }
+
+    var compact = bloc.classList.contains('compact');
+    if (!compact) { hauteurDepliee = bloc.offsetHeight; }
+    if (!hauteurDepliee) { return; }
+
+    /* On ne resserre qu'une fois la barre dépliée entièrement dépassée.
+       Plus haut, la page n'a pas la course nécessaire pour rendre les
+       pixels qu'elle perdrait : le rattrapage buterait sur le sommet et le
+       texte sauterait quand même. L'écart entre les deux seuils évite le
+       clignotement à la frontière. */
+    var y = window.pageYOffset;
+    var veut = compact ? y > hauteurDepliee - 60 : y > hauteurDepliee + 20;
+    if (veut === compact) { return; }
+
+    var hauteurAvant = bloc.offsetHeight;
+    bloc.classList.toggle('compact', veut);
+    var delta = bloc.offsetHeight - hauteurAvant;
+
+    if (delta) {
+      notreDefilement = maintenant;
+      // Sans « auto », le défilement doux de la feuille de style
+      // transformerait ce rattrapage en glissement, donc en sursaut.
+      window.scrollBy({ top: delta, behavior: 'auto' });
+    }
   }
 
   /* ---- Affichage de contrôle : ?sync=debug ---- */

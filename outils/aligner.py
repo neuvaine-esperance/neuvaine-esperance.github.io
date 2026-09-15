@@ -43,7 +43,7 @@ SEUIL = 0.85
 CORRESPONDANCE = [
     ('signe-de-croix', ['signe']),
     ('meditation',     ['verset', 'source', 'meditation']),
-    ('chant',          []),
+    ('chant',          ['paroles']),
     ('prions',         ['intention', 'priere']),
     ('prieres',        ['notre-pere', 'ave', 'gloire', 'acclamation']),
     ('envoi',          ['envoi']),
@@ -343,6 +343,7 @@ def sequence_affichee(jour, prieres):
         ('verset', _plat(jour.get('verset')), 1),
         ('source', jour.get('source', ''), 1),
         ('meditation', _plat(jour.get('meditation')), 1),
+        ('paroles', _plat(jour.get('paroles')), 1),
         ('intention', jour.get('intention', ''), 1),
         ('priere', _plat(jour.get('priere')), 1),
         ('notre-pere', prieres['notre-pere'], 1),

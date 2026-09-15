@@ -76,6 +76,7 @@ corriger sans jamais ouvrir `app.js`.
   source:     'Luc 6, 6-11',
   meditation: ['premier paragraphe', 'deuxième paragraphe'],
   musique:    'Titre — interprète',        // facultatif
+  paroles:    ['premier vers', 'deuxième'], // facultatif, une entrée par vers
   intention:  'Intention du jour.',        // facultatif
   priere:     ['paragraphe', '— Répons de litanie'],
   lecteur:    'Ludivine',                  // facultatif
@@ -87,6 +88,10 @@ corriger sans jamais ouvrir `app.js`.
 
 Une entrée de `priere` commençant par un tiret cadratin est le répons d'une litanie :
 elle s'affiche en cramoisi, détachée du reste.
+
+`paroles` affiche le texte du chant sous son titre, un vers par ligne. Il est surligné
+comme le reste pendant que le chant passe — à condition que les paroles données soient
+les bonnes : ne les recopiez pas depuis la transcription, qui les entend mal.
 
 Les trois derniers champs — `audio`, `sync`, `chapitres` — sont écrits par
 `outils/aligner.py` : inutile de les saisir à la main. Sans `audio`, le lecteur reste
@@ -198,6 +203,10 @@ python -m http.server 8750
 ```
 
 puis `http://127.0.0.1:8750/`.
+
+Une réserve : ce serveur ne répond pas aux requêtes par plage. Se déplacer loin dans un
+enregistrement échoue donc, et l'on croit à un défaut du site. Les hébergeurs, eux, les
+gèrent. Pour tester les déplacements, utilisez un serveur qui les accepte.
 
 ### Ce que le suivi ne fait pas
 

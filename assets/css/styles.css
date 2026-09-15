@@ -634,7 +634,9 @@ main { display: contents; }
   background: var(--green);
   color: var(--cream);
   box-shadow: 0 12px 24px rgba(39, 78, 23, .3);
-  transition: padding .18s ease;
+  /* Pas de transition sur la hauteur : le script mesure la différence au
+     moment du changement pour compenser le défilement, et une hauteur qui
+     bouge encore fausserait la mesure. */
 }
 
 .audio__row {
@@ -1045,6 +1047,17 @@ main { display: contents; }
   color: var(--ink-soft);
 }
 
+/* Les paroles, ligne à ligne comme un chant se lit. */
+.day-music__paroles {
+  margin-top: 12px;
+  padding-top: 12px;
+  border-top: 1px solid var(--sand);
+  font-size: 1.0625rem;
+  font-weight: 500;
+  line-height: 1.6;
+  color: var(--green);
+}
+
 /* --------------------------------------------------------------------------
    Intention — cartouche cramoisi
    -------------------------------------------------------------------------- */
@@ -1363,8 +1376,10 @@ main { display: contents; }
    ni la graisse, ni le corps, ni la position. Un surlignage qui grossirait
    le mot ferait sauter toute la ligne à chaque syllabe.
 
-   Les teintes viennent de la palette du site — or pour le texte courant,
-   vert pour la Parole de Dieu et l'intention.
+   L'or sert partout. Sur les cartouches sombres — Parole de Dieu en vert,
+   intention en cramoisi — il est posé plus franchement : un lavis léger y
+   disparaîtrait, et c'est exactement ce qui se passait quand cette règle
+   portait encore du vert, du temps où ces blocs étaient sur fond crème.
    -------------------------------------------------------------------------- */
 .mot {
   border-radius: 3px;
@@ -1376,11 +1391,29 @@ main { display: contents; }
 }
 .mot-lu { opacity: .85; }
 
+/* Sur les cartouches sombres, le mot est cerné d'or plutôt que rempli.
+   Un aplat assez franc pour se voir éclaircissait trop le fond : le texte
+   crème n'y tenait plus que 4,02:1, sous le seuil de 4,5. L'anneau se voit
+   autant et laisse le fond sombre. */
 .scripture__text .mot-actif,
 .intention__text .mot-actif {
-  background: rgba(39, 78, 23, .17);
-  box-shadow: 0 0 0 2px rgba(39, 78, 23, .17);
+  background: rgba(232, 184, 75, .16);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .85);
 }
+
+/* L'acclamation est déjà écrite en or : un fond doré lui mangerait son
+   contraste — il tombait à 3,90:1. On l'assombrit au contraire, et
+   l'anneau suffit à désigner le mot. */
+.anchors__acclaim .mot-actif {
+  background: rgba(26, 26, 26, .34);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .85);
+}
+
+/* Sur fond sombre, un mot déjà lu ne doit pas s'effacer : la crème sur le
+   vert perd vite sa lisibilité. */
+.scripture__text .mot-lu,
+.intention__text .mot-lu,
+.anchors__acclaim .mot-lu { opacity: .95; }
 
 /* Interrupteur coupé : plus aucune trace de lecture. */
 .sans-suivi .mot-actif,
