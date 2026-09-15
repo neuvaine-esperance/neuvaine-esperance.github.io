@@ -370,6 +370,7 @@
 
     // Le titre ne s'affiche dans la barre que lorsqu'elle est resserrée,
     // mais il y est posé dès maintenant.
+    pliageManuel = false;
     $('#audio-compact-titre').textContent = c ? c.titre : '';
     fillReader(c && c.lecteur);
     placerIntention(!!(c && c.intentionAvant));
@@ -694,6 +695,12 @@
       if (!audioSrc) { return; }
       if (!audio) { makeAudio(); }
       applySeek(Number(seek.value));
+    });
+
+    el('audio-plier').addEventListener('click', function () {
+      var bloc = $('#view-jour .audio');
+      pliageManuel = true;
+      basculerCompact(!bloc.classList.contains('compact'));
     });
 
     el('audio-rate').addEventListener('change', function () {
@@ -1123,9 +1130,52 @@
      une position que l'on est en train de déplacer. */
   var hauteurDepliee = 0;
 
+  // Tant que le visiteur n'a pas plié le lecteur lui-même, il se plie tout
+  // seul au défilement. Dès qu'il y touche, c'est son choix qui commande —
+  // jusqu'au changement de jour.
+  var pliageManuel = false;
+
+  /** Replie ou déplie, en gardant le texte immobile.
+   *
+   *  Le lecteur est dans le flux : en changeant de taille il déplace tout
+   *  ce qui le suit. On mesure la différence et on rend exactement autant
+   *  de défilement, sans quoi la page saute sous les yeux. */
+  function basculerCompact(veut) {
+    var bloc = $('#view-jour .audio');
+    if (!bloc) { return; }
+
+    var compact = bloc.classList.contains('compact');
+    if (veut === compact) { return; }
+
+    /* On ne calcule pas le rattrapage d'après la hauteur perdue ou gagnée :
+       le navigateur corrige déjà de lui-même les changements de taille
+       au-dessus du regard, et la correction s'ajouterait à la sienne — on
+       reculait alors de deux fois la hauteur. On mesure donc ce qui a
+       réellement bougé à l'écran, et on ne rend que ce qui manque. */
+    var ancre = $('#view-jour .day-head') || $('#day-content');
+    var avant = ancre ? ancre.getBoundingClientRect().top : 0;
+
+    bloc.classList.toggle('compact', veut);
+
+    var bouton = el('audio-plier');
+    if (bouton) {
+      bouton.setAttribute('aria-expanded', veut ? 'false' : 'true');
+      el('audio-plier-texte').textContent = veut
+        ? 'Déplier le lecteur' : 'Replier le lecteur';
+    }
+
+    var decalage = ancre ? Math.round(ancre.getBoundingClientRect().top - avant) : 0;
+    if (decalage) {
+      notreDefilement = Date.now();
+      // Sans « auto », le défilement doux de la feuille de style
+      // transformerait ce rattrapage en glissement, donc en sursaut.
+      window.scrollBy({ top: decalage, behavior: 'auto' });
+    }
+  }
+
   function majCompact() {
     var bloc = $('#view-jour .audio');
-    if (!bloc || VIEWS.jour.hidden) { return; }
+    if (!bloc || VIEWS.jour.hidden || pliageManuel) { return; }
 
     var maintenant = Date.now();
     if (maintenant - notreDefilement < 600) { return; }
@@ -1141,18 +1191,7 @@
        clignotement à la frontière. */
     var y = window.pageYOffset;
     var veut = compact ? y > hauteurDepliee - 60 : y > hauteurDepliee + 20;
-    if (veut === compact) { return; }
-
-    var hauteurAvant = bloc.offsetHeight;
-    bloc.classList.toggle('compact', veut);
-    var delta = bloc.offsetHeight - hauteurAvant;
-
-    if (delta) {
-      notreDefilement = maintenant;
-      // Sans « auto », le défilement doux de la feuille de style
-      // transformerait ce rattrapage en glissement, donc en sursaut.
-      window.scrollBy({ top: delta, behavior: 'auto' });
-    }
+    basculerCompact(veut);
   }
 
   /* ---- Affichage de contrôle : ?sync=debug ---- */

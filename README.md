@@ -225,6 +225,18 @@ l'enregistrement qui fait foi — à une réserve près : la transcription conti
 fautes, et il ne faut pas les recopier. Elle a écrit « de commencement » pour « au
 commencement », et « aimons-nous les âmes et les autres » dans le chant.
 
+## Replier le lecteur
+
+Le bloc audio reste en haut de l'écran pendant l'écoute. Il se replie de lui-même sur
+une ligne dès qu'on a dépassé sa hauteur, et se redéplie en haut de page. Le chevron,
+à droite, permet de le plier ou de le déplier à la main : ce choix l'emporte alors sur
+l'automatique, jusqu'au changement de jour.
+
+Dans les deux cas le texte ne bouge pas d'un pixel. Le lecteur est dans le flux : en
+changeant de taille il déplace tout ce qui le suit. Le déplacement réel est mesuré
+après coup et rendu — le calculer d'après la hauteur perdue donnerait le double, le
+navigateur corrigeant déjà de son côté.
+
 ## Vérifier l'affichage à une autre date
 
 Ajoutez un paramètre à l'adresse pour simuler un jour donné, sans toucher au code :
