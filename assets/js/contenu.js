@@ -74,6 +74,7 @@ window.NEUVAINE_CONTENU = {
       'Pour ceux qui cherchent à aimer.',
       '— Cœur de Jésus, ouvre-leur un avenir.'
     ],
+    lecteur: 'Anna',
     audio: 'assets/audio/jour-1.mp3?v=2',
     sync: 'assets/audio/jour-1.sync.json',
     chapitres: { meditation: 9.98, chant: 126.6, prions: 265.87, prieres: 341.57, envoi: 468.22 }
@@ -114,7 +115,9 @@ window.NEUVAINE_CONTENU = {
       'Remplis-nous du courage de salir nos mains pour l’aider. Fais-nous don d’une ' +
       'charité si forte que nous osions risquer notre vie pour secourir et aider ceux ' +
       'que la misère humilie et que la précarité déshumanise.'
-    ]
+    ],
+    lecteur: 'Ludivine',
+    audio: 'assets/audio/jour-2.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 3 --- */
@@ -159,7 +162,9 @@ window.NEUVAINE_CONTENU = {
       'compris qu’à comprendre, à être aimé qu’à aimer. Car c’est en se donnant qu’on ' +
       'reçoit, c’est en s’oubliant qu’on se retrouve, c’est en pardonnant qu’on est ' +
       'pardonné, c’est en mourant qu’on ressuscite à l’éternelle vie.'
-    ]
+    ],
+    lecteur: 'Romain',
+    audio: 'assets/audio/jour-3.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 4 --- */
@@ -205,7 +210,9 @@ window.NEUVAINE_CONTENU = {
       'attendre en retour.',
 
       'Car ton regard, Seigneur, nous suffit.'
-    ]
+    ],
+    lecteur: 'Anna',
+    audio: 'assets/audio/jour-4.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 5 --- */
@@ -243,7 +250,9 @@ window.NEUVAINE_CONTENU = {
       'particulièrement en Seine-Saint-Denis, nous te confions les chrétiens et tous ' +
       'les habitants de ce pays. Fais grandir en nous le désir de la vie et de l’unité ' +
       'pour que nous la répandions au monde entier. Amen.'
-    ]
+    ],
+    lecteur: 'Ludivine',
+    audio: 'assets/audio/jour-5.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 6 --- */
@@ -286,7 +295,9 @@ window.NEUVAINE_CONTENU = {
       'Que la venue du pape Léon XIV permette de fortifier la foi des catholiques, en ' +
       'continuant à révéler le message d’Amour sans conditions du Christ à notre égard, ' +
       'dans son identité propre qui ne se trouve qu’en Dieu. Amen.'
-    ]
+    ],
+    lecteur: 'Romain',
+    audio: 'assets/audio/jour-6.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 7 --- */
@@ -345,8 +356,11 @@ window.NEUVAINE_CONTENU = {
 
       'Nous prions également pour la venue du pape Léon XIV parmi nous. Que cette ' +
       'rencontre soit pour notre diocèse un temps de grâce, d’unité, d’amour et de ' +
-      'renouvellement, et qu’elle ravive en chacun la joie d’être disciple du Christ.'
-    ]
+      'renouvellement, et qu’elle ravive en chacun la joie d’être disciple du Christ. ' +
+      'Amen.'
+    ],
+    lecteur: 'Anna',
+    audio: 'assets/audio/jour-7.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 8 --- */
@@ -397,8 +411,10 @@ window.NEUVAINE_CONTENU = {
 
       'Que notre diocèse soit une maison ouverte, une communauté où personne ne se ' +
       'sente oublié ou rejeté. Que la venue du pape soit pour nous une occasion de ' +
-      'renouveler notre foi, notre espérance et notre amour de l’Église.'
-    ]
+      'renouveler notre foi, notre espérance et notre amour de l’Église. Amen.'
+    ],
+    lecteur: 'Ludivine',
+    audio: 'assets/audio/jour-8.mp3?v=2'
   },
 
   /* ---------------------------------------------------------------- 9 --- */
@@ -432,17 +448,24 @@ window.NEUVAINE_CONTENU = {
     priere: [
       'Seigneur, nous te confions ton Église en France, particulièrement en ' +
       'Seine-Saint-Denis, qui accueille ton serviteur, le pape Léon XIV, successeur de ' +
-      'Pierre, pour son voyage apostolique dans nos territoires à compter de demain.',
+      'Pierre, pour son voyage apostolique dans notre pays à partir de demain.',
 
-      'Que son message trouve en nous un terrain fertile, propice à l’accueil, et qui ' +
-      'porte de beaux fruits au-delà de nos frontières. Que nos cœurs unis au tien ' +
-      'exultent à travers la vie de nos frères et de nos sœurs, qu’ils sachent compatir ' +
-      'en faveur des autres, que nous apprenions à pardonner, à aimer.',
+      'Que son message trouve en nous un terrain fertile, propice à l’accueil, et ' +
+      'qu’il porte de beaux fruits au-delà de nos frontières.',
+
+      'Que nos cœurs, unis au tien, exultent en voyant ton œuvre à travers notre ' +
+      'prochain. Apprends-nous à compatir envers les autres, à pardonner et à aimer.',
 
       'Fais grandir en nous la confiance en l’amour, toi qui veilles sur ceux qui ' +
       'espèrent en Toi, et à qui rien ne peut manquer quand on attend de Toi toute ' +
       'chose. Aujourd’hui, nous avons résolu de vivre désormais sans aucun souci et de ' +
-      'nous décharger sur Toi de toutes nos inquiétudes.'
-    ]
+      'nous décharger sur Toi de toutes nos inquiétudes.',
+
+      'Conduis-nous à toi, Seigneur, et si nous venons à tomber sur le chemin, ' +
+      'prends-nous par la main afin que nous puissions continuer à avancer, le regard ' +
+      'fixé sur toi. Amen.'
+    ],
+    lecteur: 'Romain',
+    audio: 'assets/audio/jour-9.mp3?v=2'
   }
 };

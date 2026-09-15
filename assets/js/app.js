@@ -24,6 +24,11 @@
   var LIEN_WHATSAPP = '';
   var COMPTE_INSTAGRAM = '';
 
+  /* La même voix reprend la prière tous les jours : elle est ici plutôt que
+     répétée neuf fois dans contenu.js. Laisser vide pour n'annoncer que le
+     lecteur du jour. */
+  var LECTEUR_PRIERES = 'Eugène';
+
   /* Jours ouverts avant leur date, par exception. Le 16 septembre est
      accessible dès la mise en ligne, pour que la neuvaine se lise le soir
      où on la partage. Ajouter un numéro ici ouvre le jour correspondant. */
@@ -419,13 +424,25 @@
     $('#day-music-title').textContent = titre || '';
   }
 
-  /** Le nom de la personne qui a enregistré ce jour, quand il est connu.
-   *  Il paraît à deux endroits : sous le titre, et dans la barre du lecteur. */
+  /** Qui lit ce jour. Deux voix se relaient : celle du jour porte la
+   *  méditation, et la même personne reprend chaque jour à la prière.
+   *  Le nom paraît sous le titre, et en plus court dans la barre. */
   function fillReader(nom) {
     var sous = $('#day-reader');
-    sous.hidden = !nom;
-    sous.textContent = nom ? 'Lu par ' + nom : '';
-    $('#audio-reader').textContent = nom || '';
+    var court = nom || '';
+    var long = nom ? 'Lu par ' + nom : '';
+
+    if (nom && LECTEUR_PRIERES) {
+      long += ', puis ' + LECTEUR_PRIERES + ' à partir de la prière';
+      court += ' et ' + LECTEUR_PRIERES;
+    } else if (!nom && LECTEUR_PRIERES) {
+      long = 'Prière lue par ' + LECTEUR_PRIERES;
+      court = LECTEUR_PRIERES;
+    }
+
+    sous.hidden = !long;
+    sous.textContent = long;
+    $('#audio-reader').textContent = court;
   }
 
   /** Une entrée commençant par un tiret cadratin est le répons d'une litanie :
