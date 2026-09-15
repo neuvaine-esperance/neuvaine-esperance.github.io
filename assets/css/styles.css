@@ -1167,25 +1167,6 @@ main { display: contents; }
 }
 .partage-etat:empty { display: none; }
 
-.day-nav {
-  padding: 22px var(--pad) 40px;
-  display: flex;
-  gap: 10px;
-}
-.day-nav button {
-  flex: 1;
-  min-height: var(--tap);
-  padding: 12px;
-  border: 1px solid var(--line);
-  border-radius: var(--r-sm);
-  background: transparent;
-  color: var(--green);
-  font-size: .875rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-}
-.day-nav button:hover { border-color: var(--green); background: var(--sand-35); }
-.day-nav button[disabled] { opacity: .45; cursor: not-allowed; }
 
 /* --------------------------------------------------------------------------
    7. Consécration
@@ -1512,7 +1493,7 @@ main { display: contents; }
   .app::before, .rays::before { display: none; }
 
   .consec-link, .btn-outline,
-  .day-nav button, .audio__btn {
+  .audio__btn {
     border: 2px solid ButtonBorder;
   }
 
@@ -1616,7 +1597,7 @@ main { display: contents; }
   .app::before, .rays::before { display: none; }
   .view[hidden] { display: block !important; }
 
-  .day-nav, .audio, .back-link, .day-top,
+  .audio, .back-link, .day-top,
   .btn-outline, .consec-link, .skip-link, .hero__figure { display: none !important; }
 
   /* Chaque écran commence sur une page neuve, et aucun bloc de prière

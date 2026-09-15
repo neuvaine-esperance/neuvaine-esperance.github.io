@@ -101,7 +101,7 @@ Elle porte le jour du matin en avant, avec son message tout prêt :
 *Neuvaine au Sacré-Cœur — Jour 3 / 9*
 _La fidélité_
 Dix minutes de prière, à écouter ou à lire.
-https://neuvaine-esperance.github.io/#jour-3
+https://neuvaine-esperance.github.io/#rbw4ehjj
 ```
 
 Trois boutons : « Ouvrir dans WhatsApp », qui passe par `wa.me` et laisse choisir le
@@ -119,8 +119,30 @@ pendant deux secondes et demie. Si le presse-papiers est refusé — il l'est ho
 connexion sécurisée — la page le dit et renvoie au texte, qui est écrit en clair et
 se sélectionne à la main. Les liens sont affichés en entier pour cette raison.
 
-Les autres jours restent aussi atteignables par leur adresse, `index.html#jour-4`, et
-par les flèches en bas de chaque jour.
+## Un jour ne s'ouvre que par son lien
+
+Chaque jour porte un code d'adresse plutôt que son numéro : `#rbw4ehjj` et non
+`#jour-3`. On ne passe donc pas au jour suivant en modifiant l'adresse, et l'on
+n'ouvre que le jour qu'on a reçu le matin. La table est en tête d'`app.js` :
+
+```js
+var CODES = ['', 'sc5gtesv', 'gc2uzt4n', 'rbw4ehjj', …];   // index = numéro du jour
+```
+
+**Ces codes ne doivent plus changer.** En modifier un casse le lien déjà envoyé pour
+ce jour-là. L'alphabet n'a ni `i`, ni `l`, ni `o`, ni `0`, ni `1` : un lien se relit
+sans ambiguïté.
+
+Il n'y a plus non plus de chemin d'une page à l'autre à l'intérieur du site : les
+flèches « Jour précédent / Jour suivant » et le bouton « Consécration » ont quitté le
+bas de chaque jour. Un lien ouvre son jour, et rien d'autre. `#jour-3`, l'ancienne
+forme, ramène à l'accueil, comme n'importe quel code inconnu.
+
+**Ce que cela ne fait pas.** C'est une barrière de courtoisie, pas une serrure. La
+table des codes est dans `app.js` et le texte des neuf jours dans `contenu.js`, tous
+deux publics et servis avec le site : qui ouvre la source a les neuf jours. Le
+procédé empêche de passer devant, il ne cache rien. Un site statique ne peut pas
+faire mieux — il faudrait un serveur, donc une autre architecture.
 
 ## Ajouter ou corriger le contenu d'un jour
 
@@ -397,8 +419,9 @@ navigateur. Rien à déclarer côté RGPD, et rien à demander au visiteur.
 aucun `eval`.
 
 **Les deux entrées du visiteur sont contrôlées.** Le paramètre `?date=` ne sert qu'à
-construire une date, rejetée si elle est invalide. L'ancre `#jour-N` est filtrée par
-une expression régulière. Ni l'une ni l'autre ne touche au document.
+construire une date, rejetée si elle est invalide. L'ancre est comparée à une liste
+figée de codes : tout ce qui n'y figure pas ramène à l'accueil. Ni l'une ni l'autre ne
+touche au document.
 
 **La politique de sécurité du contenu interdit tout par défaut**, puis autorise le
 strict nécessaire, et uniquement depuis ce site. Elle est posée deux fois, dans une

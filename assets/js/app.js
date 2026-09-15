@@ -14,6 +14,40 @@
   var TOTAL_DAYS = 9;
   var DAY_MS = 86400000;
 
+  /* Le code d'adresse de chaque jour. Le lien porte ce code et non le
+     numéro du jour : on ne passe donc pas au suivant en modifiant
+     l'adresse, et l'on n'ouvre que le jour qu'on a reçu.
+
+     C'est une barrière de courtoisie, pas une serrure — cette table est
+     dans ce fichier, et le texte des neuf jours dans contenu.js, tous deux
+     publics. Elle empêche de passer devant, elle ne cache rien.
+
+     À NE PLUS TOUCHER : ces codes sont tirés une fois pour toutes. En
+     changer un casse le lien déjà envoyé pour ce jour-là. L'alphabet
+     n'a ni i, ni l, ni o, ni 0, ni 1 : un lien se relit sans ambiguïté.
+     L'entrée 0 est vide, pour que l'index soit le numéro du jour. */
+  var CODES = ['',
+    'sc5gtesv',   // jour 1
+    'gc2uzt4n',   // jour 2
+    'rbw4ehjj',   // jour 3
+    'ytsfurbj',   // jour 4
+    '3b3v7qrp',   // jour 5
+    '4c6g2srf',   // jour 6
+    'vg48ywwk',   // jour 7
+    'sfknuj6u',   // jour 8
+    'y8txwn87'    // jour 9
+  ];
+
+  function codeDuJour(n) { return CODES[n] || ''; }
+
+  /** Le numéro du jour derrière un code, ou 0 si le code est inconnu.
+   *  La comparaison se fait sur une liste figée : rien de ce que le
+   *  visiteur écrit dans l'adresse n'atteint le document. */
+  function jourDuCode(code) {
+    var i = CODES.indexOf(code);
+    return i > 0 ? i : 0;
+  }
+
   /* Les neuf jours sont ouverts, sans attendre leur date. Repasser à false
      rend la parution au matin même, jour après jour. */
   var OUVRIR_TOUT = true;
@@ -235,7 +269,7 @@
     if (view === 'jour') { renderDay(state.day); }
     if (view === 'envoyer') { renderEnvoyer(); }
 
-    var hash = view === 'jour' ? '#jour-' + state.day : '#' + view;
+    var hash = view === 'jour' ? '#' + codeDuJour(state.day) : '#' + view;
     if (window.location.hash !== hash) {
       history.pushState({ view: view, day: state.day }, '', hash);
     }
@@ -251,10 +285,12 @@
 
   function readHash() {
     var h = (window.location.hash || '').replace('#', '');
-    var m = h.match(/^jour-(\d)$/);
-    if (m) { return { view: 'jour', day: Number(m[1]) }; }
     if (h === 'consecration') { return { view: 'consecration', day: state.day }; }
     if (h === 'envoyer') { return { view: 'envoyer', day: state.day }; }
+
+    // Un code inconnu — ou l'ancien « jour-3 » — ramène à l'accueil.
+    var n = jourDuCode(h);
+    if (n) { return { view: 'jour', day: n }; }
     return { view: 'accueil', day: state.day };
   }
 
@@ -333,7 +369,7 @@
     var base = window.location.protocol === 'file:'
       ? ADRESSE_PUBLIQUE
       : window.location.origin + window.location.pathname;
-    return base.replace(/index\.html$/, '') + '#jour-' + n;
+    return base.replace(/index\.html$/, '') + '#' + codeDuJour(n);
   }
 
   /** Le message tel qu'il part sur WhatsApp. Les astérisques et les traits
@@ -498,8 +534,6 @@
     // Un jour s'ouvre en haut de la page : le lecteur y redescend dans le
     // flux, déplié, quel que soit l'état où le jour précédent l'a laissé.
     reposerLecteur();
-
-    renderDayNav(n);
   }
 
   /** Le verset est soit une phrase, soit un poème donné ligne par ligne.
@@ -565,30 +599,6 @@
 
   /** Les deux boutons portent un chevron décoratif et un libellé explicite
    *  hors contexte : « Jour précédent, jour 1 ». */
-  function renderDayNav(n) {
-    setNavButton($('#day-prev'), '‹', 'Jour ' + Math.max(1, n - 1),
-                 'Jour précédent, jour ' + Math.max(1, n - 1), n <= 1);
-    setNavButton($('#day-next'), null, 'Jour ' + Math.min(TOTAL_DAYS, n + 1),
-                 'Jour suivant, jour ' + Math.min(TOTAL_DAYS, n + 1), n >= TOTAL_DAYS,
-                 '›');
-  }
-
-  function setNavButton(btn, before, text, label, disabled, after) {
-    btn.textContent = '';
-    if (before) { btn.appendChild(decor(before)); }
-    btn.appendChild(document.createTextNode(' ' + text + ' '));
-    if (after) { btn.appendChild(decor(after)); }
-    btn.setAttribute('aria-label', label);
-    btn.disabled = disabled;
-  }
-
-  function decor(ch) {
-    var s = document.createElement('span');
-    s.setAttribute('aria-hidden', 'true');
-    s.textContent = ch;
-    return s;
-  }
-
   /* ------------------------------------------------------------------
      Lecteur audio de la méditation
 
@@ -1430,14 +1440,6 @@
         });
       }
     );
-
-    $('#day-prev').addEventListener('click', function () {
-      if (state.day > 1) { show('jour', state.day - 1); }
-    });
-
-    $('#day-next').addEventListener('click', function () {
-      if (state.day < TOTAL_DAYS) { show('jour', state.day + 1); }
-    });
 
     bindAudio();
     bindEnvoyer();
