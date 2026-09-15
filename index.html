@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=29">
-<link rel="stylesheet" href="assets/css/styles.css?v=29">
+<link rel="stylesheet" href="assets/css/fonts.css?v=30">
+<link rel="stylesheet" href="assets/css/styles.css?v=30">
 </head>
 <body>
 
@@ -100,11 +100,11 @@
             <cite class="hero__quote-ref">Jean 6,51</cite></p>
         </blockquote>
 
-        <button class="cta anim" type="button" id="cta-today">
-          <span class="cta__main">Prier aujourd'hui</span>
-          <!-- Rempli par le script : « Jour 3 sur 9 — La fidélité ». -->
-          <span class="cta__sub" id="cta-sub"></span>
-        </button>
+        <!-- Où en est la neuvaine. La maquette n'en fait qu'une ligne, et
+             c'est la seule porte vers un jour depuis l'accueil : elle est
+             donc une commande. Le script y pose
+             « Aujourd'hui : jour 3 / 9 — La fidélité, lu par Romain ». -->
+        <button class="hero__today anim" type="button" id="hero-today"></button>
       </div>
 
     </div>
@@ -117,21 +117,14 @@
     <section class="participer anim" id="participer" aria-labelledby="t-participer" hidden>
       <h2 class="eyebrow eyebrow--gold" id="t-participer">Comment participer</h2>
       <p class="participer__texte">
-        Chaque matin, le jour est envoyé sur le canal WhatsApp du Groupe Espérance.
-        Il suffit de rejoindre le canal.
+        Chaque matin à 7 h, le jour est envoyé sur le canal WhatsApp du Groupe
+        Espérance. Il suffit de rejoindre le canal.
       </p>
       <a class="btn-primary" id="lien-whatsapp-accueil" href="#">
         Rejoindre le canal WhatsApp <span aria-hidden="true">&rsaquo;</span>
       </a>
       <p class="participer__note" id="participer-note"></p>
     </section>
-
-    <div class="section-head anim">
-      <h2 id="les-9-jours">Les 9 jours</h2>
-      <span>Du 16 au 24 septembre</span>
-    </div>
-
-    <ul class="day-grid" id="day-grid" aria-labelledby="les-9-jours"></ul>
 
     <footer class="home-foot">
       <button class="consec-link anim" type="button" data-goto="consecration">
@@ -151,8 +144,6 @@
                decoding="async" loading="lazy">
         </picture>
       </p>
-
-      <p class="home-foot__verse anim">« L'espérance ne déçoit pas » — Rm 5,5</p>
     </footer>
 
   </section>
@@ -481,7 +472,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=29" defer></script>
-<script src="assets/js/app.js?v=29" defer></script>
+<script src="assets/js/contenu.js?v=30" defer></script>
+<script src="assets/js/app.js?v=30" defer></script>
 </body>
 </html>

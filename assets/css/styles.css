@@ -358,11 +358,34 @@ main { display: contents; }
   white-space: nowrap;
 }
 
+/* Où en est la neuvaine. La maquette n'en fait qu'une ligne de petites
+   capitales cramoisi, posée sur le même panneau de crème que les titres.
+   C'est aussi la seule porte vers un jour depuis l'accueil : c'est une
+   commande, et sa hauteur atteint la cible tactile. */
+.hero__today {
+  display: inline-flex;
+  align-items: center;
+  margin: 16px 0 0;
+  padding: 8px 12px;
+  min-height: var(--tap);
+  border: 0;
+  border-radius: var(--r-sm);
+  background: var(--cream-80);
+  color: var(--crimson);
+  text-align: left;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  line-height: 1.6;
+}
+.hero__today:hover { color: var(--green); }
+.hero__today:empty { display: none; }
+
 /* --------------------------------------------------------------------------
    Boutons
    -------------------------------------------------------------------------- */
-.btn-primary,
-.cta {
+.btn-primary {
   display: block;
   width: 100%;
   min-height: var(--tap);
@@ -380,22 +403,7 @@ main { display: contents; }
   font-size: 1.175rem;
   line-height: 1.15;
 }
-.btn-primary:hover,
-.cta:hover { background: var(--crimson-2); color: var(--cream); }
-
-.cta { margin-top: 20px; }
-.cta__main { display: block; }
-.cta__sub {
-  display: block;
-  margin-top: 6px;
-  font-family: var(--sans);
-  font-size: .85rem;
-  font-weight: 700;
-  letter-spacing: .06em;
-  text-transform: none;
-  color: var(--gold);
-}
-.cta__sub:empty { display: none; }
+.btn-primary:hover { background: var(--crimson-2); color: var(--cream); }
 
 .btn-outline {
   flex: 1;
@@ -441,99 +449,9 @@ main { display: contents; }
 .participer__note:empty { display: none; }
 
 /* --------------------------------------------------------------------------
-   Les neuf jours
-   -------------------------------------------------------------------------- */
-.section-head {
-  display: flex;
-  align-items: baseline;
-  justify-content: space-between;
-  gap: 12px;
-  padding: 30px var(--pad) 0;
-}
-.section-head h2 {
-  font-family: var(--display);
-  font-weight: 400;
-  text-transform: uppercase;
-  font-size: 1.4rem;
-  color: var(--green);
-}
-.section-head span {
-  font-size: .8125rem;
-  font-weight: 700;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-  color: var(--crimson);
-}
-
-.day-grid {
-  display: grid;
-  grid-template-columns: repeat(3, 1fr);
-  gap: 10px;
-  padding: 14px var(--pad) 0;
-}
-.day-grid > li { display: flex; }
-
-.day-card {
-  flex: 1;
-  min-height: 92px;
-  padding: 12px 10px;
-  border: 1px solid var(--sand);
-  border-radius: var(--r-md);
-  background: var(--cream-90);
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-  align-items: flex-start;
-  gap: 8px;
-  text-align: left;
-  position: relative;
-}
-.day-card:hover { border-color: var(--green); }
-.day-card.is-today {
-  background: var(--green);
-  border-color: var(--green);
-}
-.day-card.is-ready { border-color: var(--line); }
-
-.day-card__n {
-  font-family: var(--display);
-  font-weight: 400;
-  font-size: 1.9rem;
-  line-height: 1.1;
-  color: var(--green);
-}
-.day-card.is-today .day-card__n { color: var(--gold); }
-
-.day-card__date {
-  display: block;
-  font-size: .875rem;
-  font-weight: 700;
-  color: var(--ink);
-}
-.day-card__status {
-  display: block;
-  font-size: .8125rem;
-  font-weight: 600;
-  line-height: 1.35;
-  color: var(--ink-soft);
-}
-.day-card.is-today .day-card__date,
-.day-card.is-today .day-card__status { color: var(--sand); }
-
-.day-card__dot {
-  position: absolute;
-  top: 10px;
-  right: 10px;
-  width: 8px;
-  height: 8px;
-  border-radius: 50%;
-  background: var(--gold);
-}
-
-/* --------------------------------------------------------------------------
    Pied de l'accueil
    -------------------------------------------------------------------------- */
-.home-foot { padding: 24px var(--pad) 40px; }
+.home-foot { padding: 16px var(--pad) 40px; }
 
 .consec-link {
   width: 100%;
@@ -590,14 +508,6 @@ main { display: contents; }
   background: var(--cream-85);
 }
 .partners img { display: block; width: 100%; height: auto; }
-
-.home-foot__verse {
-  margin-top: 20px;
-  text-align: center;
-  font-size: .875rem;
-  font-weight: 600;
-  color: var(--green);
-}
 
 /* --------------------------------------------------------------------------
    6. Écran d'un jour
@@ -1422,7 +1332,7 @@ main { display: contents; }
 .hero__figure   { --d: 300ms; }
 .hero__dates    { --d: 400ms; }
 .hero__quote    { --d: 480ms; }
-.cta            { --d: 560ms; }
+.hero__today    { --d: 560ms; }
 
 /* Cascade d'un jour */
 .day-head__row { --d:   0ms; }
@@ -1436,10 +1346,10 @@ main { display: contents; }
 .consec-hero__lead   { --d: 220ms; }
 .consec-prayer       { --d: 300ms; }
 
-.day-card, .consec-link, .cta {
+.consec-link, .hero__today {
   transition-property: background, border-color, color, opacity, transform, box-shadow;
 }
-.cta:active { transform: translateY(1px); }
+.hero__today:active { transform: translateY(1px); }
 
 /* --------------------------------------------------------------------------
    8 bis. Suivi mot à mot
@@ -1574,7 +1484,6 @@ main { display: contents; }
     transform: none !important;
   }
   .hero__figure img { animation: none !important; }
-  .day-card:hover { transform: none; }
   .mot { transition: none !important; }
   .audio { transition: none !important; }
 }
@@ -1585,12 +1494,11 @@ main { display: contents; }
 @media (forced-colors: active) {
   .app::before, .rays::before { display: none; }
 
-  .day-card, .cta, .consec-link, .btn-outline,
+  .consec-link, .btn-outline,
   .day-nav button, .audio__btn, .audio__speed select {
     border: 2px solid ButtonBorder;
   }
-  .day-card.is-today { outline: 3px solid Highlight; outline-offset: -5px; }
-  .day-card__dot { background: Highlight; forced-color-adjust: none; }
+  .hero__today { border: 1px solid CanvasText; }
 
   .hero h1, .hero__lead, .hero__quote, .day-head h1, .consec-hero h1 {
     background: Canvas;
@@ -1632,23 +1540,19 @@ main { display: contents; }
 
   .hero h1 { font-size: 1.7rem; }
   .hero__dates { font-size: 1.15rem; padding: 10px 16px; }
-  .cta { font-size: 1.05rem; }
   .day-head__n { font-size: 3.4rem; }
   .day-head h1 { font-size: 1.45rem; }
   .consec-hero h1 { font-size: 1.6rem; }
   .anchors__head h2 { font-size: 1.1rem; }
-  .day-card { min-height: 112px; padding: 12px 10px 10px; }
-  .day-card__n { font-size: 1.6rem; }
   .scripture__text { font-size: 1.15rem; }
   .intention__text { font-size: 1.1rem; }
   .veillee__facts { grid-template-columns: minmax(0, 1fr); row-gap: 6px; }
   .veillee__facts dt { padding-top: 10px; }
 }
 
-/* Sous 340 px, la grille des neuf jours passe à deux colonnes plutôt que
-   d'écraser les cartes. Rien ne déborde horizontalement. */
+/* Sous 340 px, le lecteur empile ses deux parties plutôt que de les
+   écraser. Rien ne déborde horizontalement. */
 @media (max-width: 340px) {
-  .day-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
   .audio { flex-direction: column; align-items: stretch; }
   .audio__btn { align-self: flex-start; }
 }
@@ -1695,7 +1599,7 @@ main { display: contents; }
   .app::before, .rays::before { display: none; }
   .view[hidden] { display: block !important; }
 
-  .cta, .day-grid, .day-nav, .audio, .back-link, .day-top,
+  .hero__today, .day-nav, .audio, .back-link, .day-top,
   .btn-outline, .consec-link, .skip-link, .hero__figure { display: none !important; }
 
   /* Chaque écran commence sur une page neuve, et aucun bloc de prière
@@ -1704,7 +1608,7 @@ main { display: contents; }
   .scripture, .intention, .prayer, .anchors__list > div,
   .consec-prayer, .veillee__facts { break-inside: avoid; }
 
-  .hero h1, .day-head h1, .consec-hero h1, .section-head h2,
+  .hero h1, .day-head h1, .consec-hero h1,
   .anchors__head h2, .veillee__head h2 { color: #000; background: none; }
   .hero__lead, .hero__quote { background: none; }
   .hero__dates, .intention, .scripture, .anchors, .consec-prayer {
@@ -1716,6 +1620,6 @@ main { display: contents; }
   .consec-prayer .amen, .eyebrow--gold, .day-head__n, .consec-link__sub {
     color: #000;
   }
-  .meditation__body, .prayer__body, .home-foot__verse,
+  .meditation__body, .prayer__body,
   .veillee__facts dd .muted { color: #000; }
 }

@@ -45,8 +45,8 @@ grand écran.
 
 ## Comment fonctionne la numérotation
 
-Le premier jour est le 16 septembre, le neuvième le 24. Les cartes portent `J1` à
-`J9`. Tout se déduit d'une seule constante dans `assets/js/app.js` :
+Le premier jour est le 16 septembre, le neuvième le 24. La page d'un jour porte
+`J1` à `J9`. Tout se déduit d'une seule constante dans `assets/js/app.js` :
 
 ```js
 var START = new Date(2026, 8, 16);   // les mois sont indexés à partir de zéro
@@ -60,9 +60,21 @@ var OUVRIR_TOUT = false;      // true ouvre les neuf jours d'un coup
 var OUVERTS_DAVANCE = [1];    // ces jours-là s'ouvrent sans attendre leur date
 ```
 
-Chaque carte prend l'un de ces états : **aujourd'hui** sur fond vert avec une pastille
-dorée, **prié** pour un jour passé, **disponible** pour un jour ouvert d'avance,
-**en attente** sinon.
+## L'accueil ne montre qu'un jour
+
+La maquette fait de l'accueil une page d'atterrissage : on y arrive par le lien du
+matin, pas pour y choisir un jour. Il n'y a donc ni bouton « Prier aujourd'hui » ni
+grille des neuf jours — seulement, sous la citation, la ligne
+
+> AUJOURD'HUI : JOUR 3 / 9 — LA FIDÉLITÉ, LU PAR ROMAIN
+
+écrite par `renderHome()` dans `app.js`. La maquette la donne comme une simple
+étiquette ; elle est ici un bouton, parce qu'elle est devenue la seule porte vers un
+jour depuis l'accueil. Avant le 16 septembre elle annonce « Dès maintenant » si le
+jour 1 est déjà ouvert, sinon la date d'ouverture de la neuvaine.
+
+Les autres jours restent atteignables par leur adresse, `index.html#jour-4`, et par
+les flèches en bas de chaque jour.
 
 ## Ajouter ou corriger le contenu d'un jour
 

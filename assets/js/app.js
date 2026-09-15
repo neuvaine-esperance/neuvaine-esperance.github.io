@@ -49,8 +49,6 @@
      ------------------------------------------------------------------ */
   var MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
                 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
-  var MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
-                      'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
   var WEEKDAYS = ['dimanche', 'lundi', 'mardi', 'mercredi',
                   'jeudi', 'vendredi', 'samedi'];
 
@@ -75,8 +73,6 @@
     d.setDate(d.getDate() + n - 1);
     return d;
   }
-
-  function fmtShort(d) { return d.getDate() + ' ' + MONTHS_SHORT[d.getMonth()]; }
 
   function fmtLong(d) {
     return WEEKDAYS[d.getDay()] + ' ' + d.getDate() + ' ' + MONTHS[d.getMonth()];
@@ -259,98 +255,36 @@
   }
 
   /* ------------------------------------------------------------------
-     Accueil : bouton du jour et grille des neuf jours
+     Accueil : la ligne du jour en cours
+
+     La maquette ne garde qu'une ligne pour dire où en est la neuvaine :
+     « Aujourd’hui : jour 3 / 9 — La fidélité, lu par Romain ». C'est
+     aussi, depuis que la grille des neuf jours a quitté l'accueil, la
+     seule porte vers un jour : la ligne est donc un bouton.
+
+     Le libellé énoncé dit où elle mène, ce que « jour 3 / 9 » ne dirait
+     pas à voix haute.
      ------------------------------------------------------------------ */
   function renderHome() {
-    var t = today();
-    var cta = $('#cta-today');
-    var sous = $('#cta-sub');
+    var bouton = $('#hero-today');
+    var n = isBeforeStart() ? 1 : currentDay();
+    var c = isPublished(n) ? CONTENT[n] : null;
+    var ligne;
 
-    // Le sous-titre dit en toutes lettres où mène le bouton : quel jour,
-    // et de quoi il parle.
-    if (isBeforeStart()) {
-      var c1 = isPublished(1) ? CONTENT[1] : null;
-      sous.textContent = c1
-        ? 'Jour 1 sur ' + TOTAL_DAYS + ' — ' + c1.titre
-        : 'La neuvaine s’ouvre le ' + fmtLong(START) + '.';
-      cta.setAttribute('aria-label', 'Prier aujourd’hui, ouvrir le premier jour');
+    if (c) {
+      ligne = (isBeforeStart() ? 'Dès maintenant' : 'Aujourd’hui') +
+              ' : jour ' + n + ' / ' + TOTAL_DAYS + ' — ' + c.titre +
+              (c.lecteur ? ', lu par ' + c.lecteur : '');
+    } else if (isBeforeStart()) {
+      ligne = 'La neuvaine s’ouvre le ' + fmtLong(START) + '.';
     } else {
-      var n = currentDay();
-      var c = CONTENT[n];
-      sous.textContent = 'Jour ' + n + ' sur ' + TOTAL_DAYS +
-        (c ? ' — ' + c.titre : '');
-      cta.setAttribute('aria-label',
-        'Prier aujourd’hui, ouvrir le ' + countdownSpoken(n).toLowerCase());
+      ligne = 'Aujourd’hui : jour ' + n + ' / ' + TOTAL_DAYS + '.';
     }
 
-    var grid = $('#day-grid');
-    grid.textContent = '';
-
-    for (var n = 1; n <= TOTAL_DAYS; n++) {
-      grid.appendChild(buildDayCard(n, t));
-    }
-  }
-
-  function buildDayCard(n, t) {
-    var d = dayDate(n);
-    var published = isPublished(n);
-    var isToday = d.getTime() === t.getTime();
-    var isPast = d < t;
-
-    var status;
-    if (!published) { status = 'En attente'; }
-    else if (isToday) { status = 'Aujourd’hui'; }
-    else if (isPast) { status = 'Prié'; }
-    else { status = 'Disponible'; }
-
-    var li = document.createElement('li');
-
-    var btn = document.createElement('button');
-    btn.type = 'button';
-    btn.className = 'day-card anim anim--scale' +
-      (isToday ? ' is-today' : (published ? ' is-ready' : ''));
-
-    // Les neuf cartes arrivent en cascade plutôt que d'un bloc.
-    // Passer par une propriété personnalisée évite d'écrire un style en
-    // ligne dans le document, ce que la politique de sécurité interdit.
-    btn.style.setProperty('--d', (n * 45) + 'ms');
-
-    // Le libellé énoncé reprend tout ce que la carte montre, y compris
-    // l'état, qui n'est donc jamais porté par la seule couleur.
-    btn.setAttribute('aria-label',
-      countdownSpoken(n) + ', ' + fmtLong(d) + '. ' + status + '.');
-
-    var num = document.createElement('span');
-    num.className = 'day-card__n';
-    num.setAttribute('aria-hidden', 'true');
-    num.textContent = countdownLabel(n);
-    btn.appendChild(num);
-
-    var foot = document.createElement('span');
-    foot.setAttribute('aria-hidden', 'true');
-
-    var date = document.createElement('span');
-    date.className = 'day-card__date';
-    date.textContent = fmtShort(d);
-    foot.appendChild(date);
-
-    var st = document.createElement('span');
-    st.className = 'day-card__status';
-    st.textContent = status;
-    foot.appendChild(st);
-
-    btn.appendChild(foot);
-
-    if (isToday) {
-      var dot = document.createElement('span');
-      dot.className = 'day-card__dot';
-      dot.setAttribute('aria-hidden', 'true');
-      btn.appendChild(dot);
-    }
-
-    btn.addEventListener('click', function () { show('jour', n); });
-    li.appendChild(btn);
-    return li;
+    bouton.textContent = ligne;
+    bouton.setAttribute('aria-label',
+      'Prier, ouvrir le ' + countdownSpoken(n).toLowerCase() +
+      (c ? ' : ' + c.titre : ''));
   }
 
   /* ------------------------------------------------------------------
@@ -1490,7 +1424,7 @@
       }
     );
 
-    $('#cta-today').addEventListener('click', function () {
+    $('#hero-today').addEventListener('click', function () {
       show('jour', isBeforeStart() ? 1 : currentDay());
     });
 
