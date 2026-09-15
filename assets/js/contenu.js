@@ -102,8 +102,8 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Anna',
     audio: 'assets/audio/jour-1.mp3?v=4',
-    sync: 'assets/audio/jour-1.sync.js',
-    chapitres: { meditation: 10, chant: 126.56, prions: 265.83, prieres: 343.55, envoi: 470.3 }
+    sync: 'assets/audio/jour-1.sync.js?v=2',
+    chapitres: { meditation: 10, chant: 126.56, prions: 265.83, prieres: 343.55, envoi: 480.3 }
   },
 
   /* ---------------------------------------------------------------- 2 --- */
