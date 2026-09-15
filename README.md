@@ -266,9 +266,9 @@ qu'après un premier repli : jusque-là elle vaut zéro, ce qui retarde ce premi
 sans jamais ouvrir de vide.
 
 La pastille « Revenir au texte lu » vit sur la ligne du lecteur. Dépliée, elle passe
-sous la commande ; resserrée, elle tient à côté du titre, qui lui cède la place — les
-deux ne rentrent pas ensemble sur un téléphone. Dans les deux cas elle reste là tant
-que le visiteur a la main sur le défilement.
+sous la commande ; resserrée, elle tient tout à droite de la barre, et le titre du jour
+lui cède la place — les deux ne rentrent pas ensemble sur un téléphone. Dans les deux
+cas elle reste là tant que le visiteur a la main sur le défilement.
 
 ## L'écran pendant l'écoute
 

@@ -1,21 +1,23 @@
 Jour 1 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 547 (641 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 610
-  interpolés         : 31
-  taux d'appariement : 95.2 %
+  mots affichés      : 640 (734 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 697
+  interpolés         : 37
+  taux d'appariement : 95.0 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   15    66.7 %          0.80 s
     meditation      214 /  223    96.0 %         10.00 s
-    chant             0 /    0        —        126.56 s
+    chant            87 /   93    93.5 %        126.56 s
     prions          147 /  157    93.6 %        265.83 s
     prieres         225 /  232    97.0 %        343.55 s
     envoi            14 /   14   100.0 %        470.30 s
 
   Les 20 plus longues suites de mots interpolés
       4 mot(s)  [titre         0.93 s]  L’amour lui-même vous désire
+      2 mot(s)  [paroles     205.29 s]  né de
+      2 mot(s)  [paroles     217.69 s]  amour. Voici
       2 mot(s)  [priere      284.66 s]  qui laisse
       1 mot(s)  [signe         1.67 s]  et
       1 mot(s)  [verset        9.00 s]  «
@@ -27,14 +29,12 @@ Jour 1 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   88.34 s]  […]
       1 mot(s)  [meditation  109.78 s]  »
       1 mot(s)  [meditation  114.97 s]  de
+      1 mot(s)  [paroles     126.33 s]  Voici
+      1 mot(s)  [paroles     196.56 s]  uns
       1 mot(s)  [priere      270.09 s]  —
       1 mot(s)  [priere      285.79 s]  libre.
       1 mot(s)  [priere      294.47 s]  —
       1 mot(s)  [priere      300.68 s]  papiers
-      1 mot(s)  [priere      305.80 s]  en
-      1 mot(s)  [priere      318.87 s]  —
-      1 mot(s)  [priere      326.49 s]  —
-      1 mot(s)  [priere      335.13 s]  —
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    141.50 s  après « ensemble. » (meditation) → « Pour » (priere)
+    aucun.

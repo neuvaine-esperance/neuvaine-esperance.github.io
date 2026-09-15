@@ -662,8 +662,8 @@ main { display: contents; }
 }
 
 /* La ligne du lecteur. L'ordre d'affichage est posé ici et non par l'ordre
-   du balisage : la pastille de rappel doit tomber avant le chevron quand la
-   barre est resserrée, et sur sa propre ligne quand elle est dépliée. */
+   du balisage : la pastille de rappel tient tout à droite quand la barre est
+   resserrée, et passe sur sa propre ligne quand elle est dépliée. */
 .audio__row {
   display: flex;
   flex-wrap: wrap;
@@ -675,7 +675,6 @@ main { display: contents; }
 .audio__compact-titre { order: 3; }
 .audio__plier         { order: 4; }
 .revenir              { order: 5; }
-.audio.compact .audio__plier { order: 6; }
 
 .audio__btn {
   width: 56px;
@@ -927,7 +926,7 @@ main { display: contents; }
 
    Dépliée, elle prend toute la largeur et tombe sous la commande — la
    placer à côté écraserait le curseur de position. Resserrée, elle tient
-   sur la ligne, entre le titre et le chevron. */
+   sur la ligne, tout à droite, après le chevron. */
 .revenir {
   flex: 0 0 100%;
   display: flex;

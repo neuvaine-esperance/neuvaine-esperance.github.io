@@ -52,6 +52,32 @@ window.NEUVAINE_CONTENU = {
       'nous tous ensemble.'
     ],
     musique: 'L’Amour lui-même vous désire — Emmanuel Music',
+    // Les paroles suivent l’enregistrement, où le refrain revient trois
+    // fois. Trois fautes de transcription ne sont pas recopiées : la voix
+    // dit bien 1 Jean 4, 7-8 — « aimons-nous les uns les autres », « celui
+    // qui aime est né de Dieu », « car Dieu est amour ».
+    paroles: [
+      'Voici le corps et le sang de Jésus,',
+      'adorez-le, bénissez-le,',
+      'car en lui c’est Dieu qui se donne à vous.',
+
+      'L’Amour lui-même vous désire.',
+
+      'Bien-aimés, aimons-nous les uns les autres,',
+      'puisque l’amour vient de Dieu.',
+      'Celui qui aime est né de Dieu et connaît Dieu.',
+      'Celui qui n’aime pas n’a pas connu Dieu,',
+      'car Dieu est amour.',
+
+      'Voici le corps et le sang de Jésus,',
+      'adorez-le, bénissez-le,',
+      'car en lui c’est Dieu qui se donne à vous.',
+
+      'Bénissez-le, bénissez-le,',
+      'car en lui c’est Dieu qui se donne à vous.',
+
+      'L’Amour lui-même vous désire.'
+    ],
     priere: [
       'Pour tous ceux qui cherchent comment construire leur vie.',
       '— Cœur de Jésus, ouvre-leur un avenir.',
