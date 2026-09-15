@@ -25,7 +25,7 @@
 
   # Tout est interdit par défaut, puis on ouvre le strict nécessaire,
   # et uniquement vers ce site. Aucune origine tierce n'est autorisée.
-  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'self'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
+  Header always set Content-Security-Policy "default-src 'none'; script-src 'self'; style-src 'self'; font-src 'self'; img-src 'self' data:; media-src 'self'; connect-src 'none'; base-uri 'none'; form-action 'none'; frame-ancestors 'none'; object-src 'none'; upgrade-insecure-requests"
 
   # Interdit le chargement du site dans un cadre, donc le détournement de clic.
   Header always set X-Frame-Options "DENY"

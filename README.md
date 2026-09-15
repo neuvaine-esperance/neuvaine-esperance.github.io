@@ -3,76 +3,99 @@
 Site mobile-first pour la neuvaine du 16 au 24 septembre 2026, en préparation de la
 veillée avec le pape Léon XIV au Stade de France le 25 septembre.
 
-Construit d'après la maquette Claude Design « Neuvaine Sacré-Cœur ». Site statique,
+Construit d'après la maquette Claude Design « Maquettes v2 WhatsApp ». Site statique,
 aucune dépendance, aucun outil de construction : on ouvre `index.html` et ça fonctionne.
 
 ## Contenu
 
 ```
-index.html              les trois écrans : accueil, jour, consécration
-assets/css/styles.css   palette, typographie, mise en page
-assets/css/fonts.css    déclaration des polices auto-hébergées
-assets/fonts/           les trois familles en woff2, 191 Ko
-assets/js/app.js        dates, compte à rebours, contenu des jours, navigation
-assets/audio/jour-1.mp3 méditation du premier jour
-_headers                en-têtes de sécurité, Netlify et Cloudflare Pages
-.htaccess               en-têtes de sécurité, hébergement Apache
-sources/                transcriptions de référence, à ne pas publier
+index.html                    les trois écrans : accueil, jour, consécration
+assets/css/styles.css         palette, typographie, mise en page
+assets/css/fonts.css          déclaration des polices auto-hébergées
+assets/fonts/                 Archivo Black et League Spartan en woff2, 75 Ko
+assets/js/contenu.js          le texte des neuf jours, et rien d'autre
+assets/js/app.js              dates, navigation, lecteur, suivi mot à mot
+assets/audio/jour-N.mp3       l'enregistrement de chaque jour
+assets/audio/jour-N.sync.js   les horaires du surlignage, quand ils existent
+assets/transcriptions/        les transcriptions horodatées, source de l'alignement
+outils/aligner.py             fabrique les fichiers de synchronisation
+_headers                      en-têtes de sécurité, Netlify et Cloudflare Pages
+.htaccess                     en-têtes de sécurité, hébergement Apache et LiteSpeed
+sources/                      documents de référence, à ne jamais publier
 ```
 
 ## Identité visuelle
 
 | Rôle | Valeur |
 | --- | --- |
-| Fond de l'application | `#14452E` |
-| Panneaux sombres | `#0F3A26` |
-| Menthe | `#A8E6C3` |
-| Crème | `#F4EFE4` |
-| Cramoisi | `#8B1A2B` |
-| Or | `#C9A24A` |
+| Pourtour de page, texte d'appui sur vert | `#DBD0B4` sable |
+| Fond de l'application | `#F6F0E8` crème |
+| Panneaux, lecteur, cartouches | `#274E17` vert |
+| Boutons principaux, répons, accents | `#8B1A2F` cramoisi |
+| Étiquettes et acclamation sur vert | `#E8B84B` or |
 
-Titres en Anton, prières et versets en Cormorant Garamond, texte courant en Figtree.
-La largeur est limitée à 480 px et centrée, comme dans la maquette.
+Le vert a été foncé de 3 % de clarté par rapport à la maquette — `#2D5A1B` devient
+`#274E17` — pour que l'or tienne 5,20:1 par-dessus. Cette combinaison est partout :
+étiquette du lecteur, acclamation, intertitres des cartouches.
 
-## Comment fonctionne le compte à rebours
+Titres en Archivo Black, tout le reste en League Spartan. Les tailles sont en rem,
+sur une base de 17 px qui passe à 18 px au-delà de 768 px : le réglage de taille de
+texte du navigateur est donc respecté. La colonne est limitée à 480 px, 600 px sur
+grand écran.
 
-Le repère est la veillée du 25 septembre. `J-9` est donc le premier jour, le
-16 septembre, et `J-1` le neuvième, le 24 septembre. Tout se déduit d'une seule
-constante dans `assets/js/app.js` :
+## Comment fonctionne la numérotation
+
+Le premier jour est le 16 septembre, le neuvième le 24. Les cartes portent `J1` à
+`J9`. Tout se déduit d'une seule constante dans `assets/js/app.js` :
 
 ```js
 var START = new Date(2026, 8, 16);   // les mois sont indexés à partir de zéro
 ```
 
-Chaque case de la grille prend l'un de ces états :
+Un jour s'ouvre le matin même, comme la page d'attente l'annonce : il lui faut son
+texte **et** sa date arrivée. Deux réglages, en tête du même fichier :
 
-- **cramoisi** avec une pastille, quand la date tombe aujourd'hui ;
-- **menthe**, quand le jour est publié ;
-- **sombre**, quand le contenu n'est pas encore écrit.
+```js
+var OUVRIR_TOUT = false;      // true ouvre les neuf jours d'un coup
+var OUVERTS_DAVANCE = [1];    // ces jours-là s'ouvrent sans attendre leur date
+```
 
-Le bouton « Prier aujourd'hui » ouvre le jour en cours. Avant le 16 septembre il ouvre
-le premier jour et affiche le nombre de jours restant jusqu'à la veillée.
+Chaque carte prend l'un de ces états : **aujourd'hui** sur fond vert avec une pastille
+dorée, **prié** pour un jour passé, **disponible** pour un jour ouvert d'avance,
+**en attente** sinon.
 
-## Ajouter le contenu d'un jour
+## Ajouter ou corriger le contenu d'un jour
 
-Les neuf jours vivent dans l'objet `CONTENT` de `assets/js/app.js`. Le premier jour est
-rédigé, les huit autres valent `null` et affichent « Ce jour sera disponible le … ».
-Pour publier un jour, remplacez le `null` par un objet de cette forme :
+Tout le texte vit dans `assets/js/contenu.js`, et rien d'autre n'y est. On peut le
+corriger sans jamais ouvrir `app.js`.
 
 ```js
 2: {
-  title:      "Titre du jour",
-  verse:      "« Citation de l'Évangile »",
-  ref:        "Luc 6, 6-11",
-  meditation: ["premier paragraphe", "deuxième paragraphe"],
-  intention:  "Intention du jour.",
-  prayer:     ["premier paragraphe", "deuxième paragraphe"],
-  audio:      "assets/audio/jour-2.mp3"   // facultatif
+  titre:      'Titre du jour',
+  verset:     '« Citation »',              // ou un tableau de lignes, pour un poème
+  source:     'Luc 6, 6-11',
+  meditation: ['premier paragraphe', 'deuxième paragraphe'],
+  musique:    'Titre — interprète',        // facultatif
+  intention:  'Intention du jour.',        // facultatif
+  priere:     ['paragraphe', '— Répons de litanie'],
+  lecteur:    'Ludivine',                  // facultatif
+  audio:      'assets/audio/jour-2.mp3?v=2',
+  sync:       'assets/audio/jour-2.sync.js',
+  chapitres:  { meditation: 9.98, chant: 126.6 }
 }
 ```
 
-Sans champ `audio`, le lecteur reste désactivé et affiche « Enregistrement audio à
-venir ». Avec un fichier, le bouton devient actif et la barre dorée suit la lecture.
+Une entrée de `priere` commençant par un tiret cadratin est le répons d'une litanie :
+elle s'affiche en cramoisi, détachée du reste.
+
+Les trois derniers champs — `audio`, `sync`, `chapitres` — sont écrits par
+`outils/aligner.py` : inutile de les saisir à la main. Sans `audio`, le lecteur reste
+désactivé et affiche « Enregistrement audio à venir ». Sans `sync`, le lecteur
+fonctionne mais le texte n'est pas surligné.
+
+Le signe de croix, les prières d'ancrage, l'acclamation et l'envoi sont les mêmes tous
+les jours : ils sont dans `index.html`, pas ici. La voix qui reprend chaque jour à
+partir de la prière est la constante `LECTEUR_PRIERES` d'`app.js`.
 
 ## Préparer un enregistrement
 
@@ -110,6 +133,10 @@ transcription horodatée.
 2. La transcription dans `assets/transcriptions/jour-N.json`. Le projet Remotion la
    produit sous `public/transcription-jour-N.json` : il suffit de la recopier.
 
+Attention : la transcription doit venir **du rendu que le site publie**. Le jour 1 l'a
+montré — un nouveau rendu de deux secondes plus long a décalé toute la seconde moitié,
+et le surlignage aurait dérivé d'autant.
+
 La transcription attendue a cette forme — c'est celle que Remotion écrit déjà :
 
 ```json
@@ -131,34 +158,58 @@ python outils/aligner.py 1       # un jour
 python outils/aligner.py tout    # tous les jours disponibles
 ```
 
-L'outil écrit `assets/audio/jour-N.sync.json`, remplit les champs `audio`, `sync` et
+L'outil écrit `assets/audio/jour-N.sync.js`, remplit les champs `audio`, `sync` et
 `chapitres` du jour dans `contenu.js`, et laisse un compte rendu dans
 `outils/rapport-jour-N.txt`. **Il ne touche jamais aux textes.**
 
 Lisez le compte rendu. Sous 85 % d'appariement, l'outil le dit et refuse de conclure :
-cela signifie que la lectrice a lu autre chose que le texte affiché. Le jour 1 est à
-95,8 %.
+cela signifie que la personne a lu autre chose que le texte affiché. Le jour 1 est à
+95,9 %.
 
 ### Corriger un décalage
 
 Si le surlignage est systématiquement en avance ou en retard, il n'y a rien à
-réaligner : ouvrez `assets/audio/jour-N.sync.json` et modifiez le seul champ
+réaligner : ouvrez `assets/audio/jour-N.sync.js` et modifiez le seul champ
 `decalage`, exprimé en secondes et signé.
 
-```json
-{ "version": 1, "jour": 1, "decalage": -0.4, "mots": [ … ] }
+```js
+window.NEUVAINE_SYNC[1] = {"version":1,"jour":1,"decalage":-0.4,"mots":[ … ]};
 ```
+
+Ce fichier est un script plutôt qu'un JSON à dessein : la page doit pouvoir le
+charger même ouverte directement depuis le disque, où le navigateur refuse toute
+requête. Cela permet aussi de laisser `connect-src` fermé dans la politique de
+sécurité.
 
 Une valeur négative avance le surlignage, une valeur positive le retarde. Le fichier
 étant regénéré à chaque alignement, reportez la valeur trouvée si vous relancez
 l'outil.
 
+### Ouvrir la page depuis le disque
+
+Le texte, le lecteur et le surlignage fonctionnent en double-cliquant sur
+`index.html`. Deux réserves : les polices Archivo Black et League Spartan ne se
+chargent pas — le navigateur les refuse hors serveur, et la page retombe sur les
+polices du système — et la mise en cache ne se teste pas. Pour juger du rendu,
+passez par un serveur :
+
+```bash
+python -m http.server 8750
+```
+
+puis `http://127.0.0.1:8750/`.
+
 ### Ce que le suivi ne fait pas
 
-Le chant et l'envoi ne sont pas affichés sur le site : pendant ces passages aucun mot
-n'est allumé, et seul le chapitre l'indique. Treize mots du jour 1, presque tous de la
+Le chant n'est pas affiché sur le site : pendant ces deux minutes aucun mot n'est
+allumé, seul le chapitre l'indique. Treize mots du jour 1, presque tous de la
 ponctuation isolée, n'ont pas d'équivalent sonore : le surlignage passe simplement
 par-dessus.
+
+Le texte affiché doit dire ce que la voix dit. Quand les deux s'écartent, c'est
+l'enregistrement qui fait foi — à une réserve près : la transcription contient des
+fautes, et il ne faut pas les recopier. Elle a écrit « de commencement » pour « au
+commencement », et « aimons-nous les âmes et les autres » dans le chant.
 
 ## Vérifier l'affichage à une autre date
 
@@ -170,8 +221,13 @@ index.html?date=2026-09-20
 
 ## Ce qui reste à compléter
 
-- Les méditations des jours 2 à 9.
-- Les enregistrements des jours 2 à 9. Le jour 1 est en place.
+- Les transcriptions des jours 2 à 9. Sans elles, ces jours ont le son et le texte,
+  mais pas le surlignage mot à mot.
+- Une transcription du nouveau rendu du jour 1, si l'on veut le publier à la place de
+  celui qui est en ligne.
+- L'adresse du canal WhatsApp et le compte Instagram : deux constantes vides en tête
+  d'`app.js`. Tant qu'elles le sont, les invitations à rejoindre le canal n'apparaissent
+  pas.
 - Les horaires et les modalités d'accès de la veillée, à confirmer par le diocèse.
   Ils sont actuellement marqués comme tels dans l'écran Consécration.
 

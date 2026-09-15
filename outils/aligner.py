@@ -8,7 +8,7 @@ Entrée  : assets/transcriptions/jour-N.json  (sections + mots horodatés)
           assets/js/contenu.js               (le texte affiché, jamais modifié ici)
           index.html                         (les prières communes à tous les jours)
 
-Sortie  : assets/audio/jour-N.sync.json      (une plage horaire par mot affiché)
+Sortie  : assets/audio/jour-N.sync.js        (une plage horaire par mot affiché)
           outils/rapport-jour-N.txt          (ce qui s'est bien ou mal apparié)
           assets/js/contenu.js               (seuls les champs audio, sync, chapitres)
 
@@ -532,9 +532,14 @@ def traiter(n, contenu, prieres, bavard=True):
     sortie = {'version': 1, 'jour': n, 'decalage': 0,
               'mots': mots, 'sections': chapitres}
 
-    cible = os.path.join(AUDIO, 'jour-%d.sync.json' % n)
+    # Écrit comme un script, et non comme du JSON : la page doit pouvoir le
+    # charger même ouverte depuis le disque, où le navigateur refuse toute
+    # requête. Cela permet en prime de garder connect-src fermé.
+    cible = os.path.join(AUDIO, 'jour-%d.sync.js' % n)
     io.open(cible, 'w', encoding='utf-8').write(
-        json.dumps(sortie, ensure_ascii=False, separators=(',', ':')))
+        'window.NEUVAINE_SYNC = window.NEUVAINE_SYNC || {};\n'
+        'window.NEUVAINE_SYNC[%d] = %s;\n'
+        % (n, json.dumps(sortie, ensure_ascii=False, separators=(',', ':'))))
 
     rapport = ecrire_rapport(n, suite, plages, interpoles, detail, nb_affiches)
     if bavard:
@@ -648,7 +653,7 @@ def majuscule_contenu(resultats):
                               for k, v in sorted(r['chapitres'].items(),
                                                  key=lambda kv: kv[1]))
         lignes.append("    audio: 'assets/audio/jour-%d.mp3?v=2'," % n)
-        lignes.append("    sync: 'assets/audio/jour-%d.sync.json'," % n)
+        lignes.append("    sync: 'assets/audio/jour-%d.sync.js'," % n)
         lignes.append("    chapitres: { %s }" % chapitres)
         lignes.append(fermeture)
 

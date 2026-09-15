@@ -1028,31 +1028,44 @@
     remplirChapitres(contenu && contenu.chapitres);
     restaurerFixes();
 
-    if (!contenu || !contenu.sync || !window.fetch) { return; }
+    if (!contenu || !contenu.sync) { return; }
 
     var attendu = enroberTout();
     var demande = contenu.sync;
 
-    window.fetch(demande, { cache: 'force-cache' })
-      .then(function (r) { return r.ok ? r.json() : null; })
-      .then(function (data) {
-        // Le visiteur a pu changer de jour pendant le chargement.
-        if (!data || !CONTENT[state.day] || CONTENT[state.day].sync !== demande) {
-          return;
+    /* Le fichier des horaires est chargé comme un script, et non par une
+       requête. C'est le seul moyen qu'il arrive aussi quand la page est
+       ouverte depuis le disque : là, le navigateur refuse toute requête,
+       l'origine étant « null ». Cela permet en prime de laisser
+       connect-src fermé. */
+    function poser() {
+      // Le visiteur a pu changer de jour pendant le chargement.
+      if (!CONTENT[state.day] || CONTENT[state.day].sync !== demande) { return; }
+
+      var data = (window.NEUVAINE_SYNC || {})[state.day];
+      if (!data) { return; }
+
+      if (!data.mots || data.mots.length !== attendu) {
+        // Un décalage d'un seul mot fausserait tout le reste : mieux vaut
+        // ne rien surligner que surligner de travers.
+        if (window.console) {
+          window.console.warn('Suivi ignoré : ' + (data.mots || []).length +
+            ' plages pour ' + attendu + ' mots affichés.');
         }
-        if (!data.mots || data.mots.length !== attendu) {
-          // Un décalage d'un seul mot fausserait tout le reste : mieux vaut
-          // ne rien surligner que surligner de travers.
-          if (window.console) {
-            window.console.warn('Suivi ignoré : ' + (data.mots || []).length +
-              ' plages pour ' + attendu + ' mots affichés.');
-          }
-          return;
-        }
-        poserSync(data);
-        if (audio && !audio.paused) { lancerBoucle(); }
-      })
-      .catch(function () { /* la page reste parfaitement utilisable */ });
+        return;
+      }
+      poserSync(data);
+      if (audio && !audio.paused) { lancerBoucle(); }
+    }
+
+    if ((window.NEUVAINE_SYNC || {})[state.day]) { poser(); return; }
+
+    var script = document.createElement('script');
+    script.src = demande;
+    script.async = true;
+    script.onload = poser;
+    script.onerror = function () { /* la page reste parfaitement utilisable */ };
+    document.head.appendChild(script);
   }
 
   /* ---- Mise en évidence du lecteur au défilement ---- */
