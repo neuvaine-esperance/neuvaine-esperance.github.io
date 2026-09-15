@@ -727,6 +727,10 @@
      chargement échoue, la page se comporte exactement comme avant : le
      texte reste lisible, le lecteur fonctionne, rien ne manque.
      ------------------------------------------------------------------ */
+  /* Le surlignage est allumé à chaque arrivée sur la page : c'est lui
+     qui fait tenir la voix et le texte ensemble, et personne ne pense à
+     aller le rallumer. Le couper ne vaut donc que pour la visite en
+     cours — d'où sessionStorage, qui s'efface avec l'onglet. */
   var SUIVI_CLE = 'neuvaine.suivre';
 
   // Au-delà de ce silence, plus aucun mot n'est allumé. Sans cette borne, le
@@ -1099,13 +1103,16 @@
       nettoyerSurlignage();
       el('revenir').hidden = true;
     }
-    try { window.localStorage.setItem(SUIVI_CLE, actif ? '1' : '0'); }
-    catch (e) { /* navigation privée : on garde le réglage pour la session */ }
+    try { window.sessionStorage.setItem(SUIVI_CLE, actif ? '1' : '0'); }
+    catch (e) { /* navigation privée : on garde le réglage en mémoire vive */ }
   }
 
   function suiviMemorise() {
     try {
-      var v = window.localStorage.getItem(SUIVI_CLE);
+      // Un « non » gardé par l'ancienne version aurait éteint le surlignage
+      // pour toujours chez qui l'avait coupé une fois. On l'efface.
+      window.localStorage.removeItem(SUIVI_CLE);
+      var v = window.sessionStorage.getItem(SUIVI_CLE);
       return v === null ? true : v === '1';
     } catch (e) { return true; }
   }
