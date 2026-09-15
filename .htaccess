@@ -37,7 +37,7 @@
   Header always set Referrer-Policy "no-referrer"
 
   # Coupe les interfaces dont le site n'a aucun besoin.
-  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(), usb=(), xr-spatial-tracking=()"
+  Header always set Permissions-Policy "accelerometer=(), autoplay=(), camera=(), display-capture=(), encrypted-media=(), fullscreen=(self), geolocation=(), gyroscope=(), magnetometer=(), microphone=(), midi=(), payment=(), publickey-credentials-get=(), screen-wake-lock=(self), usb=(), xr-spatial-tracking=()"
 
   # Isole la page des autres onglets et empêche l'inclusion depuis un autre site.
   Header always set Cross-Origin-Opener-Policy "same-origin"

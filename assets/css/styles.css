@@ -157,10 +157,11 @@ button {
   display: flex;
   flex-direction: column;
   box-shadow: 0 0 60px rgba(0, 0, 0, .15);
-  /* « hidden » ouvrirait un conteneur de défilement et neutraliserait le
-     lecteur collant. « clip » coupe pareil sans ouvrir de conteneur ; les
-     navigateurs qui l'ignorent gardent « hidden » et perdent seulement
-     le maintien du lecteur en haut de l'écran. */
+  /* Coupe ce qui déborde latéralement, les halos décoratifs surtout.
+     « clip » plutôt que « hidden » : il coupe pareil sans ouvrir de
+     conteneur de défilement. Ni l'un ni l'autre n'atteint le lecteur une
+     fois posé sur l'écran — un élément fixe n'est rogné que par un
+     ancêtre qui lui sert de référence, et celui-ci est la fenêtre. */
   overflow: hidden;
   overflow: clip;
 }
@@ -623,18 +624,22 @@ main { display: contents; }
 /* --------------------------------------------------------------------------
    Le lecteur, barre verte retenue en haut de l'écran
    -------------------------------------------------------------------------- */
-/* La zone garde la hauteur du lecteur déplié, quoi qu'il arrive. Le
-   lecteur glisse à l'intérieur. Sans elle, se replier raccourcissait la
-   page de près de trois cents pixels et tout le texte remontait d'un coup. */
+/* Au sommet de la page, le lecteur est posé dans le flux, déplié, au-dessus
+   du numéro du jour. Dès que la page défile il décolle et se pose sur le
+   haut de l'écran ; la zone garde alors très exactement la place qu'il
+   occupait, mesurée à l'instant du décollage, si bien que rien de ce qui
+   suit ne bouge.
+
+   « sticky » ne pouvait pas convenir : un élément collant ne sort jamais de
+   la boîte de son parent, et cette zone-ci n'est haute que du lecteur — il
+   s'en décrochait au bout de trois cents pixels de défilement. */
 .audio-zone {
   position: relative;
   z-index: 20;
 }
 
 .audio {
-  position: -webkit-sticky;
-  position: sticky;
-  top: 0;
+  position: relative;
   z-index: 20;
   margin: 0;
   padding: 16px var(--pad) 14px;
@@ -642,16 +647,35 @@ main { display: contents; }
   background: var(--green);
   color: var(--cream);
   box-shadow: 0 12px 24px rgba(39, 78, 23, .3);
-  /* Pas de transition sur la hauteur : le script mesure la différence au
-     moment du changement pour compenser le défilement, et une hauteur qui
-     bouge encore fausserait la mesure. */
 }
 
+/* Posé sur le haut de l'écran, et calé sur la colonne de l'application
+   plutôt que sur la largeur de la fenêtre. */
+.audio.is-fixe {
+  position: fixed;
+  top: 0;
+  left: 50%;
+  width: 100%;
+  max-width: var(--app-w);
+  transform: translateX(-50%);
+  z-index: 40;
+}
+
+/* La ligne du lecteur. L'ordre d'affichage est posé ici et non par l'ordre
+   du balisage : la pastille de rappel doit tomber avant le chevron quand la
+   barre est resserrée, et sur sa propre ligne quand elle est dépliée. */
 .audio__row {
   display: flex;
+  flex-wrap: wrap;
   gap: 14px;
   align-items: center;
 }
+.audio__btn           { order: 1; }
+.audio__body          { order: 2; }
+.audio__compact-titre { order: 3; }
+.audio__plier         { order: 4; }
+.revenir              { order: 5; }
+.audio.compact .audio__plier { order: 6; }
 
 .audio__btn {
   width: 56px;
@@ -895,26 +919,45 @@ main { display: contents; }
 .audio.compact .audio__body,
 .audio.compact .audio__tools,
 .audio.compact .audio__transcript { display: none; }
-.audio.compact .revenir { margin-top: 8px; }
 .audio.compact .audio__compact-titre { display: block; }
 
-/* Pastille de rappel. Elle vit dans la barre : celle-ci reste en haut de
-   l'écran, la pastille y reste donc visible sans se superposer à rien. */
+/* Pastille de rappel. Elle vit dans la barre du lecteur, qui reste sur le
+   haut de l'écran : elle y est donc toujours atteignable, barre dépliée
+   comme resserrée, sans jamais se superposer au texte.
+
+   Dépliée, elle prend toute la largeur et tombe sous la commande — la
+   placer à côté écraserait le curseur de position. Resserrée, elle tient
+   sur la ligne, entre le titre et le chevron. */
 .revenir {
-  display: block;
-  margin: 10px auto 0;
+  flex: 0 0 100%;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  gap: 6px;
+  margin: 0;
   min-height: var(--tap);
   padding: 9px 16px;
-  border: 1px solid rgba(232, 184, 75, .6);
+  border: 1px solid var(--gold);
   border-radius: 999px;
-  background: var(--green);
+  background: var(--green-2);
   color: var(--gold);
   font-family: var(--sans);
   font-size: .8125rem;
   font-weight: 700;
+  line-height: 1.2;
   box-shadow: 0 6px 16px rgba(39, 78, 23, .3);
 }
-.revenir:hover { background: var(--green-2); }
+.audio.compact .revenir {
+  flex: 0 1 auto;
+  padding: 8px 12px;
+  font-size: .75rem;
+  white-space: nowrap;
+}
+/* Le titre du jour et la pastille ne tiennent pas ensemble sur un petit
+   écran. Tant que la pastille est là, c'est elle qui compte : le titre
+   s'efface, et revient dès qu'elle disparaît. */
+.audio.compact.a-revenir .audio__compact-titre { display: none; }
+.revenir:hover { background: var(--green); }
 
 /* --------------------------------------------------------------------------
    En-tête du jour
@@ -1618,7 +1661,14 @@ main { display: contents; }
    on retire les commandes et on repasse en noir sur blanc.
    -------------------------------------------------------------------------- */
 @media print {
-  .audio { position: static; box-shadow: none; }
+  .audio, .audio.is-fixe {
+    position: static;
+    transform: none;
+    box-shadow: none;
+  }
+  /* La zone porte une hauteur posée par le script : sans cela, une page
+     imprimée en cours de lecture garderait un blanc à la place du lecteur. */
+  .audio-zone { height: auto !important; }
   .chapitres, .suivi, .revenir, .sync-debug { display: none !important; }
   .mot-actif, .mot-lu {
     background: none !important;

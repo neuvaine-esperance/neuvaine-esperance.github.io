@@ -241,17 +241,45 @@ l'enregistrement qui fait foi — à une réserve près : la transcription conti
 fautes, et il ne faut pas les recopier. Elle a écrit « de commencement » pour « au
 commencement », et « aimons-nous les âmes et les autres » dans le chant.
 
-## Replier le lecteur
+## Le lecteur, et pourquoi il n'est pas « collant »
 
-Le bloc audio reste en haut de l'écran pendant l'écoute. Il se replie de lui-même sur
-une ligne dès qu'on a dépassé sa hauteur, et se redéplie en haut de page. Le chevron,
-à droite, permet de le plier ou de le déplier à la main : ce choix l'emporte alors sur
-l'automatique, jusqu'au changement de jour.
+Au sommet de la page le lecteur est posé dans le flux, déplié, juste au-dessus du
+numéro du jour. Dès le premier pixel de défilement il en sort et se pose sur le haut
+de l'écran, où il reste pendant toute l'écoute. Il s'y resserre sur une ligne une fois
+sa place dépassée, et se redéplie quand on remonte. Le chevron, à droite, permet de le
+plier ou de le déplier à la main : ce choix l'emporte alors sur l'automatique, jusqu'au
+changement de jour.
 
-Dans les deux cas le texte ne bouge pas d'un pixel. Le lecteur est dans le flux : en
-changeant de taille il déplace tout ce qui le suit. Le déplacement réel est mesuré
-après coup et rendu — le calculer d'après la hauteur perdue donnerait le double, le
-navigateur corrigeant déjà de son côté.
+`position: sticky` ne pouvait pas tenir ce rôle. Un élément collant ne sort jamais de
+la boîte de son parent, et le lecteur vit dans une zone qui n'est haute que de lui :
+il s'en décrochait au bout de trois cents pixels et disparaissait pour le reste de la
+page. C'est `position: fixed` qui le porte, et la zone qui garde sa place — sa hauteur
+est relevée juste avant le décollage et posée sur la zone, si bien que la page ne
+change pas d'un pixel et que rien de ce qui suit ne se déplace. Il n'y a donc plus
+aucun rattrapage de défilement à faire.
+
+Le repli obéit à une seule règle : resserrée, la barre doit encore couvrir tout ce qui
+reste à l'écran de la place que le lecteur occupait, sans quoi un vide s'ouvrirait
+entre elle et le numéro du jour. Elle ne se replie qu'une fois le bas de cette place
+passé à moins de sa propre hauteur du haut de l'écran. Cette hauteur-là ne se mesure
+qu'après un premier repli : jusque-là elle vaut zéro, ce qui retarde ce premier repli
+sans jamais ouvrir de vide.
+
+La pastille « Revenir au texte lu » vit sur la ligne du lecteur. Dépliée, elle passe
+sous la commande ; resserrée, elle tient à côté du titre, qui lui cède la place — les
+deux ne rentrent pas ensemble sur un téléphone. Dans les deux cas elle reste là tant
+que le visiteur a la main sur le défilement.
+
+## L'écran pendant l'écoute
+
+Une prière dure sept à neuf minutes sans qu'on touche l'appareil : l'écran s'éteindrait
+au milieu de la méditation. Le site demande donc un verrou d'écran au départ de la
+lecture (Screen Wake Lock) et le rend dès l'arrêt. Le navigateur le retire de lui-même
+quand l'onglet passe derrière ; il est redemandé au retour si la lecture court toujours.
+
+Ce verrou passe par l'en-tête `Permissions-Policy`, où `screen-wake-lock` est ouvert au
+site lui-même — dans `_headers` comme dans `.htaccess`. Un navigateur qui ne le connaît
+pas, ou qui le refuse, laisse la lecture se dérouler exactement comme avant.
 
 ## Vérifier l'affichage à une autre date
 

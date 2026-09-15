@@ -390,9 +390,9 @@
 
     chargerSuivi(c);
 
-    // La place du lecteur se mesure une fois le jour affiché : la longueur
-    // du titre et le nombre de chapitres la font varier.
-    window.setTimeout(fixerZone, 0);
+    // Un jour s'ouvre en haut de la page : le lecteur y redescend dans le
+    // flux, déplié, quel que soit l'état où le jour précédent l'a laissé.
+    reposerLecteur();
 
     renderDayNav(n);
   }
@@ -608,9 +608,10 @@
       audio.currentTime = 0;
       audio = null;
     }
+    laisserEcranSeteindre();
     wanted = null;
     nettoyerSurlignage();
-    if (el('revenir')) { el('revenir').hidden = true; }
+    montrerRevenir(false);
     if (el('audio-icon')) { setBtnState(false); }
     if (el('audio-seek')) { el('audio-seek').value = 0; }
     if (el('audio-elapsed')) { el('audio-elapsed').textContent = '0:00'; }
@@ -661,6 +662,39 @@
     });
   }
 
+  /* ------------------------------------------------------------------
+     L'écran reste allumé pendant l'écoute
+
+     Une prière dure sept à neuf minutes, et l'on ne touche pas le téléphone
+     pendant ce temps : l'écran s'éteindrait au bout d'une minute, le texte
+     disparaîtrait au milieu de la méditation, et il faudrait déverrouiller
+     pour suivre la suite. Le verrou tombe dès l'arrêt de la lecture — jamais
+     l'écran ne reste allumé pour rien.
+
+     Tout ici est facultatif. Un navigateur qui ne connaît pas ce verrou, ou
+     qui le refuse, laisse la lecture se dérouler exactement comme avant.
+     ------------------------------------------------------------------ */
+  var veille = null;
+
+  function garderEcranAllume() {
+    if (veille || !navigator.wakeLock || !audio || audio.paused) { return; }
+    navigator.wakeLock.request('screen').then(function (verrou) {
+      // La demande met un instant à aboutir : l'écoute a pu s'arrêter
+      // entre-temps, et il ne faut pas laisser l'écran allumé derrière soi.
+      if (!audio || audio.paused) { verrou.release(); return; }
+      veille = verrou;
+      // Le navigateur relâche de lui-même quand l'onglet passe derrière.
+      verrou.addEventListener('release', function () { veille = null; });
+    }).catch(function () { /* refusé : l'écoute continue sans */ });
+  }
+
+  function laisserEcranSeteindre() {
+    if (!veille) { return; }
+    var verrou = veille;
+    veille = null;
+    verrou.release().catch(function () { /* déjà relâché */ });
+  }
+
   function toggleAudio() {
     if (!audioSrc) { return; }
     if (!audio) { makeAudio(); }
@@ -669,10 +703,12 @@
       audio.play();
       setBtnState(true);
       lancerBoucle();
+      garderEcranAllume();
       el('audio-status').textContent = 'Lecture en cours';
     } else {
       audio.pause();
       setBtnState(false);
+      laisserEcranSeteindre();
       el('audio-status').textContent = 'Lecture en pause';
     }
   }
@@ -1007,7 +1043,7 @@
     var maintenant = Date.now();
     if (maintenant < repriseAuto) { return; }
     if (maintenant - notreDefilement < (reduced.matches ? 80 : 600)) { return; }
-    if (!el('revenir').hidden) { el('revenir').hidden = true; }
+    if (!el('revenir').hidden) { montrerRevenir(false); }
 
     var r = span.getBoundingClientRect();
     var h = window.innerHeight || document.documentElement.clientHeight;
@@ -1020,10 +1056,23 @@
     });
   }
 
+  /** Montre ou cache la pastille de rappel.
+   *
+   *  Resserrée, la barre n'a pas la largeur de porter à la fois le titre du
+   *  jour et la pastille. La classe prévient la feuille de style : tant que
+   *  la pastille est là, c'est elle qui compte. */
+  function montrerRevenir(oui) {
+    var bouton = el('revenir');
+    if (!bouton) { return; }
+    bouton.hidden = !oui;
+    var bloc = $('#view-jour .audio');
+    if (bloc) { bloc.classList.toggle('a-revenir', oui); }
+  }
+
   function mainMise() {
     repriseAuto = Date.now() + PAUSE_SUIVI;
     suspendu = true;
-    if (sync && audio && !audio.paused) { el('revenir').hidden = false; }
+    if (sync && audio && !audio.paused) { montrerRevenir(true); }
   }
 
   function boucleSuivi() {
@@ -1090,7 +1139,7 @@
     applySeek(t);
     repriseAuto = 0;
     suspendu = false;
-    el('revenir').hidden = true;
+    montrerRevenir(false);
     majSurlignage();
     if (audio.paused) { toggleAudio(); }
   }
@@ -1101,7 +1150,7 @@
     document.body.classList.toggle('sans-suivi', !actif);
     if (!actif) {
       nettoyerSurlignage();
-      el('revenir').hidden = true;
+      montrerRevenir(false);
     }
     try { window.sessionStorage.setItem(SUIVI_CLE, actif ? '1' : '0'); }
     catch (e) { /* navigation privée : on garde le réglage en mémoire vive */ }
@@ -1124,7 +1173,7 @@
     motsDom = [];
     motActif = motMax = -1;
     repriseAuto = 0;
-    el('revenir').hidden = true;
+    montrerRevenir(false);
     remplirChapitres(contenu && contenu.chapitres);
     restaurerFixes();
 
@@ -1181,40 +1230,72 @@
      une position que l'on est en train de déplacer. */
   var hauteurDepliee = 0;
 
+  // Hauteur de la barre resserrée. Elle ne peut se mesurer qu'une fois la
+  // barre repliée au moins une fois ; jusque-là elle vaut zéro, ce qui
+  // retarde le premier repli sans jamais ouvrir de vide.
+  var hauteurResserree = 0;
+
   // Tant que le visiteur n'a pas plié le lecteur lui-même, il se plie tout
   // seul au défilement. Dès qu'il y touche, c'est son choix qui commande —
   // jusqu'au changement de jour.
   var pliageManuel = false;
 
-  /** Replie ou déplie, en gardant le texte immobile.
+  /** Où commence la zone du lecteur, en coordonnées de page.
    *
-   *  Le lecteur est dans le flux : en changeant de taille il déplace tout
-   *  ce qui le suit. On mesure la différence et on rend exactement autant
-   *  de défilement, sans quoi la page saute sous les yeux. */
-  /** Fige la place que le lecteur occupe dans la page, mesurée déplié.
-   *  Tant qu'elle ne bouge pas, se replier ne déplace plus rien. */
-  function fixerZone() {
+   *  La zone reste dans le flux même quand le lecteur en est sorti : sa
+   *  hauteur est alors figée, et cette mesure ne bouge donc pas. */
+  function hautZone(zone) {
+    return zone.getBoundingClientRect().top + window.pageYOffset;
+  }
+
+  /** Décolle le lecteur dès que la page défile, et le repose au sommet.
+   *
+   *  La hauteur qu'il occupait est relevée juste avant le décollage et
+   *  rendue à la zone : la page garde exactement la même longueur, et rien
+   *  de ce qui suit ne se déplace. Au moment précis où il décolle, sa place
+   *  dans le flux affleure le haut de l'écran — le passage ne se voit pas.
+   *
+   *  Aucun seuil réglable ici : le lecteur est posé sur l'écran dès le
+   *  premier pixel de défilement, et seulement à partir de là. */
+  function majFixe() {
     var zone = $('#audio-zone');
     var bloc = $('#view-jour .audio');
     if (!zone || !bloc || VIEWS.jour.hidden) { return; }
-    if (bloc.classList.contains('compact')) { return; }
-    zone.style.minHeight = bloc.offsetHeight + 'px';
+
+    var fixe = bloc.classList.contains('is-fixe');
+    var veut = window.pageYOffset > hautZone(zone);
+    if (veut === fixe) { return; }
+
+    if (veut) {
+      zone.style.height = bloc.offsetHeight + 'px';
+      bloc.classList.add('is-fixe');
+    } else {
+      bloc.classList.remove('is-fixe');
+      zone.style.height = '';
+    }
   }
 
+  /** Remet le lecteur au sommet, déplié, comme au premier affichage. */
+  function reposerLecteur() {
+    var zone = $('#audio-zone');
+    var bloc = $('#view-jour .audio');
+    if (!zone || !bloc) { return; }
+    bloc.classList.remove('is-fixe');
+    zone.style.height = '';
+    hauteurDepliee = 0;
+    basculerCompact(false);
+  }
+
+  /** Replie ou déplie la barre.
+   *
+   *  Plus rien à rattraper ici : le lecteur est hors du flux dès que la page
+   *  a bougé, et la zone garde sa place. Au sommet de la page, où il est
+   *  encore dans le flux, le repli déplace bien le texte — mais c'est alors
+   *  un geste du visiteur sur le chevron, et le voir se faire est juste. */
   function basculerCompact(veut) {
     var bloc = $('#view-jour .audio');
     if (!bloc) { return; }
-
-    var compact = bloc.classList.contains('compact');
-    if (veut === compact) { return; }
-
-    /* On ne calcule pas le rattrapage d'après la hauteur perdue ou gagnée :
-       le navigateur corrige déjà de lui-même les changements de taille
-       au-dessus du regard, et la correction s'ajouterait à la sienne — on
-       reculait alors de deux fois la hauteur. On mesure donc ce qui a
-       réellement bougé à l'écran, et on ne rend que ce qui manque. */
-    var ancre = $('#view-jour .day-head') || $('#day-content');
-    var avant = ancre ? ancre.getBoundingClientRect().top : 0;
+    if (veut === bloc.classList.contains('compact')) { return; }
 
     bloc.classList.toggle('compact', veut);
 
@@ -1224,34 +1305,31 @@
       el('audio-plier-texte').textContent = veut
         ? 'Déplier le lecteur' : 'Replier le lecteur';
     }
-
-    var decalage = ancre ? Math.round(ancre.getBoundingClientRect().top - avant) : 0;
-    if (decalage) {
-      notreDefilement = Date.now();
-      // Sans « auto », le défilement doux de la feuille de style
-      // transformerait ce rattrapage en glissement, donc en sursaut.
-      window.scrollBy({ top: decalage, behavior: 'auto' });
-    }
   }
 
   function majCompact() {
     var bloc = $('#view-jour .audio');
-    if (!bloc || VIEWS.jour.hidden || pliageManuel) { return; }
+    var zone = $('#audio-zone');
+    if (!bloc || !zone || VIEWS.jour.hidden || pliageManuel) { return; }
 
     var maintenant = Date.now();
     if (maintenant - notreDefilement < 600) { return; }
 
     var compact = bloc.classList.contains('compact');
-    if (!compact) { hauteurDepliee = bloc.offsetHeight; }
+    if (compact) { hauteurResserree = bloc.offsetHeight; }
+    else { hauteurDepliee = bloc.offsetHeight; }
     if (!hauteurDepliee) { return; }
 
-    /* On ne resserre qu'une fois la barre dépliée entièrement dépassée.
-       Plus haut, la page n'a pas la course nécessaire pour rendre les
-       pixels qu'elle perdrait : le rattrapage buterait sur le sommet et le
-       texte sauterait quand même. L'écart entre les deux seuils évite le
+    /* Resserrée, la barre doit encore couvrir tout ce qui reste à l'écran de
+       la place que le lecteur occupait : sinon un vide s'ouvre entre elle et
+       le numéro du jour. Elle ne peut donc se replier qu'à partir du moment
+       où le bas de cette place est passé à moins de sa propre hauteur du
+       haut de l'écran — et elle se déplie dès qu'on revient au-dessus. Les
+       vingt-quatre pixels qui séparent les deux seuils évitent le
        clignotement à la frontière. */
+    var seuil = hautZone(zone) + hauteurDepliee - hauteurResserree;
     var y = window.pageYOffset;
-    var veut = compact ? y > hauteurDepliee - 60 : y > hauteurDepliee + 20;
+    var veut = compact ? y > seuil : y > seuil + 24;
     basculerCompact(veut);
   }
 
@@ -1286,7 +1364,7 @@
 
     el('revenir').addEventListener('click', function () {
       repriseAuto = 0;
-      this.hidden = true;
+      montrerRevenir(false);
       if (motActif >= 0 && motsDom[motActif]) { suivreDuRegard(motsDom[motActif]); }
     });
 
@@ -1327,6 +1405,9 @@
     // seconde : tant qu'il se poursuit, chaque secousse repousse l'échéance,
     // et il reste reconnu comme le nôtre jusqu'à ce qu'il s'arrête.
     window.addEventListener('scroll', function () {
+      // Le décollage ne connaît pas de délai de garde : il ne déplace rien,
+      // et le moindre retard laisserait voir le lecteur s'échapper.
+      majFixe();
       majCompact();
       var maintenant = Date.now();
       if (maintenant - notreDefilement <= 1200) {
@@ -1426,13 +1507,26 @@
     bindSuivi();
     initLiens();
     initPartage();
+    majFixe();
     majCompact();
 
+    // Une rotation d'écran change la hauteur du lecteur. On le repose dans
+    // le flux le temps de le remesurer, puis on le laisse décoller de neuf.
     window.addEventListener('resize', function () {
-      // Une rotation d'écran change la hauteur du lecteur : on la reprend.
+      var zone = $('#audio-zone');
       var bloc = $('#view-jour .audio');
-      if (bloc && bloc.classList.contains('compact')) { return; }
-      fixerZone();
+      if (!zone || !bloc || !bloc.classList.contains('is-fixe')) { return; }
+      bloc.classList.remove('is-fixe');
+      zone.style.height = '';
+      hauteurDepliee = hauteurResserree = 0;
+      majFixe();
+      majCompact();
+    });
+
+    // Revenir sur l'onglet après l'avoir quitté : le verrou d'écran a été
+    // relâché entre-temps, on le redemande si la lecture court toujours.
+    document.addEventListener('visibilitychange', function () {
+      if (document.visibilityState === 'visible') { garderEcranAllume(); }
     });
 
     window.addEventListener('popstate', function () { applyHash(true); });

@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=27">
-<link rel="stylesheet" href="assets/css/styles.css?v=27">
+<link rel="stylesheet" href="assets/css/fonts.css?v=28">
+<link rel="stylesheet" href="assets/css/styles.css?v=28">
 </head>
 <body>
 
@@ -170,14 +170,14 @@
     </nav>
 
     <!-- ----------------------------------------------------------------
-         Lecteur, retenu en haut de l'écran pendant toute la lecture.
-         Au-delà de sa propre hauteur de défilement il se resserre sur une
-         seule ligne, pour ne pas manger la page.
+         Le lecteur. Au sommet de la page il est posé dans le flux, déplié,
+         juste au-dessus du numéro du jour. Dès que la page défile il décolle
+         et se tient sur le haut de l'écran pendant toute la lecture ; passé
+         la place qu'il occupait, il se resserre sur une seule ligne pour ne
+         pas manger le texte.
 
-         Il est enfermé dans une zone dont la hauteur ne bouge jamais : en
-         se repliant il ne raccourcit donc pas la page, et rien de ce qui
-         suit ne se déplace. C'est le seul moyen que le texte reste
-         parfaitement immobile.
+         La zone qui l'entoure retient sa place pendant qu'il est décollé :
+         rien de ce qui suit ne se déplace, et le texte reste immobile.
          ---------------------------------------------------------------- -->
     <div class="audio-zone" id="audio-zone">
     <section class="audio" aria-labelledby="t-ecoute">
@@ -227,6 +227,14 @@
           <span class="audio__plier-icone" aria-hidden="true">&#9662;</span>
           <span class="visually-hidden" id="audio-plier-texte">Replier le lecteur</span>
         </button>
+
+        <!-- Apparaît seulement quand le visiteur a fait défiler lui-même.
+             Elle est sur la ligne du lecteur, qui reste sur le haut de
+             l'écran : barre dépliée elle passe dessous, barre resserrée elle
+             tient à côté du titre, et dans les deux cas elle reste là. -->
+        <button class="revenir" type="button" id="revenir" hidden>
+          <span aria-hidden="true">&uarr;</span> Revenir au texte lu
+        </button>
       </div>
 
       <div class="audio__tools">
@@ -257,13 +265,6 @@
       <p class="audio__transcript" id="audio-transcript">
         Le texte lu, ci-dessous, en est la transcription complète.
       </p>
-
-      <!-- Apparaît seulement quand le visiteur a fait défiler lui-même.
-           Elle vit dans la barre, qui reste en haut de l'écran : posée
-           en dessous, elle recouvrirait la barre dépliée. -->
-      <button class="revenir" type="button" id="revenir" hidden>
-        <span aria-hidden="true">&uarr;</span> Revenir au texte lu
-      </button>
     </section>
     </div>
 
@@ -480,7 +481,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=27" defer></script>
-<script src="assets/js/app.js?v=27" defer></script>
+<script src="assets/js/contenu.js?v=28" defer></script>
+<script src="assets/js/app.js?v=28" defer></script>
 </body>
 </html>
