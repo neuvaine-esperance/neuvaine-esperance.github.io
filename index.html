@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=40">
-<link rel="stylesheet" href="assets/css/styles.css?v=40">
+<link rel="stylesheet" href="assets/css/fonts.css?v=43">
+<link rel="stylesheet" href="assets/css/styles.css?v=43">
 </head>
 <body>
 
@@ -121,8 +121,12 @@
     <section class="participer anim" id="participer" aria-labelledby="t-participer">
       <h2 class="eyebrow eyebrow--gold" id="t-participer">Comment participer</h2>
       <p class="participer__texte">
-        Chaque matin à 7 h, le jour est envoyé sur le canal WhatsApp du Groupe
-        Espérance. Il suffit de rejoindre le canal.
+        Chaque matin, la prière du jour de la neuvaine est publiée sur la chaîne
+        WhatsApp du Groupe Espérance.
+      </p>
+      <p class="participer__texte">
+        Pour recevoir chaque jour la prière et prier avec nous, il vous suffit de
+        rejoindre le canal.
       </p>
       <a class="btn-primary" id="lien-whatsapp-accueil" href="#" hidden>
         Rejoindre le canal WhatsApp <span aria-hidden="true">&rsaquo;</span>
@@ -168,12 +172,14 @@
          Le lecteur : un bouton, une barre de position, le temps. Rien
          d'autre à régler — le texte se surligne tout seul pendant l'écoute.
 
-         Au sommet de la page il est posé dans le flux, juste au-dessus du
-         numéro du jour. Dès que la page défile il décolle et se tient sur le
-         haut de l'écran pendant toute la lecture. La zone qui l'entoure
-         retient sa place : rien de ce qui suit ne se déplace.
+         Il est posé en bas de l'écran, où le pouce l'atteint sans changer
+         de prise, et il n'en bouge plus : ni décollage, ni repli. La page
+         réserve sa hauteur sous le texte pour que rien ne finisse dessous.
+
+         Il reste ici, en tête du jour, dans l'ordre du document : c'est la
+         commande principale de la page, et le clavier la rencontre donc
+         en premier.
          ---------------------------------------------------------------- -->
-    <div class="audio-zone" id="audio-zone">
     <section class="audio" aria-labelledby="t-ecoute">
       <h2 class="visually-hidden" id="t-ecoute">Écoute de la prière du jour</h2>
 
@@ -215,11 +221,14 @@
         </button>
       </div>
 
-      <p class="audio__transcript" id="audio-transcript">
-        Le texte lu, ci-dessous, en est la transcription complète.
+      <!-- Elle décrit le bouton pour les lecteurs d'écran, via
+           aria-describedby. Elle n'est pas affichée : sur une barre posée
+           en bas, chaque ligne se paie en hauteur, et celle-ci n'apprend
+           rien à qui voit la page. -->
+      <p class="audio__transcript visually-hidden" id="audio-transcript">
+        Le texte de la page est la transcription complète de l'enregistrement.
       </p>
     </section>
-    </div>
 
 
     <div class="day-head rays">
@@ -489,7 +498,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=40" defer></script>
-<script src="assets/js/app.js?v=40" defer></script>
+<script src="assets/js/contenu.js?v=43" defer></script>
+<script src="assets/js/app.js?v=43" defer></script>
 </body>
 </html>

@@ -711,56 +711,54 @@ main { display: contents; }
 }
 
 /* --------------------------------------------------------------------------
-   Le lecteur, barre verte retenue en haut de l'écran
+   Le lecteur, barre verte en bas de l'écran
    -------------------------------------------------------------------------- */
-/* Au sommet de la page, le lecteur est posé dans le flux, déplié, au-dessus
-   du numéro du jour. Dès que la page défile il décolle et se pose sur le
-   haut de l'écran ; la zone garde alors très exactement la place qu'il
-   occupait, mesurée à l'instant du décollage, si bien que rien de ce qui
-   suit ne bouge.
+/* Il y est posé dès l'arrivée et n'en bouge plus. Deux raisons : le bas de
+   l'écran est la zone que le pouce atteint sans changer de prise, et une
+   commande qui ne se déplace jamais est une commande de moins à comprendre
+   — l'ancienne barre partait du flux puis décollait au premier pixel de
+   défilement, et ce saut déconcertait.
 
-   « sticky » ne pouvait pas convenir : un élément collant ne sort jamais de
-   la boîte de son parent, et cette zone-ci n'est haute que du lecteur — il
-   s'en décrochait au bout de trois cents pixels de défilement. */
-.audio-zone {
-  position: relative;
-  z-index: 20;
-}
+   Le suivi mot à mot garde le mot lu entre 35 % et 60 % de la hauteur
+   visible : il ne passe donc jamais sous la barre.
 
+   Calée sur la colonne de l'application, pas sur la largeur de la fenêtre.
+   Le retrait du bas suit la zone sûre de l'appareil : sur un iPhone, la
+   barre de Safari et l'indicateur d'accueil vivent là. */
 .audio {
-  position: relative;
-  z-index: 20;
-  margin: 0;
-  padding: 16px var(--pad) 14px;
-  border-radius: 0 0 var(--r-lg) var(--r-lg);
-  background: var(--green);
-  color: var(--cream);
-  box-shadow: 0 12px 24px rgba(39, 78, 23, .3);
-}
-
-/* Posé sur le haut de l'écran, et calé sur la colonne de l'application
-   plutôt que sur la largeur de la fenêtre. */
-.audio.is-fixe {
   position: fixed;
-  top: 0;
+  bottom: 0;
   left: 50%;
+  transform: translateX(-50%);
   width: 100%;
   max-width: var(--app-w);
-  transform: translateX(-50%);
   z-index: 40;
+  margin: 0;
+  padding: 16px var(--pad) calc(14px + env(safe-area-inset-bottom, 0px));
+  border-radius: var(--r-lg) var(--r-lg) 0 0;
+  background: var(--green);
+  color: var(--cream);
+  box-shadow: 0 -12px 24px rgba(39, 78, 23, .3);
 }
 
+/* La barre flotte au-dessus du texte : la page réserve sa hauteur en bas,
+   pour que le dernier bouton du jour ne finisse pas dessous. La mesure est
+   posée par le script, qui la reprend quand la pastille de rappel paraît ;
+   la valeur écrite ici ne sert qu'avant la première mesure. */
+#view-jour { padding-bottom: calc(var(--barre, 130px) + 24px); }
+
 /* La ligne du lecteur : le bouton, puis la barre et le temps. La pastille
-   de rappel, quand elle paraît, passe sur sa propre ligne en dessous. */
+   de rappel, quand elle paraît, prend sa propre ligne au-dessus — elle
+   renvoie vers le haut, et la barre est en bas. */
 .audio__row {
   display: flex;
   flex-wrap: wrap;
   gap: 14px;
   align-items: center;
 }
+.revenir     { order: 0; }
 .audio__btn  { order: 1; }
 .audio__body { order: 2; }
-.revenir     { order: 3; }
 
 .audio__btn {
   width: 56px;
@@ -1562,14 +1560,9 @@ main { display: contents; }
    on retire les commandes et on repasse en noir sur blanc.
    -------------------------------------------------------------------------- */
 @media print {
-  .audio, .audio.is-fixe {
-    position: static;
-    transform: none;
-    box-shadow: none;
-  }
-  /* La zone porte une hauteur posée par le script : sans cela, une page
-     imprimée en cours de lecture garderait un blanc à la place du lecteur. */
-  .audio-zone { height: auto !important; }
+  /* La barre est masquée plus bas ; la place qu'elle réserve à l'écran
+     laisserait sinon un blanc au bas de la feuille. */
+  #view-jour { padding-bottom: 0 !important; }
   .revenir, .sync-debug { display: none !important; }
   .mot-actif, .mot-lu {
     background: none !important;

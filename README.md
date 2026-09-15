@@ -87,7 +87,8 @@ les autres lignes.
 
 Le cartouche « Comment participer », lui, est toujours affiché, même si l'adresse du
 canal venait à manquer : il dit comment la neuvaine se reçoit, ce qui vaut d'être lu
-sans bouton. Seul le bouton dépend de `LIEN_WHATSAPP`.
+sans bouton. Seul le bouton dépend de `LIEN_WHATSAPP`. Son texte est dicté mot pour
+mot — deux phrases, deux paragraphes — et vit dans `index.html`, pas dans le script.
 
 ## La page des organisateurs
 
@@ -346,26 +347,51 @@ chose — est simplement toujours allumé.
 L'invitation à écouter est écrite comme une phrase, pas en petites capitales
 espacées : c'est une instruction, et elle doit se lire.
 
-### Pourquoi il n'est pas « collant »
+### En bas de l'écran, et il n'en bouge pas
 
-Au sommet de la page le lecteur est posé dans le flux, juste au-dessus du numéro du
-jour. Dès le premier pixel de défilement il en sort et se pose sur le haut de
-l'écran, où il reste pendant toute l'écoute.
+La barre est posée en bas, dès l'arrivée sur un jour, et elle y reste. Deux raisons.
 
-`position: sticky` ne pouvait pas tenir ce rôle. Un élément collant ne sort jamais de
-la boîte de son parent, et le lecteur vit dans une zone qui n'est haute que de lui :
-il s'en décrochait au bout de trois cents pixels et disparaissait pour le reste de la
-page. C'est `position: fixed` qui le porte, et la zone qui garde sa place — sa hauteur
-est relevée juste avant le décollage et posée sur la zone, si bien que la page ne
-change pas d'un pixel et que rien de ce qui suit ne se déplace.
+Le bas de l'écran est la zone que le pouce atteint sans changer de prise. Le bouton
+« Écouter » était en haut — l'endroit le plus difficile à toucher d'une main sur un
+téléphone d'aujourd'hui, et c'est la commande dont tout dépend.
 
-Il ne se resserre plus en cours de route : réduit à trois commandes, il tient en un
-peu plus de cent pixels et ne mange pas le texte. Toute la mécanique de repli — deux
-hauteurs mesurées, deux seuils, un choix manuel qui l'emportait sur l'automatique —
-a disparu avec le chevron.
+Surtout, elle ne se déplace plus. Elle partait du flux, au-dessus du numéro du jour,
+puis décollait au premier pixel de défilement pour aller se coller en haut : elle
+changeait de place une fois, toute seule. C'est exactement ce qui déconcerte quelqu'un
+qui hésite déjà. Une commande qui ne bouge jamais est une commande de moins à
+comprendre.
 
-La pastille « Revenir au texte lu » reste, sur sa propre ligne sous la commande. Elle
-paraît quand le visiteur a fait défiler lui-même, et reste là tant qu'il a la main.
+Toute la mécanique du décollage est partie avec : la zone qui retenait la place,
+`majFixe`, `hautZone`, `reposerLecteur`, le rattrapage à la rotation d'écran. Il ne
+reste qu'un `position: fixed; bottom: 0`, calé sur la colonne de l'application plutôt
+que sur la largeur de la fenêtre.
+
+Une seule chose à tenir : la barre flotte au-dessus du texte, la page doit donc
+réserver sa hauteur en bas, sans quoi le dernier bouton du jour finirait dessous. Cette
+hauteur varie — la pastille de rappel ajoute une ligne quand elle paraît — elle est
+donc mesurée et non devinée : `reserverPlaceBarre()` la pose dans la propriété
+`--barre`, que `#view-jour` ajoute à son retrait du bas. Mesuré à 390 px de large :
+144 px de barre seule, 202 px avec la pastille.
+
+Le suivi mot à mot garde le mot lu entre 35 % et 60 % de la hauteur visible : il ne
+passe donc jamais sous la barre.
+
+La pastille « Revenir au texte lu » prend sa propre ligne **au-dessus** des commandes :
+elle renvoie vers le haut, et la barre est en bas. Elle paraît quand le visiteur a fait
+défiler lui-même, et reste là tant qu'il a la main.
+
+La phrase « Le texte de la page est la transcription complète de l'enregistrement »
+n'est plus affichée. Elle décrit toujours le bouton pour les lecteurs d'écran, par
+`aria-describedby` : sur une barre posée en bas, chaque ligne se paie en hauteur, et
+celle-ci n'apprenait rien à qui voit la page. La barre est passée de 199 à 144 px.
+
+### À vérifier sur un iPhone
+
+Sur Safari iOS, la barre d'adresse est en bas et apparaît ou disparaît au défilement.
+Le retrait du bas de la barre suit `env(safe-area-inset-bottom)`, ce qui est le bon
+réflexe, mais **cela n'a pas pu être vérifié sur un vrai appareil** — seulement dans
+un Chrome sans fenêtre. À regarder de près à la première occasion : la barre ne doit
+ni être recouverte par celle de Safari, ni sautiller quand elle s'escamote.
 
 ## L'écran pendant l'écoute
 

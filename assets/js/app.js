@@ -533,7 +533,7 @@
 
     // Un jour s'ouvre en haut de la page : le lecteur y redescend dans le
     // flux, déplié, quel que soit l'état où le jour précédent l'a laissé.
-    reposerLecteur();
+    reserverPlaceBarre();
   }
 
   /** Le verset est soit une phrase, soit un poème donné ligne par ligne.
@@ -1134,7 +1134,9 @@
    *  la pastille est là, c'est elle qui compte. */
   function montrerRevenir(oui) {
     var bouton = el('revenir');
-    if (bouton) { bouton.hidden = !oui; }
+    if (!bouton || bouton.hidden === !oui) { return; }
+    bouton.hidden = !oui;
+    reserverPlaceBarre();
   }
 
   function mainMise() {
@@ -1243,54 +1245,26 @@
     document.head.appendChild(script);
   }
 
-  /* ---- Le lecteur se pose sur le haut de l'écran ----
+  /* ---- Le lecteur, en bas de l'écran ----
 
-     Réduit à un bouton, une barre et le temps, il tient en un peu plus de
-     cent pixels : il n'a plus besoin de se resserrer au défilement, et le
-     chevron qui le repliait a disparu avec cette mécanique. */
+     Il y est posé dès l'arrivée et n'en bouge plus : le pouce l'atteint
+     sans changer de prise, et une commande qui ne se déplace jamais est
+     une commande de moins à comprendre. Toute la mécanique de décollage
+     — la zone qui retenait la place, les mesures, le rattrapage à la
+     rotation — est partie avec.
 
-  /** Où commence la zone du lecteur, en coordonnées de page.
-   *
-   *  La zone reste dans le flux même quand le lecteur en est sorti : sa
-   *  hauteur est alors figée, et cette mesure ne bouge donc pas. */
-  function hautZone(zone) {
-    return zone.getBoundingClientRect().top + window.pageYOffset;
-  }
-
-  /** Décolle le lecteur dès que la page défile, et le repose au sommet.
-   *
-   *  La hauteur qu'il occupait est relevée juste avant le décollage et
-   *  rendue à la zone : la page garde exactement la même longueur, et rien
-   *  de ce qui suit ne se déplace. Au moment précis où il décolle, sa place
-   *  dans le flux affleure le haut de l'écran — le passage ne se voit pas.
-   *
-   *  Aucun seuil réglable ici : le lecteur est posé sur l'écran dès le
-   *  premier pixel de défilement, et seulement à partir de là. */
-  function majFixe() {
-    var zone = $('#audio-zone');
+     Reste une seule chose à tenir : la barre flotte au-dessus du texte,
+     la page doit donc réserver sa hauteur en bas pour que rien ne finisse
+     dessous. La hauteur varie — la pastille « Revenir au texte lu »
+     ajoute une ligne quand elle paraît — elle est donc mesurée plutôt
+     que devinée. */
+  function reserverPlaceBarre() {
     var bloc = $('#view-jour .audio');
-    if (!zone || !bloc || VIEWS.jour.hidden) { return; }
-
-    var fixe = bloc.classList.contains('is-fixe');
-    var veut = window.pageYOffset > hautZone(zone);
-    if (veut === fixe) { return; }
-
-    if (veut) {
-      zone.style.height = bloc.offsetHeight + 'px';
-      bloc.classList.add('is-fixe');
-    } else {
-      bloc.classList.remove('is-fixe');
-      zone.style.height = '';
+    if (!bloc) { return; }
+    var h = bloc.offsetHeight;
+    if (h) {
+      document.documentElement.style.setProperty('--barre', h + 'px');
     }
-  }
-
-  /** Remet le lecteur au sommet, comme au premier affichage. */
-  function reposerLecteur() {
-    var zone = $('#audio-zone');
-    var bloc = $('#view-jour .audio');
-    if (!zone || !bloc) { return; }
-    bloc.classList.remove('is-fixe');
-    zone.style.height = '';
   }
 
   /* ---- Affichage de contrôle : ?sync=debug ---- */
@@ -1357,9 +1331,6 @@
     // seconde : tant qu'il se poursuit, chaque secousse repousse l'échéance,
     // et il reste reconnu comme le nôtre jusqu'à ce qu'il s'arrête.
     window.addEventListener('scroll', function () {
-      // Le décollage ne connaît pas de délai de garde : il ne déplace rien,
-      // et le moindre retard laisserait voir le lecteur s'échapper.
-      majFixe();
       var maintenant = Date.now();
       if (maintenant - notreDefilement <= 1200) {
         notreDefilement = maintenant;
@@ -1447,18 +1418,11 @@
     bindSuivi();
     initLiens();
     initPartage();
-    majFixe();
+    reserverPlaceBarre();
 
-    // Une rotation d'écran change la hauteur du lecteur. On le repose dans
-    // le flux le temps de le remesurer, puis on le laisse décoller de neuf.
-    window.addEventListener('resize', function () {
-      var zone = $('#audio-zone');
-      var bloc = $('#view-jour .audio');
-      if (!zone || !bloc || !bloc.classList.contains('is-fixe')) { return; }
-      bloc.classList.remove('is-fixe');
-      zone.style.height = '';
-      majFixe();
-    });
+    // Une rotation d'écran change la largeur de la barre, donc sa hauteur :
+    // la place réservée sous le texte est reprise.
+    window.addEventListener('resize', reserverPlaceBarre);
 
     // Revenir sur l'onglet après l'avoir quitté : le verrou d'écran a été
     // relâché entre-temps, on le redemande si la lecture court toujours.
