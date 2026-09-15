@@ -98,6 +98,68 @@ Le passage en mono est sans perte quand les deux canaux sont identiques, ce qui 
 le cas du jour 1. Le coupe-bas à 70 Hz reste sous la voix et évite d'amplifier les
 grondements. La cible de -16 LUFS est le niveau habituel de la parole sur le web.
 
+## Synchronisation mot à mot
+
+Pendant la lecture, le mot prononcé est surligné et la page se déplace pour le garder
+sous les yeux. Cela demande deux fichiers par jour : l'enregistrement, et une
+transcription horodatée.
+
+### Déposer un nouveau jour
+
+1. L'enregistrement dans `assets/audio/jour-N.mp3`, encodé selon la recette ci-dessus.
+2. La transcription dans `assets/transcriptions/jour-N.json`. Le projet Remotion la
+   produit sous `public/transcription-jour-N.json` : il suffit de la recopier.
+
+La transcription attendue a cette forme — c'est celle que Remotion écrit déjà :
+
+```json
+{ "jour": 1,
+  "sections": [
+    { "id": "signe-de-croix", "label": "SIGNE DE CROIX",
+      "debut": 0.8, "fin": 9.38, "chante": false,
+      "mots": [ { "mot": "Au", "debut": 0.94, "fin": 1.05 } ] }
+  ] }
+```
+
+Les six sections attendues sont `signe-de-croix`, `meditation`, `chant`, `prions`,
+`prieres` et `envoi`. Les horaires sont en secondes.
+
+### Lancer l'alignement
+
+```bash
+python outils/aligner.py 1       # un jour
+python outils/aligner.py tout    # tous les jours disponibles
+```
+
+L'outil écrit `assets/audio/jour-N.sync.json`, remplit les champs `audio`, `sync` et
+`chapitres` du jour dans `contenu.js`, et laisse un compte rendu dans
+`outils/rapport-jour-N.txt`. **Il ne touche jamais aux textes.**
+
+Lisez le compte rendu. Sous 85 % d'appariement, l'outil le dit et refuse de conclure :
+cela signifie que la lectrice a lu autre chose que le texte affiché. Le jour 1 est à
+95,8 %.
+
+### Corriger un décalage
+
+Si le surlignage est systématiquement en avance ou en retard, il n'y a rien à
+réaligner : ouvrez `assets/audio/jour-N.sync.json` et modifiez le seul champ
+`decalage`, exprimé en secondes et signé.
+
+```json
+{ "version": 1, "jour": 1, "decalage": -0.4, "mots": [ … ] }
+```
+
+Une valeur négative avance le surlignage, une valeur positive le retarde. Le fichier
+étant regénéré à chaque alignement, reportez la valeur trouvée si vous relancez
+l'outil.
+
+### Ce que le suivi ne fait pas
+
+Le chant et l'envoi ne sont pas affichés sur le site : pendant ces passages aucun mot
+n'est allumé, et seul le chapitre l'indique. Treize mots du jour 1, presque tous de la
+ponctuation isolée, n'ont pas d'équivalent sonore : le surlignage passe simplement
+par-dessus.
+
 ## Vérifier l'affichage à une autre date
 
 Ajoutez un paramètre à l'adresse pour simuler un jour donné, sans toucher au code :
