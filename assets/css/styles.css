@@ -623,6 +623,14 @@ main { display: contents; }
 /* --------------------------------------------------------------------------
    Le lecteur, barre verte retenue en haut de l'écran
    -------------------------------------------------------------------------- */
+/* La zone garde la hauteur du lecteur déplié, quoi qu'il arrive. Le
+   lecteur glisse à l'intérieur. Sans elle, se replier raccourcissait la
+   page de près de trois cents pixels et tout le texte remontait d'un coup. */
+.audio-zone {
+  position: relative;
+  z-index: 20;
+}
+
 .audio {
   position: -webkit-sticky;
   position: sticky;
@@ -1399,36 +1407,51 @@ main { display: contents; }
    le mot ferait sauter toute la ligne à chaque syllabe.
 
    L'or sert partout. Sur les cartouches sombres — Parole de Dieu en vert,
-   intention en cramoisi — il est posé plus franchement : un lavis léger y
+   intention en cramoisi — il est posé autrement : un lavis léger y
    disparaîtrait, et c'est exactement ce qui se passait quand cette règle
    portait encore du vert, du temps où ces blocs étaient sur fond crème.
+
+   Le mouvement est dissymétrique, et c'est voulu. Le surlignage s'allume
+   vite, pour ne pas trahir le rythme de la voix ; il s'éteint lentement.
+   Une parole va parfois à trois mots par seconde : si chacun s'allumait et
+   s'éteignait net, la page clignoterait. Avec une extinction longue,
+   quelques mots restent tièdes derrière celui qui parle, et le regard suit
+   une lueur qui avance au lieu d'une suite d'éclairs.
    -------------------------------------------------------------------------- */
 .mot {
   border-radius: 3px;
-  transition: background-color .12s;
+  /* Le halo doit s'estomper comme le fond : sans lui dans la liste, il
+     apparaissait et disparaissait d'un coup, et c'est ce qui rendait le
+     surlignage dur. */
+  transition: background-color .34s ease-out,
+              box-shadow .34s ease-out,
+              opacity .45s ease-out;
 }
 .mot-actif {
-  background: rgba(232, 184, 75, .34);
-  box-shadow: 0 0 0 2px rgba(232, 184, 75, .34);
+  background: rgba(232, 184, 75, .38);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .38);
+  /* L'allumage, lui, est franc. */
+  transition-duration: .1s, .1s, .45s;
 }
-.mot-lu { opacity: .85; }
+.mot-lu { opacity: .86; }
 
 /* Sur les cartouches sombres, le mot est cerné d'or plutôt que rempli.
    Un aplat assez franc pour se voir éclaircissait trop le fond : le texte
-   crème n'y tenait plus que 4,02:1, sous le seuil de 4,5. L'anneau se voit
-   autant et laisse le fond sombre. */
+   crème n'y tenait plus que 4,02:1, sous le seuil de 4,5. L'anneau laisse
+   le fond sombre — et reste discret, un liseré franc sur fond foncé
+   frappant bien plus l'œil que le même sur fond clair. */
 .scripture__text .mot-actif,
 .intention__text .mot-actif {
-  background: rgba(232, 184, 75, .16);
-  box-shadow: 0 0 0 2px rgba(232, 184, 75, .85);
+  background: rgba(232, 184, 75, .14);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .5);
 }
 
 /* L'acclamation est déjà écrite en or : un fond doré lui mangerait son
    contraste — il tombait à 3,90:1. On l'assombrit au contraire, et
    l'anneau suffit à désigner le mot. */
 .anchors__acclaim .mot-actif {
-  background: rgba(26, 26, 26, .34);
-  box-shadow: 0 0 0 2px rgba(232, 184, 75, .85);
+  background: rgba(26, 26, 26, .30);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .5);
 }
 
 /* Sur fond sombre, un mot déjà lu ne doit pas s'effacer : la crème sur le
@@ -1436,6 +1459,31 @@ main { display: contents; }
 .scripture__text .mot-lu,
 .intention__text .mot-lu,
 .anchors__acclaim .mot-lu { opacity: .95; }
+
+/* --------------------------------------------------------------------------
+   La partie en cours d'écoute
+
+   Pendant le chant, aucun mot ne s'allume : c'est l'encart qui doit dire
+   que la musique passe. Les autres blocs reçoivent la même marque, pour
+   qu'on sache où l'on en est sans regarder la barre.
+   -------------------------------------------------------------------------- */
+.is-en-cours { transition: border-color .4s ease, background-color .4s ease; }
+
+/* L'encart du chant, en pointillés sable au repos, passe à l'or plein. */
+.day-music.is-en-cours {
+  border-style: solid;
+  border-color: var(--gold);
+  background: rgba(232, 184, 75, .12);
+}
+.day-music.is-en-cours .day-music__label { color: var(--crimson); }
+
+/* Les blocs de texte prennent un filet doré dans la marge. */
+.meditation.is-en-cours,
+.prayer.is-en-cours,
+.anchors.is-en-cours,
+.envoi.is-en-cours {
+  box-shadow: inset 3px 0 0 var(--gold);
+}
 
 /* Interrupteur coupé : plus aucune trace de lecture. */
 .sans-suivi .mot-actif,

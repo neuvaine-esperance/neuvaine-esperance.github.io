@@ -1,13 +1,13 @@
 Jour 3 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 535 (629 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 601
+  mots affichés      : 537 (631 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 603
   interpolés         : 28
-  taux d'appariement : 95.5 %
+  taux d'appariement : 95.6 %
 
   Section          appariés / affichés        début
-    signe-de-croix   10 /   11    90.9 %          0.80 s
+    signe-de-croix   12 /   13    92.3 %          0.80 s
     meditation      225 /  239    94.1 %         10.50 s
     prions          127 /  133    95.5 %        249.78 s
     prieres         225 /  232    97.0 %        320.68 s

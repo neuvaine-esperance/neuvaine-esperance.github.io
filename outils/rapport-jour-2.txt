@@ -1,19 +1,20 @@
 Jour 2 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 458 (552 passages, le Je vous salue Marie étant dit trois fois)
+  mots affichés      : 460 (554 passages, le Je vous salue Marie étant dit trois fois)
   appariés           : 530
-  interpolés         : 22
-  taux d'appariement : 96.0 %
+  interpolés         : 24
+  taux d'appariement : 95.7 %
 
   Section          appariés / affichés        début
-    signe-de-croix   10 /   11    90.9 %          0.80 s
+    signe-de-croix   10 /   13    76.9 %          0.80 s
     meditation      220 /  228    96.5 %          6.82 s
     prions           61 /   67    91.0 %        132.42 s
     prieres         225 /  232    97.0 %        166.65 s
     envoi            14 /   14   100.0 %        293.39 s
 
-  Les 19 plus longues suites de mots interpolés
+  Les 20 plus longues suites de mots interpolés
+      2 mot(s)  [titre         0.87 s]  Cœur miséricordieux
       2 mot(s)  [signe         6.01 s]  Amen. «
       2 mot(s)  [meditation  115.39 s]  leur point
       2 mot(s)  [priere      143.45 s]  aux malheurs

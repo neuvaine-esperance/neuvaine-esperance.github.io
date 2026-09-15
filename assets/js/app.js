@@ -390,6 +390,10 @@
 
     chargerSuivi(c);
 
+    // La place du lecteur se mesure une fois le jour affiché : la longueur
+    // du titre et le nombre de chapitres la font varier.
+    window.setTimeout(fixerZone, 0);
+
     renderDayNav(n);
   }
 
@@ -730,6 +734,13 @@
   // de chant, comme si la lecture était bloquée.
   var SILENCE_MAX = 1.5;
 
+  /* Décalage commun à tous les jours, en secondes. Les horodatages de la
+     transcription tombent un rien en avance sur ce que l'oreille perçoit :
+     une valeur négative retient le surlignage d'autant. Le champ
+     « decalage » de chaque fichier de synchronisation s'ajoute à celui-ci,
+     pour rattraper un jour en particulier. */
+  var DECALAGE_GLOBAL = -0.15;
+
   // Le suivi automatique se tait un instant dès que le visiteur fait défiler
   // la page lui-même : reprendre la main sous son doigt serait pénible.
   var PAUSE_SUIVI = 5000;
@@ -755,7 +766,7 @@
   /** Les zones surlignables, dans l'ordre exact où l'aligneur les a comptées.
    *  Toute divergence d'ordre décalerait tous les mots. */
   function zonesSuivi() {
-    var liste = [$('#day-content .signe'), $('#day-verse'), $('#day-ref'),
+    var liste = [$('#day-title'), $('#day-content .signe'), $('#day-verse'), $('#day-ref'),
                  $('#day-meditation'), $('#day-intention'),
                  $('#day-music-paroles'), $('#day-prayer')];
     // Ce sélecteur ramène les quatre prières dans l'ordre de la page :
@@ -790,6 +801,7 @@
    *  garde une copie intacte, pour pouvoir les réenvelopper à chaque jour
    *  sans accumuler les spans les uns dans les autres. */
   function fixes() {
+    // Le titre n'est pas un texte fixe : il est réécrit à chaque jour.
     var liste = [$('#day-content .signe')];
     Array.prototype.push.apply(liste,
       document.querySelectorAll('.anchors__list > div > p'));
@@ -892,6 +904,7 @@
   }
 
   function nettoyerSurlignage() {
+    eteindreSections();
     motsDom.forEach(function (span) {
       if (span) { span.classList.remove('mot-actif', 'mot-lu'); }
     });
@@ -902,7 +915,8 @@
   function majSurlignage() {
     if (!sync || !suivre || !audio) { return; }
 
-    var t = (wanted !== null ? wanted : audio.currentTime) + (sync.decalage || 0);
+    var t = (wanted !== null ? wanted : audio.currentTime)
+            + (sync.decalage || 0) + DECALAGE_GLOBAL;
     var i = motA(t);
     if (debugSuivi) { majDebug(t, i); }
     if (i === motActif) { return; }
@@ -935,6 +949,17 @@
   /** Allume la pilule de la partie en cours d'écoute. */
   var chapitreActif = -1;
 
+  /* À quel bloc de la page correspond chaque partie de l'enregistrement.
+     Le chant n'a pas de texte, mais il a son encart : c'est lui qui doit
+     dire que la musique est en train de passer. */
+  var BLOCS_SECTION = {
+    meditation: '#view-jour .meditation',
+    chant: '#day-music',
+    prions: '#view-jour .prayer',
+    prieres: '#view-jour .anchors',
+    envoi: '#view-jour .envoi'
+  };
+
   function majChapitre(t) {
     if (!sync || !sync.sections) { return; }
     var boutons = el('chapitres').children;
@@ -943,10 +968,28 @@
       if (Number(boutons[k].getAttribute('data-debut')) <= t) { trouve = k; }
     }
     if (trouve === chapitreActif) { return; }
+
     for (var j = 0; j < boutons.length; j++) {
       boutons[j].classList.toggle('is-actif', j === trouve);
     }
+
+    // Le bloc correspondant s'allume aussi, pour qu'on voie où l'on en est
+    // sans regarder la barre.
+    var cle = trouve >= 0 ? boutons[trouve].getAttribute('data-section') : null;
+    Object.keys(BLOCS_SECTION).forEach(function (nom) {
+      var bloc = $(BLOCS_SECTION[nom]);
+      if (bloc) { bloc.classList.toggle('is-en-cours', nom === cle); }
+    });
+
     chapitreActif = trouve;
+  }
+
+  function eteindreSections() {
+    Object.keys(BLOCS_SECTION).forEach(function (nom) {
+      var bloc = $(BLOCS_SECTION[nom]);
+      if (bloc) { bloc.classList.remove('is-en-cours'); }
+    });
+    chapitreActif = -1;
   }
 
   /** Garde le mot lu entre 35 % et 60 % de la hauteur visible.
@@ -1026,6 +1069,7 @@
       b.type = 'button';
       b.className = 'chapitre';
       b.setAttribute('data-debut', chapitres[cle]);
+      b.setAttribute('data-section', cle);
       b.textContent = nom;
       b.setAttribute('aria-label',
         nom + ', écouter à partir de ' + fmtSpoken(chapitres[cle]));
@@ -1140,6 +1184,16 @@
    *  Le lecteur est dans le flux : en changeant de taille il déplace tout
    *  ce qui le suit. On mesure la différence et on rend exactement autant
    *  de défilement, sans quoi la page saute sous les yeux. */
+  /** Fige la place que le lecteur occupe dans la page, mesurée déplié.
+   *  Tant qu'elle ne bouge pas, se replier ne déplace plus rien. */
+  function fixerZone() {
+    var zone = $('#audio-zone');
+    var bloc = $('#view-jour .audio');
+    if (!zone || !bloc || VIEWS.jour.hidden) { return; }
+    if (bloc.classList.contains('compact')) { return; }
+    zone.style.minHeight = bloc.offsetHeight + 'px';
+  }
+
   function basculerCompact(veut) {
     var bloc = $('#view-jour .audio');
     if (!bloc) { return; }
@@ -1366,6 +1420,13 @@
     initLiens();
     initPartage();
     majCompact();
+
+    window.addEventListener('resize', function () {
+      // Une rotation d'écran change la hauteur du lecteur : on la reprend.
+      var bloc = $('#view-jour .audio');
+      if (bloc && bloc.classList.contains('compact')) { return; }
+      fixerZone();
+    });
 
     window.addEventListener('popstate', function () { applyHash(true); });
 

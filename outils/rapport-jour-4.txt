@@ -1,13 +1,13 @@
 Jour 4 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 416 (510 passages, le Je vous salue Marie étant dit trois fois)
+  mots affichés      : 418 (512 passages, le Je vous salue Marie étant dit trois fois)
   appariés           : 484
-  interpolés         : 26
-  taux d'appariement : 94.9 %
+  interpolés         : 28
+  taux d'appariement : 94.5 %
 
   Section          appariés / affichés        début
-    signe-de-croix   11 /   11   100.0 %          0.80 s
+    signe-de-croix   11 /   13    84.6 %          0.80 s
     meditation      129 /  141    91.5 %          7.93 s
     prions          105 /  112    93.8 %         93.73 s
     prieres         225 /  232    97.0 %        160.47 s
@@ -15,6 +15,7 @@ Jour 4 — alignement de la transcription sur le texte affiché
 
   Les 20 plus longues suites de mots interpolés
       5 mot(s)  [verset       25.79 s]  ! » Sainte Thérèse d’Avila
+      2 mot(s)  [titre         0.93 s]  La charité
       2 mot(s)  [priere      112.29 s]  : Apprends-nous,
       2 mot(s)  [priere      132.26 s]  vus, reconnus
       1 mot(s)  [verset        7.02 s]  «
@@ -33,7 +34,6 @@ Jour 4 — alignement de la transcription sur le texte affiché
       1 mot(s)  [ave         234.94 s]  nous,
       1 mot(s)  [ave         244.59 s]  ;
       1 mot(s)  [ave         258.57 s]  nous,
-      1 mot(s)  [gloire      272.87 s]  au
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
     aucun.

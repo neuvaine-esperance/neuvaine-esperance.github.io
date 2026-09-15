@@ -1,13 +1,13 @@
 Jour 9 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 599 (693 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 627
+  mots affichés      : 602 (696 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 630
   interpolés         : 66
   taux d'appariement : 90.5 %
 
   Section          appariés / affichés        début
-    signe-de-croix   10 /   11    90.9 %          0.80 s
+    signe-de-croix   13 /   14    92.9 %          0.80 s
     meditation      242 /  274    88.3 %         10.14 s
     prions          146 /  162    90.1 %        263.46 s
     prieres         225 /  232    97.0 %        351.22 s

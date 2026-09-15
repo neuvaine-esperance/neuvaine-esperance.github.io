@@ -191,9 +191,14 @@ charger même ouverte directement depuis le disque, où le navigateur refuse tou
 requête. Cela permet aussi de laisser `connect-src` fermé dans la politique de
 sécurité.
 
-Une valeur négative avance le surlignage, une valeur positive le retarde. Le fichier
-étant regénéré à chaque alignement, reportez la valeur trouvée si vous relancez
-l'outil.
+Une valeur négative retient le surlignage, une valeur positive le fait prendre de
+l'avance. Le fichier étant regénéré à chaque alignement, reportez la valeur trouvée si
+vous relancez l'outil.
+
+Pour corriger les neuf jours d'un coup, c'est la constante `DECALAGE_GLOBAL` en tête
+d'`app.js` : elle s'ajoute au `decalage` de chaque fichier. Elle vaut -0,15 s, les
+horodatages de la transcription tombant un rien en avance sur ce que l'oreille
+perçoit.
 
 ### Ouvrir la page depuis le disque
 
@@ -212,6 +217,17 @@ puis `http://127.0.0.1:8750/`.
 Une réserve : ce serveur ne répond pas aux requêtes par plage. Se déplacer loin dans un
 enregistrement échoue donc, et l'on croit à un défaut du site. Les hébergeurs, eux, les
 gèrent. Pour tester les déplacements, utilisez un serveur qui les accepte.
+
+### La partie en cours
+
+Le bloc correspondant à la partie écoutée s'allume d'un filet doré, et l'encart du
+chant passe du pointillé sable à l'or plein : pendant les deux minutes de musique,
+aucun mot n'est surligné, c'est l'encart qui dit où l'on en est.
+
+Trois jours — les 3, 6 et 9 — s'ouvrent sur une annonce parlée, « Jour 3. La
+fidélité. », avant le signe de croix. Le titre affiché lui sert d'appui et s'allume
+pendant ces quelques secondes. Sur les six autres jours il n'a pas d'équivalent sonore
+et ne s'allume jamais.
 
 ### Ce que le suivi ne fait pas
 

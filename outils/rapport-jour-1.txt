@@ -1,13 +1,13 @@
 Jour 1 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 543 (637 passages, le Je vous salue Marie étant dit trois fois)
+  mots affichés      : 547 (641 passages, le Je vous salue Marie étant dit trois fois)
   appariés           : 610
-  interpolés         : 27
-  taux d'appariement : 95.8 %
+  interpolés         : 31
+  taux d'appariement : 95.2 %
 
   Section          appariés / affichés        début
-    signe-de-croix   10 /   11    90.9 %          0.80 s
+    signe-de-croix   10 /   15    66.7 %          0.80 s
     meditation      214 /  223    96.0 %         10.00 s
     chant             0 /    0        —        126.56 s
     prions          147 /  157    93.6 %        265.83 s
@@ -15,6 +15,7 @@ Jour 1 — alignement de la transcription sur le texte affiché
     envoi            14 /   14   100.0 %        470.30 s
 
   Les 20 plus longues suites de mots interpolés
+      4 mot(s)  [titre         0.93 s]  L’amour lui-même vous désire
       2 mot(s)  [priere      284.66 s]  qui laisse
       1 mot(s)  [signe         1.67 s]  et
       1 mot(s)  [verset        9.00 s]  «
@@ -34,7 +35,6 @@ Jour 1 — alignement de la transcription sur le texte affiché
       1 mot(s)  [priere      318.87 s]  —
       1 mot(s)  [priere      326.49 s]  —
       1 mot(s)  [priere      335.13 s]  —
-      1 mot(s)  [ave         379.23 s]  ;
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
     141.50 s  après « ensemble. » (meditation) → « Pour » (priere)

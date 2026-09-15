@@ -41,7 +41,10 @@ SEUIL = 0.85
 # Quelle section de l'enregistrement correspond à quelles zones de la page.
 # Le chant et l'envoi ne sont pas affichés : ils ne servent que de chapitres.
 CORRESPONDANCE = [
-    ('signe-de-croix', ['signe']),
+    # Trois jours s'ouvrent sur une annonce — « Jour 3. La fidélité. » —
+    # avant le signe de croix. Le titre affiché lui sert d'appui. Les jours
+    # sans annonce laissent ce titre sans horaire, donc jamais surligné.
+    ('signe-de-croix', ['titre', 'signe']),
     # L'intention est lue à la fin de la méditation, avant le temps de
     # musique — vérifié sur les jours 3 et 8, où elle s'y retrouve à 100 %.
     ('meditation',     ['verset', 'source', 'meditation', 'intention']),
@@ -368,6 +371,7 @@ def sequence_affichee(jour, prieres, intention_avant=False):
     une fois mais dit trois fois : ses mots reviennent trois fois dans la suite,
     avec le même indice et un numéro de passage différent."""
     zones = [
+        ('titre', jour.get('titre', ''), 1),
         ('signe', prieres['signe'], 1),
         ('verset', _plat(jour.get('verset')), 1),
         ('source', jour.get('source', ''), 1),
@@ -526,9 +530,17 @@ def traiter(n, contenu, prieres, bavard=True):
     interpoles = interpoler(plages, suite)
 
     # Un mot affiché porte autant de plages qu'il a été prononcé de fois.
+    # On retient au passage lesquelles reposent sur un appui réel : celles
+    # qui n'en ont pas ne recevront pas de durée minimale, et resteront donc
+    # muettes. Sans cela, le titre d'un jour sans annonce parlée clignotait
+    # cinquante millisecondes au démarrage.
+    sans_appui = set(interpoles)
     par_indice = {}
-    for entree, plage in zip(suite, plages):
+    interpole_par_indice = {}
+    for position, (entree, plage) in enumerate(zip(suite, plages)):
         par_indice.setdefault(entree['indice'], []).append(plage)
+        interpole_par_indice.setdefault(entree['indice'], []).append(
+            position in sans_appui)
 
     # Une durée nulle signale au site un mot qu'il ne faut jamais surligner :
     # la référence d'un texte, que la lectrice annonce autrement. Un mot bel
@@ -541,12 +553,13 @@ def traiter(n, contenu, prieres, bavard=True):
     plat = []
     for indice in sorted(par_indice):
         for rang, p in enumerate(par_indice[indice]):
-            plat.append([indice, rang, round(p[0], 2), round(p[1], 2)])
+            plat.append([indice, rang, round(p[0], 2), round(p[1], 2),
+                         interpole_par_indice[indice][rang]])
     plat.sort(key=lambda x: (x[2], x[0]))
 
     for k, entree in enumerate(plat):
-        indice, _, debut, fin = entree
-        if indice in muets or fin > debut:
+        indice, _, debut, fin, interpole = entree
+        if indice in muets or interpole or fin > debut:
             continue
         suivant = plat[k + 1][2] if k + 1 < len(plat) else debut + 0.05
         if suivant > debut:
@@ -557,7 +570,7 @@ def traiter(n, contenu, prieres, bavard=True):
             entree[3] = debut
 
     refaits = {}
-    for indice, rang, debut, fin in plat:
+    for indice, rang, debut, fin, _ in plat:
         refaits.setdefault(indice, {})[rang] = [debut, fin]
 
     mots = []
