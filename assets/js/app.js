@@ -14,9 +14,9 @@
   var TOTAL_DAYS = 9;
   var DAY_MS = 86400000;
 
-  /* Chaque jour paraît le matin même : la veille, il reste en attente.
-     Mettre true ici ouvre les neuf jours d'un seul coup. */
-  var OUVRIR_TOUT = false;
+  /* Les neuf jours sont ouverts, sans attendre leur date. Repasser à false
+     rend la parution au matin même, jour après jour. */
+  var OUVRIR_TOUT = true;
 
   /* Adresse du canal WhatsApp. Tant qu'elle est vide, les deux invitations
      à rejoindre le canal restent absentes de la page : mieux vaut ne rien
