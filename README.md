@@ -9,7 +9,7 @@ aucune dépendance, aucun outil de construction : on ouvre `index.html` et ça f
 ## Contenu
 
 ```
-index.html                    les trois écrans : accueil, jour, consécration
+index.html                    les quatre écrans : accueil, jour, consécration, envoi
 assets/css/styles.css         palette, typographie, mise en page
 assets/css/fonts.css          déclaration des polices auto-hébergées
 assets/fonts/                 Archivo Black et League Spartan en woff2, 75 Ko
@@ -60,21 +60,67 @@ var OUVRIR_TOUT = false;      // true ouvre les neuf jours d'un coup
 var OUVERTS_DAVANCE = [1];    // ces jours-là s'ouvrent sans attendre leur date
 ```
 
-## L'accueil ne montre qu'un jour
+## L'accueil
 
-La maquette fait de l'accueil une page d'atterrissage : on y arrive par le lien du
-matin, pas pour y choisir un jour. Il n'y a donc ni bouton « Prier aujourd'hui » ni
-grille des neuf jours — seulement, sous la citation, la ligne
+C'est une page d'atterrissage, et rien d'autre. **On n'entre pas dans un jour depuis
+l'accueil** : chaque jour part le matin sur le canal WhatsApp, avec son lien. Le site
+ne sert qu'à le recevoir et à rejoindre le canal.
 
-> AUJOURD'HUI : JOUR 3 / 9 — LA FIDÉLITÉ, LU PAR ROMAIN
+Il n'y a donc **qu'une seule commande sur toute la page** : le bouton « Rejoindre le
+canal WhatsApp », dans le cartouche vert « Comment participer », à la place que lui
+donne la maquette — juste sous l'en-tête. Tout le reste est du texte.
 
-écrite par `renderHome()` dans `app.js`. La maquette la donne comme une simple
-étiquette ; elle est ici un bouton, parce qu'elle est devenue la seule porte vers un
-jour depuis l'accueil. Avant le 16 septembre elle annonce « Dès maintenant » si le
-jour 1 est déjà ouvert, sinon la date d'ouverture de la neuvaine.
+Ni bouton « Prier aujourd'hui », ni grille des neuf jours, ni sommaire des thèmes. La
+seule trace du jour en cours est une ligne écrite par `renderHome()` dans `app.js` :
 
-Les autres jours restent atteignables par leur adresse, `index.html#jour-4`, et par
-les flèches en bas de chaque jour.
+> Aujourd'hui : jour 3 / 9 — La fidélité
+
+Du texte, pas un bouton : pas de chevron, pas de survol, rien qui donne envie
+d'appuyer. Elle garde en revanche la taille du texte courant plutôt que les petites
+capitales espacées de la maquette — elle se lit, elle ne décore pas. Avant le
+16 septembre elle annonce « Dès maintenant » si le jour 1 est déjà ouvert, sinon la
+date d'ouverture.
+
+Même raison pour le bandeau des dates : plein cramoisi dans la maquette, il avait
+l'air d'un bouton à appuyer. Il est devenu du texte sur le même panneau de crème que
+les autres lignes.
+
+Le cartouche « Comment participer », lui, est toujours affiché, même si l'adresse du
+canal venait à manquer : il dit comment la neuvaine se reçoit, ce qui vaut d'être lu
+sans bouton. Seul le bouton dépend de `LIEN_WHATSAPP`.
+
+## La page des organisateurs
+
+`index.html#envoyer` rassemble les liens à envoyer. Elle n'est listée nulle part :
+aucun bouton du site n'y mène, on y arrive en tapant son adresse. Rien n'y est secret
+pour autant — ce sont les mêmes adresses publiques que tout le monde reçoit.
+
+Elle porte le jour du matin en avant, avec son message tout prêt :
+
+```
+*Neuvaine au Sacré-Cœur — Jour 3 / 9*
+_La fidélité_
+Dix minutes de prière, à écouter ou à lire.
+https://neuvaine-esperance.github.io/#jour-3
+```
+
+Trois boutons : « Ouvrir dans WhatsApp », qui passe par `wa.me` et laisse choisir le
+destinataire ; « Copier le message » ; « Copier le lien ». Puis les neuf liens, un par
+carte, chacun avec son bouton — et « Tout copier », qui met les neuf dans le
+presse-papiers d'un coup, prêts à coller dans un message à l'équipe.
+
+Les adresses sont construites à partir de celle où la page est servie : elles sont
+donc justes quel que soit l'hébergeur, et un essai en local donne des liens en local.
+Ouverte depuis le disque, où l'adresse du fichier ne servirait à personne, la page
+reprend la constante `ADRESSE_PUBLIQUE` d'`app.js`.
+
+Chaque bouton confirme lui-même : son libellé devient « Copié ✓ » sur fond doré
+pendant deux secondes et demie. Si le presse-papiers est refusé — il l'est hors
+connexion sécurisée — la page le dit et renvoie au texte, qui est écrit en clair et
+se sélectionne à la main. Les liens sont affichés en entier pour cette raison.
+
+Les autres jours restent aussi atteignables par leur adresse, `index.html#jour-4`, et
+par les flèches en bas de chaque jour.
 
 ## Ajouter ou corriger le contenu d'un jour
 
@@ -91,7 +137,6 @@ corriger sans jamais ouvrir `app.js`.
   paroles:    ['premier vers', 'deuxième'], // facultatif, une entrée par vers
   intention:  'Intention du jour.',        // facultatif
   priere:     ['paragraphe', '— Répons de litanie'],
-  lecteur:    'Ludivine',                  // facultatif
   audio:      'assets/audio/jour-2.mp3?v=2',
   sync:       'assets/audio/jour-2.sync.js',
   chapitres:  { meditation: 9.98, chant: 126.6 }
@@ -111,8 +156,12 @@ désactivé et affiche « Enregistrement audio à venir ». Sans `sync`, le lect
 fonctionne mais le texte n'est pas surligné.
 
 Le signe de croix, les prières d'ancrage, l'acclamation et l'envoi sont les mêmes tous
-les jours : ils sont dans `index.html`, pas ici. La voix qui reprend chaque jour à
-partir de la prière est la constante `LECTEUR_PRIERES` d'`app.js`.
+les jours : ils sont dans `index.html`, pas ici.
+
+Le champ `lecteur` existe encore dans `contenu.js` — les neuf jours le portent — mais
+il n'est plus affiché nulle part : ni sous le titre du jour, ni dans le lecteur, ni sur
+l'accueil. Les noms ont été retirés de l'affichage à la demande. Le champ reste à
+disposition si l'on veut qu'ils reviennent.
 
 ## Préparer un enregistrement
 
@@ -236,6 +285,11 @@ Le bloc correspondant à la partie écoutée s'allume d'un filet doré, et l'enc
 chant passe du pointillé sable à l'or plein : pendant les deux minutes de musique,
 aucun mot n'est surligné, c'est l'encart qui dit où l'on en est.
 
+Les pilules « Méditation · Chant · Prions… » ont quitté le lecteur lors de sa
+simplification. Les horaires du champ `chapitres` servent toujours — ce sont eux qui
+disent quel bloc allumer — mais on ne saute plus d'une partie à l'autre d'un bouton.
+Pour se déplacer, il reste le curseur de position, et le fait de toucher un mot.
+
 Trois jours — les 3, 6 et 9 — s'ouvrent sur une annonce parlée, « Jour 3. La
 fidélité. », avant le signe de croix. Le titre affiché lui sert d'appui et s'allume
 pendant ces quelques secondes. Sur les six autres jours il n'a pas d'équivalent sonore
@@ -243,8 +297,12 @@ et ne s'allume jamais.
 
 ### Ce que le suivi ne fait pas
 
+Le surlignage n'a plus d'interrupteur : il est toujours allumé. C'est lui qui fait
+tenir la voix et le texte ensemble, et un réglage de plus à comprendre n'aidait
+personne.
+
 Le chant n'est pas affiché sur le site : pendant ces deux minutes aucun mot n'est
-allumé, seul le chapitre l'indique. Treize mots du jour 1, presque tous de la
+allumé, seul l'encart l'indique. Treize mots du jour 1, presque tous de la
 ponctuation isolée, n'ont pas d'équivalent sonore : le surlignage passe simplement
 par-dessus.
 
@@ -253,34 +311,39 @@ l'enregistrement qui fait foi — à une réserve près : la transcription conti
 fautes, et il ne faut pas les recopier. Elle a écrit « de commencement » pour « au
 commencement », et « aimons-nous les âmes et les autres » dans le chant.
 
-## Le lecteur, et pourquoi il n'est pas « collant »
+## Le lecteur
 
-Au sommet de la page le lecteur est posé dans le flux, déplié, juste au-dessus du
-numéro du jour. Dès le premier pixel de défilement il en sort et se pose sur le haut
-de l'écran, où il reste pendant toute l'écoute. Il s'y resserre sur une ligne une fois
-sa place dépassée, et se redéplie quand on remonte. Le chevron, à droite, permet de le
-plier ou de le déplier à la main : ce choix l'emporte alors sur l'automatique, jusqu'au
-changement de jour.
+Un bouton, une barre de position, le temps écoulé et la durée. Rien d'autre.
+
+Il portait aussi les pilules des parties, un réglage de vitesse, un interrupteur
+« Suivre le texte » et un chevron pour le replier : huit commandes sur un téléphone,
+là où la plupart des gens cherchaient seulement où appuyer pour écouter. Tout cela
+est parti, et le surlignage — qui était le seul de ces réglages à servir à quelque
+chose — est simplement toujours allumé.
+
+L'invitation à écouter est écrite comme une phrase, pas en petites capitales
+espacées : c'est une instruction, et elle doit se lire.
+
+### Pourquoi il n'est pas « collant »
+
+Au sommet de la page le lecteur est posé dans le flux, juste au-dessus du numéro du
+jour. Dès le premier pixel de défilement il en sort et se pose sur le haut de
+l'écran, où il reste pendant toute l'écoute.
 
 `position: sticky` ne pouvait pas tenir ce rôle. Un élément collant ne sort jamais de
 la boîte de son parent, et le lecteur vit dans une zone qui n'est haute que de lui :
 il s'en décrochait au bout de trois cents pixels et disparaissait pour le reste de la
 page. C'est `position: fixed` qui le porte, et la zone qui garde sa place — sa hauteur
 est relevée juste avant le décollage et posée sur la zone, si bien que la page ne
-change pas d'un pixel et que rien de ce qui suit ne se déplace. Il n'y a donc plus
-aucun rattrapage de défilement à faire.
+change pas d'un pixel et que rien de ce qui suit ne se déplace.
 
-Le repli obéit à une seule règle : resserrée, la barre doit encore couvrir tout ce qui
-reste à l'écran de la place que le lecteur occupait, sans quoi un vide s'ouvrirait
-entre elle et le numéro du jour. Elle ne se replie qu'une fois le bas de cette place
-passé à moins de sa propre hauteur du haut de l'écran. Cette hauteur-là ne se mesure
-qu'après un premier repli : jusque-là elle vaut zéro, ce qui retarde ce premier repli
-sans jamais ouvrir de vide.
+Il ne se resserre plus en cours de route : réduit à trois commandes, il tient en un
+peu plus de cent pixels et ne mange pas le texte. Toute la mécanique de repli — deux
+hauteurs mesurées, deux seuils, un choix manuel qui l'emportait sur l'automatique —
+a disparu avec le chevron.
 
-La pastille « Revenir au texte lu » vit sur la ligne du lecteur. Dépliée, elle passe
-sous la commande ; resserrée, elle tient tout à droite de la barre, et le titre du jour
-lui cède la place — les deux ne rentrent pas ensemble sur un téléphone. Dans les deux
-cas elle reste là tant que le visiteur a la main sur le défilement.
+La pastille « Revenir au texte lu » reste, sur sa propre ligne sous la commande. Elle
+paraît quand le visiteur a fait défiler lui-même, et reste là tant qu'il a la main.
 
 ## L'écran pendant l'écoute
 
@@ -305,11 +368,19 @@ index.html?date=2026-09-20
 
 - Les paroles des chants, si l'on veut qu'elles s'affichent et se surlignent. Ne pas
   les prendre dans la transcription, qui les entend mal.
-- L'adresse du canal WhatsApp et le compte Instagram : deux constantes vides en tête
-  d'`app.js`. Tant qu'elles le sont, les invitations à rejoindre le canal n'apparaissent
-  pas.
+- Rien du côté des liens : le canal WhatsApp et le compte Instagram sont renseignés en
+  tête d'`app.js`, et les deux boutons « Rejoindre le canal WhatsApp » sont en place,
+  sur l'accueil et au pied de chaque jour.
 - Les horaires et les modalités d'accès de la veillée, à confirmer par le diocèse.
   Ils sont actuellement marqués comme tels dans l'écran Consécration.
+
+## Une note sur la feuille de style
+
+`.btn-outline` y est défini deux fois, à deux endroits éloignés. La seconde
+définition l'emporte et réécrit la bordure, la couleur, les marges et le corps. Ce
+n'est pas voulu, mais le corriger changerait l'aspect des boutons déjà en place : en
+attendant, toute variante de `.btn-outline` doit être posée **après** la seconde, sans
+quoi elle est silencieusement annulée. C'est le cas de `.btn-outline--clair`.
 
 ## Sécurité
 

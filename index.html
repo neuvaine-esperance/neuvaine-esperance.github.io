@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=30">
-<link rel="stylesheet" href="assets/css/styles.css?v=30">
+<link rel="stylesheet" href="assets/css/fonts.css?v=39">
+<link rel="stylesheet" href="assets/css/styles.css?v=39">
 </head>
 <body>
 
@@ -100,27 +100,31 @@
             <cite class="hero__quote-ref">Jean 6,51</cite></p>
         </blockquote>
 
-        <!-- Où en est la neuvaine. La maquette n'en fait qu'une ligne, et
-             c'est la seule porte vers un jour depuis l'accueil : elle est
-             donc une commande. Le script y pose
-             « Aujourd'hui : jour 3 / 9 — La fidélité, lu par Romain ». -->
-        <button class="hero__today anim" type="button" id="hero-today"></button>
+        <!-- Où en est la neuvaine. Une simple ligne de texte, comme dans la
+             maquette : on n'entre pas dans un jour depuis l'accueil, on y
+             arrive par le lien envoyé le matin sur WhatsApp. Le script y
+             pose « Aujourd'hui : jour 3 / 9 — La fidélité ». -->
+        <p class="hero__today anim" id="hero-today"></p>
       </div>
 
     </div>
 
     <!-- ----------------------------------------------------------------
-         Comment participer. Le lien du canal est posé dans app.js ; tant
-         qu'il est vide, ce panneau reste absent plutôt que de promettre
-         un canal qui ne s'ouvre pas.
+         Comment participer. C'est la première chose à faire en arrivant, et
+         la seule commande de l'accueil : la maquette la pose juste sous
+         l'en-tête.
+
+         Le bouton n'apparaît que si l'adresse du canal est renseignée en
+         tête d'app.js : mieux vaut expliquer sans bouton que promettre un
+         canal qui ne s'ouvre pas.
          ---------------------------------------------------------------- -->
-    <section class="participer anim" id="participer" aria-labelledby="t-participer" hidden>
+    <section class="participer anim" id="participer" aria-labelledby="t-participer">
       <h2 class="eyebrow eyebrow--gold" id="t-participer">Comment participer</h2>
       <p class="participer__texte">
         Chaque matin à 7 h, le jour est envoyé sur le canal WhatsApp du Groupe
         Espérance. Il suffit de rejoindre le canal.
       </p>
-      <a class="btn-primary" id="lien-whatsapp-accueil" href="#">
+      <a class="btn-primary" id="lien-whatsapp-accueil" href="#" hidden>
         Rejoindre le canal WhatsApp <span aria-hidden="true">&rsaquo;</span>
       </a>
       <p class="participer__note" id="participer-note"></p>
@@ -155,20 +159,19 @@
 
     <nav class="day-top" aria-label="Fil d'Ariane">
       <button class="back-link" type="button" data-goto="accueil">
-        <span aria-hidden="true">&lsaquo;</span> Neuvaine au Sacré-Cœur
+        <span aria-hidden="true">&lsaquo;</span> Revenir à l'accueil
       </button>
       <span class="day-top__date" id="day-date"></span>
     </nav>
 
     <!-- ----------------------------------------------------------------
-         Le lecteur. Au sommet de la page il est posé dans le flux, déplié,
-         juste au-dessus du numéro du jour. Dès que la page défile il décolle
-         et se tient sur le haut de l'écran pendant toute la lecture ; passé
-         la place qu'il occupait, il se resserre sur une seule ligne pour ne
-         pas manger le texte.
+         Le lecteur : un bouton, une barre de position, le temps. Rien
+         d'autre à régler — le texte se surligne tout seul pendant l'écoute.
 
-         La zone qui l'entoure retient sa place pendant qu'il est décollé :
-         rien de ce qui suit ne se déplace, et le texte reste immobile.
+         Au sommet de la page il est posé dans le flux, juste au-dessus du
+         numéro du jour. Dès que la page défile il décolle et se tient sur le
+         haut de l'écran pendant toute la lecture. La zone qui l'entoure
+         retient sa place : rien de ce qui suit ne se déplace.
          ---------------------------------------------------------------- -->
     <div class="audio-zone" id="audio-zone">
     <section class="audio" aria-labelledby="t-ecoute">
@@ -182,10 +185,7 @@
         </button>
 
         <div class="audio__body">
-          <p class="audio__label">
-            <span class="audio__label-texte">Écouter la prière du jour</span>
-            <span class="audio__reader" id="audio-reader"></span>
-          </p>
+          <p class="audio__label">Écouter la prière du jour</p>
 
           <!-- Le curseur porte toute la commande de position : il se déplace
                aux flèches, à Origine et à Fin, et son état est annoncé. Le
@@ -208,49 +208,11 @@
           </p>
         </div>
 
-        <!-- Titre du jour, visible seulement quand le lecteur est resserré. -->
-        <span class="audio__compact-titre" id="audio-compact-titre" aria-hidden="true"></span>
-
-        <!-- Replier ou déplier le lecteur. Tant qu'on n'y touche pas, il se
-             replie de lui-même au défilement ; ensuite c'est ce choix qui
-             commande, jusqu'au changement de jour. -->
-        <button class="audio__plier" type="button" id="audio-plier" aria-expanded="true">
-          <span class="audio__plier-icone" aria-hidden="true">&#9662;</span>
-          <span class="visually-hidden" id="audio-plier-texte">Replier le lecteur</span>
-        </button>
-
-        <!-- Apparaît seulement quand le visiteur a fait défiler lui-même.
-             Elle est sur la ligne du lecteur, qui reste sur le haut de
-             l'écran : barre dépliée elle passe dessous, barre resserrée elle
-             tient tout à droite, et dans les deux cas elle reste là. -->
+        <!-- Apparaît seulement quand le visiteur a fait défiler lui-même,
+             et reste là tant qu'il a la main sur le défilement. -->
         <button class="revenir" type="button" id="revenir" hidden>
           <span aria-hidden="true">&uarr;</span> Revenir au texte lu
         </button>
-      </div>
-
-      <div class="audio__tools">
-        <!-- Les parties de l'enregistrement, remplies quand le jour en a. -->
-        <div class="chapitres" id="chapitres" role="group"
-             aria-label="Parties de l'enregistrement" hidden></div>
-
-        <div class="audio__reglages">
-          <!-- Le surlignage du mot lu se coupe ici. Il est allumé à chaque
-               arrivée ; le couper ne vaut que pour la visite en cours. -->
-          <span class="suivi">
-            <input type="checkbox" id="suivre" checked>
-            <label for="suivre">Suivre le texte</label>
-          </span>
-
-          <span class="audio__speed">
-            <label for="audio-rate">Vitesse</label>
-            <select id="audio-rate" disabled>
-              <option value="0.75">0,75×</option>
-              <option value="1" selected>1×</option>
-              <option value="1.25">1,25×</option>
-              <option value="1.5">1,5×</option>
-            </select>
-          </span>
-        </div>
       </div>
 
       <p class="audio__transcript" id="audio-transcript">
@@ -268,7 +230,6 @@
         <span class="day-head__count" id="day-count"></span>
       </p>
       <h1 id="day-title" class="anim"></h1>
-      <p class="day-head__reader anim" id="day-reader" hidden></p>
     </div>
 
     <!-- Jour pas encore publié -->
@@ -467,12 +428,76 @@
 
   </section>
 
+
+  <!-- ====================================================================
+       Écran 4 — Envoyer le jour
+
+       Page des organisateurs. Elle n'est répertoriée nulle part : on y
+       arrive en tapant son adresse, index.html#envoyer. Elle ne contient
+       aucun secret — seulement les neuf liens publics, rassemblés.
+       ==================================================================== -->
+  <section class="view view--envoi" id="view-envoyer" aria-labelledby="envoyer-titre" hidden>
+
+    <nav class="envoi-top" aria-label="Fil d'Ariane">
+      <button class="back-link back-link--clair" type="button" data-goto="accueil">
+        <span aria-hidden="true">&lsaquo;</span> Revenir à l'accueil
+      </button>
+    </nav>
+
+    <header class="envoi-hero">
+      <p class="envoi-hero__kicker">Neuvaine au Sacré-Cœur</p>
+      <h1 id="envoyer-titre">Envoyer le jour</h1>
+      <p class="envoi-hero__lead">Page réservée aux organisateurs</p>
+    </header>
+
+    <!-- Le jour à envoyer ce matin, mis en avant. -->
+    <section class="envoi-carte" aria-labelledby="envoi-carte-titre">
+      <p class="envoi-carte__date" id="envoi-date"></p>
+      <p class="envoi-carte__n" id="envoi-n" aria-hidden="true"></p>
+      <h2 class="envoi-carte__titre" id="envoi-carte-titre"></h2>
+
+      <a class="btn-primary" id="envoi-whatsapp" href="#" rel="noopener" target="_blank">
+        Ouvrir dans WhatsApp
+      </a>
+
+      <div class="envoi-carte__boutons">
+        <button class="btn-outline" type="button" id="envoi-copier-message">
+          Copier le message
+        </button>
+        <button class="btn-outline" type="button" id="envoi-copier-lien">
+          Copier le lien
+        </button>
+      </div>
+
+      <!-- Le message tel qu'il partira. Il est affiché en clair : même si la
+           copie échoue, il reste sélectionnable à la main. -->
+      <p class="envoi-carte__message" id="envoi-message"></p>
+    </section>
+
+    <p class="envoi-etat" id="envoi-etat" role="status"></p>
+
+    <div class="envoi-liste__tete">
+      <h2 id="t-tous-les-jours">Les neuf liens</h2>
+      <button class="btn-outline btn-outline--clair" type="button" id="envoi-copier-tout">
+        Tout copier
+      </button>
+    </div>
+
+    <ul class="envoi-liste" id="envoi-liste" aria-labelledby="t-tous-les-jours"></ul>
+
+    <p class="envoi-note">
+      Le lien de chaque jour est unique et permanent : il ne change jamais, et
+      l'on peut l'envoyer d'avance. Chaque jour s'ouvre le matin même.
+    </p>
+
+  </section>
+
   </main>
 
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=30" defer></script>
-<script src="assets/js/app.js?v=30" defer></script>
+<script src="assets/js/contenu.js?v=39" defer></script>
+<script src="assets/js/app.js?v=39" defer></script>
 </body>
 </html>

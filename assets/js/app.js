@@ -18,16 +18,27 @@
      rend la parution au matin même, jour après jour. */
   var OUVRIR_TOUT = true;
 
-  /* Adresse du canal WhatsApp. Tant qu'elle est vide, les deux invitations
-     à rejoindre le canal restent absentes de la page : mieux vaut ne rien
-     proposer qu'un bouton qui ne mène nulle part. */
-  var LIEN_WHATSAPP = '';
-  var COMPTE_INSTAGRAM = '';
+  /* Adresse du canal WhatsApp. C'est la seule chose à écrire ici pour que
+     les deux boutons « Rejoindre le canal WhatsApp » apparaissent — sur
+     l'accueil et au pied de chaque jour. Tant qu'elle est vide, le
+     cartouche « Comment participer » explique le fonctionnement mais ne
+     montre aucun bouton : mieux vaut ne rien proposer qu'un lien qui ne
+     mène nulle part.
 
-  /* La même voix reprend la prière tous les jours : elle est ici plutôt que
-     répétée neuf fois dans contenu.js. Laisser vide pour n'annoncer que le
-     lecteur du jour. */
-  var LECTEUR_PRIERES = 'Eugène';
+     L'adresse d'un canal ressemble à https://whatsapp.com/channel/XXXX ;
+     celle d'un groupe à https://chat.whatsapp.com/XXXX. */
+  var LIEN_WHATSAPP = 'https://whatsapp.com/channel/0029Vaac5Na4inoznqOnWa3A';
+
+  /* Le compte Instagram, tel que la maquette l'annonce. La phrase de repli
+     « Vous n'êtes pas sur WhatsApp ? » ne s'affiche que s'il est rempli. */
+  var COMPTE_INSTAGRAM = '@groupesperance';
+
+  /* Adresse publique du site. Elle ne sert que lorsque la page est ouverte
+     depuis le disque, où l'adresse du fichier ne vaudrait rien pour
+     personne : servie par un hébergeur, c'est sa propre adresse qui est
+     reprise, et la page des organisateurs marche donc aussi bien sur un
+     essai local que sur le site en ligne. */
+  var ADRESSE_PUBLIQUE = 'https://neuvaine-esperance.github.io/';
 
   /* Jours ouverts avant leur date, par exception. Le 16 septembre est
      accessible dès la mise en ligne, pour que la neuvaine se lise le soir
@@ -49,8 +60,12 @@
      ------------------------------------------------------------------ */
   var MONTHS = ['janvier', 'février', 'mars', 'avril', 'mai', 'juin',
                 'juillet', 'août', 'septembre', 'octobre', 'novembre', 'décembre'];
+  var MONTHS_SHORT = ['janv.', 'févr.', 'mars', 'avr.', 'mai', 'juin',
+                      'juil.', 'août', 'sept.', 'oct.', 'nov.', 'déc.'];
   var WEEKDAYS = ['dimanche', 'lundi', 'mardi', 'mercredi',
                   'jeudi', 'vendredi', 'samedi'];
+  var WEEKDAYS_SHORT = ['dim.', 'lun.', 'mar.', 'mer.',
+                        'jeu.', 'ven.', 'sam.'];
 
   function $(sel) { return document.querySelector(sel); }
 
@@ -72,6 +87,12 @@
     var d = new Date(START);
     d.setDate(d.getDate() + n - 1);
     return d;
+  }
+
+  /** « Mer. 16 sept. », pour les liens de la page des organisateurs. */
+  function fmtShort(d) {
+    return WEEKDAYS_SHORT[d.getDay()] + ' ' + d.getDate() + ' ' +
+           MONTHS_SHORT[d.getMonth()];
   }
 
   function fmtLong(d) {
@@ -174,14 +195,16 @@
   var VIEWS = {
     accueil: $('#view-accueil'),
     jour: $('#view-jour'),
-    consecration: $('#view-consecration')
+    consecration: $('#view-consecration'),
+    envoyer: $('#view-envoyer')
   };
 
   // Titre de chaque écran, sur lequel le focus est posé après un changement.
   var TITLES = {
     accueil: '#accueil-titre',
     jour: '#day-title',
-    consecration: '#consec-titre'
+    consecration: '#consec-titre',
+    envoyer: '#envoyer-titre'
   };
 
   var state = { view: 'accueil', day: 1 };
@@ -210,6 +233,7 @@
     swapView(view);
     stopAudio();
     if (view === 'jour') { renderDay(state.day); }
+    if (view === 'envoyer') { renderEnvoyer(); }
 
     var hash = view === 'jour' ? '#jour-' + state.day : '#' + view;
     if (window.location.hash !== hash) {
@@ -230,6 +254,7 @@
     var m = h.match(/^jour-(\d)$/);
     if (m) { return { view: 'jour', day: Number(m[1]) }; }
     if (h === 'consecration') { return { view: 'consecration', day: state.day }; }
+    if (h === 'envoyer') { return { view: 'envoyer', day: state.day }; }
     return { view: 'accueil', day: state.day };
   }
 
@@ -244,6 +269,7 @@
     swapView(state.view);
     stopAudio();
     if (state.view === 'jour') { renderDay(state.day); }
+    if (state.view === 'envoyer') { renderEnvoyer(); }
 
     // Ce retour en haut est le nôtre, comme dans show() : sans la marque, le
     // suivi du texte le prendrait pour un geste du visiteur.
@@ -273,8 +299,7 @@
 
     if (c) {
       ligne = (isBeforeStart() ? 'Dès maintenant' : 'Aujourd’hui') +
-              ' : jour ' + n + ' / ' + TOTAL_DAYS + ' — ' + c.titre +
-              (c.lecteur ? ', lu par ' + c.lecteur : '');
+              ' : jour ' + n + ' / ' + TOTAL_DAYS + ' — ' + c.titre;
     } else if (isBeforeStart()) {
       ligne = 'La neuvaine s’ouvre le ' + fmtLong(START) + '.';
     } else {
@@ -285,6 +310,157 @@
     bouton.setAttribute('aria-label',
       'Prier, ouvrir le ' + countdownSpoken(n).toLowerCase() +
       (c ? ' : ' + c.titre : ''));
+  }
+
+  /* ------------------------------------------------------------------
+     Envoyer le jour — la page des organisateurs
+
+     Elle rassemble les neuf liens, celui du jour en avant avec son message
+     tout prêt. Rien n'y est secret : ce sont les mêmes adresses publiques
+     que tout le monde reçoit. Elle n'est simplement listée nulle part.
+     ------------------------------------------------------------------ */
+
+  /** L'adresse à envoyer pour un jour.
+   *
+   *  On repart de l'adresse où la page est servie, pour que les liens
+   *  copiés soient justes quel que soit l'hébergeur. « index.html » en fin
+   *  d'adresse n'apporte rien et s'enlève : tous les serveurs le servent
+   *  par défaut, et le lien est plus court à lire.
+   *
+   *  Ouverte depuis le disque, l'adresse du fichier ne servirait à
+   *  personne : c'est alors l'adresse publique qui est reprise. */
+  function adresseDuJour(n) {
+    var base = window.location.protocol === 'file:'
+      ? ADRESSE_PUBLIQUE
+      : window.location.origin + window.location.pathname;
+    return base.replace(/index\.html$/, '') + '#jour-' + n;
+  }
+
+  /** Le message tel qu'il part sur WhatsApp. Les astérisques et les traits
+   *  de soulignement y sont la mise en gras et en italique de WhatsApp. */
+  function messageDuJour(n) {
+    var c = CONTENT[n];
+    return '*Neuvaine au Sacré-Cœur — Jour ' + n + ' / ' + TOTAL_DAYS + '*\n' +
+      (c ? '_' + c.titre + '_\n' : '') +
+      'Dix minutes de prière, à écouter ou à lire.\n' +
+      adresseDuJour(n);
+  }
+
+  /** Copie un texte, et le dit. Le bouton lui-même confirme pendant deux
+   *  secondes et demie : c'est la réponse la plus lisible, juste sous le
+   *  doigt qui vient d'appuyer.
+   *
+   *  Si le presse-papiers est refusé — il l'est hors connexion sécurisée —
+   *  on le dit sans détour et l'on renvoie au texte, qui reste affiché en
+   *  clair et sélectionnable à la main. */
+  function copier(texte, bouton, quoi) {
+    function confirme() {
+      if (bouton) {
+        var avant = bouton.getAttribute('data-libelle') || bouton.textContent;
+        bouton.setAttribute('data-libelle', avant);
+        bouton.textContent = 'Copié ✓';
+        bouton.classList.add('a-copie');
+        window.setTimeout(function () {
+          bouton.textContent = avant;
+          bouton.classList.remove('a-copie');
+        }, 2500);
+      }
+      $('#envoi-etat').textContent = quoi + ' copié. Collez-le dans WhatsApp.';
+    }
+
+    function echoue() {
+      $('#envoi-etat').textContent = 'La copie automatique n’a pas fonctionné. ' +
+        'Le texte est écrit sur cette page : sélectionnez-le à la main.';
+    }
+
+    if (navigator.clipboard && navigator.clipboard.writeText) {
+      navigator.clipboard.writeText(texte).then(confirme, echoue);
+    } else {
+      echoue();
+    }
+  }
+
+  function renderEnvoyer() {
+    var n = isBeforeStart() ? 1 : currentDay();
+    var c = CONTENT[n];
+
+    $('#envoi-date').textContent = (isBeforeStart() ? 'Premier jour · ' : 'Aujourd’hui · ') +
+      fmtLong(dayDate(n));
+    $('#envoi-n').textContent = countdownLabel(n);
+    $('#envoi-carte-titre').textContent = c
+      ? 'Jour ' + n + ' — ' + c.titre
+      : 'Jour ' + n;
+    $('#envoi-message').textContent = messageDuJour(n);
+    $('#envoi-whatsapp').href =
+      'https://wa.me/?text=' + encodeURIComponent(messageDuJour(n));
+    $('#envoi-etat').textContent = '';
+
+    var liste = $('#envoi-liste');
+    liste.textContent = '';
+    for (var k = 1; k <= TOTAL_DAYS; k++) {
+      liste.appendChild(ligneEnvoi(k));
+    }
+  }
+
+  function ligneEnvoi(n) {
+    var c = CONTENT[n];
+    var li = document.createElement('li');
+    li.className = 'envoi-jour';
+
+    var tete = document.createElement('p');
+    tete.className = 'envoi-jour__tete';
+    tete.textContent = countdownLabel(n) + ' · ' + fmtShort(dayDate(n));
+    li.appendChild(tete);
+
+    var titre = document.createElement('p');
+    titre.className = 'envoi-jour__titre';
+    titre.textContent = c ? c.titre : 'Titre à venir';
+    li.appendChild(titre);
+
+    var lien = document.createElement('p');
+    lien.className = 'envoi-jour__lien';
+    lien.textContent = adresseDuJour(n);
+    li.appendChild(lien);
+
+    var b = document.createElement('button');
+    b.type = 'button';
+    b.className = 'btn-outline btn-outline--clair';
+    b.textContent = 'Copier le lien';
+    b.setAttribute('aria-label', 'Copier le lien du ' + countdownSpoken(n).toLowerCase());
+    b.addEventListener('click', function () {
+      copier(adresseDuJour(n), b, 'Le lien du jour ' + n);
+    });
+    li.appendChild(b);
+
+    return li;
+  }
+
+  /** Les neuf liens d'un coup, prêts à coller dans un message à l'équipe. */
+  function tousLesLiens() {
+    var lignes = ['Neuvaine au Sacré-Cœur — les neuf liens', ''];
+    for (var n = 1; n <= TOTAL_DAYS; n++) {
+      var c = CONTENT[n];
+      lignes.push('Jour ' + n + ' · ' + fmtShort(dayDate(n)) +
+                  (c ? ' — ' + c.titre : ''));
+      lignes.push(adresseDuJour(n));
+      lignes.push('');
+    }
+    return lignes.join('\n').replace(/\n+$/, '');
+  }
+
+  function bindEnvoyer() {
+    $('#envoi-copier-message').addEventListener('click', function () {
+      copier(messageDuJour(isBeforeStart() ? 1 : currentDay()), this, 'Le message');
+    });
+
+    $('#envoi-copier-lien').addEventListener('click', function () {
+      var n = isBeforeStart() ? 1 : currentDay();
+      copier(adresseDuJour(n), this, 'Le lien du jour ' + n);
+    });
+
+    $('#envoi-copier-tout').addEventListener('click', function () {
+      copier(tousLesLiens(), this, 'Les neuf liens');
+    });
   }
 
   /* ------------------------------------------------------------------
@@ -302,11 +478,6 @@
     $('#day-pending').hidden = !!c;
     $('#day-content').hidden = !c;
 
-    // Le titre ne s'affiche dans la barre que lorsqu'elle est resserrée,
-    // mais il y est posé dès maintenant.
-    pliageManuel = false;
-    $('#audio-compact-titre').textContent = c ? c.titre : '';
-    fillReader(c && c.lecteur);
     placerIntention(!!(c && c.intentionAvant));
 
     if (!c) {
@@ -380,24 +551,6 @@
   /** Qui lit ce jour. Deux voix se relaient : celle du jour porte la
    *  méditation, et la même personne reprend chaque jour à la prière.
    *  Le nom paraît sous le titre, et en plus court dans la barre. */
-  function fillReader(nom) {
-    var sous = $('#day-reader');
-    var court = nom || '';
-    var long = nom ? 'Lu par ' + nom : '';
-
-    if (nom && LECTEUR_PRIERES) {
-      long += ', puis ' + LECTEUR_PRIERES + ' à partir de la prière';
-      court += ' et ' + LECTEUR_PRIERES;
-    } else if (!nom && LECTEUR_PRIERES) {
-      long = 'Prière lue par ' + LECTEUR_PRIERES;
-      court = LECTEUR_PRIERES;
-    }
-
-    sous.hidden = !long;
-    sous.textContent = long;
-    $('#audio-reader').textContent = court;
-  }
-
   /** Une entrée commençant par un tiret cadratin est le répons d'une litanie :
    *  elle se distingue du texte que dit le lecteur. */
   function fillParagraphs(host, list) {
@@ -494,7 +647,6 @@
 
     var btn = el('audio-btn');
     var seek = el('audio-seek');
-    var rate = el('audio-rate');
 
     setBtnState(false);
     seek.value = 0;
@@ -506,7 +658,6 @@
     var absent = !audioSrc;
     btn.disabled = absent;
     seek.disabled = absent;
-    rate.disabled = absent;
     el('audio-status').textContent = absent
       ? 'Enregistrement audio à venir'
       : 'Appuyer sur le bouton pour écouter';
@@ -570,7 +721,6 @@
   function makeAudio() {
     audio = new Audio(audioSrc);
     audio.preload = 'metadata';
-    audio.playbackRate = parseFloat(el('audio-rate').value) || 1;
 
     // La durée arrive après coup. Si une position avait été demandée avant
     // qu'elle soit connue, c'est le moment de l'écrire.
@@ -671,18 +821,6 @@
       applySeek(Number(seek.value));
     });
 
-    el('audio-plier').addEventListener('click', function () {
-      var bloc = $('#view-jour .audio');
-      pliageManuel = true;
-      basculerCompact(!bloc.classList.contains('compact'));
-    });
-
-    el('audio-rate').addEventListener('change', function () {
-      var r = parseFloat(this.value) || 1;
-      if (audio) { audio.playbackRate = r; }
-      el('audio-status').textContent = 'Vitesse réglée sur ' +
-        String(r).replace('.', ',') + ' fois';
-    });
   }
 
   /* ------------------------------------------------------------------
@@ -697,12 +835,6 @@
      chargement échoue, la page se comporte exactement comme avant : le
      texte reste lisible, le lecteur fonctionne, rien ne manque.
      ------------------------------------------------------------------ */
-  /* Le surlignage est allumé à chaque arrivée sur la page : c'est lui
-     qui fait tenir la voix et le texte ensemble, et personne ne pense à
-     aller le rallumer. Le couper ne vaut donc que pour la visite en
-     cours — d'où sessionStorage, qui s'efface avec l'onglet. */
-  var SUIVI_CLE = 'neuvaine.suivre';
-
   // Au-delà de ce silence, plus aucun mot n'est allumé. Sans cette borne, le
   // dernier mot de la méditation resterait surligné pendant les deux minutes
   // de chant, comme si la lecture était bloquée.
@@ -724,7 +856,6 @@
   var reperes = [];         // toutes les plages, triées, pour la dichotomie
   var motActif = -1;
   var motMax = -1;          // le plus loin où la lecture soit allée
-  var suivre = true;
   var repriseAuto = 0;      // instant à partir duquel on suit de nouveau
   var suspendu = false;     // le visiteur a repris la main sur le défilement
   var dernierCadrage = 0;   // dernier contrôle de la position du mot lu
@@ -887,7 +1018,7 @@
   }
 
   function majSurlignage() {
-    if (!sync || !suivre || !audio) { return; }
+    if (!sync || !audio) { return; }
 
     var t = (wanted !== null ? wanted : audio.currentTime)
             + (sync.decalage || 0) + DECALAGE_GLOBAL;
@@ -920,8 +1051,11 @@
     }
   }
 
-  /** Allume la pilule de la partie en cours d'écoute. */
+  /** Le bloc de la partie en cours s'allume d'un filet doré. Les pilules
+   *  de navigation ont disparu du lecteur : la partie se lit maintenant
+   *  directement dans les horaires du jour. */
   var chapitreActif = -1;
+  var chapitres = [];   // [{ cle, debut }], du plus tôt au plus tard
 
   /* À quel bloc de la page correspond chaque partie de l'enregistrement.
      Le chant n'a pas de texte, mais il a son encart : c'est lui qui doit
@@ -936,20 +1070,13 @@
 
   function majChapitre(t) {
     if (!sync || !sync.sections) { return; }
-    var boutons = el('chapitres').children;
     var trouve = -1;
-    for (var k = 0; k < boutons.length; k++) {
-      if (Number(boutons[k].getAttribute('data-debut')) <= t) { trouve = k; }
+    for (var k = 0; k < chapitres.length; k++) {
+      if (chapitres[k].debut <= t) { trouve = k; }
     }
     if (trouve === chapitreActif) { return; }
 
-    for (var j = 0; j < boutons.length; j++) {
-      boutons[j].classList.toggle('is-actif', j === trouve);
-    }
-
-    // Le bloc correspondant s'allume aussi, pour qu'on voie où l'on en est
-    // sans regarder la barre.
-    var cle = trouve >= 0 ? boutons[trouve].getAttribute('data-section') : null;
+    var cle = trouve >= 0 ? chapitres[trouve].cle : null;
     Object.keys(BLOCS_SECTION).forEach(function (nom) {
       var bloc = $(BLOCS_SECTION[nom]);
       if (bloc) { bloc.classList.toggle('is-en-cours', nom === cle); }
@@ -997,10 +1124,7 @@
    *  la pastille est là, c'est elle qui compte. */
   function montrerRevenir(oui) {
     var bouton = el('revenir');
-    if (!bouton) { return; }
-    bouton.hidden = !oui;
-    var bloc = $('#view-jour .audio');
-    if (bloc) { bloc.classList.toggle('a-revenir', oui); }
+    if (bouton) { bouton.hidden = !oui; }
   }
 
   function mainMise() {
@@ -1020,9 +1144,6 @@
     var maintenant = Date.now();
     if (maintenant - dernierCadrage > 250) {
       dernierCadrage = maintenant;
-      // Le resserrement a pu être différé pendant un glissement : c'est ici
-      // qu'il est repris, une fois la page retombée.
-      majCompact();
       if (suspendu && maintenant >= repriseAuto) { suspendu = false; }
       if (motActif >= 0 && motsDom[motActif]) { suivreDuRegard(motsDom[motActif]); }
     }
@@ -1035,35 +1156,18 @@
     window.requestAnimationFrame(boucleSuivi);
   }
 
-  /* ---- Chapitres ---- */
-  var NOMS_CHAPITRES = {
-    'signe-de-croix': 'Signe de croix', meditation: 'Méditation',
-    chant: 'Chant', prions: 'Prions', prieres: 'Prières', envoi: 'Envoi'
-  };
+  /* ---- Parties de l'enregistrement ---- */
 
-  function remplirChapitres(chapitres) {
-    var hote = el('chapitres');
-    hote.textContent = '';
+  /** Range les horaires du jour du plus tôt au plus tard. Ils ne servent
+   *  plus à dessiner des pilules, seulement à savoir quel bloc allumer. */
+  function poserChapitres(horaires) {
+    chapitres = [];
     chapitreActif = -1;
-
-    var cles = chapitres ? Object.keys(chapitres) : [];
-    if (!cles.length) { hote.hidden = true; return; }
-
-    cles.sort(function (a, b) { return chapitres[a] - chapitres[b]; });
-    cles.forEach(function (cle) {
-      var nom = NOMS_CHAPITRES[cle] || cle;
-      var b = document.createElement('button');
-      b.type = 'button';
-      b.className = 'chapitre';
-      b.setAttribute('data-debut', chapitres[cle]);
-      b.setAttribute('data-section', cle);
-      b.textContent = nom;
-      b.setAttribute('aria-label',
-        nom + ', écouter à partir de ' + fmtSpoken(chapitres[cle]));
-      b.addEventListener('click', function () { allerA(chapitres[cle]); });
-      hote.appendChild(b);
+    if (!horaires) { return; }
+    Object.keys(horaires).forEach(function (cle) {
+      chapitres.push({ cle: cle, debut: horaires[cle] });
     });
-    hote.hidden = false;
+    chapitres.sort(function (a, b) { return a.debut - b.debut; });
   }
 
   /** Va à un instant et démarre la lecture si elle était à l'arrêt. */
@@ -1078,28 +1182,6 @@
     if (audio.paused) { toggleAudio(); }
   }
 
-  /* ---- Interrupteur ---- */
-  function appliquerSuivi(actif) {
-    suivre = actif;
-    document.body.classList.toggle('sans-suivi', !actif);
-    if (!actif) {
-      nettoyerSurlignage();
-      montrerRevenir(false);
-    }
-    try { window.sessionStorage.setItem(SUIVI_CLE, actif ? '1' : '0'); }
-    catch (e) { /* navigation privée : on garde le réglage en mémoire vive */ }
-  }
-
-  function suiviMemorise() {
-    try {
-      // Un « non » gardé par l'ancienne version aurait éteint le surlignage
-      // pour toujours chez qui l'avait coupé une fois. On l'efface.
-      window.localStorage.removeItem(SUIVI_CLE);
-      var v = window.sessionStorage.getItem(SUIVI_CLE);
-      return v === null ? true : v === '1';
-    } catch (e) { return true; }
-  }
-
   /* ---- Chargement pour un jour ---- */
   function chargerSuivi(contenu) {
     sync = null;
@@ -1108,7 +1190,7 @@
     motActif = motMax = -1;
     repriseAuto = 0;
     montrerRevenir(false);
-    remplirChapitres(contenu && contenu.chapitres);
+    poserChapitres(contenu && contenu.chapitres);
     restaurerFixes();
 
     if (!contenu || !contenu.sync) { return; }
@@ -1151,28 +1233,11 @@
     document.head.appendChild(script);
   }
 
-  /* ---- Le lecteur se resserre au défilement ----
+  /* ---- Le lecteur se pose sur le haut de l'écran ----
 
-     Il est dans le flux : en rétrécissant, il raccourcit la page de près de
-     trois cents pixels d'un coup, et tout ce qui le suit remonte d'autant.
-     La page paraît alors sauter sous les yeux. On rattrape donc la
-     différence de hauteur par un déplacement égal et opposé.
-
-     Deux précautions en plus : un seuil de retour plus bas que le seuil
-     d'aller, pour qu'il ne clignote pas à la frontière ; et aucun
-     changement tant qu'un de nos glissements est en vol, sinon il viserait
-     une position que l'on est en train de déplacer. */
-  var hauteurDepliee = 0;
-
-  // Hauteur de la barre resserrée. Elle ne peut se mesurer qu'une fois la
-  // barre repliée au moins une fois ; jusque-là elle vaut zéro, ce qui
-  // retarde le premier repli sans jamais ouvrir de vide.
-  var hauteurResserree = 0;
-
-  // Tant que le visiteur n'a pas plié le lecteur lui-même, il se plie tout
-  // seul au défilement. Dès qu'il y touche, c'est son choix qui commande —
-  // jusqu'au changement de jour.
-  var pliageManuel = false;
+     Réduit à un bouton, une barre et le temps, il tient en un peu plus de
+     cent pixels : il n'a plus besoin de se resserrer au défilement, et le
+     chevron qui le repliait a disparu avec cette mécanique. */
 
   /** Où commence la zone du lecteur, en coordonnées de page.
    *
@@ -1209,62 +1274,13 @@
     }
   }
 
-  /** Remet le lecteur au sommet, déplié, comme au premier affichage. */
+  /** Remet le lecteur au sommet, comme au premier affichage. */
   function reposerLecteur() {
     var zone = $('#audio-zone');
     var bloc = $('#view-jour .audio');
     if (!zone || !bloc) { return; }
     bloc.classList.remove('is-fixe');
     zone.style.height = '';
-    hauteurDepliee = 0;
-    basculerCompact(false);
-  }
-
-  /** Replie ou déplie la barre.
-   *
-   *  Plus rien à rattraper ici : le lecteur est hors du flux dès que la page
-   *  a bougé, et la zone garde sa place. Au sommet de la page, où il est
-   *  encore dans le flux, le repli déplace bien le texte — mais c'est alors
-   *  un geste du visiteur sur le chevron, et le voir se faire est juste. */
-  function basculerCompact(veut) {
-    var bloc = $('#view-jour .audio');
-    if (!bloc) { return; }
-    if (veut === bloc.classList.contains('compact')) { return; }
-
-    bloc.classList.toggle('compact', veut);
-
-    var bouton = el('audio-plier');
-    if (bouton) {
-      bouton.setAttribute('aria-expanded', veut ? 'false' : 'true');
-      el('audio-plier-texte').textContent = veut
-        ? 'Déplier le lecteur' : 'Replier le lecteur';
-    }
-  }
-
-  function majCompact() {
-    var bloc = $('#view-jour .audio');
-    var zone = $('#audio-zone');
-    if (!bloc || !zone || VIEWS.jour.hidden || pliageManuel) { return; }
-
-    var maintenant = Date.now();
-    if (maintenant - notreDefilement < 600) { return; }
-
-    var compact = bloc.classList.contains('compact');
-    if (compact) { hauteurResserree = bloc.offsetHeight; }
-    else { hauteurDepliee = bloc.offsetHeight; }
-    if (!hauteurDepliee) { return; }
-
-    /* Resserrée, la barre doit encore couvrir tout ce qui reste à l'écran de
-       la place que le lecteur occupait : sinon un vide s'ouvre entre elle et
-       le numéro du jour. Elle ne peut donc se replier qu'à partir du moment
-       où le bas de cette place est passé à moins de sa propre hauteur du
-       haut de l'écran — et elle se déplie dès qu'on revient au-dessus. Les
-       vingt-quatre pixels qui séparent les deux seuils évitent le
-       clignotement à la frontière. */
-    var seuil = hautZone(zone) + hauteurDepliee - hauteurResserree;
-    var y = window.pageYOffset;
-    var veut = compact ? y > seuil : y > seuil + 24;
-    basculerCompact(veut);
   }
 
   /* ---- Affichage de contrôle : ?sync=debug ---- */
@@ -1288,14 +1304,6 @@
   }
 
   function bindSuivi() {
-    var interrupteur = el('suivre');
-    interrupteur.checked = suiviMemorise();
-    appliquerSuivi(interrupteur.checked);
-    interrupteur.addEventListener('change', function () {
-      appliquerSuivi(this.checked);
-      if (this.checked && audio && !audio.paused) { lancerBoucle(); }
-    });
-
     el('revenir').addEventListener('click', function () {
       repriseAuto = 0;
       montrerRevenir(false);
@@ -1342,7 +1350,6 @@
       // Le décollage ne connaît pas de délai de garde : il ne déplace rien,
       // et le moindre retard laisserait voir le lecteur s'échapper.
       majFixe();
-      majCompact();
       var maintenant = Date.now();
       if (maintenant - notreDefilement <= 1200) {
         notreDefilement = maintenant;
@@ -1356,8 +1363,9 @@
      Canal WhatsApp et partage
      ------------------------------------------------------------------ */
 
-  /** Les deux invitations à rejoindre le canal n'apparaissent que si son
-   *  adresse est renseignée en tête de ce fichier. */
+  /** Le cartouche « Comment participer » est toujours là : il dit comment
+   *  la neuvaine se reçoit, ce qui vaut d'être lu même sans bouton. Seules
+   *  les deux invitations à rejoindre le canal attendent son adresse. */
   function initLiens() {
     var liens = [$('#lien-whatsapp'), $('#lien-whatsapp-accueil')];
     liens.forEach(function (a) {
@@ -1369,7 +1377,6 @@
         a.target = '_blank';
       }
     });
-    $('#participer').hidden = !LIEN_WHATSAPP;
 
     var note = $('#participer-note');
     note.textContent = COMPTE_INSTAGRAM
@@ -1424,10 +1431,6 @@
       }
     );
 
-    $('#hero-today').addEventListener('click', function () {
-      show('jour', isBeforeStart() ? 1 : currentDay());
-    });
-
     $('#day-prev').addEventListener('click', function () {
       if (state.day > 1) { show('jour', state.day - 1); }
     });
@@ -1437,12 +1440,12 @@
     });
 
     bindAudio();
+    bindEnvoyer();
     initDebug();
     bindSuivi();
     initLiens();
     initPartage();
     majFixe();
-    majCompact();
 
     // Une rotation d'écran change la hauteur du lecteur. On le repose dans
     // le flux le temps de le remesurer, puis on le laisse décoller de neuf.
@@ -1452,9 +1455,7 @@
       if (!zone || !bloc || !bloc.classList.contains('is-fixe')) { return; }
       bloc.classList.remove('is-fixe');
       zone.style.height = '';
-      hauteurDepliee = hauteurResserree = 0;
       majFixe();
-      majCompact();
     });
 
     // Revenir sur l'onglet après l'avoir quitté : le verrou d'écran a été
