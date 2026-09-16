@@ -152,32 +152,24 @@ window.NEUVAINE_CONTENU = {
       'nous redirons à l’âge qui vient',
       'les titres de gloire du Seigneur.',
 
-      'N’oubliez pas les exploits du Seigneur !',
-
       'Quand Dieu les frappait, ils le cherchaient,',
       'ils revenaient et se tournaient vers lui :',
       'ils se souvenaient que Dieu est leur rocher,',
       'et le Dieu Très-Haut, leur rédempteur.',
-
-      'N’oubliez pas les exploits du Seigneur !',
 
       'Mais de leur bouche ils le trompaient,',
       'de leur langue ils lui mentaient.',
       'Leur cœur n’était pas constant envers lui ;',
       'ils n’étaient pas fidèles à son alliance.',
 
-      'N’oubliez pas les exploits du Seigneur !',
-
       'Et lui, miséricordieux,',
       'au lieu de détruire, il pardonnait.',
       'Il se rappelait : ils ne sont que chair,',
-      'un souffle qui s’en va sans retour.',
-
-      'N’oubliez pas les exploits du Seigneur !'
+      'un souffle qui s’en va sans retour'
     ],
     lecteur: 'Ludivine',
     audio: 'assets/audio/jour-2.mp3?v=3',
-    sync: 'assets/audio/jour-2.sync.js?v=6',
+    sync: 'assets/audio/jour-2.sync.js?v=7',
     chapitres: { meditation: 6.82, chant: 132.42, prions: 245.57, prieres: 279.8, envoi: 410.36 }
   },
 
