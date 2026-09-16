@@ -279,8 +279,20 @@ L'outil écrit `assets/audio/jour-N.sync.js`, remplit les champs `audio`, `sync`
 `chapitres` du jour dans `contenu.js`, et laisse un compte rendu dans
 `outils/rapport-jour-N.txt`. **Il ne touche jamais aux textes.**
 
-Lisez le compte rendu. Sous 85 % d'appariement, l'outil le dit et refuse de conclure :
-cela signifie que la personne a lu autre chose que le texte affiché. Le jour 1 est à
+Lisez le compte rendu. Sous 85 % d'appariement, l'outil le dit : cela signifie
+d'ordinaire que la personne a lu autre chose que le texte affiché.
+
+**Ce n'est pas la seule cause possible, et le jour 2 en est l'exemple.** Son chant
+compte 122 mots affichés ; la transcription n'en a entendu que 31, groupés dans les
+vingt-six premières secondes, avant de décrocher pour soixante-quinze secondes alors
+que le chant continuait — le relévé du niveau sonore le montre. Les quatre-vingt-onze
+mots restants sont donc répartis régulièrement sur ce qui reste : le texte est complet
+et juste, le surlignage y est **estimé et non mesuré**. Il avance au bon rythme
+d'ensemble sans coller à chaque syllabe.
+
+Le jour tombe ainsi à 83,1 %, sous le seuil, pour une raison qui n'a rien à voir avec
+la lecture. Avant de corriger un texte sur la foi de ce chiffre, regardez le détail par
+section : c'est lui qui dit où le problème se trouve. Le jour 1 est à
 95,9 %.
 
 ### Corriger un décalage

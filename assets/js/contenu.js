@@ -145,18 +145,33 @@ window.NEUVAINE_CONTENU = {
     ],
     musique:    'Psaume 77 — « N’oubliez pas les exploits du Seigneur »',
     paroles: [
-      'N’oubliez pas les exploits du Seigneur.',
+      'N’oubliez pas les exploits du Seigneur !',
 
       'Nous avons entendu et nous savons',
       'ce que nos pères nous ont raconté ;',
-      'nous le redirons à l’âge qui vient :',
+      'nous redirons à l’âge qui vient',
       'les titres de gloire du Seigneur.',
 
-      'N’oubliez pas les exploits du Seigneur.'
+      'Quand Dieu les frappait, ils le cherchaient,',
+      'ils revenaient et se tournaient vers lui :',
+      'ils se souvenaient que Dieu est leur rocher,',
+      'et le Dieu Très-Haut, leur rédempteur.',
+
+      'Mais de leur bouche ils le trompaient,',
+      'de leur langue ils lui mentaient.',
+      'Leur cœur n’était pas constant envers lui ;',
+      'ils n’étaient pas fidèles à son alliance.',
+
+      'Et lui, miséricordieux,',
+      'au lieu de détruire, il pardonnait.',
+      'Il se rappelait : ils ne sont que chair,',
+      'un souffle qui s’en va sans retour.',
+
+      'N’oubliez pas les exploits du Seigneur !'
     ],
     lecteur: 'Ludivine',
     audio: 'assets/audio/jour-2.mp3?v=3',
-    sync: 'assets/audio/jour-2.sync.js?v=4',
+    sync: 'assets/audio/jour-2.sync.js?v=5',
     chapitres: { meditation: 6.82, chant: 132.42, prions: 245.57, prieres: 279.8, envoi: 410.36 }
   },
 
