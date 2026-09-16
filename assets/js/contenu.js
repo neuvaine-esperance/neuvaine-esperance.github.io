@@ -205,7 +205,7 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Romain',
     audio: 'assets/audio/jour-3.mp3?v=3',
-    sync: 'assets/audio/jour-3.sync.js?v=2',
+    sync: 'assets/audio/jour-3.sync.js?v=3',
     chapitres: { meditation: 5.02, chant: 244.3, prions: 394.8, prieres: 465.7, envoi: 596.26 }
   },
 
@@ -363,7 +363,7 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Romain',
     audio: 'assets/audio/jour-6.mp3?v=3',
-    sync: 'assets/audio/jour-6.sync.js?v=3',
+    sync: 'assets/audio/jour-6.sync.js?v=4',
     chapitres: { meditation: 5.08, chant: 256.57, prions: 407.07, prieres: 473.7, envoi: 604.26 }
   },
 

@@ -496,7 +496,13 @@ def interpoler(plages, entrees):
             pas = (t1 - t0) / float(d - g)
             debut = t0 + part * (t1 - t0)
             # Répartir sur un trop grand écart reviendrait à inventer.
-            plages[i] = [debut, debut + (pas if pas <= PAS_MAX else 0)]
+            duree = pas if 0 < pas <= PAS_MAX else 0
+            # Une plage ne recule jamais. Les jours qui s'ouvrent sur une
+            # annonce parlée — 3, 6 et 9 — ont une transcription dont la
+            # section du signe de croix déborde sur la méditation : le mot
+            # d'appui suivant tombe alors avant le précédent, et la durée
+            # calculée devient négative. Un tel mot n'est jamais surligné.
+            plages[i] = [debut, debut + duree]
         elif avant:
             t = plages[avant[-1]][1]
             plages[i] = [t, t]
