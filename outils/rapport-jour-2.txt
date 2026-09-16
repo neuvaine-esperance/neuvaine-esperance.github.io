@@ -1,20 +1,20 @@
 Jour 2 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 460 (554 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 531
-  interpolés         : 23
-  taux d'appariement : 95.8 %
+  mots affichés      : 494 (588 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 562
+  interpolés         : 26
+  taux d'appariement : 95.6 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   13    76.9 %          0.80 s
     meditation      220 /  228    96.5 %          6.82 s
-    chant             0 /    0        —        132.42 s
+    chant            31 /   34    91.2 %        132.42 s
     prions           61 /   67    91.0 %        245.57 s
     prieres         226 /  232    97.4 %        279.80 s
     envoi            14 /   14   100.0 %        410.36 s
 
-  Les 19 plus longues suites de mots interpolés
+  Les 20 plus longues suites de mots interpolés
       2 mot(s)  [titre         0.87 s]  Cœur miséricordieux
       2 mot(s)  [signe         6.01 s]  Amen. «
       2 mot(s)  [meditation  115.39 s]  leur point
@@ -24,6 +24,9 @@ Jour 2 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   29.48 s]  «
       1 mot(s)  [meditation   31.99 s]  ».
       1 mot(s)  [meditation   64.74 s]  :
+      1 mot(s)  [paroles     151.84 s]  ;
+      1 mot(s)  [paroles     152.38 s]  le
+      1 mot(s)  [paroles     155.68 s]  :
       1 mot(s)  [priere      250.42 s]  voient
       1 mot(s)  [priere      254.00 s]  pour
       1 mot(s)  [priere      257.50 s]  frappent
@@ -32,9 +35,7 @@ Jour 2 — alignement de la transcription sur le texte affiché
       1 mot(s)  [ave         329.03 s]  nous,
       1 mot(s)  [ave         339.56 s]  ;
       1 mot(s)  [ave         352.37 s]  nous,
-      1 mot(s)  [ave         362.44 s]  ;
-      1 mot(s)  [ave         374.31 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    116.61 s  après « compassion. » (meditation) → « Dieu » (priere)
+     85.95 s  après « Seigneur. » (paroles) → « Dieu » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)

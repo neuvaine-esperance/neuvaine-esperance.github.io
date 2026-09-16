@@ -143,9 +143,18 @@ window.NEUVAINE_CONTENU = {
       'charité si forte que nous osions risquer notre vie pour secourir et aider ceux ' +
       'que la misère humilie et que la précarité déshumanise.'
     ],
+    musique:    'Psaume 77 — « N’oubliez pas les exploits du Seigneur »',
+    paroles: [
+      'N’oubliez pas les exploits du Seigneur.',
+
+      'Nous avons entendu et nous savons',
+      'ce que nos pères nous ont raconté ;',
+      'nous le redirons à l’âge qui vient :',
+      'les titres de gloire du Seigneur.'
+    ],
     lecteur: 'Ludivine',
     audio: 'assets/audio/jour-2.mp3?v=3',
-    sync: 'assets/audio/jour-2.sync.js?v=2',
+    sync: 'assets/audio/jour-2.sync.js?v=3',
     chapitres: { meditation: 6.82, chant: 132.42, prions: 245.57, prieres: 279.8, envoi: 410.36 }
   },
 
