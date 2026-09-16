@@ -2,38 +2,40 @@ Jour 3 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 537 (631 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 603
-  interpolés         : 28
-  taux d'appariement : 95.6 %
+  appariés           : 604
+  interpolés         : 27
+  taux d'appariement : 95.7 %
 
   Section          appariés / affichés        début
     signe-de-croix   12 /   13    92.3 %          0.80 s
-    meditation      225 /  239    94.1 %         10.50 s
-    prions          127 /  133    95.5 %        249.78 s
-    prieres         225 /  232    97.0 %        320.68 s
-    envoi            14 /   14   100.0 %        447.43 s
+    meditation      225 /  239    94.1 %          5.02 s
+    chant             0 /    0        —        244.30 s
+    prions          127 /  133    95.5 %        394.80 s
+    prieres         226 /  232    97.4 %        465.70 s
+    envoi            14 /   14   100.0 %        596.26 s
 
   Les 20 plus longues suites de mots interpolés
-      2 mot(s)  [signe        10.04 s]  Amen. «
-      2 mot(s)  [meditation   46.91 s]  aux sarments.
-      2 mot(s)  [meditation   90.63 s]  aimés. »
-      2 mot(s)  [priere      301.99 s]  en se
-      2 mot(s)  [priere      306.07 s]  en s’oubliant
-      1 mot(s)  [verset       17.06 s]  fruit
-      1 mot(s)  [verset       34.76 s]  fruit,
-      1 mot(s)  [verset       39.87 s]  »
-      1 mot(s)  [meditation   51.89 s]  fruit.
-      1 mot(s)  [meditation   55.45 s]  recevons
-      1 mot(s)  [meditation   67.75 s]  ?
-      1 mot(s)  [meditation   71.90 s]  :
-      1 mot(s)  [meditation   84.86 s]  «
-      1 mot(s)  [meditation   87.40 s]  :
-      1 mot(s)  [priere      307.95 s]  en
-      1 mot(s)  [priere      311.42 s]  en
-      1 mot(s)  [ave         356.36 s]  ;
-      1 mot(s)  [ave         371.42 s]  nous,
-      1 mot(s)  [ave         380.34 s]  ;
-      1 mot(s)  [ave         395.15 s]  nous,
+      2 mot(s)  [signe         8.21 s]  Amen. «
+      2 mot(s)  [meditation   41.43 s]  aux sarments.
+      2 mot(s)  [meditation   85.15 s]  aimés. »
+      2 mot(s)  [priere      447.01 s]  en se
+      2 mot(s)  [priere      451.09 s]  en s’oubliant
+      1 mot(s)  [verset       11.59 s]  fruit
+      1 mot(s)  [verset       29.28 s]  fruit,
+      1 mot(s)  [verset       34.38 s]  »
+      1 mot(s)  [meditation   46.41 s]  fruit.
+      1 mot(s)  [meditation   49.97 s]  recevons
+      1 mot(s)  [meditation   62.27 s]  ?
+      1 mot(s)  [meditation   66.42 s]  :
+      1 mot(s)  [meditation   79.39 s]  «
+      1 mot(s)  [meditation   81.92 s]  :
+      1 mot(s)  [priere      452.97 s]  en
+      1 mot(s)  [priere      456.44 s]  en
+      1 mot(s)  [ave         501.42 s]  ;
+      1 mot(s)  [ave         514.93 s]  nous,
+      1 mot(s)  [ave         525.47 s]  ;
+      1 mot(s)  [ave         538.26 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    137.78 s  après « besoin. » (intention) → « Seigneur, » (priere)
+    288.28 s  après « besoin. » (intention) → « Seigneur, » (priere)
+     11.76 s  après « toi. » (acclamation) → « Que » (envoi)

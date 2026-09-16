@@ -2,38 +2,39 @@ Jour 2 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 460 (554 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 530
-  interpolés         : 24
-  taux d'appariement : 95.7 %
+  appariés           : 531
+  interpolés         : 23
+  taux d'appariement : 95.8 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   13    76.9 %          0.80 s
     meditation      220 /  228    96.5 %          6.82 s
-    prions           61 /   67    91.0 %        132.42 s
-    prieres         225 /  232    97.0 %        166.65 s
-    envoi            14 /   14   100.0 %        293.39 s
+    chant             0 /    0        —        132.42 s
+    prions           61 /   67    91.0 %        245.57 s
+    prieres         226 /  232    97.4 %        279.80 s
+    envoi            14 /   14   100.0 %        410.36 s
 
-  Les 20 plus longues suites de mots interpolés
+  Les 19 plus longues suites de mots interpolés
       2 mot(s)  [titre         0.87 s]  Cœur miséricordieux
       2 mot(s)  [signe         6.01 s]  Amen. «
       2 mot(s)  [meditation  115.39 s]  leur point
-      2 mot(s)  [priere      143.45 s]  aux malheurs
+      2 mot(s)  [priere      256.60 s]  aux malheurs
       1 mot(s)  [verset       14.78 s]  »
       1 mot(s)  [meditation   24.62 s]  ?
       1 mot(s)  [meditation   29.48 s]  «
       1 mot(s)  [meditation   31.99 s]  ».
       1 mot(s)  [meditation   64.74 s]  :
-      1 mot(s)  [priere      137.27 s]  voient
-      1 mot(s)  [priere      140.85 s]  pour
-      1 mot(s)  [priere      144.35 s]  frappent
-      1 mot(s)  [priere      158.25 s]  ceux
-      1 mot(s)  [ave         202.33 s]  ;
-      1 mot(s)  [ave         217.40 s]  nous,
-      1 mot(s)  [ave         226.31 s]  ;
-      1 mot(s)  [ave         241.12 s]  nous,
-      1 mot(s)  [ave         250.78 s]  ;
-      1 mot(s)  [ave         264.75 s]  nous,
-      1 mot(s)  [gloire      279.05 s]  au
+      1 mot(s)  [priere      250.42 s]  voient
+      1 mot(s)  [priere      254.00 s]  pour
+      1 mot(s)  [priere      257.50 s]  frappent
+      1 mot(s)  [priere      271.39 s]  ceux
+      1 mot(s)  [ave         315.51 s]  ;
+      1 mot(s)  [ave         329.03 s]  nous,
+      1 mot(s)  [ave         339.56 s]  ;
+      1 mot(s)  [ave         352.37 s]  nous,
+      1 mot(s)  [ave         362.44 s]  ;
+      1 mot(s)  [ave         374.31 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    aucun.
+    116.61 s  après « compassion. » (meditation) → « Dieu » (priere)
+     11.77 s  après « toi. » (acclamation) → « Que » (envoi)

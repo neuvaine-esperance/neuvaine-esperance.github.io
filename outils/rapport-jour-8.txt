@@ -2,33 +2,34 @@ Jour 8 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 540 (634 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 616
-  interpolés         : 18
-  taux d'appariement : 97.2 %
+  appariés           : 617
+  interpolés         : 17
+  taux d'appariement : 97.3 %
 
   Section          appariés / affichés        début
     signe-de-croix   11 /   14    78.6 %          0.80 s
     meditation      201 /  207    97.1 %          8.11 s
-    prions          165 /  167    98.8 %        137.81 s
-    prieres         225 /  232    97.0 %        229.32 s
-    envoi            14 /   14   100.0 %        356.07 s
+    chant             0 /    0        —        137.81 s
+    prions          165 /  167    98.8 %        288.31 s
+    prieres         226 /  232    97.4 %        379.82 s
+    envoi            14 /   14   100.0 %        510.38 s
 
-  Les 15 plus longues suites de mots interpolés
+  Les 14 plus longues suites de mots interpolés
       3 mot(s)  [titre         0.83 s]  Le commandement nouveau
       2 mot(s)  [verset       12.20 s]  aimés. »
       1 mot(s)  [verset        7.49 s]  «
       1 mot(s)  [meditation   48.33 s]  cultures,
       1 mot(s)  [meditation   80.95 s]  :
       1 mot(s)  [meditation  108.22 s]  témoin
-      1 mot(s)  [priere      178.90 s]  bâtisseurs
-      1 mot(s)  [priere      217.23 s]  une
-      1 mot(s)  [ave         265.00 s]  ;
-      1 mot(s)  [ave         280.07 s]  nous,
-      1 mot(s)  [ave         288.99 s]  ;
-      1 mot(s)  [ave         303.79 s]  nous,
-      1 mot(s)  [ave         313.45 s]  ;
-      1 mot(s)  [ave         327.42 s]  nous,
-      1 mot(s)  [gloire      341.72 s]  au
+      1 mot(s)  [priere      329.40 s]  bâtisseurs
+      1 mot(s)  [priere      367.73 s]  une
+      1 mot(s)  [ave         415.54 s]  ;
+      1 mot(s)  [ave         429.05 s]  nous,
+      1 mot(s)  [ave         439.59 s]  ;
+      1 mot(s)  [ave         452.38 s]  nous,
+      1 mot(s)  [ave         462.46 s]  ;
+      1 mot(s)  [ave         474.34 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    aucun.
+    153.89 s  après « fraternité. » (meditation) → « Seigneur » (priere)
+     11.77 s  après « toi. » (acclamation) → « Que » (envoi)
