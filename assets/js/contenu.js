@@ -252,9 +252,26 @@ window.NEUVAINE_CONTENU = {
 
       'Car ton regard, Seigneur, nous suffit.'
     ],
+    musique:    'Solo Dios basta ! — Fr. Jean-Baptiste du Jonchay',
+    paroles: [
+      'Que rien ne te trouble, ô mon âme,',
+      'que rien ne t’épouvante, ô mon âme.',
+
+      'Dieu seul suffit.',
+
+      'Dieu ne change pas, ô mon âme,',
+      'la patience obtient tout, ô mon âme.',
+
+      'Dieu seul suffit.',
+
+      'Qui possède Dieu, ô mon âme,',
+      'ne manque de rien, ô mon âme.',
+
+      'Dieu seul suffit.'
+    ],
     lecteur: 'Anna',
     audio: 'assets/audio/jour-4.mp3?v=3',
-    sync: 'assets/audio/jour-4.sync.js?v=2',
+    sync: 'assets/audio/jour-4.sync.js?v=3',
     chapitres: { meditation: 7.93, chant: 93.73, prions: 236.75, prieres: 303.49, envoi: 434.05 }
   },
 

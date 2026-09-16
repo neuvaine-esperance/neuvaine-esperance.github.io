@@ -1,15 +1,15 @@
 Jour 4 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 418 (512 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 485
-  interpolés         : 27
-  taux d'appariement : 94.7 %
+  mots affichés      : 469 (563 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 527
+  interpolés         : 36
+  taux d'appariement : 93.6 %
 
   Section          appariés / affichés        début
     signe-de-croix   11 /   13    84.6 %          0.80 s
     meditation      129 /  141    91.5 %          7.93 s
-    chant             0 /    0        —         93.73 s
+    chant            42 /   51    82.4 %         93.73 s
     prions          105 /  112    93.8 %        236.75 s
     prieres         226 /  232    97.4 %        303.49 s
     envoi            14 /   14   100.0 %        434.05 s
@@ -17,6 +17,8 @@ Jour 4 — alignement de la transcription sur le texte affiché
   Les 20 plus longues suites de mots interpolés
       5 mot(s)  [verset       25.79 s]  ! » Sainte Thérèse d’Avila
       2 mot(s)  [titre         0.93 s]  La charité
+      2 mot(s)  [paroles     105.46 s]  t’épouvante, ô
+      2 mot(s)  [paroles     137.02 s]  la patience
       2 mot(s)  [priere      255.31 s]  : Apprends-nous,
       2 mot(s)  [priere      275.28 s]  vus, reconnus
       1 mot(s)  [verset        7.02 s]  «
@@ -26,16 +28,16 @@ Jour 4 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   67.33 s]  «
       1 mot(s)  [meditation   77.05 s]  ».
       1 mot(s)  [meditation   91.02 s]  :
+      1 mot(s)  [paroles      99.63 s]  ô
+      1 mot(s)  [paroles     133.24 s]  ô
+      1 mot(s)  [paroles     142.34 s]  ô
+      1 mot(s)  [paroles     190.86 s]  ô
+      1 mot(s)  [paroles     203.74 s]  ô
       1 mot(s)  [priere      277.21 s]  applaudis.
       1 mot(s)  [priere      286.42 s]  en
-      1 mot(s)  [priere      293.89 s]  en
-      1 mot(s)  [ave         339.21 s]  ;
-      1 mot(s)  [ave         352.72 s]  nous,
-      1 mot(s)  [ave         363.25 s]  ;
-      1 mot(s)  [ave         376.06 s]  nous,
-      1 mot(s)  [ave         386.13 s]  ;
-      1 mot(s)  [ave         398.00 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    146.05 s  après « vie. » (meditation) → « À » (priere)
+     10.21 s  après « âme. » (paroles) → « Dieu » (paroles)
+     32.64 s  après « âme. » (paroles) → « Dieu » (paroles)
+     24.23 s  après « suffit. » (paroles) → « À » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)
