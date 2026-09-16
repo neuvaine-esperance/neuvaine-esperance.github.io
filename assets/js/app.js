@@ -668,7 +668,7 @@
          contenu.js ; sans lui, c'est bien l'Écriture. */
       $('#t-parole').textContent = c.origine || 'Parole de Dieu';
       fillParagraphs($('#day-meditation'), c.meditation);
-      fillMusic(c.musique, c.paroles);
+      fillMusic(c.musique, c.paroles, c.chapitres);
       fillIntention(c.intention);
       fillParagraphs($('#day-prayer'), c.priere);
       setupAudio(c.audio, n);
@@ -709,10 +709,42 @@
 
   /** Le chant qui accompagne la méditation, et ses paroles quand le jour
    *  en fournit. Elles sont surlignées comme le reste du texte. */
-  function fillMusic(titre, paroles) {
-    $('#day-music').hidden = !titre && !paroles;
+  /** La durée du passage chanté, déduite des chapitres : du début du chant
+   *  à celui de la partie suivante. */
+  function dureeChant(chapitres) {
+    if (!chapitres || !chapitres.chant) { return 0; }
+    var apres = 0;
+    Object.keys(chapitres).forEach(function (cle) {
+      var t = chapitres[cle];
+      if (t > chapitres.chant && (!apres || t < apres)) { apres = t; }
+    });
+    return apres ? apres - chapitres.chant : 0;
+  }
+
+  var MINUTES = ['', 'une', 'deux', 'trois', 'quatre', 'cinq'];
+
+  function noteChant(secondes) {
+    if (!secondes) { return 'un temps de musique'; }
+    /* L'écart entre deux chapitres comprend le silence qui suit le chant :
+       une quinzaine de secondes. Sans cette retenue, deux minutes vingt
+       s'annonçaient « environ trois minutes ». */
+    var mn = Math.max(1, Math.round(secondes / 60 - 0.15));
+    return 'un temps de musique d’environ ' +
+      (MINUTES[mn] || mn) + (mn > 1 ? ' minutes' : ' minute');
+  }
+
+  /** L'encart du chant.
+   *
+   *  Il paraît dès que le jour a un chapitre « chant », même sans titre ni
+   *  paroles. Sans lui, la page restait figée pendant les deux minutes de
+   *  musique — aucun mot allumé, et le bloc à allumer était masqué : on
+   *  croyait le surlignage cassé. C'est lui qui dit où l'on en est. */
+  function fillMusic(titre, paroles, chapitres) {
+    var duree = dureeChant(chapitres);
+    $('#day-music').hidden = !titre && !paroles && !duree;
     $('#day-music-title').textContent = titre || '';
     $('#day-music-title').hidden = !titre;
+    $('#day-music-note').textContent = noteChant(duree);
 
     var hote = $('#day-music-paroles');
     hote.textContent = '';
