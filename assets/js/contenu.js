@@ -169,7 +169,7 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Ludivine',
     audio: 'assets/audio/jour-2.mp3?v=3',
-    sync: 'assets/audio/jour-2.sync.js?v=7',
+    sync: 'assets/audio/jour-2.sync.js?v=8',
     chapitres: { meditation: 6.82, chant: 132.42, prions: 245.57, prieres: 279.8, envoi: 410.36 }
   },
 

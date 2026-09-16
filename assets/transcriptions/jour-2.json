@@ -1284,12 +1284,17 @@
       "debut": 132.42,
       "fin": 235.07,
       "chante": true,
-      "nbMots": 31,
+      "nbMots": 159,
       "phrases": [
         {
           "debut": 132.57,
-          "fin": 160.26,
+          "fin": 160.28,
           "texte": "N'oubliez pas les exploits du Seigneur Nous avons entendu et nous savons Ce que nos pères nous ont raconté Nous redirons à l'âge qui vient Les titres de gloire du Seigneur"
+        },
+        {
+          "debut": 162.57,
+          "fin": 235.46,
+          "texte": "Quand Dieu les frappait, ils le cherchaient Ils revenaient et se tournaient vers lui Ils se souvenaient que Dieu est leur rocher Et le Dieu très haut leur rédempteur N'oubliez pas les exploits du Seigneur Mais de leur bouche ils le trompaient De leur langue ils lui mentaient Leur cœur n'était pas constant envers lui Ils n'étaient pas fidèles à son alliance Et lui, miséricordieux Au lieu de détruire, il pardonnait Ils se rappelaient, ils ne sont que chers Un souffle qui s'en va sans retour N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur N'oubliez pas les exploits du Seigneur"
         }
       ],
       "mots": [
@@ -1326,129 +1331,871 @@
         {
           "mot": "Nous",
           "debut": 142.54,
-          "fin": 143.36
+          "fin": 143.33
         },
         {
           "mot": "avons",
-          "debut": 143.36,
-          "fin": 144.38
+          "debut": 143.33,
+          "fin": 144.32
         },
         {
           "mot": "entendu",
-          "debut": 144.38,
-          "fin": 145.81
+          "debut": 144.32,
+          "fin": 145.71
         },
         {
           "mot": "et",
-          "debut": 145.81,
-          "fin": 146.22
+          "debut": 145.71,
+          "fin": 146.12
         },
         {
           "mot": "nous",
-          "debut": 146.22,
-          "fin": 147.04
+          "debut": 146.12,
+          "fin": 146.89
         },
         {
           "mot": "savons",
-          "debut": 147.04,
-          "fin": 148.28
+          "debut": 146.89,
+          "fin": 148.12
         },
         {
           "mot": "Ce",
-          "debut": 148.28,
-          "fin": 148.52
+          "debut": 148.12,
+          "fin": 148.37
         },
         {
           "mot": "que",
-          "debut": 148.52,
-          "fin": 148.88
+          "debut": 148.37,
+          "fin": 148.75
         },
         {
           "mot": "nos",
-          "debut": 148.88,
-          "fin": 149.24
+          "debut": 148.75,
+          "fin": 149.13
         },
         {
           "mot": "pères",
-          "debut": 149.24,
-          "fin": 149.97
+          "debut": 149.13,
+          "fin": 149.88
         },
         {
           "mot": "nous",
-          "debut": 149.97,
-          "fin": 150.46
+          "debut": 149.88,
+          "fin": 150.38
         },
         {
           "mot": "ont",
-          "debut": 150.46,
-          "fin": 150.82
+          "debut": 150.38,
+          "fin": 150.77
         },
         {
           "mot": "raconté",
-          "debut": 150.82,
-          "fin": 151.84
+          "debut": 150.77,
+          "fin": 151.82
         },
         {
           "mot": "Nous",
-          "debut": 151.84,
-          "fin": 152.38
+          "debut": 151.82,
+          "fin": 152.37
         },
         {
           "mot": "redirons",
-          "debut": 152.38,
-          "fin": 153.47
+          "debut": 152.37,
+          "fin": 153.46
         },
         {
           "mot": "à",
-          "debut": 153.47,
-          "fin": 153.74
+          "debut": 153.46,
+          "fin": 153.73
         },
         {
           "mot": "l'âge",
-          "debut": 153.74,
-          "fin": 154.55
+          "debut": 153.73,
+          "fin": 154.53
         },
         {
           "mot": "qui",
-          "debut": 154.55,
-          "fin": 154.95
+          "debut": 154.53,
+          "fin": 154.94
         },
         {
           "mot": "vient",
-          "debut": 154.95,
+          "debut": 154.94,
           "fin": 155.68
         },
         {
           "mot": "Les",
           "debut": 155.68,
-          "fin": 156.18
+          "fin": 156.19
         },
         {
           "mot": "titres",
-          "debut": 156.18,
-          "fin": 157.18
+          "debut": 156.19,
+          "fin": 157.2
         },
         {
           "mot": "de",
-          "debut": 157.18,
-          "fin": 157.52
+          "debut": 157.2,
+          "fin": 157.54
         },
         {
           "mot": "gloire",
-          "debut": 157.52,
-          "fin": 158.52
+          "debut": 157.54,
+          "fin": 158.55
         },
         {
           "mot": "du",
-          "debut": 158.52,
-          "fin": 158.85
+          "debut": 158.55,
+          "fin": 158.88
         },
         {
           "mot": "Seigneur",
-          "debut": 158.85,
-          "fin": 160.26
+          "debut": 158.88,
+          "fin": 160.28
+        },
+        {
+          "mot": "Quand",
+          "debut": 162.57,
+          "fin": 162.95
+        },
+        {
+          "mot": "Dieu",
+          "debut": 162.95,
+          "fin": 163.37
+        },
+        {
+          "mot": "les",
+          "debut": 163.37,
+          "fin": 163.68
+        },
+        {
+          "mot": "frappait,",
+          "debut": 163.68,
+          "fin": 164.73
+        },
+        {
+          "mot": "ils",
+          "debut": 164.73,
+          "fin": 165.01
+        },
+        {
+          "mot": "le",
+          "debut": 165.01,
+          "fin": 165.2
+        },
+        {
+          "mot": "cherchaient",
+          "debut": 165.2,
+          "fin": 166.26
+        },
+        {
+          "mot": "Ils",
+          "debut": 166.26,
+          "fin": 166.5
+        },
+        {
+          "mot": "revenaient",
+          "debut": 166.5,
+          "fin": 167.3
+        },
+        {
+          "mot": "et",
+          "debut": 167.3,
+          "fin": 167.46
+        },
+        {
+          "mot": "se",
+          "debut": 167.46,
+          "fin": 167.62
+        },
+        {
+          "mot": "tournaient",
+          "debut": 167.62,
+          "fin": 168.42
+        },
+        {
+          "mot": "vers",
+          "debut": 168.42,
+          "fin": 168.74
+        },
+        {
+          "mot": "lui",
+          "debut": 168.74,
+          "fin": 169.04
+        },
+        {
+          "mot": "Ils",
+          "debut": 169.04,
+          "fin": 169.35
+        },
+        {
+          "mot": "se",
+          "debut": 169.35,
+          "fin": 169.55
+        },
+        {
+          "mot": "souvenaient",
+          "debut": 169.55,
+          "fin": 170.67
+        },
+        {
+          "mot": "que",
+          "debut": 170.67,
+          "fin": 170.98
+        },
+        {
+          "mot": "Dieu",
+          "debut": 170.98,
+          "fin": 171.38
+        },
+        {
+          "mot": "est",
+          "debut": 171.38,
+          "fin": 171.7
+        },
+        {
+          "mot": "leur",
+          "debut": 171.7,
+          "fin": 172.11
+        },
+        {
+          "mot": "rocher",
+          "debut": 172.11,
+          "fin": 172.76
+        },
+        {
+          "mot": "Et",
+          "debut": 172.76,
+          "fin": 173.01
+        },
+        {
+          "mot": "le",
+          "debut": 173.01,
+          "fin": 173.26
+        },
+        {
+          "mot": "Dieu",
+          "debut": 173.26,
+          "fin": 173.76
+        },
+        {
+          "mot": "très",
+          "debut": 173.76,
+          "fin": 174.38
+        },
+        {
+          "mot": "haut",
+          "debut": 174.38,
+          "fin": 174.88
+        },
+        {
+          "mot": "leur",
+          "debut": 174.88,
+          "fin": 175.38
+        },
+        {
+          "mot": "rédempteur",
+          "debut": 175.38,
+          "fin": 176.76
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 176.76,
+          "fin": 178.78
+        },
+        {
+          "mot": "pas",
+          "debut": 178.78,
+          "fin": 179.47
+        },
+        {
+          "mot": "les",
+          "debut": 179.47,
+          "fin": 180.14
+        },
+        {
+          "mot": "exploits",
+          "debut": 180.14,
+          "fin": 181.95
+        },
+        {
+          "mot": "du",
+          "debut": 181.95,
+          "fin": 182.4
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 182.4,
+          "fin": 184.26
+        },
+        {
+          "mot": "Mais",
+          "debut": 184.26,
+          "fin": 184.92
+        },
+        {
+          "mot": "de",
+          "debut": 184.92,
+          "fin": 185.25
+        },
+        {
+          "mot": "leur",
+          "debut": 185.25,
+          "fin": 185.91
+        },
+        {
+          "mot": "bouche",
+          "debut": 185.91,
+          "fin": 186.89
+        },
+        {
+          "mot": "ils",
+          "debut": 186.89,
+          "fin": 187.38
+        },
+        {
+          "mot": "le",
+          "debut": 187.38,
+          "fin": 187.71
+        },
+        {
+          "mot": "trompaient",
+          "debut": 187.71,
+          "fin": 189.42
+        },
+        {
+          "mot": "De",
+          "debut": 189.42,
+          "fin": 189.63
+        },
+        {
+          "mot": "leur",
+          "debut": 189.63,
+          "fin": 190.06
+        },
+        {
+          "mot": "langue",
+          "debut": 190.06,
+          "fin": 190.71
+        },
+        {
+          "mot": "ils",
+          "debut": 190.71,
+          "fin": 191.03
+        },
+        {
+          "mot": "lui",
+          "debut": 191.03,
+          "fin": 191.35
+        },
+        {
+          "mot": "mentaient",
+          "debut": 191.35,
+          "fin": 192.38
+        },
+        {
+          "mot": "Leur",
+          "debut": 192.53,
+          "fin": 192.81
+        },
+        {
+          "mot": "cœur",
+          "debut": 192.81,
+          "fin": 193.19
+        },
+        {
+          "mot": "n'était",
+          "debut": 193.19,
+          "fin": 193.91
+        },
+        {
+          "mot": "pas",
+          "debut": 193.91,
+          "fin": 194.18
+        },
+        {
+          "mot": "constant",
+          "debut": 194.18,
+          "fin": 194.94
+        },
+        {
+          "mot": "envers",
+          "debut": 194.94,
+          "fin": 195.72
+        },
+        {
+          "mot": "lui",
+          "debut": 195.72,
+          "fin": 196.12
+        },
+        {
+          "mot": "Ils",
+          "debut": 196.12,
+          "fin": 196.42
+        },
+        {
+          "mot": "n'étaient",
+          "debut": 196.42,
+          "fin": 197.42
+        },
+        {
+          "mot": "pas",
+          "debut": 197.42,
+          "fin": 197.72
+        },
+        {
+          "mot": "fidèles",
+          "debut": 197.72,
+          "fin": 198.52
+        },
+        {
+          "mot": "à",
+          "debut": 198.52,
+          "fin": 198.72
+        },
+        {
+          "mot": "son",
+          "debut": 198.72,
+          "fin": 199.02
+        },
+        {
+          "mot": "alliance",
+          "debut": 199.02,
+          "fin": 199.84
+        },
+        {
+          "mot": "Et",
+          "debut": 199.84,
+          "fin": 200.48
+        },
+        {
+          "mot": "lui,",
+          "debut": 200.48,
+          "fin": 202.07
+        },
+        {
+          "mot": "miséricordieux",
+          "debut": 202.07,
+          "fin": 206.88
+        },
+        {
+          "mot": "Au",
+          "debut": 206.88,
+          "fin": 207.16
+        },
+        {
+          "mot": "lieu",
+          "debut": 207.16,
+          "fin": 207.72
+        },
+        {
+          "mot": "de",
+          "debut": 207.72,
+          "fin": 208
+        },
+        {
+          "mot": "détruire,",
+          "debut": 208,
+          "fin": 209.54
+        },
+        {
+          "mot": "il",
+          "debut": 209.54,
+          "fin": 209.82
+        },
+        {
+          "mot": "pardonnait",
+          "debut": 209.82,
+          "fin": 211.26
+        },
+        {
+          "mot": "Ils",
+          "debut": 211.26,
+          "fin": 211.68
+        },
+        {
+          "mot": "se",
+          "debut": 211.68,
+          "fin": 211.91
+        },
+        {
+          "mot": "rappelaient,",
+          "debut": 211.91,
+          "fin": 213.51
+        },
+        {
+          "mot": "ils",
+          "debut": 213.51,
+          "fin": 213.77
+        },
+        {
+          "mot": "ne",
+          "debut": 213.77,
+          "fin": 213.94
+        },
+        {
+          "mot": "sont",
+          "debut": 213.94,
+          "fin": 214.28
+        },
+        {
+          "mot": "que",
+          "debut": 214.28,
+          "fin": 214.54
+        },
+        {
+          "mot": "chers",
+          "debut": 214.54,
+          "fin": 215
+        },
+        {
+          "mot": "Un",
+          "debut": 215,
+          "fin": 215.28
+        },
+        {
+          "mot": "souffle",
+          "debut": 215.28,
+          "fin": 216.27
+        },
+        {
+          "mot": "qui",
+          "debut": 216.27,
+          "fin": 216.69
+        },
+        {
+          "mot": "s'en",
+          "debut": 216.69,
+          "fin": 217.25
+        },
+        {
+          "mot": "va",
+          "debut": 217.25,
+          "fin": 217.53
+        },
+        {
+          "mot": "sans",
+          "debut": 217.53,
+          "fin": 218.1
+        },
+        {
+          "mot": "retour",
+          "debut": 218.1,
+          "fin": 219
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 219.15,
+          "fin": 220.74
+        },
+        {
+          "mot": "pas",
+          "debut": 220.74,
+          "fin": 221.32
+        },
+        {
+          "mot": "les",
+          "debut": 221.32,
+          "fin": 221.9
+        },
+        {
+          "mot": "exploits",
+          "debut": 221.9,
+          "fin": 223.45
+        },
+        {
+          "mot": "du",
+          "debut": 223.45,
+          "fin": 223.84
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 223.84,
+          "fin": 225.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 225.46,
+          "fin": 226
+        },
+        {
+          "mot": "pas",
+          "debut": 226,
+          "fin": 226.18
+        },
+        {
+          "mot": "les",
+          "debut": 226.18,
+          "fin": 226.36
+        },
+        {
+          "mot": "exploits",
+          "debut": 226.36,
+          "fin": 226.84
+        },
+        {
+          "mot": "du",
+          "debut": 226.84,
+          "fin": 226.96
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 226.96,
+          "fin": 227.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 227.46,
+          "fin": 227.73
+        },
+        {
+          "mot": "pas",
+          "debut": 227.73,
+          "fin": 227.82
+        },
+        {
+          "mot": "les",
+          "debut": 227.82,
+          "fin": 227.91
+        },
+        {
+          "mot": "exploits",
+          "debut": 227.91,
+          "fin": 228.15
+        },
+        {
+          "mot": "du",
+          "debut": 228.15,
+          "fin": 228.21
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 228.21,
+          "fin": 228.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 228.46,
+          "fin": 229
+        },
+        {
+          "mot": "pas",
+          "debut": 229,
+          "fin": 229.18
+        },
+        {
+          "mot": "les",
+          "debut": 229.18,
+          "fin": 229.36
+        },
+        {
+          "mot": "exploits",
+          "debut": 229.36,
+          "fin": 229.84
+        },
+        {
+          "mot": "du",
+          "debut": 229.84,
+          "fin": 229.96
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 229.96,
+          "fin": 230.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 230.46,
+          "fin": 231
+        },
+        {
+          "mot": "pas",
+          "debut": 231,
+          "fin": 231.18
+        },
+        {
+          "mot": "les",
+          "debut": 231.18,
+          "fin": 231.36
+        },
+        {
+          "mot": "exploits",
+          "debut": 231.36,
+          "fin": 231.84
+        },
+        {
+          "mot": "du",
+          "debut": 231.84,
+          "fin": 231.96
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 231.96,
+          "fin": 232.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 232.46,
+          "fin": 233
+        },
+        {
+          "mot": "pas",
+          "debut": 233,
+          "fin": 233.18
+        },
+        {
+          "mot": "les",
+          "debut": 233.18,
+          "fin": 233.36
+        },
+        {
+          "mot": "exploits",
+          "debut": 233.36,
+          "fin": 233.84
+        },
+        {
+          "mot": "du",
+          "debut": 233.84,
+          "fin": 233.96
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 233.96,
+          "fin": 234.46
+        },
+        {
+          "mot": "N'oubliez",
+          "debut": 234.46,
+          "fin": 234.73
+        },
+        {
+          "mot": "pas",
+          "debut": 234.73,
+          "fin": 234.82
+        },
+        {
+          "mot": "les",
+          "debut": 234.82,
+          "fin": 234.91
+        },
+        {
+          "mot": "exploits",
+          "debut": 234.91,
+          "fin": 235.15
+        },
+        {
+          "mot": "du",
+          "debut": 235.15,
+          "fin": 235.21
+        },
+        {
+          "mot": "Seigneur",
+          "debut": 235.21,
+          "fin": 235.46
         }
-      ]
+      ],
+      "paroles": {
+        "source": "d'après le psaume 77 (78)",
+        "titre": "N'oubliez pas les exploits du Seigneur",
+        "lignes": [
+          {
+            "texte": "Nous avons entendu et nous savons",
+            "debut": 142.54,
+            "fin": 148.12,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "ce que nos pères nous ont raconté ;",
+            "debut": 148.12,
+            "fin": 151.82,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "nous redirons à l'âge qui vient",
+            "debut": 151.82,
+            "fin": 155.68,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "les titres de gloire du Seigneur.",
+            "debut": 155.68,
+            "fin": 160.28,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "Quand Dieu les frappait, ils le cherchaient,",
+            "debut": 162.57,
+            "fin": 166.26,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "ils revenaient et se tournaient vers lui :",
+            "debut": 166.26,
+            "fin": 169.04,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "ils se souvenaient que Dieu est leur rocher,",
+            "debut": 169.04,
+            "fin": 172.76,
+            "motsRetrouves": 8
+          },
+          {
+            "texte": "et le Dieu Très-Haut, leur rédempteur.",
+            "debut": 172.76,
+            "fin": 176.76,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "Mais de leur bouche ils le trompaient,",
+            "debut": 184.26,
+            "fin": 189.42,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "de leur langue ils lui mentaient.",
+            "debut": 189.42,
+            "fin": 192.38,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "Leur cœur n'était pas constant envers lui ;",
+            "debut": 192.53,
+            "fin": 196.12,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "ils n'étaient pas fidèles à son alliance.",
+            "debut": 196.12,
+            "fin": 199.84,
+            "motsRetrouves": 7
+          },
+          {
+            "texte": "Et lui, miséricordieux,",
+            "debut": 199.84,
+            "fin": 206.88,
+            "motsRetrouves": 3
+          },
+          {
+            "texte": "au lieu de détruire, il pardonnait.",
+            "debut": 206.88,
+            "fin": 211.26,
+            "motsRetrouves": 6
+          },
+          {
+            "texte": "Il se rappelait : ils ne sont que chair,",
+            "debut": 211.68,
+            "fin": 214.54,
+            "motsRetrouves": 8
+          },
+          {
+            "texte": "un souffle qui s'en va sans retour.",
+            "debut": 215,
+            "fin": 219,
+            "motsRetrouves": 7
+          }
+        ]
+      }
     },
     {
       "section": "E",
