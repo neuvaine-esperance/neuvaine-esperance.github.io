@@ -34,6 +34,7 @@ window.NEUVAINE_CONTENU = {
             'plénitude que l’homme puisse atteindre. C’est là, dans ce Cœur, que nous ' +
             'nous reconnaissons finalement nous-mêmes et que nous apprenons à aimer. »',
     source: 'Lettre encyclique du pape François sur l’amour humain et divin du Cœur de Jésus-Christ',
+    origine:    'Parole du pape François',
     meditation: [
       'Le pape vient nous visiter et porter la Parole de Dieu dans notre diocèse. ' +
       'Pourtant, notre vie quotidienne, bien souvent agitée et dispersée, peine à être ' +
@@ -211,6 +212,7 @@ window.NEUVAINE_CONTENU = {
       'Dieu seul suffit ! »'
     ],
     source: 'Sainte Thérèse d’Avila',
+    origine:    'Parole de sainte Thérèse d’Avila',
     meditation: [
       'Nous allons au Sacré-Cœur de Jésus avec sainte Thérèse d’Avila, véritable ' +
       'maîtresse de vie chrétienne pour les fidèles de chaque temps, disait Benoît XVI.',
@@ -296,6 +298,7 @@ window.NEUVAINE_CONTENU = {
             'Jésus Christ, qui s’identifie à l’étranger de toute époque, accueilli ou ' +
             'rejeté. »',
     source: 'Message du pape François pour la Journée mondiale du migrant et du réfugié',
+    origine:    'Parole du pape François',
     meditation: [
       'En ces périodes plus que troublantes pour l’Humanité, le Christ nous appelle ' +
       'inlassablement à revenir à l’essentiel : l’accueillir, Lui. Le recevoir, c’est ' +

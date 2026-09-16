@@ -632,6 +632,42 @@ main { display: contents; }
   margin-top: 12px;
 }
 
+/* Le tableau de bord emprunte le fond vert et l'en-tête de la page des
+   envois : même public, même signal qu'on a quitté le site des priants.
+   Il n'ajoute qu'une liste de correspondances. */
+.stats-liste {
+  margin: 14px var(--pad) 0;
+  padding: 0;
+  list-style: none;
+  display: flex;
+  flex-direction: column;
+  gap: 2px;
+}
+.stats-ligne {
+  display: flex;
+  align-items: baseline;
+  gap: 12px;
+  padding: 10px 14px;
+  border-radius: var(--r-sm);
+  background: rgba(246, 240, 232, .08);
+}
+.stats-ligne__chemin {
+  flex: none;
+  min-width: 7.5em;
+  font-weight: 700;
+  color: var(--gold);
+  overflow-wrap: anywhere;
+}
+.stats-ligne__quoi {
+  flex: 1;
+  font-size: .9375rem;
+  font-weight: 500;
+  line-height: 1.4;
+  color: var(--cream);
+}
+
+#view-stats .btn-primary { margin: 16px var(--pad) 0; width: auto; }
+
 .envoi-note {
   margin: 22px var(--pad) 0;
   font-size: .875rem;
@@ -748,10 +784,17 @@ main { display: contents; }
   z-index: 40;
   margin: 0;
   padding: 16px var(--pad) calc(14px + env(safe-area-inset-bottom, 0px));
+
+  /* La page compte plusieurs panneaux verts — la Parole de Dieu, les
+     prières d'ancrage. Sans bordure, la barre n'était qu'un vert de plus,
+     et se lisait comme le bord de la page. Ce filet d'or est le seul de
+     tout l'écran : c'est ce qui la désigne. */
+  border: 2px solid var(--gold);
+  border-bottom: 0;
   border-radius: var(--r-lg) var(--r-lg) 0 0;
   background: var(--green);
   color: var(--cream);
-  box-shadow: 0 -12px 24px rgba(39, 78, 23, .3);
+  box-shadow: 0 -12px 24px rgba(39, 78, 23, .35);
 }
 
 /* La barre flotte au-dessus du texte : la page réserve sa hauteur en bas,
@@ -788,7 +831,22 @@ main { display: contents; }
   display: flex;
   align-items: center;
   justify-content: center;
+
+  /* Un halo qui respire, tant qu'on n'y a pas touché. Il dit que ce rond
+     attend une pression — ce qu'une forme immobile ne dit pas à qui n'a
+     pas l'habitude. Il s'arrête dès la première pression, et pour toute
+     la visite : une fois qu'on sait, il n'a plus rien à dire. */
+  animation: appel 2.4s var(--ease) infinite;
 }
+
+@keyframes appel {
+  0%, 100% { box-shadow: 0 0 0 0 rgba(232, 184, 75, 0); }
+  50%      { box-shadow: 0 0 0 9px rgba(232, 184, 75, .38); }
+}
+
+/* Plus de halo une fois qu'on a compris, ni quand il n'y a rien à écouter. */
+.audio.a-touche .audio__btn,
+.audio__btn[disabled] { animation: none; }
 .audio__btn:hover { background: var(--crimson-2); }
 .audio__btn[disabled] {
   background: var(--green-2);
@@ -945,6 +1003,30 @@ main { display: contents; }
   line-height: 1.15;
   color: var(--green);
 }
+/* Ce que le jour propose, sous son titre.
+
+   Une mère à qui l'on avait envoyé le lien s'est mise à lire : rien ne lui
+   disait qu'il y avait une voix. La barre verte du bas se lit comme une
+   commande, pas comme une invitation.
+
+   Une première version mettait devant la phrase une pastille rouge reprenant
+   le bouton en plus petit. L'œil faisait bien le lien — mais un rond rouge
+   avec un triangle, c'est un bouton, et celui-ci ne répondait pas. Elle est
+   partie : reste du texte, sur le même panneau de crème que le titre
+   au-dessus, et rien qui donne envie d'appuyer. */
+.day-intro {
+  position: relative;
+  margin: 12px 0 0;
+  padding: 12px 14px;
+  border-radius: var(--r-md);
+  background: var(--cream-90);
+  font-size: .9375rem;
+  font-weight: 600;
+  line-height: 1.5;
+  color: var(--green);
+}
+.day-intro:empty { display: none; }
+
 .day-pending {
   margin: 20px var(--pad) 32px;
   padding: 28px 22px;
@@ -1355,6 +1437,7 @@ main { display: contents; }
 /* Cascade d'un jour */
 .day-head__row { --d:   0ms; }
 .day-head h1   { --d:  80ms; }
+.day-intro     { --d: 120ms; }
 .scripture     { --d: 140ms; }
 .audio         { --d: 220ms; }
 
@@ -1493,6 +1576,7 @@ main { display: contents; }
     transform: none !important;
   }
   .hero__figure img { animation: none !important; }
+  .audio__btn { animation: none !important; }
   .mot { transition: none !important; }
   .audio { transition: none !important; }
 }

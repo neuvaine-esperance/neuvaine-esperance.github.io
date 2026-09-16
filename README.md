@@ -9,7 +9,7 @@ aucune dépendance, aucun outil de construction : on ouvre `index.html` et ça f
 ## Contenu
 
 ```
-index.html                    les quatre écrans : accueil, jour, consécration, envoi
+index.html                    les cinq écrans : accueil, jour, consécration, envoi, stats
 assets/css/styles.css         palette, typographie, mise en page
 assets/css/fonts.css          déclaration des polices auto-hébergées
 assets/fonts/                 Archivo Black et League Spartan en woff2, 75 Ko
@@ -134,10 +134,15 @@ var CODES = ['', 'sc5gtesv', 'gc2uzt4n', 'rbw4ehjj', …];   // index = numéro 
 ce jour-là. L'alphabet n'a ni `i`, ni `l`, ni `o`, ni `0`, ni `1` : un lien se relit
 sans ambiguïté.
 
-Il n'y a plus non plus de chemin d'une page à l'autre à l'intérieur du site : les
-flèches « Jour précédent / Jour suivant » et le bouton « Consécration » ont quitté le
-bas de chaque jour. Un lien ouvre son jour, et rien d'autre. `#jour-3`, l'ancienne
-forme, ramène à l'accueil, comme n'importe quel code inconnu.
+On ne passe plus non plus d'un jour à l'autre : les flèches « Jour précédent / Jour
+suivant » ont quitté le bas de chaque jour. Un lien ouvre son jour, et rien d'autre.
+`#jour-3`, l'ancienne forme, ramène à l'accueil, comme n'importe quel code inconnu.
+
+**La consécration fait exception, et c'est voulu.** Elle n'est pas un dixième jour
+mais une prière permanente, à dire chaque jour par qui le souhaite. Son lien est donc
+au pied de chaque jour : on ouvre le lien du matin, on prie, et l'on peut enchaîner
+sans repasser par l'accueil — où l'on n'arrive jamais quand on vient du canal. La
+barrière tient malgré tout : de la consécration on ne va pas à un autre jour.
 
 **Ce que cela ne fait pas.** C'est une barrière de courtoisie, pas une serrure. La
 table des codes est dans `app.js` et le texte des neuf jours dans `contenu.js`, tous
@@ -155,6 +160,7 @@ corriger sans jamais ouvrir `app.js`.
   titre:      'Titre du jour',
   verset:     '« Citation »',              // ou un tableau de lignes, pour un poème
   source:     'Luc 6, 6-11',
+  origine:    'Parole du pape François',    // facultatif, voir ci-dessous
   meditation: ['premier paragraphe', 'deuxième paragraphe'],
   musique:    'Titre — interprète',        // facultatif
   paroles:    ['premier vers', 'deuxième'], // facultatif, une entrée par vers
@@ -165,6 +171,23 @@ corriger sans jamais ouvrir `app.js`.
   chapitres:  { meditation: 9.98, chant: 126.6 }
 }
 ```
+
+`origine` nomme l'intertitre du bloc cité. **« Parole de Dieu » ne se dit que de
+l'Écriture** : le champ existe pour les jours qui citent quelqu'un d'autre. Sans lui,
+l'intertitre vaut « Parole de Dieu », ce qui convient aux six jours qui citent
+l'Évangile. Les trois autres le portent :
+
+| Jour | Ce qui est cité | `origine` |
+| --- | --- | --- |
+| 1 | Lettre encyclique *Dilexit nos* | `Parole du pape François` |
+| 4 | Sainte Thérèse d'Avila | `Parole de sainte Thérèse d'Avila` |
+| 6 | Message pour la Journée du migrant | `Parole du pape François` |
+
+La remarque vient d'un religieux, et elle vaut pour la suite : **vérifier ce champ à
+chaque jour ajouté.** Un texte de saint ou de pape annoncé comme Parole de Dieu est
+une faute, pas une approximation.
+
+L'intertitre n'est pas compté par le surlignage : le changer ne touche à rien.
 
 Une entrée de `priere` commençant par un tiret cadratin est le répons d'une litanie :
 elle s'affiche en cramoisi, détachée du reste.
@@ -419,8 +442,74 @@ index.html?date=2026-09-20
 - Rien du côté des liens : le canal WhatsApp et le compte Instagram sont renseignés en
   tête d'`app.js`, et les deux boutons « Rejoindre le canal WhatsApp » sont en place,
   sur l'accueil et au pied de chaque jour.
+- **Le code GoatCounter**, constante `MESURE_GOATCOUNTER` en tête d'`app.js`. Tant
+  qu'elle est vide, le site ne compte rien. Voir « Compter les visites » plus bas, et
+  trancher la question du consentement avant d'allumer.
 - Les horaires et les modalités d'accès de la veillée, à confirmer par le diocèse.
   Ils sont actuellement marqués comme tels dans l'écran Consécration.
+
+## Compter les visites
+
+Le site peut compter ses visiteurs, et il ne le fait pas par défaut.
+
+Tout tient à une constante en tête d'`app.js` :
+
+```js
+var MESURE_GOATCOUNTER = '';   // vide : rien n'est chargé, rien ne part
+```
+
+Y écrire le code du compte — `neuvaine` si le tableau de bord est à
+`neuvaine.goatcounter.com` — allume la mesure. La laisser vide l'éteint complètement :
+pas de script, pas de requête, rien.
+
+### Pourquoi GoatCounter
+
+Gratuit pour un site de cette taille, trois kilo-octets de script, pas de cookie.
+Sa documentation indique qu'il ne conserve ni adresse IP ni User-Agent et n'en tire
+que des agrégats — « quarante personnes ont utilisé Firefox aujourd'hui », jamais le
+parcours d'une personne. Elle estime qu'une bannière de consentement n'est
+probablement pas nécessaire, tout en précisant que ses auteurs ne sont pas juristes.
+**À vérifier avant d'allumer**, la question n'étant pas tranchée ici.
+
+### Ce qu'il a fallu ouvrir
+
+La politique de sécurité interdisait tout. Trois directives s'élargissent, au strict
+nécessaire :
+
+| Directive | Ce qui s'ouvre | Pourquoi |
+| --- | --- | --- |
+| `script-src` | `https://gc.zgo.at` | le script de comptage |
+| `connect-src` | `https://*.goatcounter.com` | l'envoi des vues |
+| `img-src` | `https://*.goatcounter.com` | le repli en pixel, quand la balise échoue |
+
+Ces ouvertures existent même quand la constante est vide : la politique *autorise*,
+elle n'appelle rien. Aucune requête ne part tant que le code n'est pas renseigné.
+
+### Les ancres, et pourquoi il faut compter à la main
+
+Les neuf jours partagent une seule adresse et ne se distinguent que par leur ancre.
+Une mesure ordinaire n'y verrait qu'une page, visitée beaucoup. Le comptage
+automatique est donc coupé — `no_onload` — et chaque changement d'écran est compté
+par `compter()`, sous un nom lisible : `/jour-3` plutôt que `/#rbw4ehjj`, qui ne
+dirait rien dans un tableau. Le titre du jour accompagne la ligne.
+
+Si le script n'arrive jamais — bloqueur de publicité, réseau coupé — rien n'est
+compté et la page ne s'en aperçoit pas.
+
+### Où lire les chiffres
+
+À `MONCODE.goatcounter.com`, derrière le mot de passe du compte. Pas sur ce site :
+**un site statique ne peut rien garder secret.** Toute clé posée dans ses pages
+serait lisible par n'importe qui, et une page à adresse discrète n'est qu'une
+courtoisie — la même que celle des codes des jours. Le compte du service est la
+seule serrure réelle.
+
+`index.html#stats` est la page des organisateurs : elle ne porte aucun chiffre, elle
+dit où les lire et à quoi correspond chaque ligne du tableau. Comme `#envoyer`, elle
+n'est listée nulle part.
+
+Les chiffres commencent le jour où la mesure est allumée. Il n'y a rien pour le
+passé, et GitHub Pages ne donne pas de journaux serveur.
 
 ## Une note sur la feuille de style
 
@@ -435,10 +524,16 @@ quoi elle est silencieusement annulée. C'est le cas de `.btn-outline--clair`.
 Le site n'a ni serveur, ni base de données, ni formulaire, ni compte. La surface
 d'attaque est donc très réduite, mais quelques points ont été traités.
 
-**Aucune requête ne part vers un tiers.** Les polices étaient chargées depuis Google,
-ce qui transmettait l'adresse IP de chaque visiteur. Elles sont désormais servies
-depuis le site. Il n'y a ni mesure d'audience, ni traceur, ni cookie, ni stockage
-navigateur. Rien à déclarer côté RGPD, et rien à demander au visiteur.
+**Par défaut, aucune requête ne part vers un tiers.** Les polices étaient chargées
+depuis Google, ce qui transmettait l'adresse IP de chaque visiteur. Elles sont
+désormais servies depuis le site. Il n'y a ni traceur, ni cookie, ni stockage
+navigateur.
+
+**Une seule exception, et elle est éteinte tant qu'on ne l'allume pas :** la mesure
+de fréquentation, décrite plus bas. Tant que `MESURE_GOATCOUNTER` est vide, aucun
+script tiers n'est chargé et rien ne sort du site — l'état ci-dessus tient mot pour
+mot. Dès qu'elle est renseignée, deux domaines sont contactés et la phrase n'est plus
+vraie : il faut alors relire ce paragraphe avant de le citer.
 
 **Le script n'écrit jamais de balisage.** Tous les textes sont posés avec
 `textContent`. Il n'y a aucun `innerHTML`, aucun gestionnaire d'événement en ligne,

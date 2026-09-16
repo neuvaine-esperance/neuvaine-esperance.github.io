@@ -16,12 +16,12 @@
      s'applique. -->
 <meta http-equiv="Content-Security-Policy" content="
   default-src 'none';
-  script-src 'self';
+  script-src 'self' https://gc.zgo.at;
   style-src 'self';
   font-src 'self';
-  img-src 'self' data:;
+  img-src 'self' data: https://*.goatcounter.com;
   media-src 'self';
-  connect-src 'none';
+  connect-src https://*.goatcounter.com;
   base-uri 'none';
   form-action 'none';
   object-src 'none';
@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=47">
-<link rel="stylesheet" href="assets/css/styles.css?v=47">
+<link rel="stylesheet" href="assets/css/fonts.css?v=53">
+<link rel="stylesheet" href="assets/css/styles.css?v=53">
 </head>
 <body>
 
@@ -240,6 +240,13 @@
         <span class="day-head__count" id="day-count"></span>
       </p>
       <h1 id="day-title" class="anim"></h1>
+
+      <!-- Ce que ce jour propose, dit avant que le texte ne commence.
+           Sans elle, on arrive sur une page de texte et l'on se met à
+           lire : la barre verte du bas se lit comme une commande, pas
+           comme une invitation. Elle est hors des zones du surlignage,
+           ses mots ne sont donc pas comptés. -->
+      <p class="day-intro anim" id="day-intro"></p>
     </div>
 
     <!-- Jour pas encore publié -->
@@ -339,6 +346,21 @@
     <p class="envoi anim">Que le Seigneur nous prenne en grâce et nous donne sa paix. À demain.</p>
 
     <div class="day-foot">
+      <!-- La consécration, au bout de la prière du jour. Elle n'est pas un
+           dixième jour mais une prière permanente, à dire chaque jour par qui
+           le souhaite : elle doit donc être atteignable d'ici, sans passer
+           par l'accueil — où l'on n'arrive pas quand on ouvre le lien du
+           matin. Elle est posée avant le canal et le partage : on finit de
+           prier avant qu'on ne propose autre chose. -->
+      <button class="consec-link anim" type="button" data-goto="consecration">
+        <span class="consec-link__badge" aria-hidden="true">25</span>
+        <span class="consec-link__body">
+          <span class="consec-link__title">Consécration au Sacré-Cœur</span>
+          <span class="consec-link__sub">À prier chaque jour, si vous le souhaitez</span>
+        </span>
+        <span class="consec-link__chevron" aria-hidden="true">&rsaquo;</span>
+      </button>
+
       <!-- Le lien du canal est posé dans app.js. Tant qu'il est vide, ce
            bouton reste absent plutôt que de mener nulle part. -->
       <a class="btn-primary anim" id="lien-whatsapp" href="#" hidden>Le canal WhatsApp</a>
@@ -494,12 +516,60 @@
 
   </section>
 
+
+  <!-- ====================================================================
+       Écran 5 — Tableau de bord
+
+       Page des organisateurs, non répertoriée : index.html#stats. Elle ne
+       contient aucun chiffre — ils vivent chez GoatCounter, derrière le mot
+       de passe du compte. Un site statique ne peut rien garder secret : tout
+       ce qu'on mettrait ici serait public.
+       ==================================================================== -->
+  <section class="view view--envoi" id="view-stats" aria-labelledby="stats-titre" hidden>
+
+    <nav class="envoi-top" aria-label="Fil d'Ariane">
+      <button class="back-link back-link--clair" type="button" data-goto="accueil">
+        <span aria-hidden="true">&lsaquo;</span> Revenir à l'accueil
+      </button>
+    </nav>
+
+    <header class="envoi-hero">
+      <p class="envoi-hero__kicker">Neuvaine au Sacré-Cœur</p>
+      <h1 id="stats-titre">Tableau de bord</h1>
+      <p class="envoi-hero__lead">Page réservée aux organisateurs</p>
+    </header>
+
+    <p class="envoi-note" id="stats-etat"></p>
+
+    <a class="btn-primary" id="stats-lien" href="#" rel="noopener" target="_blank" hidden>
+      Ouvrir les chiffres <span aria-hidden="true">&rsaquo;</span>
+    </a>
+
+    <div class="envoi-liste__tete">
+      <h2 id="t-chemins">Ce qui est compté</h2>
+    </div>
+
+    <p class="envoi-note">
+      Chaque écran est compté sous un nom lisible plutôt que sous son code
+      d'adresse : voici à quoi correspondent les lignes du tableau.
+    </p>
+
+    <ul class="stats-liste" id="stats-liste" aria-labelledby="t-chemins"></ul>
+
+    <p class="envoi-note">
+      Aucun cookie, aucune adresse IP conservée, aucun visiteur suivi d'une page
+      à l'autre : seulement des totaux. Les chiffres commencent le jour où la
+      mesure est allumée, il n'y a rien pour le passé.
+    </p>
+
+  </section>
+
   </main>
 
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=47" defer></script>
-<script src="assets/js/app.js?v=47" defer></script>
+<script src="assets/js/contenu.js?v=53" defer></script>
+<script src="assets/js/app.js?v=53" defer></script>
 </body>
 </html>

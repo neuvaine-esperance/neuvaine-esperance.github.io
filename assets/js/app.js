@@ -67,6 +67,19 @@
      « Vous n'êtes pas sur WhatsApp ? » ne s'affiche que s'il est rempli. */
   var COMPTE_INSTAGRAM = '@groupesperance';
 
+  /* Mesure de fréquentation, par GoatCounter. Ce code est celui du compte :
+     « neuvaine » si le tableau de bord est à neuvaine.goatcounter.com.
+
+     Tant qu'il est vide, **rien n'est chargé et aucune requête ne part** :
+     le site reste exactement ce qu'il était, sans mesure d'aucune sorte.
+     C'est l'état par défaut, et il est volontaire.
+
+     GoatCounter ne pose pas de cookie et ne conserve ni adresse IP ni
+     User-Agent : il n'en tire que des agrégats. Le tableau de bord est
+     derrière le mot de passe du compte — c'est la seule confidentialité
+     réelle possible ici, un site statique ne pouvant rien garder secret. */
+  var MESURE_GOATCOUNTER = '';
+
   /* Adresse publique du site. Elle ne sert que lorsque la page est ouverte
      depuis le disque, où l'adresse du fichier ne vaudrait rien pour
      personne : servie par un hébergeur, c'est sa propre adresse qui est
@@ -224,13 +237,59 @@
   }
 
   /* ------------------------------------------------------------------
+     Mesure de fréquentation
+
+     Les adresses du site sont des ancres : sans rien faire, la mesure ne
+     verrait qu'une seule page pour les neuf jours. Chaque changement
+     d'écran est donc compté à la main, sous un nom lisible — « /jour-3 »
+     plutôt que « /#rbw4ehjj », qui ne dirait rien dans un tableau.
+     ------------------------------------------------------------------ */
+  function initMesure() {
+    if (!MESURE_GOATCOUNTER) { return; }
+
+    // Sans cela le script compterait l'arrivée tout seul, sous l'adresse
+    // à ancre : c'est nous qui comptons, après avoir nommé l'écran.
+    window.goatcounter = { no_onload: true };
+
+    var sc = document.createElement('script');
+    sc.async = true;
+    sc.src = 'https://gc.zgo.at/count.js';
+    sc.setAttribute('data-goatcounter',
+      'https://' + MESURE_GOATCOUNTER + '.goatcounter.com/count');
+    document.head.appendChild(sc);
+  }
+
+  /** Le nom sous lequel un écran est compté. */
+  function cheminMesure(view, day) {
+    if (view === 'jour') { return '/jour-' + day; }
+    if (view === 'accueil') { return '/'; }
+    return '/' + view;
+  }
+
+  function compter(view, day) {
+    // Le script peut ne jamais arriver — bloqueur de publicité, réseau
+    // coupé. Tant que sa fonction n'est pas là, on ne compte pas, et la
+    // page ne s'en aperçoit pas.
+    if (!MESURE_GOATCOUNTER || !window.goatcounter ||
+        typeof window.goatcounter.count !== 'function') { return; }
+    var c = CONTENT[day];
+    try {
+      window.goatcounter.count({
+        path: cheminMesure(view, day),
+        title: view === 'jour' && c ? 'Jour ' + day + ' — ' + c.titre : view
+      });
+    } catch (e) { /* une mesure qui échoue ne doit rien empêcher */ }
+  }
+
+  /* ------------------------------------------------------------------
      Navigation entre les écrans
      ------------------------------------------------------------------ */
   var VIEWS = {
     accueil: $('#view-accueil'),
     jour: $('#view-jour'),
     consecration: $('#view-consecration'),
-    envoyer: $('#view-envoyer')
+    envoyer: $('#view-envoyer'),
+    stats: $('#view-stats')
   };
 
   // Titre de chaque écran, sur lequel le focus est posé après un changement.
@@ -238,7 +297,8 @@
     accueil: '#accueil-titre',
     jour: '#day-title',
     consecration: '#consec-titre',
-    envoyer: '#envoyer-titre'
+    envoyer: '#envoyer-titre',
+    stats: '#stats-titre'
   };
 
   var state = { view: 'accueil', day: 1 };
@@ -268,6 +328,7 @@
     stopAudio();
     if (view === 'jour') { renderDay(state.day); }
     if (view === 'envoyer') { renderEnvoyer(); }
+    if (view === 'stats') { renderStats(); }
 
     var hash = view === 'jour' ? '#' + codeDuJour(state.day) : '#' + view;
     if (window.location.hash !== hash) {
@@ -281,12 +342,14 @@
     window.scrollTo(0, 0);
     playReveal(VIEWS[view], view);
     focusTitle(view);
+    compter(view, state.day);
   }
 
   function readHash() {
     var h = (window.location.hash || '').replace('#', '');
     if (h === 'consecration') { return { view: 'consecration', day: state.day }; }
     if (h === 'envoyer') { return { view: 'envoyer', day: state.day }; }
+    if (h === 'stats') { return { view: 'stats', day: state.day }; }
 
     // Un code inconnu — ou l'ancien « jour-3 » — ramène à l'accueil.
     var n = jourDuCode(h);
@@ -306,6 +369,7 @@
     stopAudio();
     if (state.view === 'jour') { renderDay(state.day); }
     if (state.view === 'envoyer') { renderEnvoyer(); }
+    if (state.view === 'stats') { renderStats(); }
 
     // Ce retour en haut est le nôtre, comme dans show() : sans la marque, le
     // suivi du texte le prendrait pour un geste du visiteur.
@@ -314,6 +378,7 @@
 
     playReveal(VIEWS[state.view], state.view);
     if (moveFocus) { focusTitle(state.view); }
+    compter(state.view, state.day);
   }
 
   /* ------------------------------------------------------------------
@@ -502,6 +567,62 @@
   }
 
   /* ------------------------------------------------------------------
+     Tableau de bord — la page des organisateurs
+
+     Elle ne porte aucun chiffre. Les chiffres vivent chez GoatCounter,
+     derrière le mot de passe du compte : c'est la seule confidentialité
+     réelle possible, tout ce qu'on écrirait ici étant public. Cette page
+     dit où les lire, et à quoi correspond chaque ligne du tableau.
+     ------------------------------------------------------------------ */
+  function renderStats() {
+    var etat = $('#stats-etat');
+    var lien = $('#stats-lien');
+
+    if (MESURE_GOATCOUNTER) {
+      etat.textContent = 'La mesure est en service. Les chiffres sont sur ' +
+        'GoatCounter, derrière le mot de passe du compte — personne d’autre ' +
+        'n’y entre.';
+      lien.href = 'https://' + MESURE_GOATCOUNTER + '.goatcounter.com';
+      lien.hidden = false;
+    } else {
+      etat.textContent = 'La mesure n’est pas branchée : le site ne compte ' +
+        'rien, et aucune requête ne part. Pour l’allumer, ouvrir un compte ' +
+        'sur goatcounter.com, puis écrire son code dans la constante ' +
+        'MESURE_GOATCOUNTER, en tête de assets/js/app.js.';
+      lien.hidden = true;
+    }
+
+    var liste = $('#stats-liste');
+    liste.textContent = '';
+    liste.appendChild(ligneStat('/', 'Accueil'));
+    for (var n = 1; n <= TOTAL_DAYS; n++) {
+      var c = CONTENT[n];
+      liste.appendChild(ligneStat('/jour-' + n,
+        'Jour ' + n + (c ? ' — ' + c.titre : '')));
+    }
+    liste.appendChild(ligneStat('/consecration', 'Consécration'));
+    liste.appendChild(ligneStat('/envoyer', 'Envoyer le jour'));
+    liste.appendChild(ligneStat('/stats', 'Cette page'));
+  }
+
+  function ligneStat(chemin, quoi) {
+    var li = document.createElement('li');
+    li.className = 'stats-ligne';
+
+    var c = document.createElement('span');
+    c.className = 'stats-ligne__chemin';
+    c.textContent = chemin;
+    li.appendChild(c);
+
+    var q = document.createElement('span');
+    q.className = 'stats-ligne__quoi';
+    q.textContent = quoi;
+    li.appendChild(q);
+
+    return li;
+  }
+
+  /* ------------------------------------------------------------------
      Page d'un jour
      ------------------------------------------------------------------ */
   function renderDay(n) {
@@ -516,6 +637,21 @@
     $('#day-pending').hidden = !!c;
     $('#day-content').hidden = !c;
 
+    // Dire d'emblée ce que le jour propose, et où appuyer. Le bouton est
+    // nommé par sa couleur et sa place : « en bas de l'écran » se trouve
+    // sans savoir ce qu'est un lecteur audio.
+    var intro = $('#day-intro');
+    if (!c) {
+      intro.textContent = '';
+    } else if (c.audio) {
+      intro.textContent = 'Cette prière est d’abord faite pour être écoutée. ' +
+        'Appuyez sur le bouton rouge, en bas de l’écran : le texte ci-dessous ' +
+        's’allume au fil de la voix.';
+    } else {
+      intro.textContent = 'L’enregistrement de ce jour n’est pas encore en ligne. ' +
+        'Le texte ci-dessous se lit tel quel.';
+    }
+
     placerIntention(!!(c && c.intentionAvant));
 
     if (!c) {
@@ -524,6 +660,13 @@
     } else {
       fillVerse($('#day-verse'), c.verset);
       $('#day-ref').textContent = c.source || '';
+
+      /* L'intertitre suit ce qui est cité. « Parole de Dieu » ne se dit que
+         de l'Écriture : six jours citent l'Évangile, mais le premier et le
+         sixième citent le pape François, et le quatrième sainte Thérèse
+         d'Avila. Chacun de ces trois-là porte un champ « origine » dans
+         contenu.js ; sans lui, c'est bien l'Écriture. */
+      $('#t-parole').textContent = c.origine || 'Parole de Dieu';
       fillParagraphs($('#day-meditation'), c.meditation);
       fillMusic(c.musique, c.paroles);
       fillIntention(c.intention);
@@ -661,6 +804,8 @@
     var seek = el('audio-seek');
 
     setBtnState(false);
+    var barre = $('#view-jour .audio');
+    if (barre) { barre.classList.toggle('a-touche', aTouche); }
     seek.value = 0;
     seek.max = 100;
     el('audio-elapsed').textContent = '0:00';
@@ -791,8 +936,19 @@
     verrou.release().catch(function () { /* déjà relâché */ });
   }
 
+  /* Le halo du bouton s'arrête à la première pression, et pour toute la
+     visite : une fois qu'on sait où appuyer, il n'a plus rien à dire. Il
+     ne revient donc pas au changement de jour. */
+  var aTouche = false;
+
   function toggleAudio() {
     if (!audioSrc) { return; }
+
+    if (!aTouche) {
+      aTouche = true;
+      var barre = $('#view-jour .audio');
+      if (barre) { barre.classList.add('a-touche'); }
+    }
     if (!audio) { makeAudio(); }
 
     if (audio.paused) {
@@ -1426,6 +1582,7 @@
     bindSuivi();
     initLiens();
     initPartage();
+    initMesure();
     reserverPlaceBarre();
 
     // Une rotation d'écran change la largeur de la barre, donc sa hauteur :
