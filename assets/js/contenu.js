@@ -103,7 +103,7 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Anna',
     audio: 'assets/audio/jour-1.mp3?v=5',
-    sync: 'assets/audio/jour-1.sync.js?v=3',
+    sync: 'assets/audio/jour-1.sync.js?v=4',
     chapitres: { meditation: 10, chant: 126.56, prions: 274.83, prieres: 352.55, envoi: 483.11 }
   },
 
@@ -150,11 +150,13 @@ window.NEUVAINE_CONTENU = {
       'Nous avons entendu et nous savons',
       'ce que nos pères nous ont raconté ;',
       'nous le redirons à l’âge qui vient :',
-      'les titres de gloire du Seigneur.'
+      'les titres de gloire du Seigneur.',
+
+      'N’oubliez pas les exploits du Seigneur.'
     ],
     lecteur: 'Ludivine',
     audio: 'assets/audio/jour-2.mp3?v=3',
-    sync: 'assets/audio/jour-2.sync.js?v=3',
+    sync: 'assets/audio/jour-2.sync.js?v=4',
     chapitres: { meditation: 6.82, chant: 132.42, prions: 245.57, prieres: 279.8, envoi: 410.36 }
   },
 
@@ -361,7 +363,7 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Romain',
     audio: 'assets/audio/jour-6.mp3?v=3',
-    sync: 'assets/audio/jour-6.sync.js?v=2',
+    sync: 'assets/audio/jour-6.sync.js?v=3',
     chapitres: { meditation: 5.08, chant: 256.57, prions: 407.07, prieres: 473.7, envoi: 604.26 }
   },
 

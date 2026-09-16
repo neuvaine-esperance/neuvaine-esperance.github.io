@@ -58,6 +58,20 @@ CORRESPONDANCE = [
 # annoncée par la lectrice, sans que la page la fasse défiler.
 ZONES_MUETTES = ['source']
 
+# Durée maximale d'un mot interpolé, en secondes.
+#
+# Un mot sans appui reçoit un horaire réparti entre ses deux voisins
+# appariés. Quand ces voisins sont proches, la répartition est juste à un
+# souffle près. Quand ils sont loin — un refrain chanté que la transcription
+# n'a pas entendu, un passage instrumental — elle devient une invention : le
+# jour 2 donnait douze secondes à chaque mot du refrain final, qui se seraient
+# allumés l'un après l'autre sur la musique, au hasard.
+#
+# Au-delà de ce seuil, on préfère donc ne rien affirmer : le mot reçoit une
+# durée nulle et ne s'allumera jamais. Il reste affiché, il n'est simplement
+# pas suivi — mieux vaut un texte que l'on lit qu'un surlignage qui ment.
+PAS_MAX = 2.0
+
 
 # ==========================================================================
 # 1. Lire contenu.js — au caractère, pas à l'expression régulière
@@ -480,7 +494,9 @@ def interpoler(plages, entrees):
             t0, t1 = plages[g][1], plages[d][0]
             part = (i - g) / float(d - g)
             pas = (t1 - t0) / float(d - g)
-            plages[i] = [t0 + part * (t1 - t0), t0 + part * (t1 - t0) + pas]
+            debut = t0 + part * (t1 - t0)
+            # Répartir sur un trop grand écart reviendrait à inventer.
+            plages[i] = [debut, debut + (pas if pas <= PAS_MAX else 0)]
         elif avant:
             t = plages[avant[-1]][1]
             plages[i] = [t, t]

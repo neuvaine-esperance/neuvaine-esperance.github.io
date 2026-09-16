@@ -343,6 +343,17 @@ et ne s'allume jamais.
 
 ### Ce que le suivi ne fait pas
 
+**Un mot que la transcription n'a pas entendu ne s'allume pas.** Il reçoit un horaire
+réparti entre ses deux voisins reconnus, ce qui est juste à un souffle près quand ces
+voisins sont proches. Quand ils sont loin — un refrain chanté que la machine a
+manqué, un passage instrumental — la répartition deviendrait une invention : le jour 2
+donnait douze secondes à chaque mot de son refrain final, et le jour 6 jusqu'à trente.
+Ils se seraient allumés l'un après l'autre sur la musique, au hasard.
+
+Au-delà de `PAS_MAX`, deux secondes, le mot reçoit donc une durée nulle : il reste
+affiché, il n'est simplement jamais suivi. Mieux vaut un texte que l'on lit qu'un
+surlignage qui ment.
+
 Le surlignage n'a plus d'interrupteur : il est toujours allumé. C'est lui qui fait
 tenir la voix et le texte ensemble, et un réglage de plus à comprendre n'aidait
 personne.
