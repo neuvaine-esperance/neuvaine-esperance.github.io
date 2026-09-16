@@ -101,9 +101,9 @@ window.NEUVAINE_CONTENU = {
       '— Cœur de Jésus, ouvre-leur un avenir.'
     ],
     lecteur: 'Anna',
-    audio: 'assets/audio/jour-1.mp3?v=4',
-    sync: 'assets/audio/jour-1.sync.js?v=2',
-    chapitres: { meditation: 10, chant: 126.56, prions: 265.83, prieres: 343.55, envoi: 480.3 }
+    audio: 'assets/audio/jour-1.mp3?v=5',
+    sync: 'assets/audio/jour-1.sync.js?v=3',
+    chapitres: { meditation: 10, chant: 126.56, prions: 274.83, prieres: 352.55, envoi: 483.11 }
   },
 
   /* ---------------------------------------------------------------- 2 --- */
