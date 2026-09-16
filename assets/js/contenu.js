@@ -221,8 +221,28 @@ window.NEUVAINE_CONTENU = {
       'pardonné, c’est en mourant qu’on ressuscite à l’éternelle vie.'
     ],
     lecteur: 'Romain',
+    musique:    'Rappelle-toi ! Tu es sauvé — Fraternité de Tibériade',
+    paroles: [
+      'Je connais ta constance et tes labeurs,',
+      'Tu as beaucoup souffert en mon nom.',
+      'Pourquoi as-tu perdu ton amour des premiers temps ?',
+      'Rappelle-toi ! Tu es sauvé, reviens à moi.',
+      'Je te ferai goûter à l’arbre de vie.',
+
+      'Je connais ta détresse et ta pauvreté,',
+      'Sois sans peur si tu vis la souffrance.',
+      'Pourquoi t’éloignes-tu quand vient le temps de l’épreuve ?',
+      'Rappelle-toi ! Tu es sauvé, reviens à moi.',
+      'Je t’offrirai la couronne de la vie.',
+
+      'Je connais ta foi en moi et mon amour,',
+      'Sois fort, je viens à toi sans tarder.',
+      'Pourquoi tourner ton regard et ta vie vers d’autres dieux ?',
+      'Rappelle-toi ! Tu es sauvé, reviens à moi.',
+      'Je t’offrirai un nom connu de toi seul.'
+    ],
     audio: 'assets/audio/jour-3.mp3?v=4',
-    sync: 'assets/audio/jour-3.sync.js?v=4',
+    sync: 'assets/audio/jour-3.sync.js?v=5',
     chapitres: { meditation: 5.02, chant: 109.24, prions: 259.74, prieres: 332.08, envoi: 462.64 }
   },
 
@@ -500,6 +520,7 @@ window.NEUVAINE_CONTENU = {
       'renouveler notre foi, notre espérance et notre amour de l’Église. Amen.'
     ],
     lecteur: 'Ludivine',
+    musique:    'L’amour jamais ne passera — Chants de l’Emmanuel',
     audio: 'assets/audio/jour-8.mp3?v=3',
     sync: 'assets/audio/jour-8.sync.js?v=2',
     chapitres: { meditation: 8.11, chant: 137.81, prions: 288.31, prieres: 379.82, envoi: 510.38 },

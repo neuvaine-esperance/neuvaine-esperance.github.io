@@ -1,15 +1,15 @@
 Jour 3 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 537 (631 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 599
-  interpolés         : 32
-  taux d'appariement : 94.9 %
+  mots affichés      : 659 (753 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 709
+  interpolés         : 44
+  taux d'appariement : 94.2 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   13    76.9 %          0.80 s
     meditation      225 /  239    94.1 %          5.02 s
-    chant             0 /    0        —        109.24 s
+    chant           110 /  122    90.2 %        109.24 s
     prions          124 /  133    93.2 %        259.74 s
     prieres         226 /  232    97.4 %        332.08 s
     envoi            14 /   14   100.0 %        462.64 s
@@ -30,12 +30,12 @@ Jour 3 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   66.44 s]  :
       1 mot(s)  [meditation   79.39 s]  «
       1 mot(s)  [meditation   81.92 s]  :
-      1 mot(s)  [priere      261.75 s]  fais
-      1 mot(s)  [priere      299.34 s]  Ô
-      1 mot(s)  [priere      304.09 s]  à
-      1 mot(s)  [priere      319.69 s]  en
-      1 mot(s)  [priere      323.37 s]  en
+      1 mot(s)  [paroles     128.45 s]  ?
+      1 mot(s)  [paroles     132.82 s]  !
+      1 mot(s)  [paroles     170.18 s]  ?
+      1 mot(s)  [paroles     173.64 s]  !
+      1 mot(s)  [paroles     183.80 s]  couronne
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    153.77 s  après « besoin. » (intention) → « Seigneur, » (priere)
+     32.29 s  après « seul. » (paroles) → « Seigneur, » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)
