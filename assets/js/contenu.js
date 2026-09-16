@@ -221,9 +221,9 @@ window.NEUVAINE_CONTENU = {
       'pardonné, c’est en mourant qu’on ressuscite à l’éternelle vie.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-3.mp3?v=3',
-    sync: 'assets/audio/jour-3.sync.js?v=3',
-    chapitres: { meditation: 5.02, chant: 244.3, prions: 394.8, prieres: 465.7, envoi: 596.26 }
+    audio: 'assets/audio/jour-3.mp3?v=4',
+    sync: 'assets/audio/jour-3.sync.js?v=4',
+    chapitres: { meditation: 5.02, chant: 109.24, prions: 259.74, prieres: 332.08, envoi: 462.64 }
   },
 
   /* ---------------------------------------------------------------- 4 --- */
