@@ -1289,9 +1289,156 @@
       "debut": 122.53,
       "fin": 168.53,
       "chante": true,
-      "nbMots": 0,
-      "phrases": [],
-      "mots": []
+      "nbMots": 28,
+      "phrases": [
+        {
+          "debut": 122.88,
+          "fin": 166.53,
+          "texte": "Musique Musique Père, qu'il soit atteint Pour que le monde croise Que tu m'as envoyé Père, qu'il soit atteint Pour que le monde croise Que tu m'as envoyé"
+        }
+      ],
+      "mots": [
+        {
+          "mot": "Musique",
+          "debut": 122.88,
+          "fin": 124.53
+        },
+        {
+          "mot": "Musique",
+          "debut": 124.53,
+          "fin": 126.53
+        },
+        {
+          "mot": "Père,",
+          "debut": 126.53,
+          "fin": 133.19
+        },
+        {
+          "mot": "qu'il",
+          "debut": 133.19,
+          "fin": 134.84
+        },
+        {
+          "mot": "soit",
+          "debut": 134.84,
+          "fin": 136.17
+        },
+        {
+          "mot": "atteint",
+          "debut": 136.17,
+          "fin": 138.53
+        },
+        {
+          "mot": "Pour",
+          "debut": 138.53,
+          "fin": 139.53
+        },
+        {
+          "mot": "que",
+          "debut": 139.53,
+          "fin": 140.28
+        },
+        {
+          "mot": "le",
+          "debut": 140.28,
+          "fin": 140.78
+        },
+        {
+          "mot": "monde",
+          "debut": 140.78,
+          "fin": 142.02
+        },
+        {
+          "mot": "croise",
+          "debut": 142.02,
+          "fin": 143.53
+        },
+        {
+          "mot": "Que",
+          "debut": 143.53,
+          "fin": 144.46
+        },
+        {
+          "mot": "tu",
+          "debut": 144.46,
+          "fin": 145.08
+        },
+        {
+          "mot": "m'as",
+          "debut": 145.08,
+          "fin": 146.32
+        },
+        {
+          "mot": "envoyé",
+          "debut": 146.32,
+          "fin": 148.53
+        },
+        {
+          "mot": "Père,",
+          "debut": 148.69,
+          "fin": 151.55
+        },
+        {
+          "mot": "qu'il",
+          "debut": 151.55,
+          "fin": 153.71
+        },
+        {
+          "mot": "soit",
+          "debut": 153.71,
+          "fin": 155.44
+        },
+        {
+          "mot": "atteint",
+          "debut": 155.44,
+          "fin": 158.53
+        },
+        {
+          "mot": "Pour",
+          "debut": 158.53,
+          "fin": 159.33
+        },
+        {
+          "mot": "que",
+          "debut": 159.33,
+          "fin": 159.93
+        },
+        {
+          "mot": "le",
+          "debut": 159.93,
+          "fin": 160.33
+        },
+        {
+          "mot": "monde",
+          "debut": 160.33,
+          "fin": 161.32
+        },
+        {
+          "mot": "croise",
+          "debut": 161.32,
+          "fin": 162.53
+        },
+        {
+          "mot": "Que",
+          "debut": 162.53,
+          "fin": 163.28
+        },
+        {
+          "mot": "tu",
+          "debut": 163.28,
+          "fin": 163.78
+        },
+        {
+          "mot": "m'as",
+          "debut": 163.78,
+          "fin": 164.76
+        },
+        {
+          "mot": "envoyé",
+          "debut": 164.76,
+          "fin": 166.53
+        }
+      ]
     },
     {
       "section": "E",

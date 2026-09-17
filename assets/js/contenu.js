@@ -351,8 +351,16 @@ window.NEUVAINE_CONTENU = {
       'pour que nous la répandions au monde entier. Amen.'
     ],
     lecteur: 'Ludivine',
+    musique:    'Père, qu’ils soient un',
+    paroles: [
+      'Père, qu’ils soient un,',
+      'pour que le monde croie que Tu m’as envoyé !',
+
+      'Père, qu’ils soient un,',
+      'pour que le monde croie que Tu m’as envoyé !'
+    ],
     audio: 'assets/audio/jour-5.mp3?v=3',
-    sync: 'assets/audio/jour-5.sync.js?v=2',
+    sync: 'assets/audio/jour-5.sync.js?v=3',
     chapitres: { meditation: 6.62, chant: 122.53, prions: 179.03, prieres: 226.35, envoi: 356.92 }
   },
 
