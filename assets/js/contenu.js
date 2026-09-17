@@ -241,9 +241,9 @@ window.NEUVAINE_CONTENU = {
       'Rappelle-toi ! Tu es sauvé, reviens à moi.',
       'Je t’offrirai un nom connu de toi seul.'
     ],
-    audio: 'assets/audio/jour-3.mp3?v=4',
-    sync: 'assets/audio/jour-3.sync.js?v=5',
-    chapitres: { meditation: 5.02, chant: 109.24, prions: 259.74, prieres: 332.08, envoi: 462.64 }
+    audio: 'assets/audio/jour-3.mp3?v=5',
+    sync: 'assets/audio/jour-3.sync.js?v=6',
+    chapitres: { meditation: 5.02, chant: 109.24, prions: 240.94, prieres: 313.29, envoi: 443.85 }
   },
 
   /* ---------------------------------------------------------------- 4 --- */
