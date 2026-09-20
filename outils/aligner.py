@@ -182,7 +182,21 @@ def _valeur(src, i):
     j = i
     while src[j] not in ',}]':
         j += 1
-    return src[i:j].strip(), j
+    brut = src[i:j].strip()
+
+    # Une valeur nue est rendue dans son type : les repères du chant sont des
+    # nombres et des « null », et les comparer à des rangs de lignes n'aurait
+    # aucun sens sous forme de chaînes.
+    if brut == 'null':
+        return None, j
+    if brut == 'true':
+        return True, j
+    if brut == 'false':
+        return False, j
+    try:
+        return (int(brut) if re.match(r'^-?\d+$', brut) else float(brut)), j
+    except ValueError:
+        return brut, j
 
 
 def _tableau(src, i):
@@ -502,6 +516,50 @@ def sans_begaiement(mots_lus, seuil=REPETITIONS_MAX):
     return ([m for m, g in zip(mots_lus, garder) if g], n - sum(garder))
 
 
+def poser_reperes(plages, entrees, jour, mots_lus, originaux):
+    """Applique au chant les repères mesurés à la main.
+
+    Quand la transcription a déraillé sur une longue plage, elle ne fournit
+    plus d'appui et les mots affichés s'y répartissent à l'aveugle. Si le
+    découpage du chant a été relevé autrement — au jour 9, en comparant le
+    timbre de chaque phrase à celui d'un refrain et d'un couplet connus — ces
+    instants valent mieux qu'une estimation, et sont écrits dans contenu.js.
+
+    Le champ « reperes » est une liste de paires [rang de la ligne dans
+    « paroles », instant en secondes]. Une valeur nulle dit que le fondu coupe
+    ici : cette ligne et les suivantes restent affichées sans être suivies,
+    selon la règle de PAS_MAX."""
+    reperes = jour.get('reperes')
+    lignes = jour.get('paroles') or []
+    if not reperes or not lignes:
+        return
+
+    # Rang, dans la zone, du premier mot de chaque ligne. _plat() recolle les
+    # lignes par une espace : une ligne vide ne pèse aucun mot.
+    depart, debuts = 0, []
+    for ligne in lignes:
+        debuts.append(depart)
+        depart += len(ligne.split())
+
+    rangs = [i for i, e in enumerate(entrees) if e['zone'] == 'paroles']
+    durees = sorted(m['fin'] - m['debut'] for m in mots_lus) or [1.0]
+    mediane = durees[len(durees) // 2] or 1.0
+    # La fin de la section se prend sur la transcription entière, et non sur
+    # ce qu'il en reste après le retrait des bégaiements : c'est justement la
+    # fin qu'ils occupaient. S'y tromper renvoyait les mots du fondu avant la
+    # reprise, et plus rien ne s'allumait après elle.
+    fin_section = originaux[-1]['fin'] if originaux else 0.0
+
+    for ligne, instant in reperes:
+        if ligne >= len(debuts) or debuts[ligne] >= len(rangs):
+            continue
+        depart = debuts[ligne]
+        if instant is None:
+            for i in rangs[depart:]:
+                plages[i] = [fin_section, fin_section]
+        else:
+            plages[rangs[depart]] = [instant, instant + mediane]
+
 def aligner_section(entrees, mots_lus):
     """Apparie les mots affichés d'une section aux mots prononcés.
 
@@ -658,6 +716,10 @@ def traiter(n, contenu, prieres, bavard=True):
                 durees = sorted(m['fin'] - m['debut'] for m in mots_lus) or [1.0]
                 mediane = durees[len(durees) // 2] or 1.0
                 p[-1] = [max(fin - mediane, dernier[-1] if dernier else 0.0), fin]
+
+        # Les repères mesurés priment sur tout ce qui précède.
+        if id_section == 'chant':
+            poser_reperes(p, entrees, contenu[n], mots_lus, originaux)
         for rang, valeur in zip(rangs, p):
             plages[rang] = valeur
         detail.append((id_section, apparies, total, sections[id_section]['debut']))

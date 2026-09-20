@@ -696,7 +696,23 @@ window.NEUVAINE_CONTENU = {
       'De l’écouter',
       '',
       'Rends-nous la joie',
-      'D’être sauvés'
+      'D’être sauvés',
+      'Et nos lèvres publieront',
+      'Ta louange.',
+      'Raffermis nos pas,',
+      'Viens nous recréer,',
+      'Mets en nous, Seigneur,',
+      'Un cœur nouveau !'
+    ],
+    // Repères mesurés à la main : la transcription a déraillé après 205,6 s
+    // et bouclait la même phrase. Le découpage a été relevé sur le timbre,
+    // chaque phrase comparée à un refrain et à un couplet connus. Le rang est
+    // celui de la ligne dans « paroles » ; null dit que le fondu coupe ici.
+    reperes: [
+      [27, 206.25],   // « Rends-nous la joie » — deuxième refrain
+      [36, 228.75],   // « Là-haut sur la montagne » — troisième couplet
+      [45, 254.0],    // « Rends-nous la joie » — la reprise finale
+      [47, null]      // « Et nos lèvres publieront » — le fondu l'emporte
     ],
     // Le neuvième jour se termine sur une invitation dite à la voix mais
     // absente de la page : sans elle, la date se perd avec l'enregistrement.
@@ -708,7 +724,7 @@ window.NEUVAINE_CONTENU = {
       quoi:    'Louange, adoration eucharistique, prière des frères et enseignement.'
     },
     audio: 'assets/audio/jour-9.mp3?v=3',
-    sync: 'assets/audio/jour-9.sync.js?v=3',
+    sync: 'assets/audio/jour-9.sync.js?v=4',
     chapitres: { meditation: 5.76, chant: 122.72, prions: 273.22, prieres: 360.98, envoi: 491.54 }
   }
 };
