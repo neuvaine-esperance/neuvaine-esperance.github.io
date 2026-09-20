@@ -608,8 +608,7 @@ window.NEUVAINE_CONTENU = {
     source: 'Jean 21, 17',
     meditation: [
       'En parcourant des ressources pour préparer cette méditation, le mouvement ' +
-      'apostolique Regnum Christi nous éclaire sur ce passage en précisant que Jésus ' +
-      'sait que Pierre l’aime, mais qu’il a besoin de l’entendre le lui dire. La ' +
+      'apostolique Regnum Christi nous éclaire sur ce passage en précisant que la ' +
       'troisième demande de Jésus à Simon correspond à un amour dit « filia » en grec, ' +
       'et là c’est un amour qui vient du cœur, qui jaillit du plus profond de notre ' +
       'être, un amour affectif prêt à tout donner pour la personne que l’on aime.',
@@ -649,8 +648,55 @@ window.NEUVAINE_CONTENU = {
       'fixé sur toi. Amen.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-9.mp3?v=2',
-    sync: 'assets/audio/jour-9.sync.js',
-    chapitres: { meditation: 10.14, prions: 263.46, prieres: 351.22, envoi: 477.97 }
+    musique:    'Rends-nous la joie d’être sauvés — Marc Dannaud, Emmanuel Music',
+    paroles: [
+      'Voici le temps de Dieu,',
+      'Ce moment consacré,',
+      'Allons à sa rencontre,',
+      'Entrons en sa présence.',
+      'Quarante jours durant,',
+      'D’un pas vif et joyeux,',
+      'Marchons sur ses chemins,',
+      'Dans l’unité.',
+      '',
+      'Rends-nous la joie',
+      'D’être sauvés',
+      'Et nos lèvres publieront',
+      'Ta louange.',
+      'Raffermis nos pas,',
+      'Viens nous recréer,',
+      'Mets en nous, Seigneur,',
+      'Un cœur nouveau !',
+      '',
+      'Guidés par son Esprit,',
+      'Nous irons au désert,',
+      'Pour écouter sa voix',
+      'Au creux de nos silences.',
+      'Nous laisserons les biens',
+      'Qui captivent nos cœurs',
+      'Pour vivre l’essentiel :',
+      'Dieu seul suffit.',
+      '',
+      'Rends-nous la joie',
+      'D’être sauvés',
+      'Et nos lèvres publieront',
+      'Ta louange.',
+      'Raffermis nos pas,',
+      'Viens nous recréer,',
+      'Mets en nous, Seigneur,',
+      'Un cœur nouveau !',
+      '',
+      'Rends-nous la joie',
+      'D’être sauvés',
+      'Et nos lèvres publieront',
+      'Ta louange.',
+      'Raffermis nos pas,',
+      'Viens nous recréer,',
+      'Mets en nous, Seigneur,',
+      'Un cœur nouveau !'
+    ],
+    audio: 'assets/audio/jour-9.mp3?v=3',
+    sync: 'assets/audio/jour-9.sync.js?v=2',
+    chapitres: { meditation: 5.76, chant: 122.72, prions: 273.22, prieres: 360.98, envoi: 491.54 }
   }
 };

@@ -73,6 +73,41 @@ ZONES_MUETTES = ['source']
 PAS_MAX = 2.0
 
 
+# Nombre de répétitions à partir duquel la transcription n'écoute plus.
+#
+# Quand la machine perd le fil, elle ne se tait pas : elle rend la dernière
+# phrase qu'elle ait comprise, encore et encore. Au jour 9, les cinquante-sept
+# dernières secondes du chant — deux refrains réellement chantés, le niveau
+# sonore en témoigne — sont rendues par quatorze copies de « Prends-nous la
+# joie d'être sauvés ».
+#
+# Ces mots ne sont pas ce qu'on entend : les prendre pour appuis écrasait
+# quarante mots affichés dans onze secondes et laissait la fin du refrain sans
+# horaire. Une phrase rendue à l'identique autant de fois de suite, sans rien
+# entre elles, est donc écartée en entier : la zone redevient un silence pour
+# l'aligneur, et les mots affichés s'y répartissent régulièrement.
+#
+# Le seuil est haut à dessein. Un chant répète son refrain, parfois trois fois
+# de suite ; il ne répète pas cinq fois la même phrase sans rien dire d'autre.
+REPETITIONS_MAX = 5
+
+# Part de mots sans durée à partir de laquelle une répétition est une boucle.
+#
+# Un chant répète. Le psaume du jour 2 redit sept fois son antienne, la litanie
+# du jour 4 cinq fois « Dieu seul suffit » : compter les répétitions ne suffit
+# donc pas à distinguer le chant du bégaiement, et s'y fier coûtait à ces deux
+# jours des appuis bien réels.
+#
+# Ce qui sépare les deux cas est ailleurs : une machine qui boucle rend ses
+# jetons plus vite que le son ne passe, et les empile sur un même instant. Au
+# jour 9, vingt des soixante-dix mots de la boucle ont un début égal à leur fin ;
+# au jour 2, aucun, et au jour 4, deux sur trente.
+#
+# Une répétition dont les mots sont horodatés normalement est donc gardée : elle
+# vient du chant. Seule celle qui s'effondre dans le temps est écartée.
+PART_SANS_DUREE = 0.20
+
+
 # ==========================================================================
 # 1. Lire contenu.js — au caractère, pas à l'expression régulière
 #
@@ -434,6 +469,39 @@ def _plat(valeur):
 # ==========================================================================
 # 5. L'alignement proprement dit
 # ==========================================================================
+def sans_begaiement(mots_lus, seuil=REPETITIONS_MAX):
+    """Écarte d'une section les phrases que la machine a recopiées en boucle.
+
+    Renvoie (mots retenus, nombre de mots écartés). On cherche le motif le
+    plus long possible : un bloc de k mots répété tel quel au moins « seuil »
+    fois d'affilée, pour k de 1 à douze mots, et dont les horaires s'effondrent
+    — voir PART_SANS_DUREE."""
+    cles = [' '.join(jetons(m['mot'])) for m in mots_lus]
+    n = len(cles)
+    garder = [True] * n
+    i = 0
+    while i < n:
+        longueur = 0
+        for k in range(1, 13):
+            if i + k * seuil > n:
+                break
+            r = 1
+            while i + (r + 1) * k <= n and cles[i:i + k] == cles[i + r * k:i + (r + 1) * k]:
+                r += 1
+            if r >= seuil and r * k > longueur:
+                longueur = r * k
+        if longueur:
+            lot = mots_lus[i:i + longueur]
+            plats = sum(1 for m in lot if m['fin'] - m['debut'] < 0.01)
+            if plats >= PART_SANS_DUREE * longueur:
+                for j in range(i, i + longueur):
+                    garder[j] = False
+            i += longueur
+        else:
+            i += 1
+    return ([m for m, g in zip(mots_lus, garder) if g], n - sum(garder))
+
+
 def aligner_section(entrees, mots_lus):
     """Apparie les mots affichés d'une section aux mots prononcés.
 
@@ -565,7 +633,31 @@ def traiter(n, contenu, prieres, bavard=True):
             detail.append((id_section, 0, 0, sections[id_section]['debut']))
             continue
         entrees = [suite[i] for i in rangs]
-        p, apparies, total = aligner_section(entrees, sections[id_section]['mots'])
+        mots_lus, begaies = sans_begaiement(sections[id_section]['mots'])
+        if begaies and bavard:
+            print(u"  %s : %d mots écartés, la transcription y bégayait."
+                  % (id_section, begaies))
+        p, apparies, total = aligner_section(entrees, mots_lus)
+
+        # Un appui de clôture quand le bégaiement emporte la fin d'une section.
+        #
+        # Les mots écartés ne laissent plus d'appui après eux : l'interpolation
+        # s'étire alors jusqu'au premier mot de la section suivante, et le
+        # surlignage court encore dans le silence qui les sépare. Au jour 9 il
+        # dépassait de onze secondes la fin du chant.
+        #
+        # La fin réelle de la section, elle, est connue : c'est le dernier mot
+        # que la machine ait horodaté avant de perdre le fil. On la donne au
+        # dernier mot affiché, sur une durée prise à la médiane des mots de la
+        # section — mesure, et non invention.
+        originaux = sections[id_section]['mots']
+        if begaies and p and p[-1] is None and originaux:
+            fin = originaux[-1]['fin']
+            dernier = [v[1] for v in p if v is not None]
+            if not dernier or dernier[-1] < fin:
+                durees = sorted(m['fin'] - m['debut'] for m in mots_lus) or [1.0]
+                mediane = durees[len(durees) // 2] or 1.0
+                p[-1] = [max(fin - mediane, dernier[-1] if dernier else 0.0), fin]
         for rang, valeur in zip(rangs, p):
             plages[rang] = valeur
         detail.append((id_section, apparies, total, sections[id_section]['debut']))
