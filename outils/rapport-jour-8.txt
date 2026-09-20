@@ -1,26 +1,31 @@
 Jour 8 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 540 (634 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 617
-  interpolés         : 17
-  taux d'appariement : 97.3 %
+  mots affichés      : 643 (737 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 699
+  interpolés         : 38
+  taux d'appariement : 94.8 %
 
   Section          appariés / affichés        début
     signe-de-croix   11 /   14    78.6 %          0.80 s
     meditation      201 /  207    97.1 %          8.11 s
-    chant             0 /    0        —        137.81 s
+    chant            82 /  103    79.6 %        137.81 s
     prions          165 /  167    98.8 %        288.31 s
     prieres         226 /  232    97.4 %        379.82 s
     envoi            14 /   14   100.0 %        510.38 s
 
-  Les 14 plus longues suites de mots interpolés
+  Les 19 plus longues suites de mots interpolés
+     16 mot(s)  [paroles     147.25 s]  jamais ne passera, L’Amour demeurera, L’Amour, l’amour seul, La charité jamais ne passera, Car D…
       3 mot(s)  [titre         0.83 s]  Le commandement nouveau
       2 mot(s)  [verset       12.20 s]  aimés. »
+      2 mot(s)  [paroles     212.11 s]  en aumône,
       1 mot(s)  [verset        7.49 s]  «
       1 mot(s)  [meditation   48.33 s]  cultures,
       1 mot(s)  [meditation   80.95 s]  :
       1 mot(s)  [meditation  108.22 s]  témoin
+      1 mot(s)  [paroles     173.74 s]  connaîtrais
+      1 mot(s)  [paroles     193.75 s]  demeurera,
+      1 mot(s)  [paroles     234.21 s]  demeurera,
       1 mot(s)  [priere      329.40 s]  bâtisseurs
       1 mot(s)  [priere      367.73 s]  une
       1 mot(s)  [ave         415.54 s]  ;
@@ -31,5 +36,6 @@ Jour 8 — alignement de la transcription sur le texte affiché
       1 mot(s)  [ave         474.34 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-    153.89 s  après « fraternité. » (meditation) → « Seigneur » (priere)
+     20.38 s  après « Amour. » (paroles) → « Quand » (paroles)
+     40.33 s  après « Amour. » (paroles) → « Seigneur » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)

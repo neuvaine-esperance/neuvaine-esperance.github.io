@@ -575,9 +575,38 @@ window.NEUVAINE_CONTENU = {
       'renouveler notre foi, notre espérance et notre amour de l’Église. Amen.'
     ],
     lecteur: 'Ludivine',
-    musique:    'L’amour jamais ne passera — Chants de l’Emmanuel',
+    musique:    'L’Amour jamais ne passera — Communauté de l’Emmanuel',
+    paroles: [
+      'L’Amour jamais ne passera,',
+      'L’Amour demeurera,',
+      'L’Amour, l’amour seul,',
+      'La charité jamais ne passera,',
+      'Car Dieu est Amour.',
+
+      'Quand j’aurais le don de la science,',
+      'Et connaîtrais tous les mystères,',
+      'Parlerais-je les langues des anges,',
+      'Sans amour, je ne suis rien.',
+
+      'L’Amour jamais ne passera,',
+      'L’Amour demeurera,',
+      'L’Amour, l’amour seul,',
+      'La charité jamais ne passera,',
+      'Car Dieu est Amour.',
+
+      'Si je donnais mes biens en aumône,',
+      'Si je livrais mon corps aux flammes,',
+      'Si ma foi déplaçait les montagnes,',
+      'Sans amour, je ne suis rien.',
+
+      'L’Amour jamais ne passera,',
+      'L’Amour demeurera,',
+      'L’Amour, l’amour seul,',
+      'La charité jamais ne passera,',
+      'Car Dieu est Amour.'
+    ],
     audio: 'assets/audio/jour-8.mp3?v=3',
-    sync: 'assets/audio/jour-8.sync.js?v=2',
+    sync: 'assets/audio/jour-8.sync.js?v=3',
     chapitres: { meditation: 8.11, chant: 137.81, prions: 288.31, prieres: 379.82, envoi: 510.38 },
     intentionAvant: true
   },

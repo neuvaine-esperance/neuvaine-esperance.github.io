@@ -1189,634 +1189,684 @@
       "debut": 137.81,
       "fin": 277.81,
       "chante": true,
-      "nbMots": 123,
+      "nbMots": 128,
       "phrases": [
         {
-          "debut": 138.1,
-          "fin": 142.81,
+          "debut": 138.29,
+          "fin": 147.81,
           "texte": "L'amour"
         },
         {
-          "debut": 168.15,
-          "fin": 277.81,
-          "texte": "Quand j'aurai le don de la science Et connaîtrai tous les mystères Parlerai-je les langues des anges Sans amour je ne suis rien L'amour jamais ne passera L'amour demeurent pas L'amour, l'amour seul La charité jamais ne passera Car Dieu est amour Si je donnais mes biens pendant mon nom Si je livrais mon corps en flamme Si ma foi déplacait les montagnes Sans amour je ne suis rien L'amour jamais ne passera L'amour demeurent pas L'amour, l'amour seul La charité jamais ne passera Car Dieu est amour La charité jamais ne passera La charité jamais ne passera La charité jamais ne passera Du mal La charité jamais ne passera Son avantage Son avantage Son avantage Son avantage Son avantage Son avantage"
+          "debut": 168.19,
+          "fin": 186.19,
+          "texte": "Quand j'aurai le don de la science et connaîtrai tous les mystères, parlerai-je les langues des anges, sans amour je ne suis rien."
+        },
+        {
+          "debut": 186.34,
+          "fin": 208.51,
+          "texte": "L'amour jamais ne passera, l'amour demeure le droit, l'amour, l'amour seul, la charité jamais ne passera, car Dieu est amour."
+        },
+        {
+          "debut": 208.72,
+          "fin": 226.75,
+          "texte": "Si je donnais mes biens pendant mon nom, si je livrais mon corps aux flammes, si ma foi déplacait les montagnes, sans amour je ne suis rien."
+        },
+        {
+          "debut": 226.9,
+          "fin": 248.75,
+          "texte": "L'amour jamais ne passera, l'amour demeure le droit, l'amour, l'amour seul, la charité jamais ne passera, car Dieu est amour."
+        },
+        {
+          "debut": 248.96,
+          "fin": 267.23,
+          "texte": "La charité est toujours longue à nîmes, ne tient pas compte du mal, la charité se donne sans cesse, ne cherche pas son avantage."
+        },
+        {
+          "debut": 270.98,
+          "fin": 277.75,
+          "texte": "La charité est toujours longue à nîmes, ne tient pas compte du mal."
         }
       ],
       "mots": [
         {
           "mot": "L'amour",
-          "debut": 138.1,
-          "fin": 142.81
+          "debut": 138.29,
+          "fin": 147.81
         },
         {
           "mot": "Quand",
-          "debut": 168.15,
-          "fin": 168.71
+          "debut": 168.19,
+          "fin": 168.63
         },
         {
           "mot": "j'aurai",
-          "debut": 168.71,
-          "fin": 169.97
+          "debut": 168.63,
+          "fin": 169.76
         },
         {
           "mot": "le",
-          "debut": 169.97,
-          "fin": 170.27
+          "debut": 169.76,
+          "fin": 170.09
         },
         {
           "mot": "don",
-          "debut": 170.27,
-          "fin": 170.73
+          "debut": 170.09,
+          "fin": 170.58
         },
         {
           "mot": "de",
-          "debut": 170.73,
-          "fin": 171.03
+          "debut": 170.58,
+          "fin": 170.91
         },
         {
           "mot": "la",
-          "debut": 171.03,
-          "fin": 171.33
+          "debut": 170.91,
+          "fin": 171.24
         },
         {
           "mot": "science",
-          "debut": 171.33,
+          "debut": 171.24,
           "fin": 172.43
         },
         {
-          "mot": "Et",
+          "mot": "et",
           "debut": 172.43,
-          "fin": 172.86
+          "fin": 172.78
         },
         {
           "mot": "connaîtrai",
-          "debut": 172.86,
-          "fin": 174.69
+          "debut": 172.78,
+          "fin": 174.7
         },
         {
           "mot": "tous",
-          "debut": 174.69,
-          "fin": 175.39
+          "debut": 174.7,
+          "fin": 175.4
         },
         {
           "mot": "les",
-          "debut": 175.39,
-          "fin": 175.91
+          "debut": 175.4,
+          "fin": 175.93
         },
         {
-          "mot": "mystères",
-          "debut": 175.91,
-          "fin": 177.53
+          "mot": "mystères,",
+          "debut": 175.93,
+          "fin": 177.85
         },
         {
-          "mot": "Parlerai-je",
-          "debut": 177.53,
-          "fin": 179.07
+          "mot": "parlerai-je",
+          "debut": 177.85,
+          "fin": 179.51
         },
         {
           "mot": "les",
-          "debut": 179.07,
-          "fin": 179.49
+          "debut": 179.51,
+          "fin": 179.96
         },
         {
           "mot": "langues",
-          "debut": 179.49,
-          "fin": 180.47
+          "debut": 179.96,
+          "fin": 181.02
         },
         {
           "mot": "des",
-          "debut": 180.47,
-          "fin": 180.89
+          "debut": 181.02,
+          "fin": 181.47
         },
         {
-          "mot": "anges",
-          "debut": 180.89,
-          "fin": 181.61
+          "mot": "anges,",
+          "debut": 181.47,
+          "fin": 182.53
         },
         {
-          "mot": "Sans",
-          "debut": 181.61,
-          "fin": 182.47
+          "mot": "sans",
+          "debut": 182.53,
+          "fin": 183.14
         },
         {
           "mot": "amour",
-          "debut": 182.47,
-          "fin": 183.54
+          "debut": 183.14,
+          "fin": 183.89
         },
         {
           "mot": "je",
-          "debut": 183.54,
-          "fin": 183.97
+          "debut": 183.89,
+          "fin": 184.19
         },
         {
           "mot": "ne",
-          "debut": 183.97,
-          "fin": 184.4
+          "debut": 184.19,
+          "fin": 184.49
         },
         {
           "mot": "suis",
-          "debut": 184.4,
-          "fin": 185.26
+          "debut": 184.49,
+          "fin": 185.1
         },
         {
-          "mot": "rien",
-          "debut": 185.26,
-          "fin": 186.17
+          "mot": "rien.",
+          "debut": 185.1,
+          "fin": 186.19
         },
         {
           "mot": "L'amour",
-          "debut": 186.17,
-          "fin": 187.51
+          "debut": 186.34,
+          "fin": 187.54
         },
         {
           "mot": "jamais",
-          "debut": 187.51,
-          "fin": 188.66
+          "debut": 187.54,
+          "fin": 188.71
         },
         {
           "mot": "ne",
-          "debut": 188.66,
-          "fin": 189.04
+          "debut": 188.71,
+          "fin": 189.1
         },
         {
-          "mot": "passera",
-          "debut": 189.04,
-          "fin": 190.41
-        },
-        {
-          "mot": "L'amour",
-          "debut": 190.41,
-          "fin": 192.35
-        },
-        {
-          "mot": "demeurent",
-          "debut": 192.35,
-          "fin": 194.84
-        },
-        {
-          "mot": "pas",
-          "debut": 194.84,
-          "fin": 195.71
-        },
-        {
-          "mot": "L'amour,",
-          "debut": 195.86,
-          "fin": 197.43
+          "mot": "passera,",
+          "debut": 189.1,
+          "fin": 190.85
         },
         {
           "mot": "l'amour",
-          "debut": 197.43,
-          "fin": 198.77
+          "debut": 190.85,
+          "fin": 192.2
         },
         {
-          "mot": "seul",
-          "debut": 198.77,
-          "fin": 199.59
+          "mot": "demeure",
+          "debut": 192.2,
+          "fin": 193.56
         },
         {
-          "mot": "La",
-          "debut": 199.59,
-          "fin": 200.01
+          "mot": "le",
+          "debut": 193.56,
+          "fin": 193.95
+        },
+        {
+          "mot": "droit,",
+          "debut": 193.95,
+          "fin": 195.31
+        },
+        {
+          "mot": "l'amour,",
+          "debut": 195.31,
+          "fin": 197.05
+        },
+        {
+          "mot": "l'amour",
+          "debut": 197.05,
+          "fin": 198.4
+        },
+        {
+          "mot": "seul,",
+          "debut": 198.4,
+          "fin": 199.57
+        },
+        {
+          "mot": "la",
+          "debut": 199.57,
+          "fin": 199.96
         },
         {
           "mot": "charité",
-          "debut": 200.01,
-          "fin": 201.35
+          "debut": 199.96,
+          "fin": 201.52
         },
         {
           "mot": "jamais",
-          "debut": 201.35,
-          "fin": 202.41
+          "debut": 201.52,
+          "fin": 202.69
         },
         {
           "mot": "ne",
-          "debut": 202.41,
-          "fin": 202.76
+          "debut": 202.69,
+          "fin": 203.08
         },
         {
-          "mot": "passera",
-          "debut": 202.76,
-          "fin": 204.03
+          "mot": "passera,",
+          "debut": 203.08,
+          "fin": 204.83
         },
         {
-          "mot": "Car",
-          "debut": 204.03,
-          "fin": 205
+          "mot": "car",
+          "debut": 204.83,
+          "fin": 205.41
         },
         {
           "mot": "Dieu",
-          "debut": 205,
-          "fin": 206.29
+          "debut": 205.41,
+          "fin": 206.19
         },
         {
           "mot": "est",
-          "debut": 206.29,
-          "fin": 207.26
+          "debut": 206.19,
+          "fin": 206.77
         },
         {
-          "mot": "amour",
-          "debut": 207.26,
-          "fin": 208.89
+          "mot": "amour.",
+          "debut": 206.77,
+          "fin": 208.51
         },
         {
           "mot": "Si",
-          "debut": 208.89,
-          "fin": 209.2
+          "debut": 208.72,
+          "fin": 208.82
         },
         {
           "mot": "je",
-          "debut": 209.2,
-          "fin": 209.51
+          "debut": 208.82,
+          "fin": 209.11
         },
         {
           "mot": "donnais",
-          "debut": 209.51,
-          "fin": 210.59
+          "debut": 209.11,
+          "fin": 210.16
         },
         {
           "mot": "mes",
-          "debut": 210.59,
-          "fin": 211.05
+          "debut": 210.16,
+          "fin": 210.61
         },
         {
           "mot": "biens",
-          "debut": 211.05,
-          "fin": 211.85
+          "debut": 210.61,
+          "fin": 211.36
         },
         {
           "mot": "pendant",
-          "debut": 211.85,
-          "fin": 212.77
+          "debut": 211.36,
+          "fin": 212.42
         },
         {
           "mot": "mon",
-          "debut": 212.77,
-          "fin": 213.17
+          "debut": 212.42,
+          "fin": 212.87
         },
         {
-          "mot": "nom",
-          "debut": 213.17,
-          "fin": 213.53
+          "mot": "nom,",
+          "debut": 212.87,
+          "fin": 213.62
         },
         {
-          "mot": "Si",
-          "debut": 213.53,
-          "fin": 213.88
+          "mot": "si",
+          "debut": 213.62,
+          "fin": 213.92
         },
         {
           "mot": "je",
-          "debut": 213.88,
-          "fin": 214.23
+          "debut": 213.92,
+          "fin": 214.22
         },
         {
           "mot": "livrais",
-          "debut": 214.23,
-          "fin": 215.46
+          "debut": 214.22,
+          "fin": 215.27
         },
         {
           "mot": "mon",
-          "debut": 215.46,
-          "fin": 215.99
+          "debut": 215.27,
+          "fin": 215.72
         },
         {
           "mot": "corps",
-          "debut": 215.99,
-          "fin": 216.87
+          "debut": 215.72,
+          "fin": 216.47
         },
         {
-          "mot": "en",
-          "debut": 216.87,
-          "fin": 217.22
+          "mot": "aux",
+          "debut": 216.47,
+          "fin": 216.92
         },
         {
-          "mot": "flamme",
-          "debut": 217.22,
-          "fin": 218.33
+          "mot": "flammes,",
+          "debut": 216.92,
+          "fin": 218.27
         },
         {
-          "mot": "Si",
-          "debut": 218.33,
-          "fin": 218.62
+          "mot": "si",
+          "debut": 218.27,
+          "fin": 218.57
         },
         {
           "mot": "ma",
-          "debut": 218.62,
-          "fin": 218.91
+          "debut": 218.57,
+          "fin": 218.87
         },
         {
           "mot": "foi",
-          "debut": 218.91,
-          "fin": 219.35
+          "debut": 218.87,
+          "fin": 219.32
         },
         {
           "mot": "déplacait",
-          "debut": 219.35,
-          "fin": 220.81
+          "debut": 219.32,
+          "fin": 220.82
         },
         {
           "mot": "les",
-          "debut": 220.81,
-          "fin": 221.25
+          "debut": 220.82,
+          "fin": 221.27
         },
         {
-          "mot": "montagnes",
-          "debut": 221.25,
-          "fin": 222.61
+          "mot": "montagnes,",
+          "debut": 221.27,
+          "fin": 222.92
         },
         {
-          "mot": "Sans",
-          "debut": 222.9,
-          "fin": 223.34
+          "mot": "sans",
+          "debut": 222.92,
+          "fin": 223.52
         },
         {
           "mot": "amour",
-          "debut": 223.34,
-          "fin": 224.26
+          "debut": 223.52,
+          "fin": 224.27
         },
         {
           "mot": "je",
-          "debut": 224.26,
-          "fin": 224.63
+          "debut": 224.27,
+          "fin": 224.57
         },
         {
           "mot": "ne",
-          "debut": 224.63,
-          "fin": 225
+          "debut": 224.57,
+          "fin": 224.87
         },
         {
           "mot": "suis",
-          "debut": 225,
-          "fin": 225.73
+          "debut": 224.87,
+          "fin": 225.47
         },
         {
-          "mot": "rien",
-          "debut": 225.73,
-          "fin": 226.49
+          "mot": "rien.",
+          "debut": 225.47,
+          "fin": 226.75
         },
         {
           "mot": "L'amour",
-          "debut": 226.69,
-          "fin": 228.49
+          "debut": 226.9,
+          "fin": 228.09
         },
         {
           "mot": "jamais",
-          "debut": 228.49,
+          "debut": 228.09,
           "fin": 229.24
         },
         {
           "mot": "ne",
           "debut": 229.24,
-          "fin": 229.49
+          "fin": 229.62
         },
         {
-          "mot": "passera",
-          "debut": 229.49,
-          "fin": 230.37
-        },
-        {
-          "mot": "L'amour",
-          "debut": 230.37,
-          "fin": 233.09
-        },
-        {
-          "mot": "demeurent",
-          "debut": 233.09,
-          "fin": 235.11
-        },
-        {
-          "mot": "pas",
-          "debut": 235.11,
-          "fin": 235.81
-        },
-        {
-          "mot": "L'amour,",
-          "debut": 235.81,
-          "fin": 237.53
+          "mot": "passera,",
+          "debut": 229.62,
+          "fin": 231.34
         },
         {
           "mot": "l'amour",
-          "debut": 237.53,
-          "fin": 238.87
+          "debut": 231.34,
+          "fin": 232.68
         },
         {
-          "mot": "seul",
-          "debut": 238.87,
-          "fin": 239.67
+          "mot": "demeure",
+          "debut": 232.68,
+          "fin": 234.02
         },
         {
-          "mot": "La",
-          "debut": 239.92,
-          "fin": 240.15
+          "mot": "le",
+          "debut": 234.02,
+          "fin": 234.4
+        },
+        {
+          "mot": "droit,",
+          "debut": 234.4,
+          "fin": 235.74
+        },
+        {
+          "mot": "l'amour,",
+          "debut": 235.74,
+          "fin": 237.46
+        },
+        {
+          "mot": "l'amour",
+          "debut": 237.46,
+          "fin": 238.8
+        },
+        {
+          "mot": "seul,",
+          "debut": 238.8,
+          "fin": 239.95
+        },
+        {
+          "mot": "la",
+          "debut": 239.95,
+          "fin": 240.33
         },
         {
           "mot": "charité",
-          "debut": 240.15,
-          "fin": 242.01
+          "debut": 240.33,
+          "fin": 241.87
         },
         {
           "mot": "jamais",
-          "debut": 242.01,
-          "fin": 243.42
+          "debut": 241.87,
+          "fin": 243.02
         },
         {
           "mot": "ne",
-          "debut": 243.42,
-          "fin": 243.89
+          "debut": 243.02,
+          "fin": 243.4
         },
         {
-          "mot": "passera",
-          "debut": 243.89,
-          "fin": 245.55
+          "mot": "passera,",
+          "debut": 243.4,
+          "fin": 245.12
         },
         {
-          "mot": "Car",
-          "debut": 245.86,
-          "fin": 246.32
+          "mot": "car",
+          "debut": 245.12,
+          "fin": 245.69
         },
         {
           "mot": "Dieu",
-          "debut": 246.32,
-          "fin": 247.35
+          "debut": 245.69,
+          "fin": 246.46
         },
         {
           "mot": "est",
-          "debut": 247.35,
-          "fin": 248.12
+          "debut": 246.46,
+          "fin": 247.03
         },
         {
-          "mot": "amour",
-          "debut": 248.12,
-          "fin": 249.43
-        },
-        {
-          "mot": "La",
-          "debut": 249.66,
-          "fin": 249.86
-        },
-        {
-          "mot": "charité",
-          "debut": 249.86,
-          "fin": 251.43
-        },
-        {
-          "mot": "jamais",
-          "debut": 251.43,
-          "fin": 252.58
-        },
-        {
-          "mot": "ne",
-          "debut": 252.58,
-          "fin": 252.96
-        },
-        {
-          "mot": "passera",
-          "debut": 252.96,
-          "fin": 254.31
+          "mot": "amour.",
+          "debut": 247.03,
+          "fin": 248.75
         },
         {
           "mot": "La",
-          "debut": 254.31,
-          "fin": 254.59
+          "debut": 248.96,
+          "fin": 249.18
         },
         {
           "mot": "charité",
-          "debut": 254.59,
-          "fin": 255.31
+          "debut": 249.18,
+          "fin": 250.45
         },
         {
-          "mot": "jamais",
-          "debut": 255.31,
-          "fin": 255.33
+          "mot": "est",
+          "debut": 250.45,
+          "fin": 250.96
+        },
+        {
+          "mot": "toujours",
+          "debut": 250.96,
+          "fin": 252.33
+        },
+        {
+          "mot": "longue",
+          "debut": 252.33,
+          "fin": 253.36
+        },
+        {
+          "mot": "à",
+          "debut": 253.36,
+          "fin": 253.7
+        },
+        {
+          "mot": "nîmes,",
+          "debut": 253.7,
+          "fin": 255.06
         },
         {
           "mot": "ne",
-          "debut": 255.33,
-          "fin": 255.33
+          "debut": 255.06,
+          "fin": 255.4
         },
         {
-          "mot": "passera",
-          "debut": 255.33,
-          "fin": 255.37
+          "mot": "tient",
+          "debut": 255.4,
+          "fin": 256.25
+        },
+        {
+          "mot": "pas",
+          "debut": 256.25,
+          "fin": 256.76
+        },
+        {
+          "mot": "compte",
+          "debut": 256.76,
+          "fin": 257.79
+        },
+        {
+          "mot": "du",
+          "debut": 257.79,
+          "fin": 258.13
+        },
+        {
+          "mot": "mal,",
+          "debut": 258.13,
+          "fin": 259.03
+        },
+        {
+          "mot": "la",
+          "debut": 259.03,
+          "fin": 259.33
+        },
+        {
+          "mot": "charité",
+          "debut": 259.33,
+          "fin": 260.53
+        },
+        {
+          "mot": "se",
+          "debut": 260.53,
+          "fin": 260.83
+        },
+        {
+          "mot": "donne",
+          "debut": 260.83,
+          "fin": 261.58
+        },
+        {
+          "mot": "sans",
+          "debut": 261.58,
+          "fin": 262.18
+        },
+        {
+          "mot": "cesse,",
+          "debut": 262.18,
+          "fin": 263.23
+        },
+        {
+          "mot": "ne",
+          "debut": 263.23,
+          "fin": 263.53
+        },
+        {
+          "mot": "cherche",
+          "debut": 263.53,
+          "fin": 264.59
+        },
+        {
+          "mot": "pas",
+          "debut": 264.59,
+          "fin": 265.04
+        },
+        {
+          "mot": "son",
+          "debut": 265.04,
+          "fin": 265.49
+        },
+        {
+          "mot": "avantage.",
+          "debut": 265.49,
+          "fin": 267.23
         },
         {
           "mot": "La",
-          "debut": 255.37,
-          "fin": 255.66
+          "debut": 270.98,
+          "fin": 271.24
         },
         {
           "mot": "charité",
-          "debut": 255.66,
-          "fin": 256.43
+          "debut": 271.24,
+          "fin": 272.74
         },
         {
-          "mot": "jamais",
-          "debut": 256.43,
-          "fin": 256.78
+          "mot": "est",
+          "debut": 272.74,
+          "fin": 273.34
         },
         {
-          "mot": "ne",
-          "debut": 256.78,
-          "fin": 256.89
+          "mot": "toujours",
+          "debut": 273.34,
+          "fin": 274.93
         },
         {
-          "mot": "passera",
-          "debut": 256.89,
-          "fin": 257.31
+          "mot": "longue",
+          "debut": 274.93,
+          "fin": 276.12
         },
         {
-          "mot": "Du",
-          "debut": 257.73,
-          "fin": 258.86
+          "mot": "à",
+          "debut": 276.12,
+          "fin": 276.52
         },
         {
-          "mot": "mal",
-          "debut": 258.86,
-          "fin": 261.19
-        },
-        {
-          "mot": "La",
-          "debut": 261.19,
-          "fin": 261.62
-        },
-        {
-          "mot": "charité",
-          "debut": 261.62,
-          "fin": 263.19
-        },
-        {
-          "mot": "jamais",
-          "debut": 263.19,
-          "fin": 263.98
+          "mot": "nîmes,",
+          "debut": 276.52,
+          "fin": 277.75
         },
         {
           "mot": "ne",
-          "debut": 263.98,
-          "fin": 264.24
+          "debut": 277.75,
+          "fin": 277.75
         },
         {
-          "mot": "passera",
-          "debut": 264.24,
-          "fin": 265.19
+          "mot": "tient",
+          "debut": 277.75,
+          "fin": 277.75
         },
         {
-          "mot": "Son",
-          "debut": 265.59,
-          "fin": 266.24
+          "mot": "pas",
+          "debut": 277.75,
+          "fin": 277.75
         },
         {
-          "mot": "avantage",
-          "debut": 266.24,
-          "fin": 269.07
+          "mot": "compte",
+          "debut": 277.75,
+          "fin": 277.75
         },
         {
-          "mot": "Son",
-          "debut": 269.07,
-          "fin": 269.35
+          "mot": "du",
+          "debut": 277.75,
+          "fin": 277.75
         },
         {
-          "mot": "avantage",
-          "debut": 269.35,
-          "fin": 270.07
-        },
-        {
-          "mot": "Son",
-          "debut": 270.07,
-          "fin": 270.88
-        },
-        {
-          "mot": "avantage",
-          "debut": 270.88,
-          "fin": 273.07
-        },
-        {
-          "mot": "Son",
-          "debut": 273.07,
-          "fin": 273.61
-        },
-        {
-          "mot": "avantage",
-          "debut": 273.61,
-          "fin": 275.07
-        },
-        {
-          "mot": "Son",
-          "debut": 275.07,
-          "fin": 275.56
-        },
-        {
-          "mot": "avantage",
-          "debut": 275.56,
-          "fin": 276.87
-        },
-        {
-          "mot": "Son",
-          "debut": 276.87,
-          "fin": 277.12
-        },
-        {
-          "mot": "avantage",
-          "debut": 277.12,
-          "fin": 277.81
+          "mot": "mal.",
+          "debut": 277.75,
+          "fin": 277.75
         }
       ]
     },
