@@ -414,13 +414,18 @@ window.NEUVAINE_CONTENU = {
       'Des églises blanches se fermeraient devant lui,',
       'des écoles blanches on le chasserait aussi.',
 
+      'Si le Bon Dieu revenait vivre chez nous,',
+      'il aurait les yeux brûlants de fièvre d’un hindou.',
+      'Sur sa terre ingrate il travaillerait sans gémir,',
+      'et puis sur sa natte se coucherait pour mourir.',
+
       'Si le Bon Dieu revenait sauver nos âmes,',
       'il aurait les yeux d’un orphelin du Vietnam.',
       'Des milliers de bombes écraseraient son pays,',
       'seul, au cœur du monde, il lutterait sans merci.'
     ],
     audio: 'assets/audio/jour-6.mp3?v=4',
-    sync: 'assets/audio/jour-6.sync.js?v=6',
+    sync: 'assets/audio/jour-6.sync.js?v=7',
     chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
   },
 
