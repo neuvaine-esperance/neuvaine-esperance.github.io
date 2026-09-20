@@ -407,9 +407,9 @@ window.NEUVAINE_CONTENU = {
       'dans son identité propre qui ne se trouve qu’en Dieu. Amen.'
     ],
     lecteur: 'Romain',
-    audio: 'assets/audio/jour-6.mp3?v=3',
-    sync: 'assets/audio/jour-6.sync.js?v=4',
-    chapitres: { meditation: 5.08, chant: 256.57, prions: 407.07, prieres: 473.7, envoi: 604.26 }
+    audio: 'assets/audio/jour-6.mp3?v=4',
+    sync: 'assets/audio/jour-6.sync.js?v=5',
+    chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
   },
 
   /* ---------------------------------------------------------------- 7 --- */

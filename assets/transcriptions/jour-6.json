@@ -8,99 +8,64 @@
       "debut": 0.8,
       "fin": 4.48,
       "chante": false,
-      "nbMots": 15,
+      "nbMots": 10,
       "phrases": [
         {
-          "debut": 1.04,
-          "fin": 4.34,
-          "texte": "Jour 6."
-        },
-        {
-          "debut": 4.34,
-          "fin": 6.22,
-          "texte": "Accueil de l'étranger."
-        },
-        {
-          "debut": 6.22,
-          "fin": 9.62,
+          "debut": 0.85,
+          "fin": 3.98,
           "texte": "Au nom du Père et du Fils et du Saint-Esprit."
         }
       ],
       "mots": [
         {
-          "mot": "Jour",
-          "debut": 1.04,
-          "fin": 3.45
-        },
-        {
-          "mot": "6.",
-          "debut": 3.45,
-          "fin": 4.34
-        },
-        {
-          "mot": "Accueil",
-          "debut": 4.34,
-          "fin": 4.92
-        },
-        {
-          "mot": "de",
-          "debut": 4.92,
-          "fin": 5.07
-        },
-        {
-          "mot": "l'étranger.",
-          "debut": 5.07,
-          "fin": 6.22
-        },
-        {
           "mot": "Au",
-          "debut": 6.22,
-          "fin": 6.42
+          "debut": 0.85,
+          "fin": 1.19
         },
         {
           "mot": "nom",
-          "debut": 6.42,
-          "fin": 6.85
+          "debut": 1.19,
+          "fin": 1.23
         },
         {
           "mot": "du",
-          "debut": 6.85,
-          "fin": 6.88
+          "debut": 1.23,
+          "fin": 1.4
         },
         {
           "mot": "Père",
-          "debut": 6.88,
-          "fin": 7.37
+          "debut": 1.4,
+          "fin": 1.83
         },
         {
           "mot": "et",
-          "debut": 7.37,
-          "fin": 7.52
+          "debut": 1.83,
+          "fin": 2
         },
         {
           "mot": "du",
-          "debut": 7.52,
-          "fin": 7.72
+          "debut": 2,
+          "fin": 2.19
         },
         {
           "mot": "Fils",
-          "debut": 7.72,
-          "fin": 8.07
+          "debut": 2.19,
+          "fin": 2.51
         },
         {
           "mot": "et",
-          "debut": 8.07,
-          "fin": 8.25
+          "debut": 2.51,
+          "fin": 2.68
         },
         {
           "mot": "du",
-          "debut": 8.25,
-          "fin": 8.43
+          "debut": 2.68,
+          "fin": 3.14
         },
         {
           "mot": "Saint-Esprit.",
-          "debut": 8.43,
-          "fin": 9.62
+          "debut": 3.14,
+          "fin": 3.98
         }
       ]
     },
@@ -109,9 +74,9 @@
       "label": "MÉDITATION",
       "id": "meditation",
       "debut": 5.08,
-      "fin": 255.07,
+      "fin": 104.24,
       "chante": false,
-      "nbMots": 532,
+      "nbMots": 220,
       "phrases": [
         {
           "debut": 5.15,
@@ -139,7 +104,7 @@
           "texte": "Et si nous respections et accueillons l'autre comme nous-mêmes, on voudrait l'être, alors nous ferons tomber les vérités et les formes d'égoïsme qui s'enracinent ici et là dans ce monde."
         },
         {
-          "debut": 69.19,
+          "debut": 69.17,
           "fin": 80.92,
           "texte": "Essayons de nous laisser guider par l'idée d'une manière saine, équilibrée et plurielle de vivre ensemble sur une terre qui nous a été si gracieusement offerte par notre Créateur."
         },
@@ -149,129 +114,14 @@
           "texte": "Rappelons-nous que le Christ a vaincu par amour pour nous toutes les formes du mal sur le bois, au calvaire."
         },
         {
-          "debut": 89.98,
-          "fin": 120.9,
-          "texte": "Seigneur, en ce jour de la neuvaine à ton sacré cœur, aide-nous à maintenir notre regard fixé sur ta croix glorieuse qui s'élèvera toujours plus haut pour montrer à quel point aimer est le chemin qui mène à la vraie liberté."
+          "debut": 89.57,
+          "fin": 92.3,
+          "texte": "Aimer est le seul maître de tous les mots."
         },
         {
-          "debut": 120.9,
-          "fin": 132.88,
-          "texte": "Accompagné par Maman Marie, laissons-nous entraîner chaque jour à marcher à sa suite pour que nous puissions être un instrument dont les seules notes sont jouées par toi."
-        },
-        {
-          "debut": 132.88,
-          "fin": 143.6,
-          "texte": "Ainsi, nous serons assurés de cette belle mélodie qui n'est pas une utopie mais bien une promesse du bonheur à vivre ensemble par sa grâce éternelle."
-        },
-        {
-          "debut": 145.05,
-          "fin": 158.62,
-          "texte": "Que la venue du pape Léon XIV permette de fortifier la foi des catholiques en continuant de leur révéler le message d'amour sans condition du Père et dans leur identité propre qui ne se trouve qu'en Dieu."
-        },
-        {
-          "debut": 158.62,
-          "fin": 176.36,
-          "texte": "Amen Notre Père, qui est aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel, donne-nous aujourd'hui notre pain de ce jour."
-        },
-        {
-          "debut": 177.13,
-          "fin": 179.3,
-          "texte": "Pardonne-nous nos offenses, comme nous."
-        },
-        {
-          "debut": 179.3,
-          "fin": 182.59,
-          "texte": "Pardonne-nous aussi à ceux qui nous ont offensés."
-        },
-        {
-          "debut": 182.59,
-          "fin": 186.8,
-          "texte": "Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal."
-        },
-        {
-          "debut": 189.55,
-          "fin": 192.05,
-          "texte": "Je vous salue Marie, pleine de grâce."
-        },
-        {
-          "debut": 192.05,
-          "fin": 193.47,
-          "texte": "Le Seigneur est avec vous."
-        },
-        {
-          "debut": 193.47,
-          "fin": 195.78,
-          "texte": "Vous êtes bénie entre toutes les femmes."
-        },
-        {
-          "debut": 195.78,
-          "fin": 199.12,
-          "texte": "Et Jésus, le fruit de vos entrailles, est béni."
-        },
-        {
-          "debut": 200.09,
-          "fin": 207.39,
-          "texte": "Je vous salue Marie, pleine de grâce."
-        },
-        {
-          "debut": 207.39,
-          "fin": 212.4,
-          "texte": "Le Seigneur est avec vous."
-        },
-        {
-          "debut": 212.4,
-          "fin": 214.21,
-          "texte": "Vous êtes bénie entre toutes les femmes."
-        },
-        {
-          "debut": 214.21,
-          "fin": 216.48,
-          "texte": "Et Jésus, le fruit de vos entrailles, est béni."
-        },
-        {
-          "debut": 217.1,
-          "fin": 223,
-          "texte": "Sainte Marie, Mère de Dieu, priez pour nous pauvres pécheurs, maintenant et à l'heure de notre mort."
-        },
-        {
-          "debut": 223,
-          "fin": 225.6,
-          "texte": "Amen Je vous salue Marie, pleine de grâce."
-        },
-        {
-          "debut": 225.6,
-          "fin": 227.47,
-          "texte": "Le Seigneur est avec vous."
-        },
-        {
-          "debut": 227.47,
-          "fin": 230.18,
-          "texte": "Vous êtes bénie entre toutes les femmes."
-        },
-        {
-          "debut": 230.18,
-          "fin": 233.66,
-          "texte": "Et Jésus, le fruit de vos entrailles, est béni."
-        },
-        {
-          "debut": 233.66,
-          "fin": 240.38,
-          "texte": "Sainte Marie, Mère de Dieu, priez pour nous pauvres pécheurs, maintenant et à l'heure de notre mort."
-        },
-        {
-          "debut": 240.38,
-          "fin": 240.84,
-          "texte": "Amen"
-        },
-        {
-          "debut": 241.91,
-          "fin": 248.61,
-          "texte": "Gloire au Père, au Fils et au Saint-Esprit, comme il était au commencement, maintenant et toujours, dans les siècles des siècles."
-        },
-        {
-          "debut": 248.61,
-          "fin": 253.02,
-          "texte": "Amen Sacré-Cœur de Jésus, nous avons confiance en toi."
+          "debut": 92.3,
+          "fin": 102.46,
+          "texte": "Faut-il déjà désirer le conjuguer avec une confiance totale, non pas en soi, mais en lui, Jésus, notre maître ?"
         }
       ],
       "mots": [
@@ -548,11 +398,11 @@
         {
           "mot": "revenir",
           "debut": 30.1,
-          "fin": 30.61
+          "fin": 30.6
         },
         {
           "mot": "à",
-          "debut": 30.61,
+          "debut": 30.6,
           "fin": 30.76
         },
         {
@@ -987,147 +837,147 @@
         },
         {
           "mot": "Essayons",
-          "debut": 69.19,
-          "fin": 69.69
+          "debut": 69.17,
+          "fin": 69.67
         },
         {
           "mot": "de",
-          "debut": 69.69,
-          "fin": 69.83
+          "debut": 69.67,
+          "fin": 69.81
         },
         {
           "mot": "nous",
-          "debut": 69.83,
-          "fin": 70.12
+          "debut": 69.81,
+          "fin": 70.1
         },
         {
           "mot": "laisser",
-          "debut": 70.12,
-          "fin": 70.63
+          "debut": 70.1,
+          "fin": 70.61
         },
         {
           "mot": "guider",
-          "debut": 70.63,
-          "fin": 71.06
+          "debut": 70.61,
+          "fin": 71.04
         },
         {
           "mot": "par",
-          "debut": 71.06,
-          "fin": 71.28
+          "debut": 71.04,
+          "fin": 71.26
         },
         {
           "mot": "l'idée",
-          "debut": 71.28,
-          "fin": 71.76
+          "debut": 71.26,
+          "fin": 71.74
         },
         {
           "mot": "d'une",
-          "debut": 71.76,
-          "fin": 72.17
+          "debut": 71.74,
+          "fin": 72.13
         },
         {
           "mot": "manière",
-          "debut": 72.17,
-          "fin": 72.72
+          "debut": 72.13,
+          "fin": 72.7
         },
         {
           "mot": "saine,",
-          "debut": 72.72,
-          "fin": 73.21
+          "debut": 72.7,
+          "fin": 73.19
         },
         {
           "mot": "équilibrée",
-          "debut": 73.21,
-          "fin": 74.05
+          "debut": 73.19,
+          "fin": 74.03
         },
         {
           "mot": "et",
-          "debut": 74.05,
-          "fin": 74.2
+          "debut": 74.03,
+          "fin": 74.18
         },
         {
           "mot": "plurielle",
-          "debut": 74.2,
-          "fin": 74.85
+          "debut": 74.18,
+          "fin": 74.83
         },
         {
           "mot": "de",
-          "debut": 74.85,
-          "fin": 75.08
+          "debut": 74.83,
+          "fin": 75.06
         },
         {
           "mot": "vivre",
-          "debut": 75.08,
-          "fin": 75.34
+          "debut": 75.06,
+          "fin": 75.32
         },
         {
           "mot": "ensemble",
-          "debut": 75.34,
-          "fin": 75.92
+          "debut": 75.32,
+          "fin": 75.9
         },
         {
           "mot": "sur",
-          "debut": 75.92,
-          "fin": 76.13
+          "debut": 75.9,
+          "fin": 76.11
         },
         {
           "mot": "une",
-          "debut": 76.13,
-          "fin": 76.36
+          "debut": 76.11,
+          "fin": 76.34
         },
         {
           "mot": "terre",
-          "debut": 76.36,
-          "fin": 76.85
+          "debut": 76.34,
+          "fin": 76.83
         },
         {
           "mot": "qui",
-          "debut": 76.85,
-          "fin": 76.94
+          "debut": 76.83,
+          "fin": 76.92
         },
         {
           "mot": "nous",
-          "debut": 76.94,
-          "fin": 77.23
+          "debut": 76.92,
+          "fin": 77.21
         },
         {
           "mot": "a",
-          "debut": 77.23,
-          "fin": 77.29
+          "debut": 77.21,
+          "fin": 77.27
         },
         {
           "mot": "été",
-          "debut": 77.29,
-          "fin": 77.66
+          "debut": 77.27,
+          "fin": 77.64
         },
         {
           "mot": "si",
-          "debut": 77.66,
-          "fin": 77.93
+          "debut": 77.64,
+          "fin": 77.91
         },
         {
           "mot": "gracieusement",
-          "debut": 77.93,
-          "fin": 78.74
+          "debut": 77.91,
+          "fin": 78.72
         },
         {
           "mot": "offerte",
-          "debut": 78.74,
-          "fin": 79.23
+          "debut": 78.72,
+          "fin": 79.21
         },
         {
           "mot": "par",
-          "debut": 79.23,
-          "fin": 79.65
+          "debut": 79.21,
+          "fin": 79.63
         },
         {
           "mot": "notre",
-          "debut": 79.65,
-          "fin": 79.82
+          "debut": 79.63,
+          "fin": 79.8
         },
         {
           "mot": "Créateur.",
-          "debut": 79.82,
+          "debut": 79.8,
           "fin": 80.92
         },
         {
@@ -1231,1709 +1081,149 @@
           "fin": 88.98
         },
         {
-          "mot": "Seigneur,",
+          "mot": "Aimer",
+          "debut": 89.57,
+          "fin": 89.98
+        },
+        {
+          "mot": "est",
           "debut": 89.98,
-          "fin": 105.78
-        },
-        {
-          "mot": "en",
-          "debut": 105.78,
-          "fin": 105.94
-        },
-        {
-          "mot": "ce",
-          "debut": 105.94,
-          "fin": 106.09
-        },
-        {
-          "mot": "jour",
-          "debut": 106.09,
-          "fin": 106.42
-        },
-        {
-          "mot": "de",
-          "debut": 106.42,
-          "fin": 106.58
-        },
-        {
-          "mot": "la",
-          "debut": 106.58,
-          "fin": 106.74
-        },
-        {
-          "mot": "neuvaine",
-          "debut": 106.74,
-          "fin": 107.38
-        },
-        {
-          "mot": "à",
-          "debut": 107.38,
-          "fin": 107.53
-        },
-        {
-          "mot": "ton",
-          "debut": 107.53,
-          "fin": 107.78
-        },
-        {
-          "mot": "sacré",
-          "debut": 107.78,
-          "fin": 108.26
-        },
-        {
-          "mot": "cœur,",
-          "debut": 108.26,
-          "fin": 109
-        },
-        {
-          "mot": "aide-nous",
-          "debut": 109,
-          "fin": 109.58
-        },
-        {
-          "mot": "à",
-          "debut": 109.58,
-          "fin": 109.73
-        },
-        {
-          "mot": "maintenir",
-          "debut": 109.73,
-          "fin": 110.49
-        },
-        {
-          "mot": "notre",
-          "debut": 110.49,
-          "fin": 110.91
-        },
-        {
-          "mot": "regard",
-          "debut": 110.91,
-          "fin": 111.41
-        },
-        {
-          "mot": "fixé",
-          "debut": 111.41,
-          "fin": 111.81
-        },
-        {
-          "mot": "sur",
-          "debut": 111.81,
-          "fin": 112.23
-        },
-        {
-          "mot": "ta",
-          "debut": 112.23,
-          "fin": 112.25
-        },
-        {
-          "mot": "croix",
-          "debut": 112.25,
-          "fin": 112.64
-        },
-        {
-          "mot": "glorieuse",
-          "debut": 112.64,
-          "fin": 113.5
-        },
-        {
-          "mot": "qui",
-          "debut": 113.5,
-          "fin": 113.74
-        },
-        {
-          "mot": "s'élèvera",
-          "debut": 113.74,
-          "fin": 114.62
-        },
-        {
-          "mot": "toujours",
-          "debut": 114.62,
-          "fin": 115.27
-        },
-        {
-          "mot": "plus",
-          "debut": 115.27,
-          "fin": 115.59
-        },
-        {
-          "mot": "haut",
-          "debut": 115.59,
-          "fin": 115.94
-        },
-        {
-          "mot": "pour",
-          "debut": 116.01,
-          "fin": 116.42
-        },
-        {
-          "mot": "montrer",
-          "debut": 116.42,
-          "fin": 116.76
-        },
-        {
-          "mot": "à",
-          "debut": 116.76,
-          "fin": 116.91
-        },
-        {
-          "mot": "quel",
-          "debut": 116.91,
-          "fin": 117.21
-        },
-        {
-          "mot": "point",
-          "debut": 117.21,
-          "fin": 117.58
-        },
-        {
-          "mot": "aimer",
-          "debut": 117.58,
-          "fin": 117.99
-        },
-        {
-          "mot": "est",
-          "debut": 117.99,
-          "fin": 118.16
+          "fin": 90.09
         },
         {
           "mot": "le",
-          "debut": 118.16,
-          "fin": 118.76
+          "debut": 90.09,
+          "fin": 90.24
         },
         {
-          "mot": "chemin",
-          "debut": 118.76,
-          "fin": 118.83
+          "mot": "seul",
+          "debut": 90.24,
+          "fin": 90.54
         },
         {
-          "mot": "qui",
-          "debut": 118.83,
-          "fin": 118.99
-        },
-        {
-          "mot": "mène",
-          "debut": 118.99,
-          "fin": 119.34
-        },
-        {
-          "mot": "à",
-          "debut": 119.34,
-          "fin": 119.49
-        },
-        {
-          "mot": "la",
-          "debut": 119.49,
-          "fin": 119.64
-        },
-        {
-          "mot": "vraie",
-          "debut": 119.64,
-          "fin": 120.01
-        },
-        {
-          "mot": "liberté.",
-          "debut": 120.01,
-          "fin": 120.9
-        },
-        {
-          "mot": "Accompagné",
-          "debut": 120.9,
-          "fin": 122.31
-        },
-        {
-          "mot": "par",
-          "debut": 122.31,
-          "fin": 122.62
-        },
-        {
-          "mot": "Maman",
-          "debut": 122.62,
-          "fin": 123.79
-        },
-        {
-          "mot": "Marie,",
-          "debut": 123.79,
-          "fin": 124.16
-        },
-        {
-          "mot": "laissons-nous",
-          "debut": 124.16,
-          "fin": 125.08
-        },
-        {
-          "mot": "entraîner",
-          "debut": 125.08,
-          "fin": 125.8
-        },
-        {
-          "mot": "chaque",
-          "debut": 125.8,
-          "fin": 126.21
-        },
-        {
-          "mot": "jour",
-          "debut": 126.21,
-          "fin": 126.53
-        },
-        {
-          "mot": "à",
-          "debut": 126.53,
-          "fin": 126.84
-        },
-        {
-          "mot": "marcher",
-          "debut": 126.84,
-          "fin": 127.19
-        },
-        {
-          "mot": "à",
-          "debut": 127.19,
-          "fin": 127.38
-        },
-        {
-          "mot": "sa",
-          "debut": 127.38,
-          "fin": 127.46
-        },
-        {
-          "mot": "suite",
-          "debut": 127.46,
-          "fin": 127.97
-        },
-        {
-          "mot": "pour",
-          "debut": 127.97,
-          "fin": 128.22
-        },
-        {
-          "mot": "que",
-          "debut": 128.22,
-          "fin": 128.63
-        },
-        {
-          "mot": "nous",
-          "debut": 128.63,
-          "fin": 128.71
-        },
-        {
-          "mot": "puissions",
-          "debut": 128.71,
-          "fin": 129.31
-        },
-        {
-          "mot": "être",
-          "debut": 129.31,
-          "fin": 129.72
-        },
-        {
-          "mot": "un",
-          "debut": 129.72,
-          "fin": 129.89
-        },
-        {
-          "mot": "instrument",
-          "debut": 129.89,
-          "fin": 130.78
-        },
-        {
-          "mot": "dont",
-          "debut": 130.78,
-          "fin": 130.98
-        },
-        {
-          "mot": "les",
-          "debut": 130.98,
-          "fin": 131.16
-        },
-        {
-          "mot": "seules",
-          "debut": 131.16,
-          "fin": 131.49
-        },
-        {
-          "mot": "notes",
-          "debut": 131.49,
-          "fin": 131.76
-        },
-        {
-          "mot": "sont",
-          "debut": 131.76,
-          "fin": 132.04
-        },
-        {
-          "mot": "jouées",
-          "debut": 132.04,
-          "fin": 132.37
-        },
-        {
-          "mot": "par",
-          "debut": 132.37,
-          "fin": 132.52
-        },
-        {
-          "mot": "toi.",
-          "debut": 132.52,
-          "fin": 132.88
-        },
-        {
-          "mot": "Ainsi,",
-          "debut": 132.88,
-          "fin": 133.44
-        },
-        {
-          "mot": "nous",
-          "debut": 133.44,
-          "fin": 133.76
-        },
-        {
-          "mot": "serons",
-          "debut": 133.76,
-          "fin": 134.29
-        },
-        {
-          "mot": "assurés",
-          "debut": 134.29,
-          "fin": 134.94
+          "mot": "maître",
+          "debut": 90.54,
+          "fin": 91.07
         },
         {
           "mot": "de",
-          "debut": 134.94,
-          "fin": 135.04
+          "debut": 91.07,
+          "fin": 91.21
         },
         {
-          "mot": "cette",
-          "debut": 135.04,
-          "fin": 135.77
+          "mot": "tous",
+          "debut": 91.21,
+          "fin": 91.55
         },
         {
-          "mot": "belle",
-          "debut": 135.77,
-          "fin": 135.84
+          "mot": "les",
+          "debut": 91.55,
+          "fin": 91.72
         },
         {
-          "mot": "mélodie",
-          "debut": 135.84,
-          "fin": 136.48
+          "mot": "mots.",
+          "debut": 91.72,
+          "fin": 92.3
         },
         {
-          "mot": "qui",
-          "debut": 136.48,
-          "fin": 136.72
+          "mot": "Faut-il",
+          "debut": 92.3,
+          "fin": 92.98
         },
         {
-          "mot": "n'est",
-          "debut": 136.72,
-          "fin": 137.12
+          "mot": "déjà",
+          "debut": 92.98,
+          "fin": 93.55
         },
         {
-          "mot": "pas",
-          "debut": 137.12,
-          "fin": 137.36
+          "mot": "désirer",
+          "debut": 93.55,
+          "fin": 94.35
+        },
+        {
+          "mot": "le",
+          "debut": 94.35,
+          "fin": 94.51
+        },
+        {
+          "mot": "conjuguer",
+          "debut": 94.51,
+          "fin": 95.39
+        },
+        {
+          "mot": "avec",
+          "debut": 95.39,
+          "fin": 95.78
         },
         {
           "mot": "une",
-          "debut": 137.36,
-          "fin": 137.6
-        },
-        {
-          "mot": "utopie",
-          "debut": 137.6,
-          "fin": 138.08
-        },
-        {
-          "mot": "mais",
-          "debut": 138.08,
-          "fin": 138.39
-        },
-        {
-          "mot": "bien",
-          "debut": 138.39,
-          "fin": 138.82
-        },
-        {
-          "mot": "une",
-          "debut": 138.82,
-          "fin": 138.96
-        },
-        {
-          "mot": "promesse",
-          "debut": 138.96,
-          "fin": 139.6
-        },
-        {
-          "mot": "du",
-          "debut": 139.6,
-          "fin": 139.76
-        },
-        {
-          "mot": "bonheur",
-          "debut": 139.76,
-          "fin": 140.61
-        },
-        {
-          "mot": "à",
-          "debut": 140.61,
-          "fin": 140.62
-        },
-        {
-          "mot": "vivre",
-          "debut": 140.62,
-          "fin": 141.02
-        },
-        {
-          "mot": "ensemble",
-          "debut": 141.02,
-          "fin": 141.69
-        },
-        {
-          "mot": "par",
-          "debut": 141.69,
-          "fin": 141.9
-        },
-        {
-          "mot": "sa",
-          "debut": 141.9,
-          "fin": 142.06
-        },
-        {
-          "mot": "grâce",
-          "debut": 142.06,
-          "fin": 142.54
-        },
-        {
-          "mot": "éternelle.",
-          "debut": 142.54,
-          "fin": 143.6
-        },
-        {
-          "mot": "Que",
-          "debut": 145.05,
-          "fin": 145.46
-        },
-        {
-          "mot": "la",
-          "debut": 145.46,
-          "fin": 145.49
-        },
-        {
-          "mot": "venue",
-          "debut": 145.49,
-          "fin": 146
-        },
-        {
-          "mot": "du",
-          "debut": 146,
-          "fin": 146.2
-        },
-        {
-          "mot": "pape",
-          "debut": 146.2,
-          "fin": 146.6
-        },
-        {
-          "mot": "Léon",
-          "debut": 146.6,
-          "fin": 147.1
-        },
-        {
-          "mot": "XIV",
-          "debut": 147.1,
-          "fin": 147.22
-        },
-        {
-          "mot": "permette",
-          "debut": 147.22,
-          "fin": 148.01
-        },
-        {
-          "mot": "de",
-          "debut": 148.01,
-          "fin": 148.11
-        },
-        {
-          "mot": "fortifier",
-          "debut": 148.11,
-          "fin": 148.68
-        },
-        {
-          "mot": "la",
-          "debut": 148.68,
-          "fin": 148.82
-        },
-        {
-          "mot": "foi",
-          "debut": 148.82,
-          "fin": 149.01
-        },
-        {
-          "mot": "des",
-          "debut": 149.01,
-          "fin": 149.2
-        },
-        {
-          "mot": "catholiques",
-          "debut": 149.2,
-          "fin": 149.94
-        },
-        {
-          "mot": "en",
-          "debut": 149.94,
-          "fin": 150.08
-        },
-        {
-          "mot": "continuant",
-          "debut": 150.08,
-          "fin": 150.92
-        },
-        {
-          "mot": "de",
-          "debut": 150.92,
-          "fin": 150.96
-        },
-        {
-          "mot": "leur",
-          "debut": 150.96,
-          "fin": 151.25
-        },
-        {
-          "mot": "révéler",
-          "debut": 151.25,
-          "fin": 151.94
-        },
-        {
-          "mot": "le",
-          "debut": 151.94,
-          "fin": 152.11
-        },
-        {
-          "mot": "message",
-          "debut": 152.11,
-          "fin": 152.72
-        },
-        {
-          "mot": "d'amour",
-          "debut": 152.72,
-          "fin": 153.32
-        },
-        {
-          "mot": "sans",
-          "debut": 153.32,
-          "fin": 153.79
-        },
-        {
-          "mot": "condition",
-          "debut": 153.79,
-          "fin": 154.46
-        },
-        {
-          "mot": "du",
-          "debut": 154.46,
-          "fin": 154.63
-        },
-        {
-          "mot": "Père",
-          "debut": 154.63,
-          "fin": 155.11
-        },
-        {
-          "mot": "et",
-          "debut": 155.11,
-          "fin": 155.51
-        },
-        {
-          "mot": "dans",
-          "debut": 155.51,
-          "fin": 155.54
-        },
-        {
-          "mot": "leur",
-          "debut": 155.54,
-          "fin": 155.82
-        },
-        {
-          "mot": "identité",
-          "debut": 155.82,
-          "fin": 156.42
-        },
-        {
-          "mot": "propre",
-          "debut": 156.42,
-          "fin": 156.84
-        },
-        {
-          "mot": "qui",
-          "debut": 156.84,
-          "fin": 157.02
-        },
-        {
-          "mot": "ne",
-          "debut": 157.02,
-          "fin": 157.19
-        },
-        {
-          "mot": "se",
-          "debut": 157.19,
-          "fin": 157.5
-        },
-        {
-          "mot": "trouve",
-          "debut": 157.5,
-          "fin": 157.74
-        },
-        {
-          "mot": "qu'en",
-          "debut": 157.74,
-          "fin": 158.07
-        },
-        {
-          "mot": "Dieu.",
-          "debut": 158.07,
-          "fin": 158.62
-        },
-        {
-          "mot": "Amen",
-          "debut": 158.62,
-          "fin": 160.38
-        },
-        {
-          "mot": "Notre",
-          "debut": 160.86,
-          "fin": 162.52
-        },
-        {
-          "mot": "Père,",
-          "debut": 162.52,
-          "fin": 164.81
-        },
-        {
-          "mot": "qui",
-          "debut": 164.81,
-          "fin": 165.05
-        },
-        {
-          "mot": "est",
-          "debut": 165.05,
-          "fin": 165.27
-        },
-        {
-          "mot": "aux",
-          "debut": 165.27,
-          "fin": 165.49
-        },
-        {
-          "mot": "cieux,",
-          "debut": 165.49,
-          "fin": 166.21
-        },
-        {
-          "mot": "que",
-          "debut": 166.21,
-          "fin": 166.34
-        },
-        {
-          "mot": "ton",
-          "debut": 166.34,
-          "fin": 166.49
-        },
-        {
-          "mot": "nom",
-          "debut": 166.49,
-          "fin": 166.72
-        },
-        {
-          "mot": "soit",
-          "debut": 166.72,
-          "fin": 167.02
-        },
-        {
-          "mot": "sanctifié,",
-          "debut": 167.02,
-          "fin": 168.11
-        },
-        {
-          "mot": "que",
-          "debut": 168.11,
-          "fin": 168.15
-        },
-        {
-          "mot": "ton",
-          "debut": 168.15,
-          "fin": 168.38
-        },
-        {
-          "mot": "règne",
-          "debut": 168.38,
-          "fin": 168.82
-        },
-        {
-          "mot": "vienne,",
-          "debut": 168.82,
-          "fin": 169.43
-        },
-        {
-          "mot": "que",
-          "debut": 169.43,
-          "fin": 169.66
-        },
-        {
-          "mot": "ta",
-          "debut": 169.66,
-          "fin": 169.82
-        },
-        {
-          "mot": "volonté",
-          "debut": 169.82,
-          "fin": 170.4
-        },
-        {
-          "mot": "soit",
-          "debut": 170.4,
-          "fin": 170.86
-        },
-        {
-          "mot": "faite",
-          "debut": 170.86,
-          "fin": 171.08
-        },
-        {
-          "mot": "sur",
-          "debut": 171.08,
-          "fin": 171.31
-        },
-        {
-          "mot": "la",
-          "debut": 171.31,
-          "fin": 171.52
-        },
-        {
-          "mot": "terre",
-          "debut": 171.52,
-          "fin": 171.85
-        },
-        {
-          "mot": "comme",
-          "debut": 171.85,
-          "fin": 172.22
-        },
-        {
-          "mot": "au",
-          "debut": 172.22,
-          "fin": 172.36
-        },
-        {
-          "mot": "ciel,",
-          "debut": 172.36,
-          "fin": 172.94
-        },
-        {
-          "mot": "donne-nous",
-          "debut": 172.94,
-          "fin": 173.76
-        },
-        {
-          "mot": "aujourd'hui",
-          "debut": 173.76,
-          "fin": 174.68
-        },
-        {
-          "mot": "notre",
-          "debut": 174.68,
-          "fin": 175.07
-        },
-        {
-          "mot": "pain",
-          "debut": 175.07,
-          "fin": 175.4
-        },
-        {
-          "mot": "de",
-          "debut": 175.4,
-          "fin": 175.57
-        },
-        {
-          "mot": "ce",
-          "debut": 175.57,
-          "fin": 175.72
-        },
-        {
-          "mot": "jour.",
-          "debut": 175.72,
-          "fin": 176.36
-        },
-        {
-          "mot": "Pardonne-nous",
-          "debut": 177.13,
-          "fin": 177.81
-        },
-        {
-          "mot": "nos",
-          "debut": 177.81,
-          "fin": 177.99
-        },
-        {
-          "mot": "offenses,",
-          "debut": 177.99,
-          "fin": 178.57
-        },
-        {
-          "mot": "comme",
-          "debut": 178.57,
-          "fin": 178.87
-        },
-        {
-          "mot": "nous.",
-          "debut": 178.87,
-          "fin": 179.3
-        },
-        {
-          "mot": "Pardonne-nous",
-          "debut": 179.3,
-          "fin": 180.25
-        },
-        {
-          "mot": "aussi",
-          "debut": 180.25,
-          "fin": 180.6
-        },
-        {
-          "mot": "à",
-          "debut": 180.6,
-          "fin": 180.74
-        },
-        {
-          "mot": "ceux",
-          "debut": 180.74,
-          "fin": 181.02
-        },
-        {
-          "mot": "qui",
-          "debut": 181.02,
-          "fin": 181.24
-        },
-        {
-          "mot": "nous",
-          "debut": 181.24,
-          "fin": 181.51
-        },
-        {
-          "mot": "ont",
-          "debut": 181.51,
-          "fin": 181.73
-        },
-        {
-          "mot": "offensés.",
-          "debut": 181.73,
-          "fin": 182.59
-        },
-        {
-          "mot": "Et",
-          "debut": 182.59,
-          "fin": 182.73
-        },
-        {
-          "mot": "ne",
-          "debut": 182.73,
-          "fin": 183
-        },
-        {
-          "mot": "nous",
-          "debut": 183,
-          "fin": 183.13
-        },
-        {
-          "mot": "laisse",
-          "debut": 183.13,
-          "fin": 183.54
-        },
-        {
-          "mot": "pas",
-          "debut": 183.54,
-          "fin": 183.75
-        },
-        {
-          "mot": "entrer",
-          "debut": 183.75,
-          "fin": 184.14
-        },
-        {
-          "mot": "en",
-          "debut": 184.14,
-          "fin": 184.27
-        },
-        {
-          "mot": "tentation,",
-          "debut": 184.27,
-          "fin": 185.01
-        },
-        {
-          "mot": "mais",
-          "debut": 185.01,
-          "fin": 185.28
-        },
-        {
-          "mot": "délivre-nous",
-          "debut": 185.28,
-          "fin": 186.14
-        },
-        {
-          "mot": "du",
-          "debut": 186.14,
-          "fin": 186.27
-        },
-        {
-          "mot": "mal.",
-          "debut": 186.27,
-          "fin": 186.8
-        },
-        {
-          "mot": "Je",
-          "debut": 189.55,
-          "fin": 189.91
-        },
-        {
-          "mot": "vous",
-          "debut": 189.91,
-          "fin": 189.96
-        },
-        {
-          "mot": "salue",
-          "debut": 189.96,
-          "fin": 190.27
-        },
-        {
-          "mot": "Marie,",
-          "debut": 190.27,
-          "fin": 190.76
-        },
-        {
-          "mot": "pleine",
-          "debut": 190.76,
-          "fin": 191.21
-        },
-        {
-          "mot": "de",
-          "debut": 191.21,
-          "fin": 191.35
-        },
-        {
-          "mot": "grâce.",
-          "debut": 191.35,
-          "fin": 192.05
-        },
-        {
-          "mot": "Le",
-          "debut": 192.05,
-          "fin": 192.3
-        },
-        {
-          "mot": "Seigneur",
-          "debut": 192.3,
-          "fin": 192.64
-        },
-        {
-          "mot": "est",
-          "debut": 192.64,
-          "fin": 192.82
-        },
-        {
-          "mot": "avec",
-          "debut": 192.82,
-          "fin": 193.06
-        },
-        {
-          "mot": "vous.",
-          "debut": 193.06,
-          "fin": 193.47
-        },
-        {
-          "mot": "Vous",
-          "debut": 193.47,
-          "fin": 193.71
-        },
-        {
-          "mot": "êtes",
-          "debut": 193.71,
-          "fin": 194.01
-        },
-        {
-          "mot": "bénie",
-          "debut": 194.01,
-          "fin": 194.36
-        },
-        {
-          "mot": "entre",
-          "debut": 194.36,
-          "fin": 194.66
-        },
-        {
-          "mot": "toutes",
-          "debut": 194.66,
-          "fin": 195
-        },
-        {
-          "mot": "les",
-          "debut": 195,
-          "fin": 195.42
-        },
-        {
-          "mot": "femmes.",
-          "debut": 195.42,
-          "fin": 195.78
-        },
-        {
-          "mot": "Et",
-          "debut": 195.78,
-          "fin": 195.96
-        },
-        {
-          "mot": "Jésus,",
-          "debut": 195.96,
-          "fin": 196.49
-        },
-        {
-          "mot": "le",
-          "debut": 196.49,
-          "fin": 196.64
-        },
-        {
-          "mot": "fruit",
-          "debut": 196.64,
-          "fin": 197
-        },
-        {
-          "mot": "de",
-          "debut": 197,
-          "fin": 197.21
-        },
-        {
-          "mot": "vos",
-          "debut": 197.21,
-          "fin": 197.42
-        },
-        {
-          "mot": "entrailles,",
-          "debut": 197.42,
-          "fin": 198.29
-        },
-        {
-          "mot": "est",
-          "debut": 198.29,
-          "fin": 198.47
-        },
-        {
-          "mot": "béni.",
-          "debut": 198.47,
-          "fin": 199.12
-        },
-        {
-          "mot": "Je",
-          "debut": 200.09,
-          "fin": 200.15
-        },
-        {
-          "mot": "vous",
-          "debut": 200.15,
-          "fin": 200.94
-        },
-        {
-          "mot": "salue",
-          "debut": 200.94,
-          "fin": 202.55
-        },
-        {
-          "mot": "Marie,",
-          "debut": 202.55,
-          "fin": 203.52
-        },
-        {
-          "mot": "pleine",
-          "debut": 203.52,
-          "fin": 204.77
-        },
-        {
-          "mot": "de",
-          "debut": 204.77,
-          "fin": 205.62
-        },
-        {
-          "mot": "grâce.",
-          "debut": 205.62,
-          "fin": 207.39
-        },
-        {
-          "mot": "Le",
-          "debut": 207.39,
-          "fin": 207.6
-        },
-        {
-          "mot": "Seigneur",
-          "debut": 207.6,
-          "fin": 209.31
-        },
-        {
-          "mot": "est",
-          "debut": 209.31,
-          "fin": 210.2
-        },
-        {
-          "mot": "avec",
-          "debut": 210.2,
-          "fin": 210.81
-        },
-        {
-          "mot": "vous.",
-          "debut": 210.81,
-          "fin": 212.4
-        },
-        {
-          "mot": "Vous",
-          "debut": 212.4,
-          "fin": 212.57
-        },
-        {
-          "mot": "êtes",
-          "debut": 212.57,
-          "fin": 212.96
-        },
-        {
-          "mot": "bénie",
-          "debut": 212.96,
-          "fin": 213.11
-        },
-        {
-          "mot": "entre",
-          "debut": 213.11,
-          "fin": 213.35
-        },
-        {
-          "mot": "toutes",
-          "debut": 213.35,
-          "fin": 213.64
-        },
-        {
-          "mot": "les",
-          "debut": 213.64,
-          "fin": 213.78
-        },
-        {
-          "mot": "femmes.",
-          "debut": 213.78,
-          "fin": 214.21
-        },
-        {
-          "mot": "Et",
-          "debut": 214.21,
-          "fin": 214.3
-        },
-        {
-          "mot": "Jésus,",
-          "debut": 214.3,
-          "fin": 214.67
-        },
-        {
-          "mot": "le",
-          "debut": 214.67,
-          "fin": 214.76
-        },
-        {
-          "mot": "fruit",
-          "debut": 214.76,
-          "fin": 215
-        },
-        {
-          "mot": "de",
-          "debut": 215,
-          "fin": 215.09
-        },
-        {
-          "mot": "vos",
-          "debut": 215.09,
-          "fin": 215.23
-        },
-        {
-          "mot": "entrailles,",
-          "debut": 215.23,
-          "fin": 215.8
-        },
-        {
-          "mot": "est",
-          "debut": 215.8,
-          "fin": 215.92
-        },
-        {
-          "mot": "béni.",
-          "debut": 215.92,
-          "fin": 216.48
-        },
-        {
-          "mot": "Sainte",
-          "debut": 217.1,
-          "fin": 217.52
-        },
-        {
-          "mot": "Marie,",
-          "debut": 217.52,
-          "fin": 217.85
-        },
-        {
-          "mot": "Mère",
-          "debut": 217.85,
-          "fin": 218.16
-        },
-        {
-          "mot": "de",
-          "debut": 218.16,
-          "fin": 218.29
-        },
-        {
-          "mot": "Dieu,",
-          "debut": 218.29,
-          "fin": 218.67
-        },
-        {
-          "mot": "priez",
-          "debut": 218.67,
-          "fin": 218.99
-        },
-        {
-          "mot": "pour",
-          "debut": 218.99,
-          "fin": 219.25
-        },
-        {
-          "mot": "nous",
-          "debut": 219.25,
-          "fin": 219.28
-        },
-        {
-          "mot": "pauvres",
-          "debut": 219.28,
-          "fin": 219.95
-        },
-        {
-          "mot": "pécheurs,",
-          "debut": 219.95,
-          "fin": 220.64
-        },
-        {
-          "mot": "maintenant",
-          "debut": 220.64,
-          "fin": 221.28
-        },
-        {
-          "mot": "et",
-          "debut": 221.28,
-          "fin": 221.41
-        },
-        {
-          "mot": "à",
-          "debut": 221.41,
-          "fin": 221.54
-        },
-        {
-          "mot": "l'heure",
-          "debut": 221.54,
-          "fin": 221.97
-        },
-        {
-          "mot": "de",
-          "debut": 221.97,
-          "fin": 222.11
-        },
-        {
-          "mot": "notre",
-          "debut": 222.11,
-          "fin": 222.42
-        },
-        {
-          "mot": "mort.",
-          "debut": 222.42,
-          "fin": 223
-        },
-        {
-          "mot": "Amen",
-          "debut": 223,
-          "fin": 223.28
-        },
-        {
-          "mot": "Je",
-          "debut": 223.28,
-          "fin": 223.71
-        },
-        {
-          "mot": "vous",
-          "debut": 223.71,
-          "fin": 223.76
-        },
-        {
-          "mot": "salue",
-          "debut": 223.76,
-          "fin": 224.06
-        },
-        {
-          "mot": "Marie,",
-          "debut": 224.06,
-          "fin": 224.56
-        },
-        {
-          "mot": "pleine",
-          "debut": 224.56,
-          "fin": 224.98
-        },
-        {
-          "mot": "de",
-          "debut": 224.98,
-          "fin": 225.16
-        },
-        {
-          "mot": "grâce.",
-          "debut": 225.16,
-          "fin": 225.6
-        },
-        {
-          "mot": "Le",
-          "debut": 225.6,
-          "fin": 225.9
-        },
-        {
-          "mot": "Seigneur",
-          "debut": 225.9,
-          "fin": 226.47
-        },
-        {
-          "mot": "est",
-          "debut": 226.47,
-          "fin": 226.68
-        },
-        {
-          "mot": "avec",
-          "debut": 226.68,
-          "fin": 226.97
-        },
-        {
-          "mot": "vous.",
-          "debut": 226.97,
-          "fin": 227.47
-        },
-        {
-          "mot": "Vous",
-          "debut": 227.47,
-          "fin": 227.76
-        },
-        {
-          "mot": "êtes",
-          "debut": 227.76,
-          "fin": 228.12
-        },
-        {
-          "mot": "bénie",
-          "debut": 228.12,
-          "fin": 228.54
-        },
-        {
-          "mot": "entre",
-          "debut": 228.54,
-          "fin": 229.22
-        },
-        {
-          "mot": "toutes",
-          "debut": 229.22,
-          "fin": 229.33
-        },
-        {
-          "mot": "les",
-          "debut": 229.33,
-          "fin": 229.55
-        },
-        {
-          "mot": "femmes.",
-          "debut": 229.55,
-          "fin": 230.18
-        },
-        {
-          "mot": "Et",
-          "debut": 230.18,
-          "fin": 230.31
-        },
-        {
-          "mot": "Jésus,",
-          "debut": 230.31,
-          "fin": 231.01
-        },
-        {
-          "mot": "le",
-          "debut": 231.01,
-          "fin": 231.03
-        },
-        {
-          "mot": "fruit",
-          "debut": 231.03,
-          "fin": 231.39
-        },
-        {
-          "mot": "de",
-          "debut": 231.39,
-          "fin": 231.53
-        },
-        {
-          "mot": "vos",
-          "debut": 231.53,
-          "fin": 231.72
-        },
-        {
-          "mot": "entrailles,",
-          "debut": 231.72,
-          "fin": 232.72
-        },
-        {
-          "mot": "est",
-          "debut": 232.72,
-          "fin": 232.81
-        },
-        {
-          "mot": "béni.",
-          "debut": 232.81,
-          "fin": 233.66
-        },
-        {
-          "mot": "Sainte",
-          "debut": 233.66,
-          "fin": 234.14
-        },
-        {
-          "mot": "Marie,",
-          "debut": 234.14,
-          "fin": 234.6
-        },
-        {
-          "mot": "Mère",
-          "debut": 234.6,
-          "fin": 234.96
-        },
-        {
-          "mot": "de",
-          "debut": 234.96,
-          "fin": 235.11
-        },
-        {
-          "mot": "Dieu,",
-          "debut": 235.11,
-          "fin": 235.55
-        },
-        {
-          "mot": "priez",
-          "debut": 235.55,
-          "fin": 235.9
-        },
-        {
-          "mot": "pour",
-          "debut": 235.9,
-          "fin": 236.49
-        },
-        {
-          "mot": "nous",
-          "debut": 236.49,
-          "fin": 236.55
-        },
-        {
-          "mot": "pauvres",
-          "debut": 236.55,
-          "fin": 237
-        },
-        {
-          "mot": "pécheurs,",
-          "debut": 237,
-          "fin": 237.85
-        },
-        {
-          "mot": "maintenant",
-          "debut": 237.85,
-          "fin": 238.54
-        },
-        {
-          "mot": "et",
-          "debut": 238.54,
-          "fin": 238.7
-        },
-        {
-          "mot": "à",
-          "debut": 238.7,
-          "fin": 238.84
-        },
-        {
-          "mot": "l'heure",
-          "debut": 238.84,
-          "fin": 239.35
-        },
-        {
-          "mot": "de",
-          "debut": 239.35,
-          "fin": 239.62
-        },
-        {
-          "mot": "notre",
-          "debut": 239.62,
-          "fin": 239.87
-        },
-        {
-          "mot": "mort.",
-          "debut": 239.87,
-          "fin": 240.38
-        },
-        {
-          "mot": "Amen",
-          "debut": 240.38,
-          "fin": 240.84
-        },
-        {
-          "mot": "Gloire",
-          "debut": 241.91,
-          "fin": 242.29
-        },
-        {
-          "mot": "au",
-          "debut": 242.29,
-          "fin": 242.32
-        },
-        {
-          "mot": "Père,",
-          "debut": 242.32,
-          "fin": 242.68
-        },
-        {
-          "mot": "au",
-          "debut": 242.68,
-          "fin": 242.79
-        },
-        {
-          "mot": "Fils",
-          "debut": 242.79,
-          "fin": 242.99
-        },
-        {
-          "mot": "et",
-          "debut": 242.99,
-          "fin": 243.12
-        },
-        {
-          "mot": "au",
-          "debut": 243.12,
-          "fin": 243.25
-        },
-        {
-          "mot": "Saint-Esprit,",
-          "debut": 243.25,
-          "fin": 244.01
-        },
-        {
-          "mot": "comme",
-          "debut": 244.01,
-          "fin": 244.08
-        },
-        {
-          "mot": "il",
-          "debut": 244.08,
-          "fin": 244.73
-        },
-        {
-          "mot": "était",
-          "debut": 244.73,
-          "fin": 244.76
-        },
-        {
-          "mot": "au",
-          "debut": 244.76,
-          "fin": 244.89
-        },
-        {
-          "mot": "commencement,",
-          "debut": 244.89,
-          "fin": 245.68
-        },
-        {
-          "mot": "maintenant",
-          "debut": 245.68,
-          "fin": 246.26
-        },
-        {
-          "mot": "et",
-          "debut": 246.26,
-          "fin": 246.37
-        },
-        {
-          "mot": "toujours,",
-          "debut": 246.37,
-          "fin": 246.95
-        },
-        {
-          "mot": "dans",
-          "debut": 246.95,
-          "fin": 247.17
-        },
-        {
-          "mot": "les",
-          "debut": 247.17,
-          "fin": 247.35
-        },
-        {
-          "mot": "siècles",
-          "debut": 247.35,
-          "fin": 247.81
-        },
-        {
-          "mot": "des",
-          "debut": 247.81,
-          "fin": 247.98
-        },
-        {
-          "mot": "siècles.",
-          "debut": 247.98,
-          "fin": 248.61
-        },
-        {
-          "mot": "Amen",
-          "debut": 248.61,
-          "fin": 249.08
-        },
-        {
-          "mot": "Sacré-Cœur",
-          "debut": 249.08,
-          "fin": 250.1
-        },
-        {
-          "mot": "de",
-          "debut": 250.1,
-          "fin": 250.27
-        },
-        {
-          "mot": "Jésus,",
-          "debut": 250.27,
-          "fin": 250.96
-        },
-        {
-          "mot": "nous",
-          "debut": 250.96,
-          "fin": 251.3
-        },
-        {
-          "mot": "avons",
-          "debut": 251.3,
-          "fin": 251.97
+          "debut": 95.78,
+          "fin": 96.07
         },
         {
           "mot": "confiance",
-          "debut": 251.97,
-          "fin": 252.51
+          "debut": 96.07,
+          "fin": 96.95
+        },
+        {
+          "mot": "totale,",
+          "debut": 96.95,
+          "fin": 97.71
+        },
+        {
+          "mot": "non",
+          "debut": 97.71,
+          "fin": 98.24
+        },
+        {
+          "mot": "pas",
+          "debut": 98.24,
+          "fin": 98.3
         },
         {
           "mot": "en",
-          "debut": 252.51,
-          "fin": 252.68
+          "debut": 98.3,
+          "fin": 98.49
         },
         {
-          "mot": "toi.",
-          "debut": 252.68,
-          "fin": 253.02
+          "mot": "soi,",
+          "debut": 98.49,
+          "fin": 98.97
+        },
+        {
+          "mot": "mais",
+          "debut": 98.97,
+          "fin": 99.37
+        },
+        {
+          "mot": "en",
+          "debut": 99.37,
+          "fin": 99.55
+        },
+        {
+          "mot": "lui,",
+          "debut": 99.55,
+          "fin": 100.03
+        },
+        {
+          "mot": "Jésus,",
+          "debut": 100.03,
+          "fin": 101.11
+        },
+        {
+          "mot": "notre",
+          "debut": 101.11,
+          "fin": 101.29
+        },
+        {
+          "mot": "maître",
+          "debut": 101.29,
+          "fin": 101.97
+        },
+        {
+          "mot": "?",
+          "debut": 101.97,
+          "fin": 102.46
         }
       ]
     },
@@ -2941,728 +1231,1275 @@
       "section": "D",
       "label": "CHANT",
       "id": "chant",
-      "debut": 256.57,
-      "fin": 396.57,
+      "debut": 105.74,
+      "fin": 245.74,
       "chante": true,
-      "nbMots": 0,
-      "phrases": [],
-      "mots": []
+      "nbMots": 100,
+      "phrases": [
+        {
+          "debut": 105.86,
+          "fin": 129.6,
+          "texte": "Si le bon Dieu venait revivre sa paix, il aurait les yeux d'un enfant noir de Horlaine."
+        },
+        {
+          "debut": 131.82,
+          "fin": 139.3,
+          "texte": "Des églises blanches se fermeraient devant lui."
+        },
+        {
+          "debut": 139.3,
+          "fin": 148.46,
+          "texte": "Des écoles blanches, on le chasserait aussi."
+        },
+        {
+          "debut": 148.58,
+          "fin": 175.56,
+          "texte": "Si le bon Dieu revenait revivre chez nous, il aurait les yeux brûlant de fièvre d'un hindou."
+        },
+        {
+          "debut": 177.78,
+          "fin": 185.26,
+          "texte": "Sur sa terre un drapeur, il travaillerait sans génie."
+        },
+        {
+          "debut": 185.26,
+          "fin": 195.66,
+          "texte": "Et puis sur sa nave, se coucherait pour mourir."
+        },
+        {
+          "debut": 195.78,
+          "fin": 221.6,
+          "texte": "Si le bon Dieu revenait sauver nos hommes, Il aurait les yeux d'un enfant noir de Vietnam."
+        },
+        {
+          "debut": 221.72,
+          "fin": 231.6,
+          "texte": "Des milliers de pauvres écraserait son pays."
+        },
+        {
+          "debut": 231.74,
+          "fin": 244.92,
+          "texte": "Seul, au cœur du monde, Il lui donnerait son merci."
+        }
+      ],
+      "mots": [
+        {
+          "mot": "Si",
+          "debut": 105.86,
+          "fin": 106.46
+        },
+        {
+          "mot": "le",
+          "debut": 106.46,
+          "fin": 107.18
+        },
+        {
+          "mot": "bon",
+          "debut": 107.18,
+          "fin": 108.27
+        },
+        {
+          "mot": "Dieu",
+          "debut": 108.27,
+          "fin": 109.74
+        },
+        {
+          "mot": "venait",
+          "debut": 109.74,
+          "fin": 112.12
+        },
+        {
+          "mot": "revivre",
+          "debut": 112.12,
+          "fin": 114.89
+        },
+        {
+          "mot": "sa",
+          "debut": 114.89,
+          "fin": 115.68
+        },
+        {
+          "mot": "paix,",
+          "debut": 115.68,
+          "fin": 117.32
+        },
+        {
+          "mot": "il",
+          "debut": 117.32,
+          "fin": 117.9
+        },
+        {
+          "mot": "aurait",
+          "debut": 117.9,
+          "fin": 119.65
+        },
+        {
+          "mot": "les",
+          "debut": 119.65,
+          "fin": 120.52
+        },
+        {
+          "mot": "yeux",
+          "debut": 120.52,
+          "fin": 121.68
+        },
+        {
+          "mot": "d'un",
+          "debut": 121.68,
+          "fin": 122.84
+        },
+        {
+          "mot": "enfant",
+          "debut": 122.84,
+          "fin": 124.59
+        },
+        {
+          "mot": "noir",
+          "debut": 124.59,
+          "fin": 125.75
+        },
+        {
+          "mot": "de",
+          "debut": 125.75,
+          "fin": 126.33
+        },
+        {
+          "mot": "Horlaine.",
+          "debut": 126.33,
+          "fin": 129.6
+        },
+        {
+          "mot": "Des",
+          "debut": 131.82,
+          "fin": 132.21
+        },
+        {
+          "mot": "églises",
+          "debut": 132.21,
+          "fin": 133.57
+        },
+        {
+          "mot": "blanches",
+          "debut": 133.57,
+          "fin": 134.92
+        },
+        {
+          "mot": "se",
+          "debut": 134.92,
+          "fin": 135.27
+        },
+        {
+          "mot": "fermeraient",
+          "debut": 135.27,
+          "fin": 137.15
+        },
+        {
+          "mot": "devant",
+          "debut": 137.15,
+          "fin": 138.18
+        },
+        {
+          "mot": "lui.",
+          "debut": 138.18,
+          "fin": 139.3
+        },
+        {
+          "mot": "Des",
+          "debut": 139.3,
+          "fin": 139.95
+        },
+        {
+          "mot": "écoles",
+          "debut": 139.95,
+          "fin": 141.47
+        },
+        {
+          "mot": "blanches,",
+          "debut": 141.47,
+          "fin": 143.63
+        },
+        {
+          "mot": "on",
+          "debut": 143.63,
+          "fin": 144.06
+        },
+        {
+          "mot": "le",
+          "debut": 144.06,
+          "fin": 144.49
+        },
+        {
+          "mot": "chasserait",
+          "debut": 144.49,
+          "fin": 146.65
+        },
+        {
+          "mot": "aussi.",
+          "debut": 146.65,
+          "fin": 148.46
+        },
+        {
+          "mot": "Si",
+          "debut": 148.58,
+          "fin": 149.27
+        },
+        {
+          "mot": "le",
+          "debut": 149.27,
+          "fin": 150.08
+        },
+        {
+          "mot": "bon",
+          "debut": 150.08,
+          "fin": 151.29
+        },
+        {
+          "mot": "Dieu",
+          "debut": 151.29,
+          "fin": 152.91
+        },
+        {
+          "mot": "revenait",
+          "debut": 152.91,
+          "fin": 156.14
+        },
+        {
+          "mot": "revivre",
+          "debut": 156.14,
+          "fin": 158.95
+        },
+        {
+          "mot": "chez",
+          "debut": 158.95,
+          "fin": 160.57
+        },
+        {
+          "mot": "nous,",
+          "debut": 160.57,
+          "fin": 163.06
+        },
+        {
+          "mot": "il",
+          "debut": 163.18,
+          "fin": 163.61
+        },
+        {
+          "mot": "aurait",
+          "debut": 163.61,
+          "fin": 165.27
+        },
+        {
+          "mot": "les",
+          "debut": 165.27,
+          "fin": 166.1
+        },
+        {
+          "mot": "yeux",
+          "debut": 166.1,
+          "fin": 167.21
+        },
+        {
+          "mot": "brûlant",
+          "debut": 167.21,
+          "fin": 169.41
+        },
+        {
+          "mot": "de",
+          "debut": 169.41,
+          "fin": 169.96
+        },
+        {
+          "mot": "fièvre",
+          "debut": 169.96,
+          "fin": 171.89
+        },
+        {
+          "mot": "d'un",
+          "debut": 171.89,
+          "fin": 172.98
+        },
+        {
+          "mot": "hindou.",
+          "debut": 172.98,
+          "fin": 175.56
+        },
+        {
+          "mot": "Sur",
+          "debut": 177.78,
+          "fin": 178.17
+        },
+        {
+          "mot": "sa",
+          "debut": 178.17,
+          "fin": 178.51
+        },
+        {
+          "mot": "terre",
+          "debut": 178.51,
+          "fin": 179.36
+        },
+        {
+          "mot": "un",
+          "debut": 179.36,
+          "fin": 179.7
+        },
+        {
+          "mot": "drapeur,",
+          "debut": 179.7,
+          "fin": 181.26
+        },
+        {
+          "mot": "il",
+          "debut": 181.26,
+          "fin": 181.54
+        },
+        {
+          "mot": "travaillerait",
+          "debut": 181.54,
+          "fin": 183.38
+        },
+        {
+          "mot": "sans",
+          "debut": 183.38,
+          "fin": 183.95
+        },
+        {
+          "mot": "génie.",
+          "debut": 183.95,
+          "fin": 185.26
+        },
+        {
+          "mot": "Et",
+          "debut": 185.26,
+          "fin": 185.75
+        },
+        {
+          "mot": "puis",
+          "debut": 185.75,
+          "fin": 186.74
+        },
+        {
+          "mot": "sur",
+          "debut": 186.74,
+          "fin": 187.48
+        },
+        {
+          "mot": "sa",
+          "debut": 187.48,
+          "fin": 187.97
+        },
+        {
+          "mot": "nave,",
+          "debut": 187.97,
+          "fin": 189.45
+        },
+        {
+          "mot": "se",
+          "debut": 189.45,
+          "fin": 189.94
+        },
+        {
+          "mot": "coucherait",
+          "debut": 189.94,
+          "fin": 192.4
+        },
+        {
+          "mot": "pour",
+          "debut": 192.4,
+          "fin": 193.39
+        },
+        {
+          "mot": "mourir.",
+          "debut": 193.39,
+          "fin": 195.66
+        },
+        {
+          "mot": "Si",
+          "debut": 195.78,
+          "fin": 196.45
+        },
+        {
+          "mot": "le",
+          "debut": 196.45,
+          "fin": 197.24
+        },
+        {
+          "mot": "bon",
+          "debut": 197.24,
+          "fin": 198.43
+        },
+        {
+          "mot": "Dieu",
+          "debut": 198.43,
+          "fin": 200.02
+        },
+        {
+          "mot": "revenait",
+          "debut": 200.02,
+          "fin": 203.2
+        },
+        {
+          "mot": "sauver",
+          "debut": 203.2,
+          "fin": 205.58
+        },
+        {
+          "mot": "nos",
+          "debut": 205.58,
+          "fin": 206.77
+        },
+        {
+          "mot": "hommes,",
+          "debut": 206.77,
+          "fin": 210
+        },
+        {
+          "mot": "Il",
+          "debut": 210.12,
+          "fin": 210.56
+        },
+        {
+          "mot": "aurait",
+          "debut": 210.56,
+          "fin": 212.25
+        },
+        {
+          "mot": "les",
+          "debut": 212.25,
+          "fin": 213.09
+        },
+        {
+          "mot": "yeux",
+          "debut": 213.09,
+          "fin": 214.22
+        },
+        {
+          "mot": "d'un",
+          "debut": 214.22,
+          "fin": 215.34
+        },
+        {
+          "mot": "enfant",
+          "debut": 215.34,
+          "fin": 217.03
+        },
+        {
+          "mot": "noir",
+          "debut": 217.03,
+          "fin": 218.16
+        },
+        {
+          "mot": "de",
+          "debut": 218.16,
+          "fin": 218.72
+        },
+        {
+          "mot": "Vietnam.",
+          "debut": 218.72,
+          "fin": 221.6
+        },
+        {
+          "mot": "Des",
+          "debut": 221.72,
+          "fin": 222.47
+        },
+        {
+          "mot": "milliers",
+          "debut": 222.47,
+          "fin": 224.79
+        },
+        {
+          "mot": "de",
+          "debut": 224.79,
+          "fin": 225.37
+        },
+        {
+          "mot": "pauvres",
+          "debut": 225.37,
+          "fin": 227.44
+        },
+        {
+          "mot": "écraserait",
+          "debut": 227.44,
+          "fin": 229.97
+        },
+        {
+          "mot": "son",
+          "debut": 229.97,
+          "fin": 230.66
+        },
+        {
+          "mot": "pays.",
+          "debut": 230.66,
+          "fin": 231.6
+        },
+        {
+          "mot": "Seul,",
+          "debut": 231.74,
+          "fin": 235.97
+        },
+        {
+          "mot": "au",
+          "debut": 235.97,
+          "fin": 236.34
+        },
+        {
+          "mot": "cœur",
+          "debut": 236.34,
+          "fin": 237.26
+        },
+        {
+          "mot": "du",
+          "debut": 237.26,
+          "fin": 237.63
+        },
+        {
+          "mot": "monde,",
+          "debut": 237.63,
+          "fin": 238.94
+        },
+        {
+          "mot": "Il",
+          "debut": 238.94,
+          "fin": 239.48
+        },
+        {
+          "mot": "lui",
+          "debut": 239.48,
+          "fin": 240.29
+        },
+        {
+          "mot": "donnerait",
+          "debut": 240.29,
+          "fin": 242.72
+        },
+        {
+          "mot": "son",
+          "debut": 242.72,
+          "fin": 243.53
+        },
+        {
+          "mot": "merci.",
+          "debut": 243.53,
+          "fin": 244.92
+        }
+      ]
     },
     {
       "section": "E",
       "label": "PRIONS",
       "id": "prions",
-      "debut": 407.07,
-      "fin": 472.7,
+      "debut": 256.24,
+      "fin": 321.87,
       "chante": false,
       "nbMots": 134,
       "phrases": [
         {
-          "debut": 407.31,
-          "fin": 407.87,
+          "debut": 256.48,
+          "fin": 257.04,
           "texte": "Prions."
         },
         {
-          "debut": 407.87,
-          "fin": 425.35,
+          "debut": 257.04,
+          "fin": 274.52,
           "texte": "Seigneur, en ce jour de la neuvaine à ton cœur sacré, aide-nous à maintenir notre regard fixé sur ta croix glorieuse qui s'élèvera toujours plus haut pour montrer à quel point aimer est le chemin qui mène à la vraie liberté."
         },
         {
-          "debut": 425.35,
-          "fin": 439.13,
+          "debut": 274.52,
+          "fin": 288.3,
           "texte": "Accompagné par Maman Marie, laissons-nous entraîner chaque jour à marcher à sa suite pour que nous puissions être un instrument dont les seules notes sont jouées par toi."
         },
         {
-          "debut": 439.13,
-          "fin": 451.25,
+          "debut": 288.3,
+          "fin": 300.42,
           "texte": "Ainsi, nous serons assurés de cette belle mélodie qui n'est pas une utopie, mais une promesse du bonheur à vivre ensemble par sa grâce éternelle."
         },
         {
-          "debut": 451.25,
-          "fin": 464.05,
+          "debut": 300.42,
+          "fin": 313.22,
           "texte": "Que la venue du pape Léon XIV permette de fortifier la foi des catholiques en continuant à révéler le message d'amour sans condition du Christ à notre égard."
         },
         {
-          "debut": 464.72,
-          "fin": 468.39,
+          "debut": 313.89,
+          "fin": 317.56,
           "texte": "dans son identité propre qui ne se trouve qu'en Dieu."
         },
         {
-          "debut": 468.39,
-          "fin": 470.11,
+          "debut": 317.56,
+          "fin": 319.28,
           "texte": "Amen."
         }
       ],
       "mots": [
         {
           "mot": "Prions.",
-          "debut": 407.31,
-          "fin": 407.87
+          "debut": 256.48,
+          "fin": 257.04
         },
         {
           "mot": "Seigneur,",
-          "debut": 407.87,
-          "fin": 410.48
+          "debut": 257.04,
+          "fin": 259.65
         },
         {
           "mot": "en",
-          "debut": 410.48,
-          "fin": 410.49
+          "debut": 259.65,
+          "fin": 259.66
         },
         {
           "mot": "ce",
-          "debut": 410.49,
-          "fin": 410.65
+          "debut": 259.66,
+          "fin": 259.82
         },
         {
           "mot": "jour",
-          "debut": 410.65,
-          "fin": 410.98
+          "debut": 259.82,
+          "fin": 260.15
         },
         {
           "mot": "de",
-          "debut": 410.98,
-          "fin": 411.15
+          "debut": 260.15,
+          "fin": 260.32
         },
         {
           "mot": "la",
-          "debut": 411.15,
-          "fin": 411.33
+          "debut": 260.32,
+          "fin": 260.5
         },
         {
           "mot": "neuvaine",
-          "debut": 411.33,
-          "fin": 412.01
+          "debut": 260.5,
+          "fin": 261.18
         },
         {
           "mot": "à",
-          "debut": 412.01,
-          "fin": 412.37
+          "debut": 261.18,
+          "fin": 261.54
         },
         {
           "mot": "ton",
-          "debut": 412.37,
-          "fin": 412.44
+          "debut": 261.54,
+          "fin": 261.61
         },
         {
           "mot": "cœur",
-          "debut": 412.44,
-          "fin": 412.87
+          "debut": 261.61,
+          "fin": 262.04
         },
         {
           "mot": "sacré,",
-          "debut": 412.87,
-          "fin": 413.63
+          "debut": 262.04,
+          "fin": 262.8
         },
         {
           "mot": "aide-nous",
-          "debut": 413.63,
-          "fin": 414.37
+          "debut": 262.8,
+          "fin": 263.54
         },
         {
           "mot": "à",
-          "debut": 414.37,
-          "fin": 414.45
+          "debut": 263.54,
+          "fin": 263.62
         },
         {
           "mot": "maintenir",
-          "debut": 414.45,
-          "fin": 415.3
+          "debut": 263.62,
+          "fin": 264.47
         },
         {
           "mot": "notre",
-          "debut": 415.3,
-          "fin": 416.02
+          "debut": 264.47,
+          "fin": 265.19
         },
         {
           "mot": "regard",
-          "debut": 416.02,
-          "fin": 416.25
+          "debut": 265.19,
+          "fin": 265.42
         },
         {
           "mot": "fixé",
-          "debut": 416.25,
-          "fin": 416.64
+          "debut": 265.42,
+          "fin": 265.81
         },
         {
           "mot": "sur",
-          "debut": 416.64,
-          "fin": 416.88
+          "debut": 265.81,
+          "fin": 266.05
         },
         {
           "mot": "ta",
-          "debut": 416.88,
-          "fin": 417.06
+          "debut": 266.05,
+          "fin": 266.23
         },
         {
           "mot": "croix",
-          "debut": 417.06,
-          "fin": 417.47
+          "debut": 266.23,
+          "fin": 266.64
         },
         {
           "mot": "glorieuse",
-          "debut": 417.47,
-          "fin": 418.31
+          "debut": 266.64,
+          "fin": 267.48
         },
         {
           "mot": "qui",
-          "debut": 418.31,
-          "fin": 418.46
+          "debut": 267.48,
+          "fin": 267.63
         },
         {
           "mot": "s'élèvera",
-          "debut": 418.46,
-          "fin": 419.01
+          "debut": 267.63,
+          "fin": 268.18
         },
         {
           "mot": "toujours",
-          "debut": 419.01,
-          "fin": 419.42
+          "debut": 268.18,
+          "fin": 268.59
         },
         {
           "mot": "plus",
-          "debut": 419.42,
-          "fin": 419.62
+          "debut": 268.59,
+          "fin": 268.79
         },
         {
           "mot": "haut",
-          "debut": 419.62,
-          "fin": 419.87
+          "debut": 268.79,
+          "fin": 269.04
         },
         {
           "mot": "pour",
-          "debut": 419.87,
-          "fin": 420.2
+          "debut": 269.04,
+          "fin": 269.37
         },
         {
           "mot": "montrer",
-          "debut": 420.2,
-          "fin": 420.93
+          "debut": 269.37,
+          "fin": 270.1
         },
         {
           "mot": "à",
-          "debut": 420.93,
-          "fin": 420.93
+          "debut": 270.1,
+          "fin": 270.1
         },
         {
           "mot": "quel",
-          "debut": 420.93,
-          "fin": 421.26
+          "debut": 270.1,
+          "fin": 270.43
         },
         {
           "mot": "point",
-          "debut": 421.26,
-          "fin": 421.69
+          "debut": 270.43,
+          "fin": 270.86
         },
         {
           "mot": "aimer",
-          "debut": 421.69,
-          "fin": 422.12
+          "debut": 270.86,
+          "fin": 271.29
         },
         {
           "mot": "est",
-          "debut": 422.12,
-          "fin": 422.33
+          "debut": 271.29,
+          "fin": 271.5
         },
         {
           "mot": "le",
-          "debut": 422.33,
-          "fin": 422.45
+          "debut": 271.5,
+          "fin": 271.62
         },
         {
           "mot": "chemin",
-          "debut": 422.45,
-          "fin": 422.97
+          "debut": 271.62,
+          "fin": 272.14
         },
         {
           "mot": "qui",
-          "debut": 422.97,
-          "fin": 423.22
+          "debut": 272.14,
+          "fin": 272.39
         },
         {
           "mot": "mène",
-          "debut": 423.22,
-          "fin": 423.63
+          "debut": 272.39,
+          "fin": 272.8
         },
         {
           "mot": "à",
-          "debut": 423.63,
-          "fin": 423.8
+          "debut": 272.8,
+          "fin": 272.97
         },
         {
           "mot": "la",
-          "debut": 423.8,
-          "fin": 423.95
+          "debut": 272.97,
+          "fin": 273.12
         },
         {
           "mot": "vraie",
-          "debut": 423.95,
-          "fin": 424.35
+          "debut": 273.12,
+          "fin": 273.52
         },
         {
           "mot": "liberté.",
-          "debut": 424.35,
-          "fin": 425.35
+          "debut": 273.52,
+          "fin": 274.52
         },
         {
           "mot": "Accompagné",
-          "debut": 425.35,
-          "fin": 427.07
+          "debut": 274.52,
+          "fin": 276.24
         },
         {
           "mot": "par",
-          "debut": 427.07,
-          "fin": 427.54
+          "debut": 276.24,
+          "fin": 276.71
         },
         {
           "mot": "Maman",
-          "debut": 427.54,
-          "fin": 428.32
+          "debut": 276.71,
+          "fin": 277.49
         },
         {
           "mot": "Marie,",
-          "debut": 428.32,
-          "fin": 429.47
+          "debut": 277.49,
+          "fin": 278.64
         },
         {
           "mot": "laissons-nous",
-          "debut": 429.47,
-          "fin": 430.67
+          "debut": 278.64,
+          "fin": 279.84
         },
         {
           "mot": "entraîner",
-          "debut": 430.67,
-          "fin": 431.9
+          "debut": 279.84,
+          "fin": 281.07
         },
         {
           "mot": "chaque",
-          "debut": 431.9,
-          "fin": 432.16
+          "debut": 281.07,
+          "fin": 281.33
         },
         {
           "mot": "jour",
-          "debut": 432.16,
-          "fin": 432.53
+          "debut": 281.33,
+          "fin": 281.7
         },
         {
           "mot": "à",
-          "debut": 432.53,
-          "fin": 432.64
+          "debut": 281.7,
+          "fin": 281.81
         },
         {
           "mot": "marcher",
-          "debut": 432.64,
-          "fin": 433.36
+          "debut": 281.81,
+          "fin": 282.53
         },
         {
           "mot": "à",
-          "debut": 433.36,
-          "fin": 433.54
+          "debut": 282.53,
+          "fin": 282.71
         },
         {
           "mot": "sa",
-          "debut": 433.54,
-          "fin": 433.97
+          "debut": 282.71,
+          "fin": 283.14
         },
         {
           "mot": "suite",
-          "debut": 433.97,
-          "fin": 434.27
+          "debut": 283.14,
+          "fin": 283.44
         },
         {
           "mot": "pour",
-          "debut": 434.68,
-          "fin": 434.9
+          "debut": 283.85,
+          "fin": 284.07
         },
         {
           "mot": "que",
-          "debut": 434.9,
-          "fin": 435.08
+          "debut": 284.07,
+          "fin": 284.25
         },
         {
           "mot": "nous",
-          "debut": 435.08,
-          "fin": 435.25
+          "debut": 284.25,
+          "fin": 284.42
         },
         {
           "mot": "puissions",
-          "debut": 435.25,
-          "fin": 435.73
+          "debut": 284.42,
+          "fin": 284.9
         },
         {
           "mot": "être",
-          "debut": 435.73,
-          "fin": 436.04
+          "debut": 284.9,
+          "fin": 285.21
         },
         {
           "mot": "un",
-          "debut": 436.04,
-          "fin": 436.18
+          "debut": 285.21,
+          "fin": 285.35
         },
         {
           "mot": "instrument",
-          "debut": 436.18,
-          "fin": 436.76
+          "debut": 285.35,
+          "fin": 285.93
         },
         {
           "mot": "dont",
-          "debut": 436.76,
-          "fin": 436.97
+          "debut": 285.93,
+          "fin": 286.14
         },
         {
           "mot": "les",
-          "debut": 436.97,
-          "fin": 437.27
+          "debut": 286.14,
+          "fin": 286.44
         },
         {
           "mot": "seules",
-          "debut": 437.27,
-          "fin": 437.5
+          "debut": 286.44,
+          "fin": 286.67
         },
         {
           "mot": "notes",
-          "debut": 437.5,
-          "fin": 437.8
+          "debut": 286.67,
+          "fin": 286.97
         },
         {
           "mot": "sont",
-          "debut": 437.8,
-          "fin": 438.06
+          "debut": 286.97,
+          "fin": 287.23
         },
         {
           "mot": "jouées",
-          "debut": 438.06,
-          "fin": 438.52
+          "debut": 287.23,
+          "fin": 287.69
         },
         {
           "mot": "par",
-          "debut": 438.52,
-          "fin": 438.71
+          "debut": 287.69,
+          "fin": 287.88
         },
         {
           "mot": "toi.",
-          "debut": 438.71,
-          "fin": 439.13
+          "debut": 287.88,
+          "fin": 288.3
         },
         {
           "mot": "Ainsi,",
-          "debut": 439.13,
-          "fin": 439.87
+          "debut": 288.3,
+          "fin": 289.04
         },
         {
           "mot": "nous",
-          "debut": 439.87,
-          "fin": 440.25
+          "debut": 289.04,
+          "fin": 289.42
         },
         {
           "mot": "serons",
-          "debut": 440.25,
-          "fin": 440.94
+          "debut": 289.42,
+          "fin": 290.11
         },
         {
           "mot": "assurés",
-          "debut": 440.94,
-          "fin": 441.79
+          "debut": 290.11,
+          "fin": 290.96
         },
         {
           "mot": "de",
-          "debut": 441.79,
-          "fin": 442
+          "debut": 290.96,
+          "fin": 291.17
         },
         {
           "mot": "cette",
-          "debut": 442,
-          "fin": 442.3
+          "debut": 291.17,
+          "fin": 291.47
         },
         {
           "mot": "belle",
-          "debut": 442.3,
-          "fin": 443.08
+          "debut": 291.47,
+          "fin": 292.25
         },
         {
           "mot": "mélodie",
-          "debut": 443.08,
-          "fin": 443.99
+          "debut": 292.25,
+          "fin": 293.16
         },
         {
           "mot": "qui",
-          "debut": 443.99,
-          "fin": 444.21
+          "debut": 293.16,
+          "fin": 293.38
         },
         {
           "mot": "n'est",
-          "debut": 444.21,
-          "fin": 444.57
+          "debut": 293.38,
+          "fin": 293.74
         },
         {
           "mot": "pas",
-          "debut": 444.57,
-          "fin": 444.78
+          "debut": 293.74,
+          "fin": 293.95
         },
         {
           "mot": "une",
-          "debut": 444.78,
-          "fin": 444.96
+          "debut": 293.95,
+          "fin": 294.13
         },
         {
           "mot": "utopie,",
-          "debut": 444.96,
-          "fin": 445.47
+          "debut": 294.13,
+          "fin": 294.64
         },
         {
           "mot": "mais",
-          "debut": 445.47,
-          "fin": 445.9
+          "debut": 294.64,
+          "fin": 295.07
         },
         {
           "mot": "une",
-          "debut": 445.9,
-          "fin": 446.14
+          "debut": 295.07,
+          "fin": 295.31
         },
         {
           "mot": "promesse",
-          "debut": 446.14,
-          "fin": 446.93
+          "debut": 295.31,
+          "fin": 296.1
         },
         {
           "mot": "du",
-          "debut": 446.93,
-          "fin": 447.1
+          "debut": 296.1,
+          "fin": 296.27
         },
         {
           "mot": "bonheur",
-          "debut": 447.1,
-          "fin": 447.76
+          "debut": 296.27,
+          "fin": 296.93
         },
         {
           "mot": "à",
-          "debut": 447.76,
-          "fin": 448.09
+          "debut": 296.93,
+          "fin": 297.26
         },
         {
           "mot": "vivre",
-          "debut": 448.09,
-          "fin": 448.43
+          "debut": 297.26,
+          "fin": 297.6
         },
         {
           "mot": "ensemble",
-          "debut": 448.43,
-          "fin": 449.27
+          "debut": 297.6,
+          "fin": 298.44
         },
         {
           "mot": "par",
-          "debut": 449.27,
-          "fin": 449.52
+          "debut": 298.44,
+          "fin": 298.69
         },
         {
           "mot": "sa",
-          "debut": 449.52,
-          "fin": 449.7
+          "debut": 298.69,
+          "fin": 298.87
         },
         {
           "mot": "grâce",
-          "debut": 449.7,
-          "fin": 450.14
+          "debut": 298.87,
+          "fin": 299.31
         },
         {
           "mot": "éternelle.",
-          "debut": 450.14,
-          "fin": 451.25
+          "debut": 299.31,
+          "fin": 300.42
         },
         {
           "mot": "Que",
-          "debut": 451.25,
-          "fin": 451.68
+          "debut": 300.42,
+          "fin": 300.85
         },
         {
           "mot": "la",
-          "debut": 451.68,
-          "fin": 451.95
+          "debut": 300.85,
+          "fin": 301.12
         },
         {
           "mot": "venue",
-          "debut": 451.95,
-          "fin": 452.66
+          "debut": 301.12,
+          "fin": 301.83
         },
         {
           "mot": "du",
-          "debut": 452.66,
-          "fin": 452.93
+          "debut": 301.83,
+          "fin": 302.1
         },
         {
           "mot": "pape",
-          "debut": 452.93,
-          "fin": 453.49
+          "debut": 302.1,
+          "fin": 302.66
         },
         {
           "mot": "Léon",
-          "debut": 453.49,
-          "fin": 454.19
+          "debut": 302.66,
+          "fin": 303.36
         },
         {
           "mot": "XIV",
-          "debut": 454.19,
-          "fin": 454.59
+          "debut": 303.36,
+          "fin": 303.76
         },
         {
           "mot": "permette",
-          "debut": 454.59,
-          "fin": 455.05
+          "debut": 303.76,
+          "fin": 304.22
         },
         {
           "mot": "de",
-          "debut": 455.05,
-          "fin": 455.15
+          "debut": 304.22,
+          "fin": 304.32
         },
         {
           "mot": "fortifier",
-          "debut": 455.15,
-          "fin": 455.73
+          "debut": 304.32,
+          "fin": 304.9
         },
         {
           "mot": "la",
-          "debut": 455.73,
-          "fin": 455.75
+          "debut": 304.9,
+          "fin": 304.92
         },
         {
           "mot": "foi",
-          "debut": 455.75,
-          "fin": 455.89
+          "debut": 304.92,
+          "fin": 305.06
         },
         {
           "mot": "des",
-          "debut": 455.89,
-          "fin": 456.05
+          "debut": 305.06,
+          "fin": 305.22
         },
         {
           "mot": "catholiques",
-          "debut": 456.05,
-          "fin": 456.69
+          "debut": 305.22,
+          "fin": 305.86
         },
         {
           "mot": "en",
-          "debut": 456.69,
-          "fin": 457.12
+          "debut": 305.86,
+          "fin": 306.29
         },
         {
           "mot": "continuant",
-          "debut": 457.12,
-          "fin": 457.81
+          "debut": 306.29,
+          "fin": 306.98
         },
         {
           "mot": "à",
-          "debut": 457.81,
-          "fin": 458.02
+          "debut": 306.98,
+          "fin": 307.19
         },
         {
           "mot": "révéler",
-          "debut": 458.02,
-          "fin": 458.85
+          "debut": 307.19,
+          "fin": 308.02
         },
         {
           "mot": "le",
-          "debut": 458.85,
-          "fin": 459.31
+          "debut": 308.02,
+          "fin": 308.48
         },
         {
           "mot": "message",
-          "debut": 459.31,
-          "fin": 459.72
+          "debut": 308.48,
+          "fin": 308.89
         },
         {
           "mot": "d'amour",
-          "debut": 459.72,
-          "fin": 460.42
+          "debut": 308.89,
+          "fin": 309.59
         },
         {
           "mot": "sans",
-          "debut": 460.42,
-          "fin": 461.19
+          "debut": 309.59,
+          "fin": 310.36
         },
         {
           "mot": "condition",
-          "debut": 461.19,
-          "fin": 461.41
+          "debut": 310.36,
+          "fin": 310.58
         },
         {
           "mot": "du",
-          "debut": 461.41,
-          "fin": 461.66
+          "debut": 310.58,
+          "fin": 310.83
         },
         {
           "mot": "Christ",
-          "debut": 461.66,
-          "fin": 462.38
+          "debut": 310.83,
+          "fin": 311.55
         },
         {
           "mot": "à",
-          "debut": 462.38,
-          "fin": 462.65
+          "debut": 311.55,
+          "fin": 311.82
         },
         {
           "mot": "notre",
-          "debut": 462.65,
-          "fin": 463.27
+          "debut": 311.82,
+          "fin": 312.44
         },
         {
           "mot": "égard.",
-          "debut": 463.27,
-          "fin": 464.05
+          "debut": 312.44,
+          "fin": 313.22
         },
         {
           "mot": "dans",
-          "debut": 464.72,
-          "fin": 465.08
+          "debut": 313.89,
+          "fin": 314.25
         },
         {
           "mot": "son",
-          "debut": 465.08,
-          "fin": 465.11
+          "debut": 314.25,
+          "fin": 314.28
         },
         {
           "mot": "identité",
-          "debut": 465.11,
-          "fin": 465.62
+          "debut": 314.28,
+          "fin": 314.79
         },
         {
           "mot": "propre",
-          "debut": 465.62,
-          "fin": 466.13
+          "debut": 314.79,
+          "fin": 315.3
         },
         {
           "mot": "qui",
-          "debut": 466.13,
-          "fin": 466.56
+          "debut": 315.3,
+          "fin": 315.73
         },
         {
           "mot": "ne",
-          "debut": 466.56,
-          "fin": 466.58
+          "debut": 315.73,
+          "fin": 315.75
         },
         {
           "mot": "se",
-          "debut": 466.58,
-          "fin": 466.76
+          "debut": 315.75,
+          "fin": 315.93
         },
         {
           "mot": "trouve",
-          "debut": 466.76,
-          "fin": 467.25
+          "debut": 315.93,
+          "fin": 316.42
         },
         {
           "mot": "qu'en",
-          "debut": 467.25,
-          "fin": 467.76
+          "debut": 316.42,
+          "fin": 316.93
         },
         {
           "mot": "Dieu.",
-          "debut": 467.76,
-          "fin": 468.39
+          "debut": 316.93,
+          "fin": 317.56
         },
         {
           "mot": "Amen.",
-          "debut": 468.39,
-          "fin": 470.11
+          "debut": 317.56,
+          "fin": 319.28
         }
       ]
     },
@@ -3670,1287 +2507,1287 @@
       "section": "F",
       "label": "PRIÈRES",
       "id": "prieres",
-      "debut": 473.7,
-      "fin": 594.26,
+      "debut": 322.87,
+      "fin": 443.43,
       "chante": false,
       "nbMots": 229,
       "phrases": [
         {
-          "debut": 473.84,
-          "fin": 485.58,
+          "debut": 323.01,
+          "fin": 334.75,
           "texte": "Notre Père qui es aux cieux, que ton nom soit sanctifié, que ton règne vienne, que ta volonté soit faite sur la terre comme au ciel."
         },
         {
-          "debut": 486.66,
-          "fin": 490.25,
+          "debut": 335.83,
+          "fin": 339.42,
           "texte": "Donne-nous aujourd'hui notre pain de ce jour."
         },
         {
-          "debut": 490.25,
-          "fin": 497.54,
+          "debut": 339.42,
+          "fin": 346.71,
           "texte": "Pardonne-nous nos offenses, comme nous pardonnons aussi à ceux qui nous ont offensés."
         },
         {
-          "debut": 497.54,
-          "fin": 504.86,
+          "debut": 346.71,
+          "fin": 354.03,
           "texte": "Et ne nous laisse pas entrer en tentation, mais délivre-nous du mal."
         },
         {
-          "debut": 504.86,
-          "fin": 505.36,
+          "debut": 354.03,
+          "fin": 354.53,
           "texte": "Amen."
         },
         {
-          "debut": 506.5,
-          "fin": 509.42,
+          "debut": 355.67,
+          "fin": 358.59,
           "texte": "Je vous salue Marie, pleine de grâce."
         },
         {
-          "debut": 509.42,
-          "fin": 511.52,
+          "debut": 358.59,
+          "fin": 360.69,
           "texte": "Le Seigneur est avec vous."
         },
         {
-          "debut": 511.52,
-          "fin": 514.85,
+          "debut": 360.69,
+          "fin": 364.02,
           "texte": "Vous êtes bénie entre toutes les femmes."
         },
         {
-          "debut": 514.85,
-          "fin": 519.12,
+          "debut": 364.02,
+          "fin": 368.29,
           "texte": "Et Jésus, le fruit de vos entrailles, est béni."
         },
         {
-          "debut": 519.12,
-          "fin": 528.53,
+          "debut": 368.29,
+          "fin": 377.7,
           "texte": "Sainte Marie, Mère de Dieu, priez pour nos pauvres pécheurs, maintenant et à l'heure de notre mort."
         },
         {
-          "debut": 528.53,
-          "fin": 529.52,
+          "debut": 377.7,
+          "fin": 378.69,
           "texte": "Amen."
         },
         {
-          "debut": 530.72,
-          "fin": 533.47,
+          "debut": 379.89,
+          "fin": 382.64,
           "texte": "Je vous salue Marie, pleine de grâce."
         },
         {
-          "debut": 533.47,
-          "fin": 535.4,
+          "debut": 382.64,
+          "fin": 384.57,
           "texte": "Le Seigneur est avec vous."
         },
         {
-          "debut": 535.4,
-          "fin": 538.74,
+          "debut": 384.57,
+          "fin": 387.91,
           "texte": "Vous êtes bénie entre toutes les femmes."
         },
         {
-          "debut": 538.74,
-          "fin": 542.6,
+          "debut": 387.91,
+          "fin": 391.77,
           "texte": "Et Jésus, le fruit de vos entrailles, est béni."
         },
         {
-          "debut": 542.6,
-          "fin": 551.7,
+          "debut": 391.77,
+          "fin": 400.87,
           "texte": "Sainte Marie, Mère de Dieu, priez pour nos pauvres pécheurs, maintenant et à l'heure de notre mort."
         },
         {
-          "debut": 551.7,
-          "fin": 552.44,
+          "debut": 400.87,
+          "fin": 401.61,
           "texte": "Amen."
         },
         {
-          "debut": 553.68,
-          "fin": 556.34,
+          "debut": 402.85,
+          "fin": 405.51,
           "texte": "Je vous salue Marie, pleine de grâce."
         },
         {
-          "debut": 556.34,
-          "fin": 558.06,
+          "debut": 405.51,
+          "fin": 407.23,
           "texte": "Le Seigneur est avec vous."
         },
         {
-          "debut": 558.06,
-          "fin": 560.97,
+          "debut": 407.23,
+          "fin": 410.14,
           "texte": "Vous êtes bénie entre toutes les femmes."
         },
         {
-          "debut": 560.97,
-          "fin": 564.62,
+          "debut": 410.14,
+          "fin": 413.79,
           "texte": "Et Jésus, le fruit de vos entrailles, est béni."
         },
         {
-          "debut": 564.62,
-          "fin": 573.57,
+          "debut": 413.79,
+          "fin": 422.74,
           "texte": "Sainte Marie, Mère de Dieu, priez pour nos pauvres pécheurs, maintenant et à l'heure de notre mort."
         },
         {
-          "debut": 573.57,
-          "fin": 574.42,
+          "debut": 422.74,
+          "fin": 423.59,
           "texte": "Amen."
         },
         {
-          "debut": 575.44,
-          "fin": 586.68,
+          "debut": 424.61,
+          "fin": 435.85,
           "texte": "Gloire au Père et au Fils et au Saint-Esprit, comme il était au commencement, maintenant et toujours, et dans les siècles des siècles."
         },
         {
-          "debut": 586.68,
-          "fin": 587.46,
+          "debut": 435.85,
+          "fin": 436.63,
           "texte": "Amen."
         },
         {
-          "debut": 587.46,
-          "fin": 592.66,
+          "debut": 436.63,
+          "fin": 441.83,
           "texte": "Sacré-Cœur de Jésus, nous avons confiance en toi."
         }
       ],
       "mots": [
         {
           "mot": "Notre",
-          "debut": 473.84,
-          "fin": 474.16
+          "debut": 323.01,
+          "fin": 323.33
         },
         {
           "mot": "Père",
-          "debut": 474.16,
-          "fin": 474.58
+          "debut": 323.33,
+          "fin": 323.75
         },
         {
           "mot": "qui",
-          "debut": 474.58,
-          "fin": 474.76
+          "debut": 323.75,
+          "fin": 323.93
         },
         {
           "mot": "es",
-          "debut": 474.76,
-          "fin": 475.05
+          "debut": 323.93,
+          "fin": 324.22
         },
         {
           "mot": "aux",
-          "debut": 475.05,
-          "fin": 475.16
+          "debut": 324.22,
+          "fin": 324.33
         },
         {
           "mot": "cieux,",
-          "debut": 475.16,
-          "fin": 475.77
+          "debut": 324.33,
+          "fin": 324.94
         },
         {
           "mot": "que",
-          "debut": 475.77,
-          "fin": 476.21
+          "debut": 324.94,
+          "fin": 325.38
         },
         {
           "mot": "ton",
-          "debut": 476.21,
-          "fin": 476.5
+          "debut": 325.38,
+          "fin": 325.67
         },
         {
           "mot": "nom",
-          "debut": 476.5,
-          "fin": 477.07
+          "debut": 325.67,
+          "fin": 326.24
         },
         {
           "mot": "soit",
-          "debut": 477.07,
-          "fin": 477.23
+          "debut": 326.24,
+          "fin": 326.4
         },
         {
           "mot": "sanctifié,",
-          "debut": 477.23,
-          "fin": 478.52
+          "debut": 326.4,
+          "fin": 327.69
         },
         {
           "mot": "que",
-          "debut": 478.52,
-          "fin": 478.91
+          "debut": 327.69,
+          "fin": 328.08
         },
         {
           "mot": "ton",
-          "debut": 478.91,
-          "fin": 479.27
+          "debut": 328.08,
+          "fin": 328.44
         },
         {
           "mot": "règne",
-          "debut": 479.27,
-          "fin": 479.95
+          "debut": 328.44,
+          "fin": 329.12
         },
         {
           "mot": "vienne,",
-          "debut": 479.95,
-          "fin": 480.89
+          "debut": 329.12,
+          "fin": 330.06
         },
         {
           "mot": "que",
-          "debut": 480.89,
-          "fin": 482.12
+          "debut": 330.06,
+          "fin": 331.29
         },
         {
           "mot": "ta",
-          "debut": 482.12,
-          "fin": 482.28
+          "debut": 331.29,
+          "fin": 331.45
         },
         {
           "mot": "volonté",
-          "debut": 482.28,
-          "fin": 482.92
+          "debut": 331.45,
+          "fin": 332.09
         },
         {
           "mot": "soit",
-          "debut": 482.92,
-          "fin": 483.24
+          "debut": 332.09,
+          "fin": 332.41
         },
         {
           "mot": "faite",
-          "debut": 483.24,
-          "fin": 483.63
+          "debut": 332.41,
+          "fin": 332.8
         },
         {
           "mot": "sur",
-          "debut": 483.63,
-          "fin": 483.87
+          "debut": 332.8,
+          "fin": 333.04
         },
         {
           "mot": "la",
-          "debut": 483.87,
-          "fin": 484.17
+          "debut": 333.04,
+          "fin": 333.34
         },
         {
           "mot": "terre",
-          "debut": 484.17,
-          "fin": 484.44
+          "debut": 333.34,
+          "fin": 333.61
         },
         {
           "mot": "comme",
-          "debut": 484.44,
-          "fin": 484.84
+          "debut": 333.61,
+          "fin": 334.01
         },
         {
           "mot": "au",
-          "debut": 484.84,
-          "fin": 485
+          "debut": 334.01,
+          "fin": 334.17
         },
         {
           "mot": "ciel.",
-          "debut": 485,
-          "fin": 485.58
+          "debut": 334.17,
+          "fin": 334.75
         },
         {
           "mot": "Donne-nous",
-          "debut": 486.66,
-          "fin": 487.42
+          "debut": 335.83,
+          "fin": 336.59
         },
         {
           "mot": "aujourd'hui",
-          "debut": 487.42,
-          "fin": 488.41
+          "debut": 336.59,
+          "fin": 337.58
         },
         {
           "mot": "notre",
-          "debut": 488.41,
-          "fin": 488.86
+          "debut": 337.58,
+          "fin": 338.03
         },
         {
           "mot": "pain",
-          "debut": 488.86,
-          "fin": 489.32
+          "debut": 338.03,
+          "fin": 338.49
         },
         {
           "mot": "de",
-          "debut": 489.32,
-          "fin": 489.43
+          "debut": 338.49,
+          "fin": 338.6
         },
         {
           "mot": "ce",
-          "debut": 489.43,
-          "fin": 489.89
+          "debut": 338.6,
+          "fin": 339.06
         },
         {
           "mot": "jour.",
-          "debut": 489.89,
-          "fin": 490.25
+          "debut": 339.06,
+          "fin": 339.42
         },
         {
           "mot": "Pardonne-nous",
-          "debut": 490.25,
-          "fin": 491.42
+          "debut": 339.42,
+          "fin": 340.59
         },
         {
           "mot": "nos",
-          "debut": 491.42,
-          "fin": 491.7
+          "debut": 340.59,
+          "fin": 340.87
         },
         {
           "mot": "offenses,",
-          "debut": 491.7,
-          "fin": 492.62
+          "debut": 340.87,
+          "fin": 341.79
         },
         {
           "mot": "comme",
-          "debut": 492.62,
-          "fin": 493.08
+          "debut": 341.79,
+          "fin": 342.25
         },
         {
           "mot": "nous",
-          "debut": 493.08,
-          "fin": 493.45
+          "debut": 342.25,
+          "fin": 342.62
         },
         {
           "mot": "pardonnons",
-          "debut": 493.45,
-          "fin": 494.73
+          "debut": 342.62,
+          "fin": 343.9
         },
         {
           "mot": "aussi",
-          "debut": 494.73,
-          "fin": 494.88
+          "debut": 343.9,
+          "fin": 344.05
         },
         {
           "mot": "à",
-          "debut": 494.88,
-          "fin": 495.01
+          "debut": 344.05,
+          "fin": 344.18
         },
         {
           "mot": "ceux",
-          "debut": 495.01,
-          "fin": 495.37
+          "debut": 344.18,
+          "fin": 344.54
         },
         {
           "mot": "qui",
-          "debut": 495.37,
-          "fin": 495.64
+          "debut": 344.54,
+          "fin": 344.81
         },
         {
           "mot": "nous",
-          "debut": 495.64,
-          "fin": 495.99
+          "debut": 344.81,
+          "fin": 345.16
         },
         {
           "mot": "ont",
-          "debut": 495.99,
-          "fin": 496.27
+          "debut": 345.16,
+          "fin": 345.44
         },
         {
           "mot": "offensés.",
-          "debut": 496.27,
-          "fin": 497.54
+          "debut": 345.44,
+          "fin": 346.71
         },
         {
           "mot": "Et",
-          "debut": 497.54,
-          "fin": 497.78
+          "debut": 346.71,
+          "fin": 346.95
         },
         {
           "mot": "ne",
-          "debut": 497.78,
-          "fin": 498.02
+          "debut": 346.95,
+          "fin": 347.19
         },
         {
           "mot": "nous",
-          "debut": 498.02,
-          "fin": 498.43
+          "debut": 347.19,
+          "fin": 347.6
         },
         {
           "mot": "laisse",
-          "debut": 498.43,
-          "fin": 499.22
+          "debut": 347.6,
+          "fin": 348.39
         },
         {
           "mot": "pas",
-          "debut": 499.22,
-          "fin": 499.72
+          "debut": 348.39,
+          "fin": 348.89
         },
         {
           "mot": "entrer",
-          "debut": 499.72,
-          "fin": 500.3
+          "debut": 348.89,
+          "fin": 349.47
         },
         {
           "mot": "en",
-          "debut": 500.3,
-          "fin": 500.54
+          "debut": 349.47,
+          "fin": 349.71
         },
         {
           "mot": "tentation,",
-          "debut": 500.54,
-          "fin": 501.86
+          "debut": 349.71,
+          "fin": 351.03
         },
         {
           "mot": "mais",
-          "debut": 501.86,
-          "fin": 502.32
+          "debut": 351.03,
+          "fin": 351.49
         },
         {
           "mot": "délivre-nous",
-          "debut": 502.32,
-          "fin": 503.9
+          "debut": 351.49,
+          "fin": 353.07
         },
         {
           "mot": "du",
-          "debut": 503.9,
-          "fin": 504.14
+          "debut": 353.07,
+          "fin": 353.31
         },
         {
           "mot": "mal.",
-          "debut": 504.14,
-          "fin": 504.86
+          "debut": 353.31,
+          "fin": 354.03
         },
         {
           "mot": "Amen.",
-          "debut": 504.86,
-          "fin": 505.36
+          "debut": 354.03,
+          "fin": 354.53
         },
         {
           "mot": "Je",
-          "debut": 506.5,
-          "fin": 506.54
+          "debut": 355.67,
+          "fin": 355.71
         },
         {
           "mot": "vous",
-          "debut": 506.54,
-          "fin": 506.89
+          "debut": 355.71,
+          "fin": 356.06
         },
         {
           "mot": "salue",
-          "debut": 506.89,
-          "fin": 507.32
+          "debut": 356.06,
+          "fin": 356.49
         },
         {
           "mot": "Marie,",
-          "debut": 507.32,
-          "fin": 507.93
+          "debut": 356.49,
+          "fin": 357.1
         },
         {
           "mot": "pleine",
-          "debut": 507.93,
-          "fin": 508.46
+          "debut": 357.1,
+          "fin": 357.63
         },
         {
           "mot": "de",
-          "debut": 508.46,
-          "fin": 508.63
+          "debut": 357.63,
+          "fin": 357.8
         },
         {
           "mot": "grâce.",
-          "debut": 508.63,
-          "fin": 509.42
+          "debut": 357.8,
+          "fin": 358.59
         },
         {
           "mot": "Le",
-          "debut": 509.42,
-          "fin": 509.73
+          "debut": 358.59,
+          "fin": 358.9
         },
         {
           "mot": "Seigneur",
-          "debut": 509.73,
-          "fin": 510.3
+          "debut": 358.9,
+          "fin": 359.47
         },
         {
           "mot": "est",
-          "debut": 510.3,
-          "fin": 510.56
+          "debut": 359.47,
+          "fin": 359.73
         },
         {
           "mot": "avec",
-          "debut": 510.56,
-          "fin": 510.91
+          "debut": 359.73,
+          "fin": 360.08
         },
         {
           "mot": "vous.",
-          "debut": 510.91,
-          "fin": 511.52
+          "debut": 360.08,
+          "fin": 360.69
         },
         {
           "mot": "Vous",
-          "debut": 511.52,
-          "fin": 511.87
+          "debut": 360.69,
+          "fin": 361.04
         },
         {
           "mot": "êtes",
-          "debut": 511.87,
-          "fin": 512.33
+          "debut": 361.04,
+          "fin": 361.5
         },
         {
           "mot": "bénie",
-          "debut": 512.33,
-          "fin": 512.83
+          "debut": 361.5,
+          "fin": 362
         },
         {
           "mot": "entre",
-          "debut": 512.83,
-          "fin": 513.27
+          "debut": 362,
+          "fin": 362.44
         },
         {
           "mot": "toutes",
-          "debut": 513.27,
-          "fin": 513.77
+          "debut": 362.44,
+          "fin": 362.94
         },
         {
           "mot": "les",
-          "debut": 513.77,
-          "fin": 514.05
+          "debut": 362.94,
+          "fin": 363.22
         },
         {
           "mot": "femmes.",
-          "debut": 514.05,
-          "fin": 514.85
+          "debut": 363.22,
+          "fin": 364.02
         },
         {
           "mot": "Et",
-          "debut": 514.85,
-          "fin": 515.03
+          "debut": 364.02,
+          "fin": 364.2
         },
         {
           "mot": "Jésus,",
-          "debut": 515.03,
-          "fin": 515.73
+          "debut": 364.2,
+          "fin": 364.9
         },
         {
           "mot": "le",
-          "debut": 515.73,
-          "fin": 515.91
+          "debut": 364.9,
+          "fin": 365.08
         },
         {
           "mot": "fruit",
-          "debut": 515.91,
-          "fin": 516.33
+          "debut": 365.08,
+          "fin": 365.5
         },
         {
           "mot": "de",
-          "debut": 516.33,
-          "fin": 516.79
+          "debut": 365.5,
+          "fin": 365.96
         },
         {
           "mot": "vos",
-          "debut": 516.79,
-          "fin": 516.84
+          "debut": 365.96,
+          "fin": 366.01
         },
         {
           "mot": "entrailles,",
-          "debut": 516.84,
-          "fin": 517.84
+          "debut": 366.01,
+          "fin": 367.01
         },
         {
           "mot": "est",
-          "debut": 517.84,
-          "fin": 518.1
+          "debut": 367.01,
+          "fin": 367.27
         },
         {
           "mot": "béni.",
-          "debut": 518.1,
-          "fin": 519.12
+          "debut": 367.27,
+          "fin": 368.29
         },
         {
           "mot": "Sainte",
-          "debut": 519.12,
-          "fin": 519.74
+          "debut": 368.29,
+          "fin": 368.91
         },
         {
           "mot": "Marie,",
-          "debut": 519.74,
-          "fin": 520.48
+          "debut": 368.91,
+          "fin": 369.65
         },
         {
           "mot": "Mère",
-          "debut": 520.48,
-          "fin": 520.99
+          "debut": 369.65,
+          "fin": 370.16
         },
         {
           "mot": "de",
-          "debut": 520.99,
-          "fin": 521.21
+          "debut": 370.16,
+          "fin": 370.38
         },
         {
           "mot": "Dieu,",
-          "debut": 521.21,
-          "fin": 521.92
+          "debut": 370.38,
+          "fin": 371.09
         },
         {
           "mot": "priez",
-          "debut": 521.92,
-          "fin": 522.49
+          "debut": 371.09,
+          "fin": 371.66
         },
         {
           "mot": "pour",
-          "debut": 522.49,
-          "fin": 522.78
+          "debut": 371.66,
+          "fin": 371.95
         },
         {
           "mot": "nos",
-          "debut": 522.78,
-          "fin": 523.09
+          "debut": 371.95,
+          "fin": 372.26
         },
         {
           "mot": "pauvres",
-          "debut": 523.09,
-          "fin": 523.8
+          "debut": 372.26,
+          "fin": 372.97
         },
         {
           "mot": "pécheurs,",
-          "debut": 523.8,
-          "fin": 525.1
+          "debut": 372.97,
+          "fin": 374.27
         },
         {
           "mot": "maintenant",
-          "debut": 525.1,
-          "fin": 526.01
+          "debut": 374.27,
+          "fin": 375.18
         },
         {
           "mot": "et",
-          "debut": 526.01,
-          "fin": 526.22
+          "debut": 375.18,
+          "fin": 375.39
         },
         {
           "mot": "à",
-          "debut": 526.22,
-          "fin": 526.43
+          "debut": 375.39,
+          "fin": 375.6
         },
         {
           "mot": "l'heure",
-          "debut": 526.43,
-          "fin": 527.29
+          "debut": 375.6,
+          "fin": 376.46
         },
         {
           "mot": "de",
-          "debut": 527.29,
-          "fin": 527.48
+          "debut": 376.46,
+          "fin": 376.65
         },
         {
           "mot": "notre",
-          "debut": 527.48,
-          "fin": 527.89
+          "debut": 376.65,
+          "fin": 377.06
         },
         {
           "mot": "mort.",
-          "debut": 527.89,
-          "fin": 528.53
+          "debut": 377.06,
+          "fin": 377.7
         },
         {
           "mot": "Amen.",
-          "debut": 528.53,
-          "fin": 529.52
+          "debut": 377.7,
+          "fin": 378.69
         },
         {
           "mot": "Je",
-          "debut": 530.72,
-          "fin": 530.74
+          "debut": 379.89,
+          "fin": 379.91
         },
         {
           "mot": "vous",
-          "debut": 530.74,
-          "fin": 531.07
+          "debut": 379.91,
+          "fin": 380.24
         },
         {
           "mot": "salue",
-          "debut": 531.07,
-          "fin": 531.48
+          "debut": 380.24,
+          "fin": 380.65
         },
         {
           "mot": "Marie,",
-          "debut": 531.48,
-          "fin": 532.06
+          "debut": 380.65,
+          "fin": 381.23
         },
         {
           "mot": "pleine",
-          "debut": 532.06,
-          "fin": 532.56
+          "debut": 381.23,
+          "fin": 381.73
         },
         {
           "mot": "de",
-          "debut": 532.56,
-          "fin": 532.71
+          "debut": 381.73,
+          "fin": 381.88
         },
         {
           "mot": "grâce.",
-          "debut": 532.71,
-          "fin": 533.47
+          "debut": 381.88,
+          "fin": 382.64
         },
         {
           "mot": "Le",
-          "debut": 533.47,
-          "fin": 533.64
+          "debut": 382.64,
+          "fin": 382.81
         },
         {
           "mot": "Seigneur",
-          "debut": 533.64,
-          "fin": 534.28
+          "debut": 382.81,
+          "fin": 383.45
         },
         {
           "mot": "est",
-          "debut": 534.28,
-          "fin": 534.53
+          "debut": 383.45,
+          "fin": 383.7
         },
         {
           "mot": "avec",
-          "debut": 534.53,
-          "fin": 534.86
+          "debut": 383.7,
+          "fin": 384.03
         },
         {
           "mot": "vous.",
-          "debut": 534.86,
-          "fin": 535.4
+          "debut": 384.03,
+          "fin": 384.57
         },
         {
           "mot": "Vous",
-          "debut": 535.4,
-          "fin": 535.77
+          "debut": 384.57,
+          "fin": 384.94
         },
         {
           "mot": "êtes",
-          "debut": 535.77,
-          "fin": 536.19
+          "debut": 384.94,
+          "fin": 385.36
         },
         {
           "mot": "bénie",
-          "debut": 536.19,
-          "fin": 536.69
+          "debut": 385.36,
+          "fin": 385.86
         },
         {
           "mot": "entre",
-          "debut": 536.69,
-          "fin": 537.11
+          "debut": 385.86,
+          "fin": 386.28
         },
         {
           "mot": "toutes",
-          "debut": 537.11,
-          "fin": 537.61
+          "debut": 386.28,
+          "fin": 386.78
         },
         {
           "mot": "les",
-          "debut": 537.61,
-          "fin": 537.83
+          "debut": 386.78,
+          "fin": 387
         },
         {
           "mot": "femmes.",
-          "debut": 537.83,
-          "fin": 538.74
+          "debut": 387,
+          "fin": 387.91
         },
         {
           "mot": "Et",
-          "debut": 538.74,
-          "fin": 538.85
+          "debut": 387.91,
+          "fin": 388.02
         },
         {
           "mot": "Jésus,",
-          "debut": 538.85,
-          "fin": 539.43
+          "debut": 388.02,
+          "fin": 388.6
         },
         {
           "mot": "le",
-          "debut": 539.43,
-          "fin": 539.62
+          "debut": 388.6,
+          "fin": 388.79
         },
         {
           "mot": "fruit",
-          "debut": 539.62,
-          "fin": 540.01
+          "debut": 388.79,
+          "fin": 389.18
         },
         {
           "mot": "de",
-          "debut": 540.01,
-          "fin": 540.17
+          "debut": 389.18,
+          "fin": 389.34
         },
         {
           "mot": "vos",
-          "debut": 540.17,
-          "fin": 540.39
+          "debut": 389.34,
+          "fin": 389.56
         },
         {
           "mot": "entrailles,",
-          "debut": 540.39,
-          "fin": 541.46
+          "debut": 389.56,
+          "fin": 390.63
         },
         {
           "mot": "est",
-          "debut": 541.46,
-          "fin": 541.67
+          "debut": 390.63,
+          "fin": 390.84
         },
         {
           "mot": "béni.",
-          "debut": 541.67,
-          "fin": 542.6
+          "debut": 390.84,
+          "fin": 391.77
         },
         {
           "mot": "Sainte",
-          "debut": 542.6,
-          "fin": 543.2
+          "debut": 391.77,
+          "fin": 392.37
         },
         {
           "mot": "Marie,",
-          "debut": 543.2,
-          "fin": 543.95
+          "debut": 392.37,
+          "fin": 393.12
         },
         {
           "mot": "Mère",
-          "debut": 543.95,
-          "fin": 544.4
+          "debut": 393.12,
+          "fin": 393.57
         },
         {
           "mot": "de",
-          "debut": 544.4,
-          "fin": 544.6
+          "debut": 393.57,
+          "fin": 393.77
         },
         {
           "mot": "Dieu,",
-          "debut": 544.6,
-          "fin": 545.2
+          "debut": 393.77,
+          "fin": 394.37
         },
         {
           "mot": "priez",
-          "debut": 545.2,
-          "fin": 545.97
+          "debut": 394.37,
+          "fin": 395.14
         },
         {
           "mot": "pour",
-          "debut": 545.97,
-          "fin": 546.13
+          "debut": 395.14,
+          "fin": 395.3
         },
         {
           "mot": "nos",
-          "debut": 546.13,
-          "fin": 546.4
+          "debut": 395.3,
+          "fin": 395.57
         },
         {
           "mot": "pauvres",
-          "debut": 546.4,
-          "fin": 547.1
+          "debut": 395.57,
+          "fin": 396.27
         },
         {
           "mot": "pécheurs,",
-          "debut": 547.1,
-          "fin": 548.57
+          "debut": 396.27,
+          "fin": 397.74
         },
         {
           "mot": "maintenant",
-          "debut": 548.57,
-          "fin": 549.2
+          "debut": 397.74,
+          "fin": 398.37
         },
         {
           "mot": "et",
-          "debut": 549.2,
-          "fin": 549.4
+          "debut": 398.37,
+          "fin": 398.57
         },
         {
           "mot": "à",
-          "debut": 549.4,
-          "fin": 549.6
+          "debut": 398.57,
+          "fin": 398.77
         },
         {
           "mot": "l'heure",
-          "debut": 549.6,
-          "fin": 550.29
+          "debut": 398.77,
+          "fin": 399.46
         },
         {
           "mot": "de",
-          "debut": 550.29,
-          "fin": 550.94
+          "debut": 399.46,
+          "fin": 400.11
         },
         {
           "mot": "notre",
-          "debut": 550.94,
-          "fin": 551
+          "debut": 400.11,
+          "fin": 400.17
         },
         {
           "mot": "mort.",
-          "debut": 551,
-          "fin": 551.7
+          "debut": 400.17,
+          "fin": 400.87
         },
         {
           "mot": "Amen.",
-          "debut": 551.7,
-          "fin": 552.44
+          "debut": 400.87,
+          "fin": 401.61
         },
         {
           "mot": "Je",
-          "debut": 553.68,
-          "fin": 553.69
+          "debut": 402.85,
+          "fin": 402.86
         },
         {
           "mot": "vous",
-          "debut": 553.69,
-          "fin": 554
+          "debut": 402.86,
+          "fin": 403.17
         },
         {
           "mot": "salue",
-          "debut": 554,
-          "fin": 554.42
+          "debut": 403.17,
+          "fin": 403.59
         },
         {
           "mot": "Marie,",
-          "debut": 554.42,
-          "fin": 554.95
+          "debut": 403.59,
+          "fin": 404.12
         },
         {
           "mot": "pleine",
-          "debut": 554.95,
-          "fin": 555.38
+          "debut": 404.12,
+          "fin": 404.55
         },
         {
           "mot": "de",
-          "debut": 555.38,
-          "fin": 555.53
+          "debut": 404.55,
+          "fin": 404.7
         },
         {
           "mot": "grâce.",
-          "debut": 555.53,
-          "fin": 556.34
+          "debut": 404.7,
+          "fin": 405.51
         },
         {
           "mot": "Le",
-          "debut": 556.34,
-          "fin": 556.37
+          "debut": 405.51,
+          "fin": 405.54
         },
         {
           "mot": "Seigneur",
-          "debut": 556.37,
-          "fin": 556.98
+          "debut": 405.54,
+          "fin": 406.15
         },
         {
           "mot": "est",
-          "debut": 556.98,
-          "fin": 557.21
+          "debut": 406.15,
+          "fin": 406.38
         },
         {
           "mot": "avec",
-          "debut": 557.21,
-          "fin": 557.52
+          "debut": 406.38,
+          "fin": 406.69
         },
         {
           "mot": "vous.",
-          "debut": 557.52,
-          "fin": 558.06
+          "debut": 406.69,
+          "fin": 407.23
         },
         {
           "mot": "Vous",
-          "debut": 558.06,
-          "fin": 558.35
+          "debut": 407.23,
+          "fin": 407.52
         },
         {
           "mot": "êtes",
-          "debut": 558.35,
-          "fin": 558.75
+          "debut": 407.52,
+          "fin": 407.92
         },
         {
           "mot": "bénie",
-          "debut": 558.75,
-          "fin": 559.5
+          "debut": 407.92,
+          "fin": 408.67
         },
         {
           "mot": "entre",
-          "debut": 559.5,
-          "fin": 559.64
+          "debut": 408.67,
+          "fin": 408.81
         },
         {
           "mot": "toutes",
-          "debut": 559.64,
-          "fin": 560.07
+          "debut": 408.81,
+          "fin": 409.24
         },
         {
           "mot": "les",
-          "debut": 560.07,
-          "fin": 560.3
+          "debut": 409.24,
+          "fin": 409.47
         },
         {
           "mot": "femmes.",
-          "debut": 560.3,
-          "fin": 560.97
+          "debut": 409.47,
+          "fin": 410.14
         },
         {
           "mot": "Et",
-          "debut": 560.97,
-          "fin": 561.18
+          "debut": 410.14,
+          "fin": 410.35
         },
         {
           "mot": "Jésus,",
-          "debut": 561.18,
-          "fin": 561.88
+          "debut": 410.35,
+          "fin": 411.05
         },
         {
           "mot": "le",
-          "debut": 561.88,
-          "fin": 561.9
+          "debut": 411.05,
+          "fin": 411.07
         },
         {
           "mot": "fruit",
-          "debut": 561.9,
-          "fin": 562.28
+          "debut": 411.07,
+          "fin": 411.45
         },
         {
           "mot": "de",
-          "debut": 562.28,
-          "fin": 562.43
+          "debut": 411.45,
+          "fin": 411.6
         },
         {
           "mot": "vos",
-          "debut": 562.43,
-          "fin": 562.66
+          "debut": 411.6,
+          "fin": 411.83
         },
         {
           "mot": "entrailles,",
-          "debut": 562.66,
-          "fin": 563.56
+          "debut": 411.83,
+          "fin": 412.73
         },
         {
           "mot": "est",
-          "debut": 563.56,
-          "fin": 564.01
+          "debut": 412.73,
+          "fin": 413.18
         },
         {
           "mot": "béni.",
-          "debut": 564.01,
-          "fin": 564.62
+          "debut": 413.18,
+          "fin": 413.79
         },
         {
           "mot": "Sainte",
-          "debut": 564.62,
-          "fin": 565.2
+          "debut": 413.79,
+          "fin": 414.37
         },
         {
           "mot": "Marie,",
-          "debut": 565.2,
-          "fin": 565.95
+          "debut": 414.37,
+          "fin": 415.12
         },
         {
           "mot": "Mère",
-          "debut": 565.95,
-          "fin": 566.38
+          "debut": 415.12,
+          "fin": 415.55
         },
         {
           "mot": "de",
-          "debut": 566.38,
-          "fin": 566.58
+          "debut": 415.55,
+          "fin": 415.75
         },
         {
           "mot": "Dieu,",
-          "debut": 566.58,
-          "fin": 567.17
+          "debut": 415.75,
+          "fin": 416.34
         },
         {
           "mot": "priez",
-          "debut": 567.17,
-          "fin": 567.81
+          "debut": 416.34,
+          "fin": 416.98
         },
         {
           "mot": "pour",
-          "debut": 567.81,
-          "fin": 568.06
+          "debut": 416.98,
+          "fin": 417.23
         },
         {
           "mot": "nos",
-          "debut": 568.06,
-          "fin": 568.36
+          "debut": 417.23,
+          "fin": 417.53
         },
         {
           "mot": "pauvres",
-          "debut": 568.36,
-          "fin": 569.04
+          "debut": 417.53,
+          "fin": 418.21
         },
         {
           "mot": "pécheurs,",
-          "debut": 569.04,
-          "fin": 570.59
+          "debut": 418.21,
+          "fin": 419.76
         },
         {
           "mot": "maintenant",
-          "debut": 570.59,
-          "fin": 571.1
+          "debut": 419.76,
+          "fin": 420.27
         },
         {
           "mot": "et",
-          "debut": 571.1,
-          "fin": 571.3
+          "debut": 420.27,
+          "fin": 420.47
         },
         {
           "mot": "à",
-          "debut": 571.3,
-          "fin": 571.5
+          "debut": 420.47,
+          "fin": 420.67
         },
         {
           "mot": "l'heure",
-          "debut": 571.5,
-          "fin": 572.12
+          "debut": 420.67,
+          "fin": 421.29
         },
         {
           "mot": "de",
-          "debut": 572.12,
-          "fin": 572.38
+          "debut": 421.29,
+          "fin": 421.55
         },
         {
           "mot": "notre",
-          "debut": 572.38,
-          "fin": 572.98
+          "debut": 421.55,
+          "fin": 422.15
         },
         {
           "mot": "mort.",
-          "debut": 572.98,
-          "fin": 573.57
+          "debut": 422.15,
+          "fin": 422.74
         },
         {
           "mot": "Amen.",
-          "debut": 573.57,
-          "fin": 574.42
+          "debut": 422.74,
+          "fin": 423.59
         },
         {
           "mot": "Gloire",
-          "debut": 575.44,
-          "fin": 575.86
+          "debut": 424.61,
+          "fin": 425.03
         },
         {
           "mot": "au",
-          "debut": 575.86,
-          "fin": 576.05
+          "debut": 425.03,
+          "fin": 425.22
         },
         {
           "mot": "Père",
-          "debut": 576.05,
-          "fin": 576.65
+          "debut": 425.22,
+          "fin": 425.82
         },
         {
           "mot": "et",
-          "debut": 576.65,
-          "fin": 576.71
+          "debut": 425.82,
+          "fin": 425.88
         },
         {
           "mot": "au",
-          "debut": 576.71,
-          "fin": 576.9
+          "debut": 425.88,
+          "fin": 426.07
         },
         {
           "mot": "Fils",
-          "debut": 576.9,
-          "fin": 577.27
+          "debut": 426.07,
+          "fin": 426.44
         },
         {
           "mot": "et",
-          "debut": 577.27,
-          "fin": 577.45
+          "debut": 426.44,
+          "fin": 426.62
         },
         {
           "mot": "au",
-          "debut": 577.45,
-          "fin": 577.64
+          "debut": 426.62,
+          "fin": 426.81
         },
         {
           "mot": "Saint-Esprit,",
-          "debut": 577.64,
-          "fin": 579.02
+          "debut": 426.81,
+          "fin": 428.19
         },
         {
           "mot": "comme",
-          "debut": 579.02,
-          "fin": 579.49
+          "debut": 428.19,
+          "fin": 428.66
         },
         {
           "mot": "il",
-          "debut": 579.49,
-          "fin": 579.69
+          "debut": 428.66,
+          "fin": 428.86
         },
         {
           "mot": "était",
-          "debut": 579.69,
-          "fin": 580.22
+          "debut": 428.86,
+          "fin": 429.39
         },
         {
           "mot": "au",
-          "debut": 580.22,
-          "fin": 580.84
+          "debut": 429.39,
+          "fin": 430.01
         },
         {
           "mot": "commencement,",
-          "debut": 580.84,
-          "fin": 581.74
+          "debut": 430.01,
+          "fin": 430.91
         },
         {
           "mot": "maintenant",
-          "debut": 581.74,
-          "fin": 582.64
+          "debut": 430.91,
+          "fin": 431.81
         },
         {
           "mot": "et",
-          "debut": 582.64,
-          "fin": 583.02
+          "debut": 431.81,
+          "fin": 432.19
         },
         {
           "mot": "toujours,",
-          "debut": 583.02,
-          "fin": 583.8
+          "debut": 432.19,
+          "fin": 432.97
         },
         {
           "mot": "et",
-          "debut": 583.8,
-          "fin": 583.99
+          "debut": 432.97,
+          "fin": 433.16
         },
         {
           "mot": "dans",
-          "debut": 583.99,
-          "fin": 584.37
+          "debut": 433.16,
+          "fin": 433.54
         },
         {
           "mot": "les",
-          "debut": 584.37,
-          "fin": 584.64
+          "debut": 433.54,
+          "fin": 433.81
         },
         {
           "mot": "siècles",
-          "debut": 584.64,
-          "fin": 585.5
+          "debut": 433.81,
+          "fin": 434.67
         },
         {
           "mot": "des",
-          "debut": 585.5,
-          "fin": 585.77
+          "debut": 434.67,
+          "fin": 434.94
         },
         {
           "mot": "siècles.",
-          "debut": 585.77,
-          "fin": 586.68
+          "debut": 434.94,
+          "fin": 435.85
         },
         {
           "mot": "Amen.",
-          "debut": 586.68,
-          "fin": 587.46
+          "debut": 435.85,
+          "fin": 436.63
         },
         {
           "mot": "Sacré-Cœur",
-          "debut": 587.46,
-          "fin": 588.81
+          "debut": 436.63,
+          "fin": 437.98
         },
         {
           "mot": "de",
-          "debut": 588.81,
-          "fin": 588.93
+          "debut": 437.98,
+          "fin": 438.1
         },
         {
           "mot": "Jésus,",
-          "debut": 588.93,
-          "fin": 589.74
+          "debut": 438.1,
+          "fin": 438.91
         },
         {
           "mot": "nous",
-          "debut": 589.74,
-          "fin": 590.29
+          "debut": 438.91,
+          "fin": 439.46
         },
         {
           "mot": "avons",
-          "debut": 590.29,
-          "fin": 590.83
+          "debut": 439.46,
+          "fin": 440
         },
         {
           "mot": "confiance",
-          "debut": 590.83,
-          "fin": 591.72
+          "debut": 440,
+          "fin": 440.89
         },
         {
           "mot": "en",
-          "debut": 591.72,
-          "fin": 591.93
+          "debut": 440.89,
+          "fin": 441.1
         },
         {
           "mot": "toi.",
-          "debut": 591.93,
-          "fin": 592.66
+          "debut": 441.1,
+          "fin": 441.83
         }
       ]
     },
@@ -4958,92 +3795,92 @@
       "section": "H",
       "label": "ENVOI",
       "id": "envoi",
-      "debut": 604.26,
-      "fin": 609.93,
+      "debut": 453.43,
+      "fin": 459.1,
       "chante": false,
       "nbMots": 14,
       "phrases": [
         {
-          "debut": 604.42,
-          "fin": 607.38,
+          "debut": 453.59,
+          "fin": 456.55,
           "texte": "Que le Seigneur nous prenne en grâce et nous donne sa paix."
         },
         {
-          "debut": 607.38,
-          "fin": 609.52,
+          "debut": 456.55,
+          "fin": 458.69,
           "texte": "À demain."
         }
       ],
       "mots": [
         {
           "mot": "Que",
-          "debut": 604.42,
-          "fin": 604.43
+          "debut": 453.59,
+          "fin": 453.6
         },
         {
           "mot": "le",
-          "debut": 604.43,
-          "fin": 604.53
+          "debut": 453.6,
+          "fin": 453.7
         },
         {
           "mot": "Seigneur",
-          "debut": 604.53,
-          "fin": 604.97
+          "debut": 453.7,
+          "fin": 454.14
         },
         {
           "mot": "nous",
-          "debut": 604.97,
-          "fin": 605.18
+          "debut": 454.14,
+          "fin": 454.35
         },
         {
           "mot": "prenne",
-          "debut": 605.18,
-          "fin": 605.52
+          "debut": 454.35,
+          "fin": 454.69
         },
         {
           "mot": "en",
-          "debut": 605.52,
-          "fin": 605.63
+          "debut": 454.69,
+          "fin": 454.8
         },
         {
           "mot": "grâce",
-          "debut": 605.63,
-          "fin": 606
+          "debut": 454.8,
+          "fin": 455.17
         },
         {
           "mot": "et",
-          "debut": 606,
-          "fin": 606.12
+          "debut": 455.17,
+          "fin": 455.29
         },
         {
           "mot": "nous",
-          "debut": 606.12,
-          "fin": 606.4
+          "debut": 455.29,
+          "fin": 455.57
         },
         {
           "mot": "donne",
-          "debut": 606.4,
-          "fin": 606.74
+          "debut": 455.57,
+          "fin": 455.91
         },
         {
           "mot": "sa",
-          "debut": 606.74,
-          "fin": 606.87
+          "debut": 455.91,
+          "fin": 456.04
         },
         {
           "mot": "paix.",
-          "debut": 606.87,
-          "fin": 607.38
+          "debut": 456.04,
+          "fin": 456.55
         },
         {
           "mot": "À",
-          "debut": 607.38,
-          "fin": 607.77
+          "debut": 456.55,
+          "fin": 456.94
         },
         {
           "mot": "demain.",
-          "debut": 607.77,
-          "fin": 609.52
+          "debut": 456.94,
+          "fin": 458.69
         }
       ]
     }

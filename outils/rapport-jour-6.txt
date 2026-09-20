@@ -2,24 +2,21 @@ Jour 6 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 518 (612 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 573
-  interpolés         : 39
-  taux d'appariement : 93.6 %
+  appariés           : 589
+  interpolés         : 23
+  taux d'appariement : 96.2 %
 
   Section          appariés / affichés        début
-    signe-de-croix   13 /   14    92.9 %          0.80 s
-    meditation      189 /  218    86.7 %          5.08 s
-    chant             0 /    0        —        256.57 s
-    prions          131 /  134    97.8 %        407.07 s
-    prieres         226 /  232    97.4 %        473.70 s
-    envoi            14 /   14   100.0 %        604.26 s
+    signe-de-croix   10 /   14    71.4 %          0.80 s
+    meditation      208 /  218    95.4 %          5.08 s
+    chant             0 /    0        —        105.74 s
+    prions          131 /  134    97.8 %        256.24 s
+    prieres         226 /  232    97.4 %        322.87 s
+    envoi            14 /   14   100.0 %        453.43 s
 
   Les 20 plus longues suites de mots interpolés
-      7 mot(s)  [meditation  272.08 s]  soi mais en lui, Jésus notre maître.
-      6 mot(s)  [meditation  245.76 s]  déjà désirer le conjuguer avec une
-      3 mot(s)  [meditation  252.51 s]  totale non pas
-      2 mot(s)  [signe         8.13 s]  Amen. «
-      2 mot(s)  [meditation  124.15 s]  seul maître
+      3 mot(s)  [titre         0.85 s]  Accueil de l’étranger
+      2 mot(s)  [signe         4.37 s]  Amen. «
       1 mot(s)  [verset        8.87 s]  rencontre
       1 mot(s)  [verset       15.08 s]  »
       1 mot(s)  [source       17.61 s]  pour
@@ -28,26 +25,17 @@ Jour 6 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   59.68 s]  voudrions
       1 mot(s)  [meditation   61.69 s]  ferions
       1 mot(s)  [meditation   62.96 s]  velléités
-      1 mot(s)  [meditation  165.02 s]  tous
-      1 mot(s)  [meditation  219.75 s]  maux.
-      1 mot(s)  [priere      426.21 s]  Accompagnés
-      1 mot(s)  [priere      445.90 s]  bien
-      1 mot(s)  [priere      461.30 s]  conditions
-      1 mot(s)  [ave         509.42 s]  ;
-      1 mot(s)  [ave         522.93 s]  nous,
+      1 mot(s)  [meditation   92.01 s]  maux.
+      1 mot(s)  [priere      275.38 s]  Accompagnés
+      1 mot(s)  [priere      295.07 s]  bien
+      1 mot(s)  [priere      310.47 s]  conditions
+      1 mot(s)  [ave         358.59 s]  ;
+      1 mot(s)  [ave         372.11 s]  nous,
+      1 mot(s)  [ave         382.64 s]  ;
+      1 mot(s)  [ave         395.44 s]  nous,
+      1 mot(s)  [ave         405.51 s]  ;
+      1 mot(s)  [ave         417.38 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-     28.60 s  après « calvaire. » (meditation) → « Aimer » (meditation)
-     29.98 s  après « de » (meditation) → « tous » (meditation)
-     29.98 s  après « tous » (meditation) → « les » (meditation)
-     24.33 s  après « les » (meditation) → « maux. » (meditation)
-     24.33 s  après « maux. » (meditation) → « Faut-il » (meditation)
-     19.40 s  après « en » (meditation) → « soi » (meditation)
-     19.40 s  après « soi » (meditation) → « mais » (meditation)
-     19.40 s  après « mais » (meditation) → « en » (meditation)
-     19.40 s  après « en » (meditation) → « lui, » (meditation)
-     19.40 s  après « lui, » (meditation) → « Jésus » (meditation)
-     19.40 s  après « Jésus » (meditation) → « notre » (meditation)
-     19.40 s  après « notre » (meditation) → « maître. » (meditation)
-     19.40 s  après « maître. » (meditation) → « Seigneur, » (priere)
+    155.07 s  après « maître. » (meditation) → « Seigneur, » (priere)
      11.76 s  après « toi. » (acclamation) → « Que » (envoi)
