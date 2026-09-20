@@ -61,22 +61,22 @@ window.NEUVAINE_CONTENU = {
       'Voici le corps et le sang de Jésus,',
       'adorez-le, bénissez-le,',
       'car en lui c’est Dieu qui se donne à vous.',
-
+      '',
       'L’Amour lui-même vous désire.',
-
+      '',
       'Bien-aimés, aimons-nous les uns les autres,',
       'puisque l’amour vient de Dieu.',
       'Celui qui aime est né de Dieu et connaît Dieu.',
       'Celui qui n’aime pas n’a pas connu Dieu,',
       'car Dieu est amour.',
-
+      '',
       'Voici le corps et le sang de Jésus,',
       'adorez-le, bénissez-le,',
       'car en lui c’est Dieu qui se donne à vous.',
-
+      '',
       'Bénissez-le, bénissez-le,',
       'car en lui c’est Dieu qui se donne à vous.',
-
+      '',
       'L’Amour lui-même vous désire.'
     ],
     priere: [
@@ -146,29 +146,29 @@ window.NEUVAINE_CONTENU = {
     musique:    'Psaume 77 — « N’oubliez pas les exploits du Seigneur »',
     paroles: [
       'N’oubliez pas les exploits du Seigneur !',
-
+      '',
       'Nous avons entendu et nous savons',
       'ce que nos pères nous ont raconté ;',
       'nous redirons à l’âge qui vient',
       'les titres de gloire du Seigneur.',
-
+      '',
       'Quand Dieu les frappait, ils le cherchaient,',
       'ils revenaient et se tournaient vers lui :',
       'ils se souvenaient que Dieu est leur rocher,',
       'et le Dieu Très-Haut, leur rédempteur.',
-
+      '',
       'N’oubliez pas les exploits du Seigneur !',
-
+      '',
       'Mais de leur bouche ils le trompaient,',
       'de leur langue ils lui mentaient.',
       'Leur cœur n’était pas constant envers lui ;',
       'ils n’étaient pas fidèles à son alliance.',
-
+      '',
       'Et lui, miséricordieux,',
       'au lieu de détruire, il pardonnait.',
       'Il se rappelait : ils ne sont que chair,',
       'un souffle qui s’en va sans retour',
-
+      '',
       'N’oubliez pas les exploits du Seigneur !'
     ],
     lecteur: 'Ludivine',
@@ -228,13 +228,13 @@ window.NEUVAINE_CONTENU = {
       'Pourquoi as-tu perdu ton amour des premiers temps ?',
       'Rappelle-toi ! Tu es sauvé, reviens à moi.',
       'Je te ferai goûter à l’arbre de vie.',
-
+      '',
       'Je connais ta détresse et ta pauvreté,',
       'Sois sans peur si tu vis la souffrance.',
       'Pourquoi t’éloignes-tu quand vient le temps de l’épreuve ?',
       'Rappelle-toi ! Tu es sauvé, reviens à moi.',
       'Je t’offrirai la couronne de la vie.',
-
+      '',
       'Je connais ta foi en moi et mon amour,',
       'Sois fort, je viens à toi sans tarder.',
       'Pourquoi tourner ton regard et ta vie vers d’autres dieux ?',
@@ -295,17 +295,17 @@ window.NEUVAINE_CONTENU = {
     paroles: [
       'Que rien ne te trouble, ô mon âme,',
       'que rien ne t’épouvante, ô mon âme.',
-
+      '',
       'Dieu seul suffit.',
-
+      '',
       'Dieu ne change pas, ô mon âme,',
       'la patience obtient tout, ô mon âme.',
-
+      '',
       'Dieu seul suffit.',
-
+      '',
       'Qui possède Dieu, ô mon âme,',
       'ne manque de rien, ô mon âme.',
-
+      '',
       'Dieu seul suffit.'
     ],
     lecteur: 'Anna',
@@ -355,7 +355,7 @@ window.NEUVAINE_CONTENU = {
     paroles: [
       'Père, qu’ils soient un,',
       'pour que le monde croie que Tu m’as envoyé !',
-
+      '',
       'Père, qu’ils soient un,',
       'pour que le monde croie que Tu m’as envoyé !'
     ],
@@ -413,13 +413,13 @@ window.NEUVAINE_CONTENU = {
       'Il aurait les yeux d’un enfant noir de Harlem.',
       'Des églises « Blanches » se fermeraient devant lui,',
       'Des écoles « Blanches » on le chasserait aussi.',
-
+      '',
       'Si le bon Dieu revenait vivre chez nous,',
       'Il aurait les yeux brûlants de fièvre d’un Hindou.',
       'Sur sa terre ingrate,',
       'Il travaillerait sans gémir,',
       'Et puis sur sa natte se coucherait pour mourir…',
-
+      '',
       'Si le bon Dieu revenait sauver nos âmes,',
       'Il aurait les yeux d’un orphelin du Viet-Nam.',
       'Des milliers de bombes écraseraient son pays,',
@@ -499,12 +499,12 @@ window.NEUVAINE_CONTENU = {
       'Et jusqu’à mon coucher',
       'Je chanterai',
       'Combien mon Dieu est bon',
-
+      '',
       'Tu as toujours été fidèle',
       'Tu as toujours été là pour moi',
       'Avec le souffle qui m’est donné',
       'Je chanterai combien mon Dieu est bon',
-
+      '',
       'J’aime Ta voix',
       'Et quand je traverse le feu',
       'Tu es mon guide',
@@ -513,7 +513,7 @@ window.NEUVAINE_CONTENU = {
       'Mon Père et mon ami',
       'J’ai découvert',
       'Combien mon Dieu est bon',
-
+      '',
       'Tu as toujours été fidèle',
       'Tu as toujours été là pour moi',
       'Avec le souffle qui m’est donné',
@@ -582,23 +582,23 @@ window.NEUVAINE_CONTENU = {
       'L’Amour, l’amour seul,',
       'La charité jamais ne passera,',
       'Car Dieu est Amour.',
-
+      '',
       'Quand j’aurais le don de la science,',
       'Et connaîtrais tous les mystères,',
       'Parlerais-je les langues des anges,',
       'Sans amour, je ne suis rien.',
-
+      '',
       'L’Amour jamais ne passera,',
       'L’Amour demeurera,',
       'L’Amour, l’amour seul,',
       'La charité jamais ne passera,',
       'Car Dieu est Amour.',
-
+      '',
       'Si je donnais mes biens en aumône,',
       'Si je livrais mon corps aux flammes,',
       'Si ma foi déplaçait les montagnes,',
       'Sans amour, je ne suis rien.',
-
+      '',
       'L’Amour jamais ne passera,',
       'L’Amour demeurera,',
       'L’Amour, l’amour seul,',

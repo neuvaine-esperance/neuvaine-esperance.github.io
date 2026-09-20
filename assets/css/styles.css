@@ -1498,6 +1498,16 @@ main { display: contents; }
   box-shadow: 0 0 0 2px rgba(232, 184, 75, .5);
 }
 
+/* Pendant le chant, l'encart lui-même est lavé d'or à 12 % pour dire que
+   la musique passe. Un mot surligné au même ton s'y perdait : de l'or sur
+   de l'or, allumé mais invisible. Il prend donc un aplat plus franc et un
+   anneau plus net, pour se détacher de son propre fond. Le vert du texte
+   tient 6,4:1 par-dessus, largement au-delà du seuil. */
+.day-music__paroles .mot-actif {
+  background: rgba(232, 184, 75, .62);
+  box-shadow: 0 0 0 2px rgba(232, 184, 75, .62);
+}
+
 /* L'acclamation est déjà écrite en or : un fond doré lui mangerait son
    contraste — il tombait à 3,90:1. On l'assombrit au contraire, et
    l'anneau suffit à désigner le mot. */

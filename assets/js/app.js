@@ -751,11 +751,15 @@
     hote.hidden = !paroles;
     if (!paroles) { return; }
 
-    // Chaque vers garde sa ligne.
+    /* Chaque vers garde sa ligne, et une entrée vide sépare deux strophes.
+       Un texte vide ne prendrait aucune hauteur et les couplets se
+       toucheraient : on y met une espace insécable, qui occupe la ligne.
+       Elle ne devient pas un mot pour autant — enrober() écarte les nœuds
+       dont le contenu est blanc, et l'espace insécable en est. */
     var lignes = Array.isArray(paroles) ? paroles : [paroles];
     lignes.forEach(function (ligne, i) {
       if (i) { hote.appendChild(document.createElement('br')); }
-      hote.appendChild(document.createTextNode(ligne));
+      hote.appendChild(document.createTextNode(ligne || '\u00a0'));
     });
   }
 
