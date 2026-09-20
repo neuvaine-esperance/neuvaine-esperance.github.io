@@ -54,8 +54,8 @@
 <!-- Le numéro de version force la reprise des feuilles après une mise à
      jour : le HTML n'est jamais mis en cache, les CSS le sont une semaine.
      À incrémenter à chaque changement de style. -->
-<link rel="stylesheet" href="assets/css/fonts.css?v=82">
-<link rel="stylesheet" href="assets/css/styles.css?v=82">
+<link rel="stylesheet" href="assets/css/fonts.css?v=83">
+<link rel="stylesheet" href="assets/css/styles.css?v=83">
 </head>
 <body>
 
@@ -346,6 +346,18 @@
     <p class="envoi anim">Que le Seigneur nous prenne en grâce et nous donne sa paix. À demain.</p>
 
     <div class="day-foot">
+      <!-- Le rendez-vous qui suit la neuvaine. Il ne paraît qu'aux jours qui
+           en portent un dans contenu.js : le neuvième, où la voix l'annonce
+           sans que la page le dise. Il est posé avant la consécration, car
+           c'est une date à retenir, non une prière à faire. -->
+      <div class="rdv anim" id="day-rdv" hidden>
+        <p class="rdv__label" id="day-rdv-titre"></p>
+        <p class="rdv__quand" id="day-rdv-quand"></p>
+        <p class="rdv__lieu" id="day-rdv-lieu"></p>
+        <p class="rdv__adresse" id="day-rdv-adresse"></p>
+        <p class="rdv__quoi" id="day-rdv-quoi"></p>
+      </div>
+
       <!-- La consécration, au bout de la prière du jour. Elle n'est pas un
            dixième jour mais une prière permanente, à dire chaque jour par qui
            le souhaite : elle doit donc être atteignable d'ici, sans passer
@@ -569,7 +581,7 @@
 </div>
 
 <!-- Le texte des neuf jours d'abord, la logique ensuite. -->
-<script src="assets/js/contenu.js?v=82" defer></script>
-<script src="assets/js/app.js?v=82" defer></script>
+<script src="assets/js/contenu.js?v=83" defer></script>
+<script src="assets/js/app.js?v=83" defer></script>
 </body>
 </html>

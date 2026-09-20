@@ -10,9 +10,9 @@ Jour 8 — alignement de la transcription sur le texte affiché
     signe-de-croix   11 /   14    78.6 %          0.80 s
     meditation      200 /  207    96.6 %          8.11 s
     chant            40 /   59    67.8 %        137.81 s
-    prions          165 /  167    98.8 %        222.01 s
-    prieres         226 /  232    97.4 %        313.52 s
-    envoi            14 /   14   100.0 %        444.08 s
+    prions          165 /  167    98.8 %        220.25 s
+    prieres         226 /  232    97.4 %        311.76 s
+    envoi            14 /   14   100.0 %        442.32 s
 
   Les 17 plus longues suites de mots interpolés
      17 mot(s)  [paroles     144.22 s]  jamais ne passera, L’Amour demeurera, L’Amour, l’amour seul, La charité jamais ne passera, Car D…
@@ -23,16 +23,16 @@ Jour 8 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   48.33 s]  cultures,
       1 mot(s)  [meditation   80.95 s]  :
       1 mot(s)  [paroles     173.81 s]  connaîtrais
-      1 mot(s)  [paroles     194.04 s]  demeurera,
-      1 mot(s)  [priere      263.10 s]  bâtisseurs
-      1 mot(s)  [priere      301.43 s]  une
-      1 mot(s)  [ave         349.25 s]  ;
-      1 mot(s)  [ave         362.75 s]  nous,
-      1 mot(s)  [ave         373.29 s]  ;
-      1 mot(s)  [ave         386.09 s]  nous,
-      1 mot(s)  [ave         396.16 s]  ;
-      1 mot(s)  [ave         408.03 s]  nous,
+      1 mot(s)  [paroles     194.00 s]  demeurera,
+      1 mot(s)  [priere      261.34 s]  bâtisseurs
+      1 mot(s)  [priere      299.67 s]  une
+      1 mot(s)  [ave         347.49 s]  ;
+      1 mot(s)  [ave         361.00 s]  nous,
+      1 mot(s)  [ave         371.53 s]  ;
+      1 mot(s)  [ave         384.32 s]  nous,
+      1 mot(s)  [ave         394.40 s]  ;
+      1 mot(s)  [ave         406.27 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-     13.83 s  après « Amour. » (paroles) → « Seigneur » (priere)
+     12.07 s  après « Amour. » (paroles) → « Seigneur » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)

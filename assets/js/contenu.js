@@ -594,9 +594,9 @@ window.NEUVAINE_CONTENU = {
       'La charité jamais ne passera,',
       'Car Dieu est Amour.'
     ],
-    audio: 'assets/audio/jour-8.mp3?v=4',
-    sync: 'assets/audio/jour-8.sync.js?v=5',
-    chapitres: { meditation: 8.11, chant: 137.81, prions: 222.01, prieres: 313.52, envoi: 444.08 },
+    audio: 'assets/audio/jour-8.mp3?v=5',
+    sync: 'assets/audio/jour-8.sync.js?v=6',
+    chapitres: { meditation: 8.11, chant: 137.81, prions: 220.25, prieres: 311.76, envoi: 442.32 },
     intentionAvant: true
   },
 
@@ -609,7 +609,7 @@ window.NEUVAINE_CONTENU = {
     meditation: [
       'En parcourant des ressources pour préparer cette méditation, le mouvement ' +
       'apostolique Regnum Christi nous éclaire sur ce passage en précisant que la ' +
-      'troisième demande de Jésus à Simon correspond à un amour dit « filia » en grec, ' +
+      'troisième demande de Jésus à Simon correspond à un amour dit « philia » en grec, ' +
       'et là c’est un amour qui vient du cœur, qui jaillit du plus profond de notre ' +
       'être, un amour affectif prêt à tout donner pour la personne que l’on aime.',
 
@@ -695,6 +695,15 @@ window.NEUVAINE_CONTENU = {
       'Mets en nous, Seigneur,',
       'Un cœur nouveau !'
     ],
+    // Le neuvième jour se termine sur une invitation dite à la voix mais
+    // absente de la page : sans elle, la date se perd avec l'enregistrement.
+    rendezvous: {
+      titre:   'Après la neuvaine',
+      quand:   'Dimanche 11 octobre 2026, à 15h30',
+      lieu:    'Église Saint-Denis de l’Estrée',
+      adresse: '53 bis boulevard Jules Guesde, 93200 Saint-Denis',
+      quoi:    'Louange, adoration eucharistique, prière des frères et enseignement.'
+    },
     audio: 'assets/audio/jour-9.mp3?v=3',
     sync: 'assets/audio/jour-9.sync.js?v=2',
     chapitres: { meditation: 5.76, chant: 122.72, prions: 273.22, prieres: 360.98, envoi: 491.54 }

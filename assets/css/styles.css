@@ -1260,6 +1260,41 @@ main { display: contents; }
 }
 .partage-etat:empty { display: none; }
 
+/* Le rendez-vous d'après la neuvaine. Un encart de même facture que celui du
+   chant — bord tireté, fond du papier — pour qu'il se lise comme un
+   renseignement et non comme une prière. La date passe en premier, c'est
+   elle qu'on vient chercher. */
+.rdv {
+  padding: 18px 20px;
+  border: 2px dashed var(--sand);
+  border-radius: var(--r-lg);
+}
+.rdv__label {
+  margin: 0;
+  font-size: .8125rem;
+  font-weight: 700;
+  letter-spacing: .14em;
+  text-transform: uppercase;
+  color: var(--green);
+}
+.rdv__quand {
+  margin: 8px 0 0;
+  font-size: 1.0625rem;
+  font-weight: 700;
+  color: var(--crimson);
+}
+.rdv__lieu {
+  margin: 6px 0 0;
+  font-weight: 600;
+}
+.rdv__adresse,
+.rdv__quoi {
+  margin: 4px 0 0;
+  font-size: .9375rem;
+  line-height: 1.5;
+}
+.rdv__quoi { margin-top: 10px; }
+
 
 /* --------------------------------------------------------------------------
    7. Consécration

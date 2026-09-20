@@ -669,6 +669,7 @@
       $('#t-parole').textContent = c.origine || 'Parole de Dieu';
       fillParagraphs($('#day-meditation'), c.meditation);
       fillMusic(c.musique, c.paroles, c.chapitres);
+      fillRendezVous(c.rendezvous);
       fillIntention(c.intention);
       fillParagraphs($('#day-prayer'), c.priere);
       setupAudio(c.audio, n);
@@ -731,6 +732,27 @@
     var mn = Math.max(1, Math.round(secondes / 60 - 0.15));
     return 'un temps de musique d’environ ' +
       (MINUTES[mn] || mn) + (mn > 1 ? ' minutes' : ' minute');
+  }
+
+  /** Le rendez-vous qui suit la neuvaine.
+   *
+   *  Le neuvième jour s'achève, à la voix, sur une invitation à se retrouver
+   *  après les neuf jours. Elle ne tenait qu'à l'enregistrement : qui écoute
+   *  une fois n'a pas de quoi noter la date. Elle est donc écrite.
+   *
+   *  Le bloc ne paraît qu'aux jours qui en portent un. */
+  function fillRendezVous(rdv) {
+    var bloc = $('#day-rdv');
+    if (!bloc) { return; }
+    bloc.hidden = !rdv;
+    if (!rdv) { return; }
+    [['titre', rdv.titre], ['quand', rdv.quand], ['lieu', rdv.lieu],
+     ['adresse', rdv.adresse], ['quoi', rdv.quoi]].forEach(function (paire) {
+      var noeud = $('#day-rdv-' + paire[0]);
+      if (!noeud) { return; }
+      noeud.textContent = paire[1] || '';
+      noeud.hidden = !paire[1];
+    });
   }
 
   /** L'encart du chant.
