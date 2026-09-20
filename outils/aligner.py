@@ -467,6 +467,27 @@ def aligner_section(entrees, mots_lus):
                 plages[rang][0] = min(plages[rang][0], debut)
                 plages[rang][1] = max(plages[rang][1], fin)
 
+    # Les appuis doivent avancer dans le temps.
+    #
+    # Un mot prononcé fournit souvent plusieurs jetons — « L'amour » en
+    # donne deux — et difflib peut en attribuer un au premier mot affiché
+    # et l'autre à un mot identique situé bien plus loin. Au jour 8, le
+    # refrain « L'Amour jamais ne passera… Car Dieu est Amour » prenait
+    # ainsi son premier et son dernier mot sur le même « L'amour » entendu :
+    # les quatorze du milieu se retrouvaient interpolés à rebours, et le
+    # surlignage s'allumait sur le dernier mot au lieu du premier.
+    #
+    # Un appui qui commence avant la fin du précédent est donc écarté. Le
+    # mot n'est pas perdu : il rejoint les interpolés, et suit ses voisins.
+    plafond = None
+    for rang, p in enumerate(plages):
+        if p is None:
+            continue
+        if plafond is not None and p[0] < plafond:
+            plages[rang] = None
+            continue
+        plafond = p[1]
+
     apparies = sum(1 for p in plages if p is not None)
     return plages, apparies, len(entrees)
 

@@ -2,13 +2,13 @@ Jour 6 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 619 (713 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 671
-  interpolés         : 42
-  taux d'appariement : 94.1 %
+  appariés           : 670
+  interpolés         : 43
+  taux d'appariement : 94.0 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   14    71.4 %          0.80 s
-    meditation      208 /  218    95.4 %          5.08 s
+    meditation      207 /  218    95.0 %          5.08 s
     chant            82 /  101    81.2 %        105.74 s
     prions          131 /  134    97.8 %        256.24 s
     prieres         226 /  232    97.4 %        322.87 s
@@ -21,6 +21,7 @@ Jour 6 — alignement de la transcription sur le texte affiché
       2 mot(s)  [paroles     226.90 s]  bombes écraseraient
       2 mot(s)  [paroles     240.83 s]  lutterait sans
       1 mot(s)  [verset        8.87 s]  rencontre
+      1 mot(s)  [verset       10.59 s]  Christ,
       1 mot(s)  [verset       15.08 s]  »
       1 mot(s)  [source       17.61 s]  pour
       1 mot(s)  [meditation   31.76 s]  :
@@ -34,7 +35,6 @@ Jour 6 — alignement de la transcription sur le texte affiché
       1 mot(s)  [paroles     133.57 s]  «
       1 mot(s)  [paroles     134.92 s]  »
       1 mot(s)  [paroles     141.47 s]  «
-      1 mot(s)  [paroles     143.63 s]  »
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
      12.12 s  après « merci. » (paroles) → « Seigneur, » (priere)

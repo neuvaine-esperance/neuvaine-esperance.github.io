@@ -426,7 +426,7 @@ window.NEUVAINE_CONTENU = {
       'Seul, au cœur du monde, Il lutterait sans merci.'
     ],
     audio: 'assets/audio/jour-6.mp3?v=4',
-    sync: 'assets/audio/jour-6.sync.js?v=8',
+    sync: 'assets/audio/jour-6.sync.js?v=9',
     chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
   },
 
@@ -606,7 +606,7 @@ window.NEUVAINE_CONTENU = {
       'Car Dieu est Amour.'
     ],
     audio: 'assets/audio/jour-8.mp3?v=3',
-    sync: 'assets/audio/jour-8.sync.js?v=3',
+    sync: 'assets/audio/jour-8.sync.js?v=4',
     chapitres: { meditation: 8.11, chant: 137.81, prions: 288.31, prieres: 379.82, envoi: 510.38 },
     intentionAvant: true
   },
