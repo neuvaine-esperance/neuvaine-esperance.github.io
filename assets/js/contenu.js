@@ -409,23 +409,24 @@ window.NEUVAINE_CONTENU = {
     lecteur: 'Romain',
     musique:    'Si le bon Dieu — John Littleton',
     paroles: [
-      'Si le Bon Dieu venait revivre sa peine,',
-      'il aurait les yeux d’un enfant noir de Harlem.',
-      'Des églises blanches se fermeraient devant lui,',
-      'des écoles blanches on le chasserait aussi.',
+      'Si le bon Dieu venait revivre sa peine,',
+      'Il aurait les yeux d’un enfant noir de Harlem.',
+      'Des églises « Blanches » se fermeraient devant lui,',
+      'Des écoles « Blanches » on le chasserait aussi.',
 
-      'Si le Bon Dieu revenait vivre chez nous,',
-      'il aurait les yeux brûlants de fièvre d’un hindou.',
-      'Sur sa terre ingrate il travaillerait sans gémir,',
-      'et puis sur sa natte se coucherait pour mourir.',
+      'Si le bon Dieu revenait vivre chez nous,',
+      'Il aurait les yeux brûlants de fièvre d’un Hindou.',
+      'Sur sa terre ingrate,',
+      'Il travaillerait sans gémir,',
+      'Et puis sur sa natte se coucherait pour mourir…',
 
-      'Si le Bon Dieu revenait sauver nos âmes,',
-      'il aurait les yeux d’un orphelin du Vietnam.',
+      'Si le bon Dieu revenait sauver nos âmes,',
+      'Il aurait les yeux d’un orphelin du Viet-Nam.',
       'Des milliers de bombes écraseraient son pays,',
-      'seul, au cœur du monde, il lutterait sans merci.'
+      'Seul, au cœur du monde, Il lutterait sans merci.'
     ],
     audio: 'assets/audio/jour-6.mp3?v=4',
-    sync: 'assets/audio/jour-6.sync.js?v=7',
+    sync: 'assets/audio/jour-6.sync.js?v=8',
     chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
   },
 

@@ -1,23 +1,23 @@
 Jour 6 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 615 (709 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 672
-  interpolés         : 37
-  taux d'appariement : 94.8 %
+  mots affichés      : 619 (713 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 671
+  interpolés         : 42
+  taux d'appariement : 94.1 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   14    71.4 %          0.80 s
     meditation      208 /  218    95.4 %          5.08 s
-    chant            83 /   97    85.6 %        105.74 s
+    chant            82 /  101    81.2 %        105.74 s
     prions          131 /  134    97.8 %        256.24 s
     prieres         226 /  232    97.4 %        322.87 s
     envoi            14 /   14   100.0 %        453.43 s
 
   Les 20 plus longues suites de mots interpolés
       3 mot(s)  [titre         0.85 s]  Accueil de l’étranger
+      3 mot(s)  [paroles     216.94 s]  orphelin du Viet-Nam.
       2 mot(s)  [signe         4.37 s]  Amen. «
-      2 mot(s)  [paroles     216.47 s]  orphelin du
       2 mot(s)  [paroles     226.90 s]  bombes écraseraient
       2 mot(s)  [paroles     240.83 s]  lutterait sans
       1 mot(s)  [verset        8.87 s]  rencontre
@@ -31,10 +31,10 @@ Jour 6 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   92.01 s]  maux.
       1 mot(s)  [paroles     116.50 s]  peine,
       1 mot(s)  [paroles     129.07 s]  Harlem.
-      1 mot(s)  [paroles     157.54 s]  vivre
-      1 mot(s)  [paroles     168.31 s]  brûlants
-      1 mot(s)  [paroles     180.31 s]  ingrate
-      1 mot(s)  [paroles     184.60 s]  gémir,
+      1 mot(s)  [paroles     133.57 s]  «
+      1 mot(s)  [paroles     134.92 s]  »
+      1 mot(s)  [paroles     141.47 s]  «
+      1 mot(s)  [paroles     143.63 s]  »
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
      12.12 s  après « merci. » (paroles) → « Seigneur, » (priere)
