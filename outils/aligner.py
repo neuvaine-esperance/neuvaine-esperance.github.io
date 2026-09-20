@@ -550,6 +550,7 @@ def poser_reperes(plages, entrees, jour, mots_lus, originaux):
     # reprise, et plus rien ne s'allumait après elle.
     fin_section = originaux[-1]['fin'] if originaux else 0.0
 
+    poses = []
     for ligne, instant in reperes:
         if ligne >= len(debuts) or debuts[ligne] >= len(rangs):
             continue
@@ -559,6 +560,33 @@ def poser_reperes(plages, entrees, jour, mots_lus, originaux):
                 plages[i] = [fin_section, fin_section]
         else:
             plages[rangs[depart]] = [instant, instant + mediane]
+            poses.append((depart, instant))
+
+    # Un repère dit « suivre le texte ici ».
+    #
+    # Les mots qui le suivent, jusqu'au prochain appui, reçoivent donc un
+    # horaire réparti et une durée réelle, sans la retenue de PAS_MAX. Ce
+    # seuil protège des répartitions inventées par la machine ; un repère est
+    # au contraire une décision prise en connaissance, et le jour 7 le
+    # demande : ses dix premiers mots s'étalent sur vingt-neuf secondes, et
+    # les taire laissait le chant mort après la méditation.
+    for depart, instant in poses:
+        suite = None
+        for k in range(depart + 1, len(rangs)):
+            p = plages[rangs[k]]
+            if p is not None and p[0] > instant:
+                suite = (k, p[0])
+                break
+        if suite is None:
+            continue
+        k, fin = suite
+        n = k - depart
+        if n < 2 or fin <= instant:
+            continue
+        pas = (fin - instant) / float(n)
+        for d in range(1, n):
+            t = instant + d * pas
+            plages[rangs[depart + d]] = [t, t + pas]
 
 def aligner_section(entrees, mots_lus):
     """Apparie les mots affichés d'une section aux mots prononcés.

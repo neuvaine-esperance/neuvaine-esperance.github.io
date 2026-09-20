@@ -2,9 +2,9 @@ Jour 7 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
   mots affichés      : 765 (859 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 826
-  interpolés         : 33
-  taux d'appariement : 96.2 %
+  appariés           : 835
+  interpolés         : 24
+  taux d'appariement : 97.2 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   15    66.7 %          0.80 s
@@ -14,8 +14,7 @@ Jour 7 — alignement de la transcription sur le texte affiché
     prieres         226 /  232    97.4 %        420.44 s
     envoi            14 /   14   100.0 %        551.00 s
 
-  Les 19 plus longues suites de mots interpolés
-      9 mot(s)  [paroles     241.05 s]  je t’aime Ta bonté ne faillit jamais Chaque jour
+  Les 18 plus longues suites de mots interpolés
       4 mot(s)  [titre         0.84 s]  La bonté de Dieu
       2 mot(s)  [meditation   95.46 s]  violence, inquiétude
       2 mot(s)  [meditation  137.65 s]  grands moyens,
@@ -37,6 +36,5 @@ Jour 7 — alignement de la transcription sur le texte affiché
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
       9.64 s  après « 51 » (source) → « Jésus » (meditation)
-     24.93 s  après « ténèbres. » (meditation) → « Seigneur » (paroles)
      11.02 s  après « bon » (paroles) → « En » (priere)
      11.76 s  après « toi. » (acclamation) → « Que » (envoi)
