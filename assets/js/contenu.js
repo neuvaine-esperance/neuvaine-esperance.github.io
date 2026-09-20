@@ -686,14 +686,17 @@ window.NEUVAINE_CONTENU = {
       'Mets en nous, Seigneur,',
       'Un cœur nouveau !',
       '',
+      'Là-haut sur la montagne,',
+      'Emmenés à l’écart,',
+      'Nous connaitrons le Fils,',
+      'Et nous verrons sa gloire.',
+      'Nous goûterons la joie',
+      'De rester près de lui.',
+      'Voyez comme il est bon',
+      'De l’écouter',
+      '',
       'Rends-nous la joie',
-      'D’être sauvés',
-      'Et nos lèvres publieront',
-      'Ta louange.',
-      'Raffermis nos pas,',
-      'Viens nous recréer,',
-      'Mets en nous, Seigneur,',
-      'Un cœur nouveau !'
+      'D’être sauvés'
     ],
     // Le neuvième jour se termine sur une invitation dite à la voix mais
     // absente de la page : sans elle, la date se perd avec l'enregistrement.
@@ -705,7 +708,7 @@ window.NEUVAINE_CONTENU = {
       quoi:    'Louange, adoration eucharistique, prière des frères et enseignement.'
     },
     audio: 'assets/audio/jour-9.mp3?v=3',
-    sync: 'assets/audio/jour-9.sync.js?v=2',
+    sync: 'assets/audio/jour-9.sync.js?v=3',
     chapitres: { meditation: 5.76, chant: 122.72, prions: 273.22, prieres: 360.98, envoi: 491.54 }
   }
 };

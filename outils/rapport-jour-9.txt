@@ -1,21 +1,21 @@
 Jour 9 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 725 (819 passages, le Je vous salue Marie étant dit trois fois)
+  mots affichés      : 737 (831 passages, le Je vous salue Marie étant dit trois fois)
   appariés           : 714
-  interpolés         : 105
-  taux d'appariement : 87.2 %
+  interpolés         : 117
+  taux d'appariement : 85.9 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   14    71.4 %          0.80 s
     meditation      246 /  260    94.6 %          5.76 s
-    chant            81 /  137    59.1 %        122.72 s
+    chant            81 /  149    54.4 %        122.72 s
     prions          146 /  162    90.1 %        273.22 s
     prieres         226 /  232    97.4 %        360.98 s
     envoi             4 /   14    28.6 %        491.54 s
 
   Les 20 plus longues suites de mots interpolés
-     49 mot(s)  [paroles     206.72 s]  Rends-nous la joie D’être sauvés Et nos lèvres publieront Ta louange. Raffermis nos pas, Viens n…
+     61 mot(s)  [paroles     206.51 s]  Rends-nous la joie D’être sauvés Et nos lèvres publieront Ta louange. Raffermis nos pas, Viens n…
       6 mot(s)  [envoi       577.60 s]  nous donne sa paix. À demain.
       3 mot(s)  [titre         0.84 s]  Le bon berger
       3 mot(s)  [priere      328.00 s]  ne peut manquer
@@ -37,5 +37,5 @@ Jour 9 — alignement de la transcription sur le texte affiché
       1 mot(s)  [meditation   59.83 s]  :
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-     11.49 s  après « ! » (paroles) → « Seigneur, » (priere)
+     11.49 s  après « sauvés » (paroles) → « Seigneur, » (priere)
      60.21 s  après « toi. » (acclamation) → « Que » (envoi)
