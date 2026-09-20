@@ -519,8 +519,16 @@ window.NEUVAINE_CONTENU = {
       'Avec le souffle qui m’est donné',
       'Je chanterai combien mon Dieu est bon'
     ],
+    // La machine a entendu « Seigneur » à 217,24 s et lui a donné neuf
+    // secondes : il n'y a là que l'introduction instrumentale. La part
+    // d'énergie dans la bande de la voix y vaut 0,66, comme dans le silence
+    // qui suit, contre 0,80 dès 240 s et 0,82 sur du chant certain. La voix
+    // entre donc à 239,7 s, et c'est là que le texte commence.
+    reperes: [
+      [0, 239.7]   // « Seigneur je t’aime », entrée de la voix
+    ],
     audio: 'assets/audio/jour-7.mp3?v=3',
-    sync: 'assets/audio/jour-7.sync.js?v=3',
+    sync: 'assets/audio/jour-7.sync.js?v=4',
     chapitres: { meditation: 7.77, chant: 216.32, prions: 366.82, prieres: 420.44, envoi: 551.0 }
   },
 

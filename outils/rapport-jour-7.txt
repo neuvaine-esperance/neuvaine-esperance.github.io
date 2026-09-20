@@ -15,7 +15,7 @@ Jour 7 — alignement de la transcription sur le texte affiché
     envoi            14 /   14   100.0 %        551.00 s
 
   Les 19 plus longues suites de mots interpolés
-      9 mot(s)  [paroles     228.33 s]  je t’aime Ta bonté ne faillit jamais Chaque jour
+      9 mot(s)  [paroles     241.05 s]  je t’aime Ta bonté ne faillit jamais Chaque jour
       4 mot(s)  [titre         0.84 s]  La bonté de Dieu
       2 mot(s)  [meditation   95.46 s]  violence, inquiétude
       2 mot(s)  [meditation  137.65 s]  grands moyens,
@@ -37,5 +37,6 @@ Jour 7 — alignement de la transcription sur le texte affiché
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
       9.64 s  après « 51 » (source) → « Jésus » (meditation)
+     24.93 s  après « ténèbres. » (meditation) → « Seigneur » (paroles)
      11.02 s  après « bon » (paroles) → « En » (priere)
      11.76 s  après « toi. » (acclamation) → « Que » (envoi)
