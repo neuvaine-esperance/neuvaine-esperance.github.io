@@ -407,6 +407,7 @@ window.NEUVAINE_CONTENU = {
       'dans son identité propre qui ne se trouve qu’en Dieu. Amen.'
     ],
     lecteur: 'Romain',
+    musique:    'Si le bon Dieu — John Littleton',
     audio: 'assets/audio/jour-6.mp3?v=4',
     sync: 'assets/audio/jour-6.sync.js?v=5',
     chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
