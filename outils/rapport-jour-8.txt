@@ -1,40 +1,38 @@
 Jour 8 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 643 (737 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 697
-  interpolés         : 40
-  taux d'appariement : 94.6 %
+  mots affichés      : 599 (693 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 656
+  interpolés         : 37
+  taux d'appariement : 94.7 %
 
   Section          appariés / affichés        début
     signe-de-croix   11 /   14    78.6 %          0.80 s
     meditation      200 /  207    96.6 %          8.11 s
-    chant            81 /  103    78.6 %        137.81 s
-    prions          165 /  167    98.8 %        288.31 s
-    prieres         226 /  232    97.4 %        379.82 s
-    envoi            14 /   14   100.0 %        510.38 s
+    chant            40 /   59    67.8 %        137.81 s
+    prions          165 /  167    98.8 %        222.01 s
+    prieres         226 /  232    97.4 %        313.52 s
+    envoi            14 /   14   100.0 %        444.08 s
 
-  Les 19 plus longues suites de mots interpolés
-     17 mot(s)  [paroles     148.94 s]  jamais ne passera, L’Amour demeurera, L’Amour, l’amour seul, La charité jamais ne passera, Car D…
+  Les 17 plus longues suites de mots interpolés
+     17 mot(s)  [paroles     144.22 s]  jamais ne passera, L’Amour demeurera, L’Amour, l’amour seul, La charité jamais ne passera, Car D…
       3 mot(s)  [titre         0.83 s]  Le commandement nouveau
       2 mot(s)  [verset       12.20 s]  aimés. »
       2 mot(s)  [meditation  108.12 s]  Denis, témoin
-      2 mot(s)  [paroles     212.11 s]  en aumône,
       1 mot(s)  [verset        7.49 s]  «
       1 mot(s)  [meditation   48.33 s]  cultures,
       1 mot(s)  [meditation   80.95 s]  :
-      1 mot(s)  [paroles     173.74 s]  connaîtrais
-      1 mot(s)  [paroles     193.75 s]  demeurera,
-      1 mot(s)  [paroles     234.21 s]  demeurera,
-      1 mot(s)  [priere      329.40 s]  bâtisseurs
-      1 mot(s)  [priere      367.73 s]  une
-      1 mot(s)  [ave         415.54 s]  ;
-      1 mot(s)  [ave         429.05 s]  nous,
-      1 mot(s)  [ave         439.59 s]  ;
-      1 mot(s)  [ave         452.38 s]  nous,
-      1 mot(s)  [ave         462.46 s]  ;
-      1 mot(s)  [ave         474.34 s]  nous,
+      1 mot(s)  [paroles     173.81 s]  connaîtrais
+      1 mot(s)  [paroles     194.04 s]  demeurera,
+      1 mot(s)  [priere      263.10 s]  bâtisseurs
+      1 mot(s)  [priere      301.43 s]  une
+      1 mot(s)  [ave         349.25 s]  ;
+      1 mot(s)  [ave         362.75 s]  nous,
+      1 mot(s)  [ave         373.29 s]  ;
+      1 mot(s)  [ave         386.09 s]  nous,
+      1 mot(s)  [ave         396.16 s]  ;
+      1 mot(s)  [ave         408.03 s]  nous,
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
-     40.33 s  après « Amour. » (paroles) → « Seigneur » (priere)
+     13.83 s  après « Amour. » (paroles) → « Seigneur » (priere)
      11.77 s  après « toi. » (acclamation) → « Que » (envoi)
