@@ -1,20 +1,21 @@
 Jour 7 — alignement de la transcription sur le texte affiché
 ==========================================================================
 
-  mots affichés      : 645 (739 passages, le Je vous salue Marie étant dit trois fois)
-  appariés           : 717
-  interpolés         : 22
-  taux d'appariement : 97.0 %
+  mots affichés      : 765 (859 passages, le Je vous salue Marie étant dit trois fois)
+  appariés           : 826
+  interpolés         : 33
+  taux d'appariement : 96.2 %
 
   Section          appariés / affichés        début
     signe-de-croix   10 /   15    66.7 %          0.80 s
     meditation      372 /  380    97.9 %          7.77 s
-    chant             0 /    0        —        216.32 s
+    chant           109 /  120    90.8 %        216.32 s
     prions           95 /   98    96.9 %        366.82 s
     prieres         226 /  232    97.4 %        420.44 s
     envoi            14 /   14   100.0 %        551.00 s
 
-  Les 16 plus longues suites de mots interpolés
+  Les 19 plus longues suites de mots interpolés
+      9 mot(s)  [paroles     228.33 s]  je t’aime Ta bonté ne faillit jamais Chaque jour
       4 mot(s)  [titre         0.84 s]  La bonté de Dieu
       2 mot(s)  [meditation   95.46 s]  violence, inquiétude
       2 mot(s)  [meditation  137.65 s]  grands moyens,
@@ -24,6 +25,8 @@ Jour 7 — alignement de la transcription sur le texte affiché
       1 mot(s)  [verset       19.78 s]  »
       1 mot(s)  [meditation   89.63 s]  :
       1 mot(s)  [meditation  212.93 s]  resurgir
+      1 mot(s)  [paroles     255.32 s]  Et
+      1 mot(s)  [paroles     309.76 s]  guide
       1 mot(s)  [priere      394.99 s]  un
       1 mot(s)  [ave         456.15 s]  ;
       1 mot(s)  [ave         469.66 s]  nous,
@@ -34,5 +37,5 @@ Jour 7 — alignement de la transcription sur le texte affiché
 
   Sauts de plus de 8 s entre deux mots affichés consécutifs
       9.64 s  après « 51 » (source) → « Jésus » (meditation)
-    152.57 s  après « ténèbres. » (meditation) → « En » (priere)
+     11.02 s  après « bon » (paroles) → « En » (priere)
      11.76 s  après « toi. » (acclamation) → « Que » (envoi)

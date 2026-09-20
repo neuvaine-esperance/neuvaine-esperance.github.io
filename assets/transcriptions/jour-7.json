@@ -2134,103 +2134,98 @@
       "debut": 216.32,
       "fin": 356.32,
       "chante": true,
-      "nbMots": 30,
+      "nbMots": 110,
       "phrases": [
         {
-          "debut": 216.82,
-          "fin": 236.84,
-          "texte": "Seigneur, je t'aime"
+          "debut": 217.24,
+          "fin": 226.32,
+          "texte": "Seigneur"
         },
         {
           "debut": 246.46,
           "fin": 274.32,
           "texte": "Tu me tiens dans tes mains Dès le moment où je m'éveille Jusqu'à mon coucher Je chanterai Combien mon Dieu est bon Tu as toujours été fidèle"
+        },
+        {
+          "debut": 276.48,
+          "fin": 356.32,
+          "texte": "Tu as toujours été là pour moi Avec le souffle qui m'est donné Je chanterai Combien mon Dieu est bon J'aime ta voix Et quand je traverse le feu Tu es mon Dieu Tu restes au plus près de moi J'ai compris qui tu étais Mon père et mon ami J'ai découvert Combien mon Dieu est bon Tu as toujours été fidèle Tu as toujours été là pour moi Avec le souffle qui m'est donné Je chanterai Combien mon Dieu est bon"
         }
       ],
       "mots": [
         {
-          "mot": "Seigneur,",
-          "debut": 216.82,
-          "fin": 228.44
-        },
-        {
-          "mot": "je",
-          "debut": 228.44,
-          "fin": 230.52
-        },
-        {
-          "mot": "t'aime",
-          "debut": 230.52,
-          "fin": 236.84
+          "mot": "Seigneur",
+          "debut": 217.24,
+          "fin": 226.32
         },
         {
           "mot": "Tu",
           "debut": 246.46,
-          "fin": 246.69
+          "fin": 246.71
         },
         {
           "mot": "me",
-          "debut": 246.69,
-          "fin": 247.06
+          "debut": 246.71,
+          "fin": 247.08
         },
         {
           "mot": "tiens",
-          "debut": 247.06,
-          "fin": 247.99
+          "debut": 247.08,
+          "fin": 248.02
         },
         {
           "mot": "dans",
-          "debut": 247.99,
-          "fin": 248.74
+          "debut": 248.02,
+          "fin": 248.78
         },
         {
           "mot": "tes",
-          "debut": 248.74,
-          "fin": 249.3
+          "debut": 248.78,
+          "fin": 249.35
         },
         {
           "mot": "mains",
-          "debut": 249.3,
-          "fin": 250.26
+          "debut": 249.35,
+          "fin": 250.32
         },
         {
           "mot": "Dès",
-          "debut": 250.26,
-          "fin": 250.99
+          "debut": 250.32,
+          "fin": 251.05
         },
         {
           "mot": "le",
-          "debut": 250.99,
-          "fin": 251.36
+          "debut": 251.05,
+          "fin": 251.42
         },
         {
           "mot": "moment",
-          "debut": 251.36,
-          "fin": 252.47
+          "debut": 251.42,
+          "fin": 252.53
         },
         {
           "mot": "où",
-          "debut": 252.47,
-          "fin": 253.02
+          "debut": 252.53,
+          "fin": 253.08
         },
         {
           "mot": "je",
-          "debut": 253.02,
-          "fin": 253.39
+          "debut": 253.08,
+          "fin": 253.45
         },
         {
           "mot": "m'éveille",
-          "debut": 253.39,
-          "fin": 255.26
+          "debut": 253.45,
+          "fin": 255.32
         },
         {
           "mot": "Jusqu'à",
-          "debut": 255.26,
-          "fin": 256.62
+          "debut": 255.32,
+          "fin": 256.63
         },
         {
           "mot": "mon",
-          "debut": 256.62,
+          "debut": 256.63,
           "fin": 257.13
         },
         {
@@ -2241,62 +2236,472 @@
         {
           "mot": "Je",
           "debut": 258.34,
-          "fin": 258.92
+          "fin": 258.99
         },
         {
           "mot": "chanterai",
-          "debut": 258.92,
-          "fin": 261.54
+          "debut": 258.99,
+          "fin": 261.58
         },
         {
           "mot": "Combien",
-          "debut": 261.54,
-          "fin": 262.86
+          "debut": 261.58,
+          "fin": 262.87
         },
         {
           "mot": "mon",
-          "debut": 262.86,
+          "debut": 262.87,
           "fin": 263.43
         },
         {
           "mot": "Dieu",
           "debut": 263.43,
-          "fin": 264.19
+          "fin": 264.17
         },
         {
           "mot": "est",
-          "debut": 264.19,
-          "fin": 264.76
+          "debut": 264.17,
+          "fin": 264.73
         },
         {
           "mot": "bon",
-          "debut": 264.76,
-          "fin": 265.34
+          "debut": 264.73,
+          "fin": 265.32
         },
         {
           "mot": "Tu",
-          "debut": 265.34,
-          "fin": 266.09
+          "debut": 265.32,
+          "fin": 266.19
         },
         {
           "mot": "as",
-          "debut": 266.09,
-          "fin": 266.84
+          "debut": 266.19,
+          "fin": 266.82
         },
         {
           "mot": "toujours",
-          "debut": 266.84,
-          "fin": 269.83
+          "debut": 266.82,
+          "fin": 269.81
         },
         {
           "mot": "été",
-          "debut": 269.83,
-          "fin": 271.69
+          "debut": 269.81,
+          "fin": 271.67
         },
         {
           "mot": "fidèle",
-          "debut": 271.69,
+          "debut": 271.67,
           "fin": 274.32
+        },
+        {
+          "mot": "Tu",
+          "debut": 276.48,
+          "fin": 276.73
+        },
+        {
+          "mot": "as",
+          "debut": 276.73,
+          "fin": 277.37
+        },
+        {
+          "mot": "toujours",
+          "debut": 277.37,
+          "fin": 278.71
+        },
+        {
+          "mot": "été",
+          "debut": 278.71,
+          "fin": 279.7
+        },
+        {
+          "mot": "là",
+          "debut": 279.7,
+          "fin": 280.32
+        },
+        {
+          "mot": "pour",
+          "debut": 280.32,
+          "fin": 282.6
+        },
+        {
+          "mot": "moi",
+          "debut": 282.6,
+          "fin": 284.32
+        },
+        {
+          "mot": "Avec",
+          "debut": 284.32,
+          "fin": 285.08
+        },
+        {
+          "mot": "le",
+          "debut": 285.08,
+          "fin": 285.43
+        },
+        {
+          "mot": "souffle",
+          "debut": 285.43,
+          "fin": 286.71
+        },
+        {
+          "mot": "qui",
+          "debut": 286.71,
+          "fin": 287.26
+        },
+        {
+          "mot": "m'est",
+          "debut": 287.26,
+          "fin": 288.17
+        },
+        {
+          "mot": "donné",
+          "debut": 288.17,
+          "fin": 289.32
+        },
+        {
+          "mot": "Je",
+          "debut": 289.32,
+          "fin": 289.93
+        },
+        {
+          "mot": "chanterai",
+          "debut": 289.93,
+          "fin": 292.32
+        },
+        {
+          "mot": "Combien",
+          "debut": 292.32,
+          "fin": 294.06
+        },
+        {
+          "mot": "mon",
+          "debut": 294.06,
+          "fin": 294.81
+        },
+        {
+          "mot": "Dieu",
+          "debut": 294.81,
+          "fin": 295.81
+        },
+        {
+          "mot": "est",
+          "debut": 295.81,
+          "fin": 296.56
+        },
+        {
+          "mot": "bon",
+          "debut": 296.56,
+          "fin": 297.32
+        },
+        {
+          "mot": "J'aime",
+          "debut": 297.32,
+          "fin": 299.8
+        },
+        {
+          "mot": "ta",
+          "debut": 299.8,
+          "fin": 300.63
+        },
+        {
+          "mot": "voix",
+          "debut": 300.63,
+          "fin": 302.32
+        },
+        {
+          "mot": "Et",
+          "debut": 302.5,
+          "fin": 303.16
+        },
+        {
+          "mot": "quand",
+          "debut": 303.16,
+          "fin": 303.9
+        },
+        {
+          "mot": "je",
+          "debut": 303.9,
+          "fin": 304.35
+        },
+        {
+          "mot": "traverse",
+          "debut": 304.35,
+          "fin": 306.16
+        },
+        {
+          "mot": "le",
+          "debut": 306.16,
+          "fin": 306.61
+        },
+        {
+          "mot": "feu",
+          "debut": 306.61,
+          "fin": 307.32
+        },
+        {
+          "mot": "Tu",
+          "debut": 307.32,
+          "fin": 307.93
+        },
+        {
+          "mot": "es",
+          "debut": 307.93,
+          "fin": 308.4
+        },
+        {
+          "mot": "mon",
+          "debut": 308.4,
+          "fin": 309.21
+        },
+        {
+          "mot": "Dieu",
+          "debut": 309.21,
+          "fin": 310.32
+        },
+        {
+          "mot": "Tu",
+          "debut": 310.32,
+          "fin": 310.97
+        },
+        {
+          "mot": "restes",
+          "debut": 310.97,
+          "fin": 311.97
+        },
+        {
+          "mot": "au",
+          "debut": 311.97,
+          "fin": 312.38
+        },
+        {
+          "mot": "plus",
+          "debut": 312.38,
+          "fin": 313.21
+        },
+        {
+          "mot": "près",
+          "debut": 313.21,
+          "fin": 314.25
+        },
+        {
+          "mot": "de",
+          "debut": 314.25,
+          "fin": 314.66
+        },
+        {
+          "mot": "moi",
+          "debut": 314.66,
+          "fin": 315.32
+        },
+        {
+          "mot": "J'ai",
+          "debut": 315.41,
+          "fin": 316.14
+        },
+        {
+          "mot": "compris",
+          "debut": 316.14,
+          "fin": 316.8
+        },
+        {
+          "mot": "qui",
+          "debut": 316.8,
+          "fin": 317.2
+        },
+        {
+          "mot": "tu",
+          "debut": 317.2,
+          "fin": 317.47
+        },
+        {
+          "mot": "étais",
+          "debut": 317.47,
+          "fin": 318.32
+        },
+        {
+          "mot": "Mon",
+          "debut": 318.32,
+          "fin": 318.82
+        },
+        {
+          "mot": "père",
+          "debut": 318.82,
+          "fin": 319.33
+        },
+        {
+          "mot": "et",
+          "debut": 319.33,
+          "fin": 319.82
+        },
+        {
+          "mot": "mon",
+          "debut": 319.82,
+          "fin": 320.56
+        },
+        {
+          "mot": "ami",
+          "debut": 320.56,
+          "fin": 321.32
+        },
+        {
+          "mot": "J'ai",
+          "debut": 321.42,
+          "fin": 322.2
+        },
+        {
+          "mot": "découvert",
+          "debut": 322.2,
+          "fin": 324.32
+        },
+        {
+          "mot": "Combien",
+          "debut": 324.32,
+          "fin": 325.36
+        },
+        {
+          "mot": "mon",
+          "debut": 325.36,
+          "fin": 325.81
+        },
+        {
+          "mot": "Dieu",
+          "debut": 325.81,
+          "fin": 326.41
+        },
+        {
+          "mot": "est",
+          "debut": 326.41,
+          "fin": 326.86
+        },
+        {
+          "mot": "bon",
+          "debut": 326.86,
+          "fin": 327.32
+        },
+        {
+          "mot": "Tu",
+          "debut": 327.8,
+          "fin": 328.33
+        },
+        {
+          "mot": "as",
+          "debut": 328.33,
+          "fin": 329.32
+        },
+        {
+          "mot": "toujours",
+          "debut": 329.32,
+          "fin": 333.32
+        },
+        {
+          "mot": "été",
+          "debut": 333.32,
+          "fin": 334.98
+        },
+        {
+          "mot": "fidèle",
+          "debut": 334.98,
+          "fin": 337.32
+        },
+        {
+          "mot": "Tu",
+          "debut": 337.32,
+          "fin": 337.86
+        },
+        {
+          "mot": "as",
+          "debut": 337.86,
+          "fin": 338.38
+        },
+        {
+          "mot": "toujours",
+          "debut": 338.38,
+          "fin": 340.31
+        },
+        {
+          "mot": "été",
+          "debut": 340.31,
+          "fin": 341.55
+        },
+        {
+          "mot": "là",
+          "debut": 341.55,
+          "fin": 342.32
+        },
+        {
+          "mot": "pour",
+          "debut": 342.32,
+          "fin": 344.02
+        },
+        {
+          "mot": "moi",
+          "debut": 344.02,
+          "fin": 345.32
+        },
+        {
+          "mot": "Avec",
+          "debut": 345.93,
+          "fin": 346.55
+        },
+        {
+          "mot": "le",
+          "debut": 346.55,
+          "fin": 347.16
+        },
+        {
+          "mot": "souffle",
+          "debut": 347.16,
+          "fin": 349.32
+        },
+        {
+          "mot": "qui",
+          "debut": 349.32,
+          "fin": 349.96
+        },
+        {
+          "mot": "m'est",
+          "debut": 349.96,
+          "fin": 351.02
+        },
+        {
+          "mot": "donné",
+          "debut": 351.02,
+          "fin": 352.32
+        },
+        {
+          "mot": "Je",
+          "debut": 352.32,
+          "fin": 352.93
+        },
+        {
+          "mot": "chanterai",
+          "debut": 352.93,
+          "fin": 355.32
+        },
+        {
+          "mot": "Combien",
+          "debut": 355.32,
+          "fin": 355.81
+        },
+        {
+          "mot": "mon",
+          "debut": 355.81,
+          "fin": 356.02
+        },
+        {
+          "mot": "Dieu",
+          "debut": 356.02,
+          "fin": 356.32
+        },
+        {
+          "mot": "est",
+          "debut": 356.32,
+          "fin": 356.32
+        },
+        {
+          "mot": "bon",
+          "debut": 356.32,
+          "fin": 356.32
         }
       ]
     },

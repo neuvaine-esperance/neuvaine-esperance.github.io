@@ -490,8 +490,37 @@ window.NEUVAINE_CONTENU = {
       'Amen.'
     ],
     lecteur: 'Anna',
+    paroles: [
+      'Seigneur je t’aime',
+      'Ta bonté ne faillit jamais',
+      'Chaque jour',
+      'Tu me tiens dans tes mains',
+      'Dès le moment où je m’éveille',
+      'Et jusqu’à mon coucher',
+      'Je chanterai',
+      'Combien mon Dieu est bon',
+
+      'Tu as toujours été fidèle',
+      'Tu as toujours été là pour moi',
+      'Avec le souffle qui m’est donné',
+      'Je chanterai combien mon Dieu est bon',
+
+      'J’aime Ta voix',
+      'Et quand je traverse le feu',
+      'Tu es mon guide',
+      'Tu restes au plus près de moi',
+      'J’ai compris qui tu étais',
+      'Mon Père et mon ami',
+      'J’ai découvert',
+      'Combien mon Dieu est bon',
+
+      'Tu as toujours été fidèle',
+      'Tu as toujours été là pour moi',
+      'Avec le souffle qui m’est donné',
+      'Je chanterai combien mon Dieu est bon'
+    ],
     audio: 'assets/audio/jour-7.mp3?v=3',
-    sync: 'assets/audio/jour-7.sync.js?v=2',
+    sync: 'assets/audio/jour-7.sync.js?v=3',
     chapitres: { meditation: 7.77, chant: 216.32, prions: 366.82, prieres: 420.44, envoi: 551.0 }
   },
 
