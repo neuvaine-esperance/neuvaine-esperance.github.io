@@ -408,8 +408,19 @@ window.NEUVAINE_CONTENU = {
     ],
     lecteur: 'Romain',
     musique:    'Si le bon Dieu — John Littleton',
+    paroles: [
+      'Si le Bon Dieu venait revivre sa peine,',
+      'il aurait les yeux d’un enfant noir de Harlem.',
+      'Des églises blanches se fermeraient devant lui,',
+      'des écoles blanches on le chasserait aussi.',
+
+      'Si le Bon Dieu revenait sauver nos âmes,',
+      'il aurait les yeux d’un orphelin du Vietnam.',
+      'Des milliers de bombes écraseraient son pays,',
+      'seul, au cœur du monde, il lutterait sans merci.'
+    ],
     audio: 'assets/audio/jour-6.mp3?v=4',
-    sync: 'assets/audio/jour-6.sync.js?v=5',
+    sync: 'assets/audio/jour-6.sync.js?v=6',
     chapitres: { meditation: 5.08, chant: 105.74, prions: 256.24, prieres: 322.87, envoi: 453.43 }
   },
 
